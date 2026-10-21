@@ -11,6 +11,9 @@ window.addEventListener('error',function(e){try{document.title='ERR: '+e.message
 'use strict';
 
 const STORE_KEY = 'vocab.shelf.v1';
+const BACKUP_KEY = 'vocab.shelf.v1.bak';      /* 镜像备份：主档损坏时自动恢复 */
+const SNAP_PREFIX = 'vocab.shelf.snap.';      /* 每日快照，最多保留 5 份 */
+const SNAP_KEEP = 5;
 const BOX_DAYS = [0, 1, 2, 4, 7, 15, 30, 60];
 const BOX_NAME = ['新词', '第1天', '第2天', '第4天', '第7天', '第15天', '第30天', '第60天'];
 const COLORS = ['#58cc02', '#1cb0f6', '#ff9600', '#ce82ff', '#ff4b4b', '#ffc800', '#00cd9c', '#ff86d0'];
@@ -96,35 +99,121 @@ function defaultState() {
   };
 }
 
-let state = loadState();
-function loadState() {
-  try {
-    const raw = localStorage.getItem(STORE_KEY);
-    if (!raw) return defaultState();
-    const s = JSON.parse(raw);
-    const d = defaultState();
-    const merged = {
-      ...d, ...s,
-      settings: { ...d.settings, ...(s.settings || {}) },
-      stats: { ...d.stats, ...(s.stats || {}) },
-      hearts: { ...d.hearts, ...(s.hearts || {}) }
-    };
-    // v200：老用户升级时补齐新字段，脏数据也不能让首页报错
-    if (!merged.checkin || typeof merged.checkin !== 'object' || Array.isArray(merged.checkin)) {
-      merged.checkin = { last: '', streak: 0 };
-    }
-    if (typeof merged.checkin.last !== 'string') merged.checkin.last = '';
-    if (!Number.isFinite(merged.checkin.streak)) merged.checkin.streak = 0;
-    if (!merged.challenge || typeof merged.challenge !== 'object' || Array.isArray(merged.challenge)) {
-      merged.challenge = { date: '', id: '', progress: 0, done: false };
-    }
-    if (!merged.achv || typeof merged.achv !== 'object' || Array.isArray(merged.achv)) merged.achv = {};
-    return merged;
-  } catch (e) { console.warn('读取进度失败', e); return defaultState(); }
+/* ---------------- 状态读写（含冗余保护） ---------------- */
+function _safeParse(raw) {
+  if (!raw) return null;
+  try { return JSON.parse(raw); } catch (e) { return null; }
 }
+function _words(s) {
+  try { return Object.keys((s && s.progress) || {}).length; } catch (e) { return 0; }
+}
+/* 合并默认值，保证老版本数据结构也能用 */
+function _mergeState(s) {
+  const d = defaultState();
+  return {
+    ...d, ...s,
+    settings: { ...d.settings, ...(s.settings || {}) },
+    stats: { ...d.stats, ...(s.stats || {}) },
+    hearts: { ...d.hearts, ...(s.hearts || {}) },
+    progress: s.progress || {},
+    history: s.history || {},
+    achv: s.achv || {},
+    quizPass: s.quizPass || {},
+  };
+}
+/* 收集所有可恢复的存档，按词数从多到少 */
+function _candidates() {
+  const list = [];
+  const main = _safeParse(localStorage.getItem(STORE_KEY));
+  const bak = _safeParse(localStorage.getItem(BACKUP_KEY));
+  if (main) list.push({ from: 'main', data: main, n: _words(main) });
+  if (bak) list.push({ from: 'backup', data: bak, n: _words(bak) });
+  try {
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (k && k.indexOf(SNAP_PREFIX) === 0) {
+        const d = _safeParse(localStorage.getItem(k));
+        if (d) list.push({ from: k, data: d, n: _words(d) });
+      }
+    }
+  } catch (e) { }
+  return list.sort((a, b) => b.n - a.n);
+}
+
+let _recoveredFrom = null;
+
+function loadState() {
+  const cands = _candidates();
+  if (!cands.length) return defaultState();
+
+  /* 取词数最多的那份：主档若被清空/损坏，自动回落到备份或快照 */
+  const best = cands[0];
+  if (best.from !== 'main') _recoveredFrom = best.from;
+
+  try { localStorage.removeItem('dbg.noSave'); } catch (e) { }
+  const merged = _mergeState(best.data);
+  /* 恢复后立刻回写主档，避免再次丢失 */
+  if (best.from !== 'main') {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(merged)); } catch (e) { }
+  }
+  return merged;
+}
+
+let state = loadState();
+
 function saveState() {
-  try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); }
-  catch (e) { console.warn('保存失败', e); toast('存储空间不足，可能无法保存进度'); }
+  try { if (localStorage.getItem('dbg.noSave') === '1') return;
+    const raw = JSON.stringify(state);
+    localStorage.setItem(STORE_KEY, raw);
+    localStorage.setItem(BACKUP_KEY, raw);        /* 同步镜像 */
+    _writeDailySnap(raw);
+  } catch (e) {
+    console.warn('保存失败', e);
+    try { toast('存储空间不足，可能无法保存进度'); } catch (err) { }
+  }
+}
+
+/* 每天第一笔保存写一份快照，最多保留 SNAP_KEEP 份 */
+function _writeDailySnap(raw) {
+  try {
+    const key = SNAP_PREFIX + dateKey();
+    if (localStorage.getItem(key)) return;
+    localStorage.setItem(key, raw);
+    const keys = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (k && k.indexOf(SNAP_PREFIX) === 0) keys.push(k);
+    }
+    keys.sort();
+    while (keys.length > SNAP_KEEP) {
+      const drop = keys.shift();
+      localStorage.removeItem(drop);
+    }
+  } catch (e) { }
+}
+
+/* 供设置页展示/恢复 */
+function listSnapshots() {
+  const out = [];
+  try {
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (k && k.indexOf(SNAP_PREFIX) === 0) {
+        const d = _safeParse(localStorage.getItem(k));
+        out.push({ key: k, date: k.replace(SNAP_PREFIX, ''), words: _words(d) });
+      }
+    }
+  } catch (e) { }
+  return out.sort((a, b) => (a.date < b.date ? 1 : -1));
+}
+
+async function restoreSnapshot(key) {
+  const d = _safeParse(localStorage.getItem(key));
+  if (!d) return false;
+  state = _mergeState(d);
+  saveState();
+  try { await loadBook(state.activeBook); renderAll(); } catch (e) { }
+  return true;
 }
 
 /* 今日记录 */
@@ -2090,7 +2179,7 @@ function bindSettings() {
   $('#btnNotify').onclick = enableNotify;
 
   /* ---------- 数据导出 / 导入（规范版） ---------- */
-  const BACKUP_KEY = 'vocab.shelf.lastBackup';
+  const LAST_BACKUP_KEY = 'vocab.shelf.lastBackup';
   let pendingImport = null;     // 解析后的待导入数据
 
   function dataCount() {
@@ -2110,12 +2199,16 @@ function bindSettings() {
   function refreshDataStats() {
     const box = $('#dataStats');
     if (!box) return;
-    const last = localStorage.getItem(BACKUP_KEY);
+    const last = localStorage.getItem(LAST_BACKUP_KEY);
     const lastTxt = last
       ? '上次备份 ' + new Date(Number(last)).toLocaleDateString('zh-CN')
       : '还没有备份过';
+    const snaps = (typeof listSnapshots === 'function') ? listSnapshots() : [];
     box.innerHTML = '已学 <b>' + dataCount() + '</b> 个词 · 占用 <b>' + fmtBytes(dataBytes())
-      + '</b> · ' + lastTxt + '<br>进度只存在这台设备上，不联网、不上传。换手机或清缓存会丢失。';
+      + '</b> · ' + lastTxt
+      + '<br>本地快照 <b>' + snaps.length + '</b> 份'
+      + (snaps.length ? '（最近 ' + snaps[0].date + '，' + snaps[0].words + ' 词）' : '')
+      + '<br>数据只在这台设备，不联网、不上传。主档损坏时会自动从备份或快照恢复。';
   }
 
   $('#btnExport').onclick = () => {
@@ -2136,7 +2229,7 @@ function bindSettings() {
     a.download = 'xiaoyue-backup-' + stamp + '.json';
     a.click();
     setTimeout(() => URL.revokeObjectURL(a.href), 3000);
-    localStorage.setItem(BACKUP_KEY, String(Date.now()));
+    localStorage.setItem(LAST_BACKUP_KEY, String(Date.now()));
     refreshDataStats();
     toast('已导出 ' + dataCount() + ' 个词的进度');
   };
@@ -2409,6 +2502,31 @@ async function boot() {
       } catch (e) { document.title = 'FIT-ERR:' + e.message; }
     }, 2200);
   }
+
+  
+  /* ---- 数据保护自检钩子（仅调试用）---- */
+  (function () {
+    var q = new URLSearchParams(location.search);
+    if (q.get('dbgseed') === '1') {
+      var n = Number(q.get('n') || 30);
+      state.progress = state.progress || {};
+      for (var i = 0; i < n; i++) state.progress['seedword' + i] = { b: 2, d: dateKey(), r: 3, w: 0, last: Date.now(), dt: dateKey() };
+      saveState();
+    }
+    if (q.get('dbgwipe') === '1') {
+      try { localStorage.setItem('dbg.noSave', '1'); localStorage.removeItem(STORE_KEY); } catch (e) { }
+    }
+    if (q.get('dbgdata') === '1') {
+      setTimeout(function () {
+        var main = _safeParse(localStorage.getItem(STORE_KEY));
+        var bak = _safeParse(localStorage.getItem(BACKUP_KEY));
+        var snaps = listSnapshots();
+        document.title = 'state=' + _words(state) +
+          ' main=' + _words(main) + ' bak=' + _words(bak) +
+          ' snaps=' + snaps.length + ' recovered=' + (_recoveredFrom || 'no');
+      }, 1800);
+    }
+  })();
 
   bindEvents();
   bindSettings();
