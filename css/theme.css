@@ -4093,3 +4093,8 @@ html[data-theme="night"] .achv-item.is-on .achv-date{color:#8CE9B8}
 .q-rule span{color:#8b98a6;font-size:11.5px}
 .q-done-rule{font-size:11.5px;color:#8b98a6;margin-top:6px}
 .q-done-sub b{color:#2f7a43;font-size:16px}
+
+/* 移动端兜底：JS 未测得高度时用动态视口高度，避免 iOS 地址栏遮挡 */
+@supports (height: 100dvh){
+  #app:not([style*="--app-h"]){ height: 100dvh; }
+}

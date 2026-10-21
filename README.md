@@ -1,4 +1,6 @@
-# 小越背单词
+﻿# 小越背单词
+
+[![CI](https://github.com/suzy553/dictionaryusers/actions/workflows/ci.yml/badge.svg)](https://github.com/suzy553/dictionaryusers/actions/workflows/ci.yml)
 
 > 一个装到手机桌面就能用的背单词 PWA：间隔重复算法 + 环游世界闯关 + 完全离线可用。
 
@@ -186,10 +188,24 @@ npx serve .                    # Node
 | 长句撑爆卡片 | 题干字号写死 38px | 按字符长度分四档自适应 |
 | 题型标签被裁一半 | 负偏移 `top:-13px` 被卡片圆角裁掉 | 改为卡片内正常流布局 |
 
-### 质量保障
+### 测试
 
-- 题目生成器有独立自检脚本：批量生成 1500 道题，检查选项重复 / 答案缺失 / 题干泄题
-- 语法检查 + 无头浏览器渲染验证
+核心算法抽到 js/core.js（纯函数，无 DOM 依赖），可直接单元测试：
+
+```
+tests/core.test.js   19 个用例
+  ├─ SRS：间隔序列、升降级、封顶、连续答对到 60 天
+  └─ 题型生成器：8 种题型的答案唯一性、选项不重复、不泄题、可还原
+```
+
+`ash
+npm install
+npm test
+`
+
+CI 在每次 push 时自动跑测试 + JS 语法检查（见 .github/workflows/ci.yml）。
+
+> 这套测试抓出过真 bug：qOrder / qTrueFalse 两个函数在重构中丢失，运行时异常被 try/catch 吞掉，导致「句子排序」「判断正误」两种题型**静默失效**。
 
 ---
 

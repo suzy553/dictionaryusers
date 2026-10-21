@@ -84,110 +84,17 @@
     } catch (e) { return false; }
   }
 
-  /* ---------------- 6 种题型 ---------------- */
-
-  /* T1 看词选义（读） */
-  function qChoice(word, pool) {
-    var others = pool.filter(function (w) { return w.w !== word.w && w.t && w.t[0]; });
-    var dis = pickN(others, 3);
-    if (dis.length < 2) return null;
-    return {
-      type: 'choice', tag: '选一个正确的释义', dim: '读', word: word,
-      prompt: word.w, sub: word.us ? '/' + word.us + '/' : '',
-      opts: shuffled([{ text: word.t[0], ok: true }].concat(dis.map(function (w) { return { text: w.t[0], ok: false }; })))
-    };
-  }
-
-  /* T2 例句填空（读+写） */
-  function qCloze(word, pool) {
-    if (!hasSentence(word)) return null;
-    var esc = word.w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    var blank = word.s.replace(new RegExp('\\b' + esc + '\\b', 'i'), '______');
-    var dis = pickN(pool.filter(function (w) { return w.w !== word.w; }), 3);
-    if (dis.length < 2) return null;
-    return {
-      type: 'choice', tag: '把句子补完整', dim: '读', word: word,
-      prompt: blank, sub: word.sz || '',
-      opts: shuffled([{ text: word.w, ok: true }].concat(dis.map(function (w) { return { text: w.w, ok: false }; })))
-    };
-  }
-
-  /* T3 听音选词（听） */
-  function qListen(word, pool) {
-    var near = pool.filter(function (w) { return w.w !== word.w && Math.abs(w.w.length - word.w.length) <= 3; });
-    var dis = pickN(near.length >= 3 ? near : pool.filter(function (w) { return w.w !== word.w; }), 3);
-    if (dis.length < 2) return null;
-    return {
-      type: 'listen', tag: '听发音，选出这个单词', dim: '听', word: word,
-      prompt: '🔊', sub: '点喇叭再听一次',
-      opts: shuffled([{ text: word.w, ok: true }].concat(dis.map(function (w) { return { text: w.w, ok: false }; })))
-    };
-  }
-
-  /* T4 多选（读） */
-  /* T4 词义配对（读）：4 个词 ↔ 4 个释义，两两连起来
-     语义清晰、数据 100% 可用，不需要多释义也不需要词性 */
-  function qMatch(word, pool) {
-    var others = pickN(pool.filter(function (w) { return w.w !== word.w && w.t && w.t[0]; }), 3);
-    if (others.length < 3) return null;
-    var group = [word].concat(others);
-    var left = group.map(function (w, i) { return { id: i, text: w.w }; });
-    var right = shuffled(group.map(function (w, i) { return { id: i, text: w.t[0] }; }));
-    return {
-      type: 'match', tag: '把单词和释义配对', dim: '读', word: word,
-      prompt: '4 组配对', sub: '点左边一个词，再点右边的释义',
-      left: shuffled(left), right: right
-    };
-  }
-
-  /* T5 听写（写）：点字母拼词 */
-  function qSpell(word, pool) {
-    var letters = word.w.split('');
-    if (letters.length > 12) return null;
-    var alphabet = 'abcdefghijklmnopqrstuvwxyz';
-    var filler = [];
-    for (var i = 0; i < 4; i++) filler.push(alphabet[Math.floor(Math.random() * 26)]);
-    var tiles = shuffled(letters.map(function (ch, i) { return { ch: ch, i: i }; })
-      .concat(filler.map(function (ch) { return { ch: ch, i: -1 }; })));
-    return {
-      type: 'spell', tag: '听发音，按顺序点出单词', dim: '听+写', word: word,
-      prompt: '🔊', sub: '点错的可以撤销', tiles: tiles, answer: word.w
-    };
-  }
-
-  /* T6 看中文选英文（读）：给中文释义，选出对应的英文单词
-     和"看词选义"互为反向，答案唯一，不会有歧义 */
-  function qCnToEn(word, pool) {
-    if (!word.t || !word.t[0]) return null;
-    /* 中文释义里如果直接含这个英文词，就是泄题，换别的题 */
-    if (String(word.t[0]).toLowerCase().indexOf(String(word.w).toLowerCase()) >= 0) return null;
-    var dis = pickN(pool.filter(function (w) {
-      return w.w !== word.w && w.t && w.t[0];
-    }), 3);
-    if (dis.length < 2) return null;
-    return {
-      type: 'choice', tag: '选出对应的英文单词', dim: '读', word: word,
-      prompt: word.t[0], sub: '看中文，选英文',
-      opts: shuffled([{ text: word.w, ok: true }].concat(dis.map(function (w) { return { text: w.w, ok: false }; })))
-    };
+  /* ---------------- 题型实现：统一走 XYCore ---------------- */
+  /* 题型生成逻辑抽到 js/core.js（纯函数，可单元测试） */
+  function coreLib() {
+    if (typeof XYCore !== 'undefined' && XYCore) return XYCore;
+    return null;
   }
 
   function buildQuestion(word, pool, wanted) {
-    var m = {
-      choice: function () { return qChoice(word, pool); },
-      cloze: function () { return qCloze(word, pool); },
-      listen: function () { return qListen(word, pool); },
-      match: function () { return qMatch(word, pool); },
-      spell: function () { return qSpell(word, pool); },
-      cn2en: function () { return qCnToEn(word, pool); },
-      order: function () { return qOrder(word, pool); },
-      tf: function () { return qTrueFalse(word, pool); }
-    };
-    for (var i = 0; i < wanted.length; i++) {
-      var q = m[wanted[i]] && m[wanted[i]]();
-      if (q) return q;
-    }
-    return qChoice(word, pool);
+    var lib = coreLib();
+    if (!lib) { console.error('XYCore 未加载，无法出题'); return null; }
+    return lib.buildQuestion(word, pool, wanted);
   }
 
   /* ---------------- 开始一关 ---------------- */
