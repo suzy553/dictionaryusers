@@ -2885,10 +2885,12 @@ function bindSettings() {
 
 /* ---------------- 导航 ---------------- */
 function go(tab) {
+  /* 目标页面不存在时回退首页，避免整屏空白 */
+  if (!document.getElementById('screen-' + tab)) tab = 'home';
   document.documentElement.classList.toggle('on-home', tab === 'home');
   $$('.tab').forEach(t => t.classList.toggle('is-active', t.dataset.tab === tab));
   $$('.screen').forEach(s => s.classList.toggle('is-active', s.id === 'screen-' + tab));
-  if (tab === 'pet') onPetTabEnter(); else onPetTabLeave();
+  try { if (tab === 'pet' && !document.getElementById('screen-pet')) { /* 爱宠已下架 */ } else if (tab === 'pet') onPetTabEnter(); else onPetTabLeave(); } catch (e) { }
   if (tab === 'learn') { openChapters.clear(); renderPath(); }
   if (tab === 'review') renderReview();
   if (tab === 'books') renderBooks();
@@ -2926,8 +2928,6 @@ function bindEvents() {
     closeReviewDetail();
     startSession('review', list);
   };
-  const petTab = document.querySelector('[data-tab="home"]');
-  if (petTab) petTab.onclick = () => go('pet');
 
   // v200：签到按钮 + 成就入口 / 关闭
   const ckBtn = $('#ckBtn'); if (ckBtn) ckBtn.onclick = doCheckIn;
