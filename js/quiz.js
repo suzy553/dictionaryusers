@@ -832,6 +832,30 @@
           Object.keys(HINT_TYPES).forEach(function (k) { state.quizHintSeen[k] = 1; });
         }
         startQuiz(target);
+
+        /* 调试：强制第一题为指定题型 */
+        var _wantType = new URLSearchParams(location.search).get('dbgtype');
+        if (_wantType) setTimeout(function () {
+          try {
+            var lib = (typeof XYCore !== 'undefined') ? XYCore : null;
+            if (!lib || !quiz || !quiz.qs) return;
+            for (var i = 0; i < quiz.qs.length; i++) {
+              if (quiz.qs[i].type === _wantType) {
+                quiz.items = [{ kind: 'q', q: quiz.qs[i] }];
+                quiz.idx = 0; quiz.phase = 'run';
+                renderQuiz(); return;
+              }
+            }
+            /* 题库里没有该题型 → 直接造一个 */
+            var w = (curBook && curBook.words) ? curBook.words[0] : null;
+            var gen = { spell: lib.qSpell, order: lib.qOrder, match: lib.qMatch, tf: lib.qTrueFalse,
+                        listen: lib.qListen, cloze: lib.qCloze }[_wantType];
+            if (w && gen) {
+              var q = gen(w, curBook.words);
+              if (q) { quiz.items = [{ kind: 'q', q: q }]; quiz.idx = 0; quiz.phase = 'run'; renderQuiz(); }
+            }
+          } catch (e) { document.title = 'DBGTYPE-ERR:' + e.message; }
+        }, 400);
         if (dbg === '2') setTimeout(function () { quiz.ci = quiz.cards.length; quiz.phase = 'quiz'; renderQuiz(); }, 300);
         var qn = Number(new URLSearchParams(location.search).get('dbgq') || -1);
         if (qn >= 0) setTimeout(function () { quiz.ci = quiz.cards.length; quiz.phase = 'quiz'; quiz.qi = qn; renderQuiz(); }, 320);

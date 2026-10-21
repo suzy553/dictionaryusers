@@ -41,6 +41,9 @@ jobs:
             echo "检查 $f"
             node --check "$f"
           done
+      - name: 检查未定义函数
+        run: node scripts/check-undefined.js
+
       - name: 检查资源引用
         run: node scripts/check-refs.js
 
@@ -51,4 +54,5 @@ jobs:
           test -f manifest.webmanifest
           test -f js/core.js
           echo "结构完整"
+
 

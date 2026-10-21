@@ -1,4 +1,4 @@
-/* __E2__ */
+﻿/* __E2__ */
 window.addEventListener('unhandledrejection',function(e){try{document.title='REJ: '+((e.reason&&(e.reason.message||e.reason))||'')}catch(_){}});
 window.addEventListener('error',function(e){try{document.title='ERR: '+e.message+' @'+e.lineno}catch(_){}});
 /* __E__ */
@@ -1462,24 +1462,44 @@ function initVideoBg() {
   const v = document.getElementById('bgVideo');
   if (!v) return;
 
-  /* 用户关掉「动态背景」→ 只用静态图 */
-  if (!state.settings.liveBg) { v.style.display = 'none'; try { v.pause(); } catch (e) { } return; }
+  /* ① 用户关掉「动态背景」→ 只用静态图 */
+  if (!state.settings.liveBg) {
+    v.style.display = 'none';
+    try { v.pause(); } catch (e) { }
+    return;
+  }
 
-  /* 省流/低端设备 → 不加载视频 */
+  /* ② 省流 / 2G-3G / 低内存设备 → 不加载视频 */
   if (typeof prefersLiteAssets === 'function' && prefersLiteAssets()) {
     v.style.display = 'none';
     return;
   }
 
+  /* ③ 系统开启「减少动效」→ 尊重无障碍设置，不自动播放 */
+  try {
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      v.style.display = 'none';
+      return;
+    }
+  } catch (e) { }
+
   v.muted = true;
   v.loop = true;
   v.playsInline = true;
   v.setAttribute('webkit-playsinline', '');
-  if (!v.getAttribute('src')) v.setAttribute('src', 'data/hero.mp4');
   v.style.display = 'block';
 
-  const p = v.play();
-  if (p && p.catch) p.catch(function () { v.style.display = 'none'; });
+  /* ④ 首屏先显示静态封面，页面 load 之后再拉 1.55MB 视频 */
+  const loadVideo = function () {
+    if (!v.getAttribute('src')) v.setAttribute('src', 'data/hero.mp4');
+    const p = v.play();
+    if (p && p.catch) p.catch(function () { v.style.display = 'none'; });
+  };
+  if (document.readyState === 'complete') {
+    setTimeout(loadVideo, 300);
+  } else {
+    window.addEventListener('load', function () { setTimeout(loadVideo, 300); }, { once: true });
+  }
 }
 function offerPlayButton() {
   const box = document.getElementById('heroQuote');
@@ -2428,7 +2448,7 @@ async function boot() {
     renderAll();
   }
   const tab = q.get('tab') || location.hash.replace('#', '');
-  if (['home', 'learn', 'pet', 'books', 'review', 'settings'].includes(tab)) go(tab);
+  if (['home', 'learn', 'books', 'review', 'settings'].includes(tab)) go(tab);
   if (q.get('start') === '1') setTimeout(() => startSession('learn'), 300);
   if (q.get('reveal') === '1') setTimeout(revealCard, 900);
 
@@ -2438,9 +2458,7 @@ async function boot() {
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'visible') {
       renderHome(); maybeNotifyToday();
-      if (petScreenActive()) onPetTabEnter();
     } else {
-      if (petScreenActive()) onPetTabLeave();
     }
   });
 }

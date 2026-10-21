@@ -558,3 +558,68 @@ html:not(.on-home) .bg-video{ display: none !important; }
 .chapter-head .ch-progress i, .chapter-head .ch-progress > b{
   background: #fff !important;
 }
+/* ==========================================================================
+   v2 · 夜间模式修正
+   ========================================================================== */
+html[data-theme="night"] .set-row{
+  background: var(--surface) !important;
+  border-color: var(--rule) !important;
+  color: var(--ink) !important;
+}
+html[data-theme="night"] .set-row .ic{ color: var(--accent) !important; }
+html[data-theme="night"] .set-row .chev{ color: var(--ink-3) !important; }
+html[data-theme="night"] .set-row:active{ background: var(--paper-2) !important; }
+
+/* 设置卡片与分隔线 */
+html[data-theme="night"] .setting-group{
+  background: var(--surface) !important;
+  border-color: var(--rule) !important;
+}
+html[data-theme="night"] .row{ border-color: var(--rule) !important; }
+html[data-theme="night"] .row-t{ color: var(--ink) !important; }
+html[data-theme="night"] .row-s{ color: var(--ink-3) !important; }
+
+/* 齿轮按钮对比度 */
+html[data-theme="night"] #btnSettingsQuick{
+  background: var(--surface) !important;
+  border-color: var(--rule) !important;
+}
+html[data-theme="night"] #btnSettingsQuick svg{ color: var(--ink-2) !important; }
+
+/* 开关：夜间用强调绿 */
+html[data-theme="night"] .switch:checked,
+html[data-theme="night"] input.switch:checked{
+  background: var(--accent) !important;
+}
+html[data-theme="night"] .seg,
+html[data-theme="night"] .theme-seg{ background: var(--paper-2) !important; }
+html[data-theme="night"] .seg button,
+html[data-theme="night"] .theme-seg button{ color: var(--ink-3) !important; }
+html[data-theme="night"] .seg button.on,
+html[data-theme="night"] .theme-seg button.on{
+  background: var(--surface) !important;
+  color: var(--ink) !important;
+}
+
+/* 夜间背景：隐藏白天的程序化天空/山丘，只保留深色渐变 */
+html[data-theme="night"] .bg-art{ display: none !important; }
+html[data-theme="night"] .bg-scene{
+  background: linear-gradient(180deg, #0C1210 0%, #101A15 55%, #0E1512 100%) !important;
+}
+/* 夜间顶部引语区：加大遮罩 */
+html[data-theme="night"] .bg-scene::after{
+  background:
+    linear-gradient(180deg, rgba(6,12,9,.72) 0%, rgba(6,12,9,.35) 30%, rgba(14,21,18,0) 52%),
+    linear-gradient(180deg, rgba(14,21,18,0) 58%, rgba(14,21,18,.75) 86%, var(--paper) 100%) !important;
+}
+html[data-theme="night"] .sheet{ background: var(--paper) !important; }
+html[data-theme="night"] .tc-task{ background: var(--surface) !important; border-color: var(--rule) !important; }
+html[data-theme="night"] .tc-task .t-name{ color: var(--ink) !important; }
+html[data-theme="night"] .tc-task b{ color: var(--ink-3) !important; }
+/* 夜间：主视觉压暗，避免亮图刺眼 */
+html[data-theme="night"] .bg-video,
+html[data-theme="night"] .bg-photo,
+html[data-theme="night"] #bgPhoto{
+  filter: brightness(.62) saturate(.85) !important;
+  transition: filter .3s ease;
+}
