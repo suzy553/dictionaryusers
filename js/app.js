@@ -429,12 +429,12 @@ function renderChallenge() {
 
 /* ---------------- 成就 ---------------- */
 const ACHV = [
-  { id: 'first_day', name: '初次见面', desc: '完成第一次学习', icon: '🌱' },
-  { id: 'streak7', name: '七日不断', desc: '连续签到 7 天', icon: '🔥' },
-  { id: 'words100', name: '百词斩', desc: '累计学过 100 词', icon: '💯' },
-  { id: 'words500', name: '五百强', desc: '累计学过 500 词', icon: '🏆' },
-  { id: 'book_done', name: '全书通关', desc: '背完任意一本词书', icon: '📚' },
-  { id: 'perfect10', name: '十连对', desc: '单次会话连续答对 10 个', icon: '⚡' }
+  { id: 'first_day', name: '初次见面', desc: '完成第一次学习', icon: 'sprout' },
+  { id: 'streak7', name: '七日不断', desc: '连续签到 7 天', icon: 'flame' },
+  { id: 'words100', name: '百词斩', desc: '累计学过 100 词', icon: 'bolt' },
+  { id: 'words500', name: '五百强', desc: '累计学过 500 词', icon: 'trophy' },
+  { id: 'book_done', name: '全书通关', desc: '背完任意一本词书', icon: 'books' },
+  { id: 'perfect10', name: '十连对', desc: '单次会话连续答对 10 个', icon: 'bolt' }
 ];
 
 function totalLearnedWords() {
@@ -467,7 +467,7 @@ function unlockAchv(id) {
   if (!state.achv || typeof state.achv !== 'object' || Array.isArray(state.achv)) state.achv = {};
   state.achv[id] = Date.now();
   saveState();
-  toast(`🏅 解锁成就：${def.name}`, 2600);
+  toast(`解锁成就：${def.name}`, 2600);
   return true;
 }
 
@@ -508,7 +508,7 @@ function renderAchvPanel() {
   grid.innerHTML = ACHV.map(a => {
     const ts = state.achv && state.achv[a.id];
     return `<div class="achv-item${ts ? ' is-on' : ''}">`
-      + `<span class="achv-ico">${ts ? a.icon : '🔒'}</span>`
+      + `<span class="achv-ico">${ts ? '<span class="ic ic-16" data-icon="' + a.icon + '"></span>' : '<span class="ic ic-16" data-icon="lock"></span>'}</span>`
       + `<b class="achv-name">${a.name}</b>`
       + `<em class="achv-desc">${a.desc}</em>`
       + `<span class="achv-date">${ts ? '解锁于 ' + fmtAchvDate(ts) : '未解锁'}</span>`
@@ -791,7 +791,7 @@ function renderHome() {
   }
   if (cta) {
     cta.textContent = hp <= 0 ? '今天的心用完了'
-      : allDone ? '今日已完成 ✓'
+      : allDone ? '今日已完成'
         : done >= goal && goal > 0 ? (due > 0 ? '复习旧词' : '再学几个新词')
           : done > 0 ? '继续学习' : '开始今天的学习';
   }
@@ -1231,7 +1231,7 @@ function renderPath() {
       const n = s + i, info = pathInfos[n];
       const x = 50 + Math.sin(n * 0.9) * 26;
       const st = info.done ? 'done' : (info.unlocked ? 'current' : 'locked');
-      const badge = info.done ? '✓' : (info.unlocked ? '' : '🔒');
+      const badge = info.done ? '<span class="ic ic-14" data-icon="check"></span>' : (info.unlocked ? '' : '<span class="ic ic-14" data-icon="lock"></span>');
       const ang = 140 + (n * 23) % 70;
       html += `<button class="node ${st}" data-node="${n}"
         style="left:calc(${x.toFixed(1)}% - 32px);top:${i * 76}px;--sky1:${country.sky[0]};--sky2:${country.sky[1]};--ang:${ang}deg;--scene:${sceneURL(country, c)}"
@@ -1599,10 +1599,10 @@ function suggestNextBook() {
   const next = others[0];
   const done = bookIndex.find(b => b.id === state.activeBook);
   if (!next) {
-    toast('所有词书都背完啦，太厉害了 🎉', 2600);
+    toast('所有词书都背完啦，太厉害了', 2600);
     return;
   }
-  const msg = `${done ? `《${done.title}》全书背完啦 🎉 推荐接着背《${next.title}》` : `推荐背《${next.title}》`}`;
+  const msg = `${done ? `《${done.title}》全书背完啦 推荐接着背《${next.title}》` : `推荐背《${next.title}》`}`;
   toast(msg, 3200);
   go('books');
   setTimeout(() => {
@@ -1625,7 +1625,7 @@ function lockScrollIfNeeded() {
 }
 
 function startSession(kind, override) {
-  if (heartsLeft() <= 0) { toast('今天的心用完了，明天 0 点恢复 ❤️'); return; }
+  if (heartsLeft() <= 0) { toast('今天的心用完了，明天 0 点恢复'); return; }
   let queue = [];
 
   if (override && override.length) {
@@ -1778,7 +1778,7 @@ function answer(kind) {
     beep('ok');
     mascotMood('happy');
     $('#wordCard').classList.add('flash-ok', 'pop');
-    giveFeedback('ok', pick(['太棒了！', '记牢了 👏', '很好，继续保持', '这个稳了']) + `　下次复习：${BOX_NAME[rec.b]}`);
+    giveFeedback('ok', pick(['太棒了！', '记牢了', '很好，继续保持', '这个稳了']) + `　下次复习：${BOX_NAME[rec.b]}`);
   } else if (kind === 'hard') {
     rec.b = clamp(rec.b || 1, 1, 7);
     rec.d = shiftDay(1);
@@ -1799,7 +1799,7 @@ function answer(kind) {
     if (state.hearts.n === 5 && !state.hearts.warned) {
       state.hearts.warned = true;
       saveState();
-      toast('还剩 5 颗心，答错会扣光哦 ❤️', 2600);
+      toast('还剩 5 颗心，答错会扣光哦', 2600);
     }
     $('#wordCard').classList.add('shake');
     giveFeedback('no', `没关系，记下来　马上再考你一次`);
@@ -1889,7 +1889,7 @@ function finishSession(reason) {
   const nextEl = $('#sumNext');
   if (reason === 'hearts') {
     sumNext = { act: 'home', msg: '今天先到这里，明天 0 点恢复 20 颗心' };
-    $('#sumEmoji').textContent = '💔';
+    $('#sumEmoji').textContent = '';
     $('#sumTitle').textContent = '心用完了';
     $('#sumSub').textContent = '今天先到这里，明天 0 点恢复 20 颗心';
     $('#btnSumClose').textContent = '明天再来';
@@ -1904,10 +1904,10 @@ function finishSession(reason) {
     else if (due > 0) { act = 'review'; msg = `还有 ${due} 个词今天要复习`; }
     else if (wrongs > 0) { act = 'review'; msg = `错词本里还有 ${wrongs} 个词，建议再巩固一遍`; }
     else if (bookEmpty) { act = 'books'; msg = '这本词书背完啦，去书架换一本继续'; }
-    else { act = 'home'; msg = '今天的目标完成啦，明天见 👋'; }
+    else { act = 'home'; msg = '今天的目标完成啦，明天见'; }
     sumNext = { act, msg };
-    $('#sumEmoji').textContent = '🎉';
-    $('#sumTitle').textContent = s.answered === 0 ? '这次没有答题' : pick(['今天完成啦！', '漂亮，收工！', '稳得一批 🎯']);
+    $('#sumEmoji').textContent = '';
+    $('#sumTitle').textContent = s.answered === 0 ? '这次没有答题' : pick(['今天完成啦！', '漂亮，收工！', '稳得一批']);
     $('#sumSub').textContent = `连击 ${displayStreak()} 天 · 正确率 ${acc}% · Lv.${levelInfo().lv}`;
     $('#btnSumClose').textContent = act === 'learn' ? '继续学习' : act === 'review' ? '去复习' : act === 'books' ? '去书架' : '明天见';
   }
@@ -1950,7 +1950,7 @@ function downloadICS() {
     `DTSTART:${f(d)}`,
     `DTEND:${f(end)}`,
     'RRULE:FREQ=DAILY',
-    'SUMMARY:背单词 📚',
+    'SUMMARY:背单词',
     'DESCRIPTION:打开「小越背单词」，完成今天的学习目标',
     'BEGIN:VALARM', 'TRIGGER:-PT0M', 'ACTION:DISPLAY', 'DESCRIPTION:该背单词啦', 'END:VALARM',
     'END:VEVENT', 'END:VCALENDAR'
@@ -1984,7 +1984,7 @@ function maybeNotifyToday() {
   if (now.getHours() * 60 + now.getMinutes() < h * 60 + m) return;
   if (sessionStorage.getItem('notified-' + dateKey())) return;
   sessionStorage.setItem('notified-' + dateKey(), '1');
-  new Notification('该背单词啦 📚', {
+  new Notification('该背单词啦', {
     body: `今天还有 ${left} 个新词没背`,
     icon: 'icons/icon-192.png', tag: 'daily'
   });

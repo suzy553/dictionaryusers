@@ -281,7 +281,7 @@
         <p class="page-sub">把学过的和做错的，再过一遍</p>
 
         <button class="rv-card" id="rvCardWords">
-          <span class="rv-ico" id="rvIcoWords">📖</span>
+          <span class="rv-ico" id="rvIcoWords"><span class="ic" data-icon="book"></span></span>
           <span class="rv-main">
             <b>单词复习</b>
             <em>可复习 <b id="rvWordCount">0</b> 个词，今天再巩固一遍</em>
@@ -290,7 +290,7 @@
         </button>
 
         <button class="rv-card rv-wrong" id="rvCardWrong">
-          <span class="rv-ico" id="rvIcoWrong">✍️</span>
+          <span class="rv-ico" id="rvIcoWrong"><span class="ic" data-icon="pencil"></span></span>
           <span class="rv-main">
             <b>错题复习</b>
             <em>答错过的 <b id="rvWrongCount">0</b> 个词，重点攻克</em>
@@ -410,16 +410,16 @@
 <div id="session" class="overlay">
   <img id="sessBg" class="sess-bg" alt="">
   <div class="sess-top">
-    <button class="icon-btn" id="btnQuit" aria-label="退出">✕</button>
+    <button class="icon-btn" id="btnQuit" aria-label="退出"><span class="ic ic-16" data-icon="close"></span></button>
     <div class="sess-bar"><i id="sessBar"></i></div>
-    <div class="sess-heart" id="sessHeartWrap">❤️<b id="sessHeart">20</b></div>
+    <div class="sess-heart" id="sessHeartWrap"><span class="ic ic-16" data-icon="heart"></span><b id="sessHeart">20</b></div>
     <div class="sess-count"><b id="sessDone">0</b>/<span id="sessTotal">0</span></div>
   </div>
 
   <div class="sess-body">
     <div class="word-card" id="wordCard">
       <div class="card-scene" id="cardScene" aria-hidden="true">
-        <span class="card-emoji" id="cardEmoji">🏯</span>
+        <span class="card-emoji" id="cardEmoji"></span>
         <i class="card-hill"></i>
         <i class="card-hill h2"></i>
       </div>
@@ -449,7 +449,7 @@
     <button class="btn btn-good btn-3d" data-ans="good">认识</button>
   </div>
   <div class="sess-next hidden" id="sessNext">
-    <button class="btn btn-primary btn-3d btn-xl" id="btnNext">继续 →</button>
+    <button class="btn btn-primary btn-3d btn-xl" id="btnNext">继续<span class="ic ic-16" data-icon="arrowRight"></span></button>
   </div>
 </div>
 
@@ -460,7 +460,7 @@
   <div class="quiz-inner">
     <img id="quizBg" class="quiz-bg" alt="">
     <div class="quiz-top">
-      <button class="icon-btn" id="quizClose" aria-label="退出">✕</button>
+      <button class="icon-btn" id="quizClose" aria-label="退出"><span class="ic ic-16" data-icon="close"></span></button>
       <div class="quiz-bar"><i id="quizBar"></i></div>
       <div class="quiz-title" id="quizTitle"></div>
     </div>
@@ -473,7 +473,7 @@
   <div class="stats-inner">
     <div class="stats-head">
       <h2>学习统计</h2>
-      <button class="icon-btn" id="statsClose" aria-label="关闭">✕</button>
+      <button class="icon-btn" id="statsClose" aria-label="关闭"><span class="ic ic-16" data-icon="close"></span></button>
     </div>
     <div class="stats-grid" id="statsGrid"></div>
     <h3 class="stats-sub">近 7 天</h3>
@@ -486,7 +486,7 @@
 <!-- ============ 结算 ============ -->
 <div id="summary" class="overlay">
   <div class="sum-inner">
-    <div class="sum-emoji" id="sumEmoji">🎉</div>
+    <div class="sum-emoji" id="sumEmoji"></div>
     <h2 id="sumTitle">今天完成啦！</h2>
     <p class="sum-sub" id="sumSub"></p>
     <p class="sum-next" id="sumNext"></p>
@@ -538,9 +538,9 @@
 <div id="achvPanel" class="overlay achv-panel">
   <div class="achv-inner">
     <div class="achv-head">
-      <b>🏅 我的成就</b>
+      <b><span class="ic ic-16" data-icon="medal"></span> 我的成就</b>
       <span id="achvCount">0 / 6</span>
-      <button class="achv-close" id="achvClose" type="button" aria-label="关闭">✕</button>
+      <button class="achv-close" id="achvClose" type="button" aria-label="关闭"><span class="ic ic-16" data-icon="close"></span></button>
     </div>
     <p class="achv-sub">把每一个小进步都存下来</p>
     <div class="achv-grid" id="achvGrid"></div>
@@ -550,7 +550,8 @@
 <div id="toast"></div>
 <canvas id="fx"></canvas>
 
-<script src="js/app.js"></script>
+<script src="js/icons.js"></script>
+  <script src="js/app.js"></script>
 <script src="js/core.js"></script>
 <script src="js/quiz.js"></script>
 

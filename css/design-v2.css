@@ -623,3 +623,80 @@ html[data-theme="night"] #bgPhoto{
   filter: brightness(.62) saturate(.85) !important;
   transition: filter .3s ease;
 }
+/* ==========================================================================
+   v2 · 图标系统（data-icon → SVG）
+   ========================================================================== */
+[data-icon]{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  flex: 0 0 auto;
+  color: currentColor;
+}
+[data-icon] svg{ display: block; }
+.ic-14, [data-icon][data-size="14"]{ width: 14px; height: 14px; }
+.ic-16{ width: 16px; height: 16px; }
+.ic-28{ width: 28px; height: 28px; }
+.ic-32{ width: 32px; height: 32px; }
+
+/* 关闭按钮 */
+#btnQuit, #quizClose, #achvClose, #statsClose, #rvClose{
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--ink-2);
+}
+#btnQuit [data-icon], #quizClose [data-icon], #achvClose [data-icon],
+#statsClose [data-icon], #rvClose [data-icon]{ color: var(--ink-2); }
+
+/* 复习入口图标 */
+.rv-ico [data-icon]{ color: var(--accent); }
+
+/* 会话爱心 */
+#sessHeartWrap{ display: inline-flex; align-items: center; gap: 4px; }
+#sessHeartWrap [data-icon]{ color: #E8556D; }
+
+/* 成就 */
+.achv-ico [data-icon]{ color: var(--accent); }
+.achv-title [data-icon]{ color: #C99A2E; }
+
+/* 结算页大图标 */
+.q-done-emoji [data-icon]{ color: var(--accent); }
+.sum-emoji [data-icon]{ color: var(--accent); }
+
+/* 引导图标 */
+.qh-icon [data-icon]{ color: var(--accent); width: 44px; height: 44px; }
+.qh-icon [data-icon] svg{ width: 44px; height: 44px; }
+
+/* 播放按钮图标 */
+.q-hero-icon[data-icon]{ color: #fff; }
+.q-hero-icon[data-icon] svg{ width: 40px; height: 40px; }
+
+/* 对/错按钮里的图标 */
+.q-btn [data-icon]{ color: currentColor; margin-right: 2px; }
+
+/* 奖励行图标 */
+.q-reward [data-icon]{ color: currentColor; vertical-align: -2px; }
+
+/* 关卡徽章里的图标 */
+.node [data-icon]{ color: #fff; }
+.node.locked [data-icon]{ color: var(--ink-3); }
+/* 主视觉高度上限：保证「今日任务 + 开始学习」在首屏可见 */
+
+.hero-quote{
+  padding-top: 18px !important;
+}
+.bg-video, .bg-photo, #bgPhoto{
+  object-position: center 38% !important;
+}
+/* 主视觉：固定占位，保证面板首屏露出「今日任务 + 开始学习」 */
+html body #screen-home #heroView.hero{
+  flex: 0 0 auto !important;
+  height: clamp(240px, 42vh, 360px) !important;
+  min-height: 240px !important;
+  max-height: 42vh !important;
+  overflow: hidden !important;
+}
+html body #screen-home .sheet{
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+}

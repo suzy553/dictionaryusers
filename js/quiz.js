@@ -220,7 +220,7 @@
     }
     body.innerHTML =
       '<div class="q-enter">' +
-        '<div class="q-enter-emoji">' + (c.emoji || '🗺️') + '</div>' +
+        '<div class="q-enter-emoji">' + '<span class="ic ic-32" data-icon="map"></span></div>' +
         '<div class="q-enter-name">' + (c.name || '') + '</div>' +
         '<div class="q-enter-tag">' + (c.tag || '') + '</div>' +
         '<div class="q-enter-station">第 <b>' + (quiz.station || 1) + '</b> 站 / 共 10 站</div>' +
@@ -299,19 +299,19 @@
   /* 需要"第一次教一下"的题型 —— 其余题型一看就懂，不打扰 */
   var HINT_TYPES = {
     match: {
-      icon: '👆↔️👆',
+      icon: 'hand',
       title: '词义配对',
       lines: ['先点左边一个**英文词**', '再点右边对应的**中文释义**', '配对正确会变绿并锁住'],
       tip: '4 组必须全配对正确，这题才算答对'
     },
     spell: {
-      icon: '🔊→🔤',
+      icon: 'speaker',
       title: '听写',
       lines: ['听发音，看它读的是哪个词', '按**顺序点**下面的字母块', '点错了可以撤销'],
       tip: '字母全部点对才算答对，点错可撤销'
     },
     order: {
-      icon: '🧩→📝',
+      icon: 'tile',
       title: '句子排序',
       lines: ['下面的单词是**打乱**的', '按正确语序**依次点**它们', '排好点确认'],
       tip: '整句语序全对才算答对'
@@ -333,7 +333,7 @@
     var h = HINT_TYPES[q.type];
     body.innerHTML =
       '<div class="q-hintcard">' +
-        '<div class="qh-icon">' + h.icon + '</div>' +
+        '<div class="qh-icon" data-icon="' + h.icon + '"></div>' +
         '<div class="qh-title">' + h.title + '</div>' +
         '<div class="qh-lines">' +
           h.lines.map(function (l) {
@@ -371,7 +371,7 @@
       ? '<div class="q-card q-quiz-card q-listen-card">' +
           '<div class="q-tag">' + q.tag + '<span class="q-dim">' + q.dim + '</span></div>' +
           '<button class="q-hero" id="qSpeak">' +
-            '<span class="q-hero-icon">🔊</span>' +
+            '<span class="q-hero-icon" data-icon="speaker"></span>' +
             '<span class="q-hero-label">点击播放</span>' +
           '</button>' +
         '</div>'
@@ -405,8 +405,8 @@
     } else if (q.type === 'tf') {
       body.innerHTML = head +
         '<div class="q-actions q-tf">' +
-          '<button class="q-btn q-btn-again" id="qFalse">✗ 不对</button>' +
-          '<button class="q-btn q-btn-good" id="qTrue">✓ 对的</button>' +
+          '<button class="q-btn q-btn-again" id="qFalse"><span class="ic" data-icon="cross"></span> 不对</button>' +
+          '<button class="q-btn q-btn-good" id="qTrue"><span class="ic" data-icon="check"></span> 对的</button>' +
         '</div>' + prog;
       bindTF(body, q);
     } else if (q.type === 'order') {
@@ -683,13 +683,13 @@
     }
     body.innerHTML =
       '<div class="q-done ' + (passed ? 'ok' : 'fail') + '">' +
-        '<div class="q-done-emoji">' + (passed ? '🎉' : '💪') + '</div>' +
+        '<div class="q-done-emoji">' + (passed ? '<span class="ic ic-28" data-icon="party"></span>' : '<span class="ic ic-28" data-icon="star"></span>') + '</div>' +
         '<div class="q-done-title">' + (passed ? '通关！' : '差一点') + '</div>' +
         (quiz.country ? '<div class="q-done-country">' + quiz.country.emoji + ' ' + quiz.country.name + ' · 第 ' + (quiz.station || 1) + ' 站</div>' : '') +
         '<div class="q-done-sub">答对 <b>' + quiz.correct + '</b> / ' + quiz.qs.length + ' 题' +
           (passed ? '（通过线 ' + need + '）' : '（通过线 ' + need + ' 题，差 ' + (need - quiz.correct) + ' 题）') + '</div>' +
         (quiz.wrongWords.length ? '<div class="q-done-rule">答错不扣分，错的词已记入错词本</div>' : '') +
-        (passed ? '<div class="q-reward"><span>+' + REWARD_XP + ' XP</span><span>+' + REWARD_HEARTS + ' ❤️</span><span>+' + REWARD_FOOD + ' 🍎</span></div>' : '') +
+        (passed ? '<div class="q-reward"><span>+'+REWARD_XP+' XP</span><span>+'+REWARD_HEARTS+' <span class="ic ic-14" data-icon="heart"></span></span><span>+'+REWARD_FOOD+' <span class="ic ic-14" data-icon="leaf"></span></span></div>' : '') +
         (quiz.wrongWords.length ? '<div class="q-wrong-list">错的词：' + quiz.wrongWords.slice(0, 10).join('、') + '</div>' : '') +
       '</div>' +
       '<div class="q-actions">' +
@@ -713,7 +713,7 @@
       if (passed) {
         target = nextInfo;
         if (!target) {                       /* 本章最后一关 */
-          if (typeof toast === 'function') toast('这一章全部通关啦 🎉');
+          if (typeof toast === 'function') toast('这一章全部通关啦');
           return;
         }
         if (!target.unlocked && !target.done) {
@@ -745,7 +745,7 @@
       }
       /* 宠物食物奖励已随模块下架 */
       if (typeof saveState === 'function') saveState();
-      if (typeof toast === 'function') toast(first ? '🎉 首次通关！+' + xp + ' XP' : '再通一次 +' + xp + ' XP');
+      if (typeof toast === 'function') toast(first ? ' 首次通关！+' + xp + ' XP' : '再通一次 +' + xp + ' XP');
     } catch (e) { }
   }
 
@@ -783,11 +783,11 @@
       '<img class="cele-bg" src="' + (c.img ? 'data/countries/' + c.img + '.jpg' : '') + '" alt="">' +
       '<div class="cele-veil"></div>' +
       '<div class="cele-inner">' +
-        '<div class="cele-top">🎉 旅程完成</div>' +
-        '<div class="cele-emoji">' + (c.emoji || '🗺️') + '</div>' +
+        '<div class="cele-top"> 旅程完成</div>' +
+        '<div class="cele-emoji">' + '<span class="ic ic-32" data-icon="map"></span></div>' +
         '<div class="cele-name">' + c.name + '</div>' +
         '<div class="cele-tag">' + (c.tag || '') + ' · 10 站全部走完</div>' +
-        '<div class="cele-pet-emoji">🎊</div>' +
+        '<div class="cele-pet-emoji" data-icon="party"></div>' +
         '<div class="cele-note">这一章的词全部过了一遍</div>' +
         '<button class="cele-btn" id="celeGo">继续下一段旅程</button>' +
       '</div>';
