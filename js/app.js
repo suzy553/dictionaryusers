@@ -611,11 +611,27 @@ function pickVoice(lang) {
     || voices.find(v => norm(v).startsWith(lang.slice(0, 2)))
     || null;
 }
+
+/* ---------------- 语言识别 ---------------- */
+/* 当前词书是不是非英语语种 */
+function isLangBook(id) {
+  try { return !!(curBook && curBook.id === id); } catch (e) { return false; }
+}
+/* 当前词书对应的发音语言代码（有道 le 参数） */
+function bookAudioLang() {
+  if (isLangBook('es')) return 'es';
+  return '';
+}
+
 function playWord(word, accent) {
   /* 策略：先播在线音频（任何设备都能出声），失败再用系统 TTS。
      原因：很多手机的浏览器没有英文语音包，TTS 会静默失败。 */
   const type = accent === 'uk' ? 1 : 2;
-  const url = `https://dict.youdao.com/dictvoice?audio=${encodeURIComponent(word)}&type=${type}`;
+  /* 西语词书用西语音频源，英语保持原逻辑 */
+  const langCode = (typeof bookAudioLang === 'function') ? bookAudioLang() : '';
+  const url = langCode
+    ? `https://dict.youdao.com/dictvoice?audio=${encodeURIComponent(word)}&le=${langCode}`
+    : `https://dict.youdao.com/dictvoice?audio=${encodeURIComponent(word)}&type=${type}`;
 
   try {
     if (!window.__phonAudio) window.__phonAudio = new Audio();
@@ -632,7 +648,8 @@ function playWord(word, accent) {
 
 /* TTS 兜底：没网或音频播不了时用 */
 function ttsFallback(word, accent) {
-  const lang = accent === 'uk' ? 'en-GB' : 'en-US';
+  const _bl = (typeof bookAudioLang === 'function') ? bookAudioLang() : '';
+  const lang = _bl === 'es' ? 'es-ES' : (accent === 'uk' ? 'en-GB' : 'en-US');
   if (!('speechSynthesis' in window)) { toast('这台设备放不出声音'); return; }
   try {
     const v = pickVoice(lang);
@@ -1060,7 +1077,23 @@ function closeReviewDetail() {
   if (home) home.hidden = false;
   if (detail) detail.hidden = true;
 }
+
+/* 非英语词书时隐藏「美音/英音」选项（对西语无意义） */
+function adaptAccentForBook() {
+  try {
+    const seg = document.getElementById('segAccent');
+    if (!seg) return;
+    const row = seg.closest('.row') || seg.parentElement;
+    const hide = !!(curBook && curBook.id === 'es');
+    if (row) row.style.display = hide ? 'none' : '';
+    /* 自动朗读文案同步 */
+    const lbl = row && row.querySelector('.row-s');
+    if (lbl && hide) lbl.textContent = '出现单词时自动发音（西语）';
+  } catch (e) { }
+}
+
 function renderSettings() {
+  adaptAccentForBook();
   $('#valDailyNew').textContent = state.settings.dailyNew;
   $('#valDailyReview').textContent = state.settings.dailyReview;
   $$('#themeSeg button').forEach(b => b.classList.toggle('on', b.dataset.themeMode === (state.settings.theme || 'auto')));

@@ -71,6 +71,14 @@
    "tag": "GRE",
    "count": 6514,
    "sizeKB": 744
+  },
+  {
+   "id": "es",
+   "title": "西班牙语入门",
+   "subtitle": "高频词 · 附例句",
+   "tag": "西语",
+   "count": 160,
+   "sizeKB": 26
   }
  ]
 }

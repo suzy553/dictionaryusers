@@ -1,0 +1,1605 @@
+{
+ "id": "es",
+ "words": [
+  {
+   "w": "hola",
+   "t": [
+    "你好；您好"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "¡Hola! ¿Cómo estás?",
+   "sz": "你好！你怎么样？"
+  },
+  {
+   "w": "adiós",
+   "t": [
+    "再见"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Adiós, nos vemos mañana.",
+   "sz": "再见，明天见。"
+  },
+  {
+   "w": "gracias",
+   "t": [
+    "谢谢"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Muchas gracias por tu ayuda.",
+   "sz": "非常感谢你的帮助。"
+  },
+  {
+   "w": "por favor",
+   "t": [
+    "请"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Un café, por favor.",
+   "sz": "请来一杯咖啡。"
+  },
+  {
+   "w": "perdón",
+   "t": [
+    "对不起；抱歉"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Perdón, llego tarde.",
+   "sz": "对不起，我来晚了。"
+  },
+  {
+   "w": "sí",
+   "t": [
+    "是；对"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Sí, estoy de acuerdo.",
+   "sz": "是的，我同意。"
+  },
+  {
+   "w": "no",
+   "t": [
+    "不；不是"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "No, no quiero nada.",
+   "sz": "不，我什么都不要。"
+  },
+  {
+   "w": "buenos días",
+   "t": [
+    "早上好"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Buenos días, señor.",
+   "sz": "早上好，先生。"
+  },
+  {
+   "w": "buenas noches",
+   "t": [
+    "晚上好；晚安"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Buenas noches, hasta mañana.",
+   "sz": "晚安，明天见。"
+  },
+  {
+   "w": "bienvenido",
+   "t": [
+    "欢迎"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Bienvenido a Madrid.",
+   "sz": "欢迎来到马德里。"
+  },
+  {
+   "w": "hombre",
+   "t": [
+    "男人"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Ese hombre es mi padre.",
+   "sz": "那个男人是我父亲。"
+  },
+  {
+   "w": "mujer",
+   "t": [
+    "女人"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "La mujer lee un libro.",
+   "sz": "那个女人在读一本书。"
+  },
+  {
+   "w": "niño",
+   "t": [
+    "孩子；男孩"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "El niño juega en el parque.",
+   "sz": "孩子在公园里玩。"
+  },
+  {
+   "w": "amigo",
+   "t": [
+    "朋友"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Mi amigo vive en Sevilla.",
+   "sz": "我的朋友住在塞维利亚。"
+  },
+  {
+   "w": "familia",
+   "t": [
+    "家庭；家人"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Mi familia es pequeña.",
+   "sz": "我的家庭很小。"
+  },
+  {
+   "w": "madre",
+   "t": [
+    "母亲"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Mi madre cocina muy bien.",
+   "sz": "我妈妈做饭很好吃。"
+  },
+  {
+   "w": "padre",
+   "t": [
+    "父亲"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Mi padre trabaja en un banco.",
+   "sz": "我父亲在银行工作。"
+  },
+  {
+   "w": "hermano",
+   "t": [
+    "兄弟"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Mi hermano tiene veinte años.",
+   "sz": "我兄弟二十岁。"
+  },
+  {
+   "w": "hermana",
+   "t": [
+    "姐妹"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Mi hermana estudia medicina.",
+   "sz": "我妹妹学医。"
+  },
+  {
+   "w": "hijo",
+   "t": [
+    "儿子"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Su hijo va a la escuela.",
+   "sz": "他儿子上学。"
+  },
+  {
+   "w": "persona",
+   "t": [
+    "人"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Es una persona muy amable.",
+   "sz": "他是个非常和善的人。"
+  },
+  {
+   "w": "agua",
+   "t": [
+    "水"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Quiero un vaso de agua.",
+   "sz": "我要一杯水。"
+  },
+  {
+   "w": "comida",
+   "t": [
+    "食物；饭菜"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "La comida está lista.",
+   "sz": "饭好了。"
+  },
+  {
+   "w": "pan",
+   "t": [
+    "面包"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Compro pan cada mañana.",
+   "sz": "我每天早上买面包。"
+  },
+  {
+   "w": "café",
+   "t": [
+    "咖啡"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Me gusta el café sin azúcar.",
+   "sz": "我喜欢不加糖的咖啡。"
+  },
+  {
+   "w": "casa",
+   "t": [
+    "房子；家"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Mi casa está cerca del río.",
+   "sz": "我家在河边附近。"
+  },
+  {
+   "w": "calle",
+   "t": [
+    "街道"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Vivo en esta calle.",
+   "sz": "我住在这条街上。"
+  },
+  {
+   "w": "ciudad",
+   "t": [
+    "城市"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Madrid es una ciudad grande.",
+   "sz": "马德里是一座大城市。"
+  },
+  {
+   "w": "país",
+   "t": [
+    "国家"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "España es un país bonito.",
+   "sz": "西班牙是个美丽的国家。"
+  },
+  {
+   "w": "escuela",
+   "t": [
+    "学校"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Los niños van a la escuela.",
+   "sz": "孩子们去上学。"
+  },
+  {
+   "w": "trabajo",
+   "t": [
+    "工作"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Mi trabajo empieza a las nueve.",
+   "sz": "我的工作九点开始。"
+  },
+  {
+   "w": "tiempo",
+   "t": [
+    "时间；天气"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "No tengo tiempo hoy.",
+   "sz": "我今天没有时间。"
+  },
+  {
+   "w": "libro",
+   "t": [
+    "书"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Este libro es interesante.",
+   "sz": "这本书很有趣。"
+  },
+  {
+   "w": "mesa",
+   "t": [
+    "桌子"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "El libro está sobre la mesa.",
+   "sz": "书在桌子上。"
+  },
+  {
+   "w": "puerta",
+   "t": [
+    "门"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Cierra la puerta, por favor.",
+   "sz": "请把门关上。"
+  },
+  {
+   "w": "ventana",
+   "t": [
+    "窗户"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Abre la ventana un poco.",
+   "sz": "把窗户开一点。"
+  },
+  {
+   "w": "coche",
+   "t": [
+    "汽车"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Mi coche es viejo.",
+   "sz": "我的车很旧。"
+  },
+  {
+   "w": "dinero",
+   "t": [
+    "钱"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "No tengo dinero suficiente.",
+   "sz": "我的钱不够。"
+  },
+  {
+   "w": "noche",
+   "t": [
+    "夜晚"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "La noche es tranquila.",
+   "sz": "夜晚很安静。"
+  },
+  {
+   "w": "día",
+   "t": [
+    "白天；日子"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Hoy es un día especial.",
+   "sz": "今天是特别的一天。"
+  },
+  {
+   "w": "año",
+   "t": [
+    "年"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Este año viajo a México.",
+   "sz": "今年我去墨西哥。"
+  },
+  {
+   "w": "semana",
+   "t": [
+    "星期；周"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "La semana pasada llovió mucho.",
+   "sz": "上周下了很多雨。"
+  },
+  {
+   "w": "mes",
+   "t": [
+    "月份"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Este mes trabajo mucho.",
+   "sz": "这个月我很忙。"
+  },
+  {
+   "w": "ser",
+   "t": [
+    "是（本质）"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Yo soy estudiante.",
+   "sz": "我是学生。"
+  },
+  {
+   "w": "estar",
+   "t": [
+    "在；处于"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Estoy en casa ahora.",
+   "sz": "我现在在家。"
+  },
+  {
+   "w": "tener",
+   "t": [
+    "有"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Tengo dos hermanos.",
+   "sz": "我有两个兄弟。"
+  },
+  {
+   "w": "hacer",
+   "t": [
+    "做；制作"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "¿Qué haces esta tarde?",
+   "sz": "你今天下午做什么？"
+  },
+  {
+   "w": "ir",
+   "t": [
+    "去"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Voy al mercado.",
+   "sz": "我去市场。"
+  },
+  {
+   "w": "venir",
+   "t": [
+    "来"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "¿Puedes venir mañana?",
+   "sz": "你明天能来吗？"
+  },
+  {
+   "w": "querer",
+   "t": [
+    "想要；爱"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Quiero aprender español.",
+   "sz": "我想学西班牙语。"
+  },
+  {
+   "w": "poder",
+   "t": [
+    "能够；可以"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "No puedo salir hoy.",
+   "sz": "我今天不能出去。"
+  },
+  {
+   "w": "saber",
+   "t": [
+    "知道；会"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Sé hablar un poco de español.",
+   "sz": "我会说一点西班牙语。"
+  },
+  {
+   "w": "decir",
+   "t": [
+    "说"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "¿Qué dices?",
+   "sz": "你说什么？"
+  },
+  {
+   "w": "ver",
+   "t": [
+    "看；看见"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Veo la montaña desde aquí.",
+   "sz": "我从这里看得见那座山。"
+  },
+  {
+   "w": "comer",
+   "t": [
+    "吃"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Comemos a las dos.",
+   "sz": "我们两点吃饭。"
+  },
+  {
+   "w": "beber",
+   "t": [
+    "喝"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Bebo mucha agua.",
+   "sz": "我喝很多水。"
+  },
+  {
+   "w": "vivir",
+   "t": [
+    "住；生活"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Vivo en Barcelona.",
+   "sz": "我住在巴塞罗那。"
+  },
+  {
+   "w": "trabajar",
+   "t": [
+    "工作"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Trabajo de lunes a viernes.",
+   "sz": "我周一到周五工作。"
+  },
+  {
+   "w": "estudiar",
+   "t": [
+    "学习"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Estudio español todos los días.",
+   "sz": "我每天都学西班牙语。"
+  },
+  {
+   "w": "hablar",
+   "t": [
+    "说话；讲"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Hablo chino y español.",
+   "sz": "我说中文和西班牙语。"
+  },
+  {
+   "w": "leer",
+   "t": [
+    "读"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Leo el periódico por la mañana.",
+   "sz": "我早上读报纸。"
+  },
+  {
+   "w": "escribir",
+   "t": [
+    "写"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Escribo una carta a mi amigo.",
+   "sz": "我给朋友写一封信。"
+  },
+  {
+   "w": "comprar",
+   "t": [
+    "买"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Compramos fruta en el mercado.",
+   "sz": "我们在市场买水果。"
+  },
+  {
+   "w": "abrir",
+   "t": [
+    "打开"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Abre la ventana, hace calor.",
+   "sz": "打开窗户，很热。"
+  },
+  {
+   "w": "cerrar",
+   "t": [
+    "关上"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Cierra la puerta al salir.",
+   "sz": "出去时把门关上。"
+  },
+  {
+   "w": "empezar",
+   "t": [
+    "开始"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "La clase empieza a las ocho.",
+   "sz": "课八点开始。"
+  },
+  {
+   "w": "terminar",
+   "t": [
+    "结束；完成"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Termino el trabajo a las seis.",
+   "sz": "我六点下班。"
+  },
+  {
+   "w": "volver",
+   "t": [
+    "回来；返回"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Vuelvo a casa tarde.",
+   "sz": "我很晚回家。"
+  },
+  {
+   "w": "dormir",
+   "t": [
+    "睡觉"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Duermo ocho horas.",
+   "sz": "我睡八个小时。"
+  },
+  {
+   "w": "caminar",
+   "t": [
+    "走路"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Camino al trabajo cada día.",
+   "sz": "我每天走路去上班。"
+  },
+  {
+   "w": "viajar",
+   "t": [
+    "旅行"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Me gusta viajar por el mundo.",
+   "sz": "我喜欢环游世界。"
+  },
+  {
+   "w": "bueno",
+   "t": [
+    "好的"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Es un buen libro.",
+   "sz": "这是一本好书。"
+  },
+  {
+   "w": "malo",
+   "t": [
+    "坏的"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Hoy hace mal tiempo.",
+   "sz": "今天天气不好。"
+  },
+  {
+   "w": "grande",
+   "t": [
+    "大的"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "La ciudad es muy grande.",
+   "sz": "这座城市很大。"
+  },
+  {
+   "w": "pequeño",
+   "t": [
+    "小的"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Vivo en un piso pequeño.",
+   "sz": "我住在一间小公寓里。"
+  },
+  {
+   "w": "nuevo",
+   "t": [
+    "新的"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Tengo un teléfono nuevo.",
+   "sz": "我有一部新手机。"
+  },
+  {
+   "w": "viejo",
+   "t": [
+    "旧的；老的"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Este edificio es muy viejo.",
+   "sz": "这栋楼很旧。"
+  },
+  {
+   "w": "bonito",
+   "t": [
+    "漂亮的"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "El jardín es muy bonito.",
+   "sz": "花园很漂亮。"
+  },
+  {
+   "w": "caro",
+   "t": [
+    "贵的"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Este restaurante es caro.",
+   "sz": "这家餐厅很贵。"
+  },
+  {
+   "w": "barato",
+   "t": [
+    "便宜的"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "El mercado es barato.",
+   "sz": "这个市场很便宜。"
+  },
+  {
+   "w": "fácil",
+   "t": [
+    "容易的"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "El examen fue fácil.",
+   "sz": "考试很容易。"
+  },
+  {
+   "w": "difícil",
+   "t": [
+    "困难的"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Es difícil aprender un idioma.",
+   "sz": "学一门语言很难。"
+  },
+  {
+   "w": "rápido",
+   "t": [
+    "快的"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "El tren es muy rápido.",
+   "sz": "火车很快。"
+  },
+  {
+   "w": "lento",
+   "t": [
+    "慢的"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "El autobús va lento.",
+   "sz": "公交车开得很慢。"
+  },
+  {
+   "w": "feliz",
+   "t": [
+    "快乐的"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Estoy muy feliz hoy.",
+   "sz": "我今天很开心。"
+  },
+  {
+   "w": "triste",
+   "t": [
+    "难过的"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "La película es triste.",
+   "sz": "这部电影很伤感。"
+  },
+  {
+   "w": "cansado",
+   "t": [
+    "累的"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Estoy cansado después del trabajo.",
+   "sz": "下班后我很累。"
+  },
+  {
+   "w": "contento",
+   "t": [
+    "满意的；高兴的"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Estoy contento con el resultado.",
+   "sz": "我对结果很满意。"
+  },
+  {
+   "w": "importante",
+   "t": [
+    "重要的"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Es una reunión importante.",
+   "sz": "这是一个重要的会议。"
+  },
+  {
+   "w": "hoy",
+   "t": [
+    "今天"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Hoy trabajo en casa.",
+   "sz": "我今天在家工作。"
+  },
+  {
+   "w": "mañana",
+   "t": [
+    "明天；早上"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Mañana vamos al cine.",
+   "sz": "明天我们去看电影。"
+  },
+  {
+   "w": "ayer",
+   "t": [
+    "昨天"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Ayer llovió todo el día.",
+   "sz": "昨天下了一整天雨。"
+  },
+  {
+   "w": "ahora",
+   "t": [
+    "现在"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Ahora no puedo hablar.",
+   "sz": "我现在不能说话。"
+  },
+  {
+   "w": "siempre",
+   "t": [
+    "总是"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Siempre desayuno a las siete.",
+   "sz": "我总是七点吃早饭。"
+  },
+  {
+   "w": "nunca",
+   "t": [
+    "从不"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Nunca bebo café por la noche.",
+   "sz": "我晚上从不喝咖啡。"
+  },
+  {
+   "w": "mucho",
+   "t": [
+    "很多"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Trabajo mucho esta semana.",
+   "sz": "这周我工作很多。"
+  },
+  {
+   "w": "poco",
+   "t": [
+    "少；一点"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Hablo un poco de francés.",
+   "sz": "我会说一点法语。"
+  },
+  {
+   "w": "todo",
+   "t": [
+    "所有的；一切"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Todo está bien.",
+   "sz": "一切都好。"
+  },
+  {
+   "w": "uno",
+   "t": [
+    "一"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Quiero uno, por favor.",
+   "sz": "请给我一个。"
+  },
+  {
+   "w": "dos",
+   "t": [
+    "二"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Tengo dos gatos.",
+   "sz": "我有两只猫。"
+  },
+  {
+   "w": "tres",
+   "t": [
+    "三"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Son las tres de la tarde.",
+   "sz": "现在是下午三点。"
+  },
+  {
+   "w": "qué",
+   "t": [
+    "什么"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "¿Qué quieres comer?",
+   "sz": "你想吃什么？"
+  },
+  {
+   "w": "quién",
+   "t": [
+    "谁"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "¿Quién es esa persona?",
+   "sz": "那个人是谁？"
+  },
+  {
+   "w": "dónde",
+   "t": [
+    "哪里"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "¿Dónde está el baño?",
+   "sz": "洗手间在哪里？"
+  },
+  {
+   "w": "cuándo",
+   "t": [
+    "什么时候"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "¿Cuándo llegas?",
+   "sz": "你什么时候到？"
+  },
+  {
+   "w": "cómo",
+   "t": [
+    "怎样"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "¿Cómo se dice esto?",
+   "sz": "这个怎么说？"
+  },
+  {
+   "w": "por qué",
+   "t": [
+    "为什么"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "¿Por qué estudias español?",
+   "sz": "你为什么学西班牙语？"
+  },
+  {
+   "w": "porque",
+   "t": [
+    "因为"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Estudio porque me gusta.",
+   "sz": "我学是因为我喜欢。"
+  },
+  {
+   "w": "pero",
+   "t": [
+    "但是"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Es caro, pero bueno.",
+   "sz": "它很贵，但很好。"
+  },
+  {
+   "w": "también",
+   "t": [
+    "也"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Yo también quiero ir.",
+   "sz": "我也想去。"
+  },
+  {
+   "w": "con",
+   "t": [
+    "和；带着"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Voy con mi familia.",
+   "sz": "我和家人一起去。"
+  },
+  {
+   "w": "sin",
+   "t": [
+    "没有"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Café sin leche, por favor.",
+   "sz": "请来不加奶的咖啡。"
+  },
+  {
+   "w": "para",
+   "t": [
+    "为了；给"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Este regalo es para ti.",
+   "sz": "这个礼物是给你的。"
+  },
+  {
+   "w": "muy",
+   "t": [
+    "很；非常"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Estoy muy bien.",
+   "sz": "我很好。"
+  },
+  {
+   "w": "más",
+   "t": [
+    "更多"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Quiero más agua.",
+   "sz": "我要更多水。"
+  },
+  {
+   "w": "menos",
+   "t": [
+    "更少"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Habla menos, escucha más.",
+   "sz": "少说多听。"
+  },
+  {
+   "w": "restaurante",
+   "t": [
+    "餐厅"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Cenamos en un restaurante.",
+   "sz": "我们在一家餐厅吃晚饭。"
+  },
+  {
+   "w": "menú",
+   "t": [
+    "菜单"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "¿Puedo ver el menú?",
+   "sz": "我能看一下菜单吗？"
+  },
+  {
+   "w": "cuenta",
+   "t": [
+    "账单"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "La cuenta, por favor.",
+   "sz": "请结账。"
+  },
+  {
+   "w": "vino",
+   "t": [
+    "葡萄酒"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Bebemos vino tinto.",
+   "sz": "我们喝红葡萄酒。"
+  },
+  {
+   "w": "carne",
+   "t": [
+    "肉"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "No como carne.",
+   "sz": "我不吃肉。"
+  },
+  {
+   "w": "pescado",
+   "t": [
+    "鱼"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "El pescado está fresco.",
+   "sz": "鱼很新鲜。"
+  },
+  {
+   "w": "fruta",
+   "t": [
+    "水果"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Compro fruta todos los días.",
+   "sz": "我每天买水果。"
+  },
+  {
+   "w": "tren",
+   "t": [
+    "火车"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "El tren sale a las diez.",
+   "sz": "火车十点出发。"
+  },
+  {
+   "w": "avión",
+   "t": [
+    "飞机"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "El avión llega tarde.",
+   "sz": "飞机晚点了。"
+  },
+  {
+   "w": "estación",
+   "t": [
+    "车站"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "La estación está cerca.",
+   "sz": "车站在附近。"
+  },
+  {
+   "w": "hotel",
+   "t": [
+    "旅馆"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Reservé un hotel en el centro.",
+   "sz": "我在市中心订了旅馆。"
+  },
+  {
+   "w": "billete",
+   "t": [
+    "票"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Compro un billete de ida.",
+   "sz": "我买一张单程票。"
+  },
+  {
+   "w": "mapa",
+   "t": [
+    "地图"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Necesito un mapa de la ciudad.",
+   "sz": "我需要一张城市地图。"
+  },
+  {
+   "w": "tienda",
+   "t": [
+    "商店"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "La tienda abre a las nueve.",
+   "sz": "商店九点开门。"
+  },
+  {
+   "w": "precio",
+   "t": [
+    "价格"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "¿Cuál es el precio?",
+   "sz": "价格是多少？"
+  },
+  {
+   "w": "camisa",
+   "t": [
+    "衬衫"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Quiero una camisa blanca.",
+   "sz": "我要一件白衬衫。"
+  },
+  {
+   "w": "zapatos",
+   "t": [
+    "鞋子"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Estos zapatos son cómodos.",
+   "sz": "这双鞋很舒服。"
+  },
+  {
+   "w": "cabeza",
+   "t": [
+    "头"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Me duele la cabeza.",
+   "sz": "我头疼。"
+  },
+  {
+   "w": "mano",
+   "t": [
+    "手"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Dame la mano.",
+   "sz": "把手给我。"
+  },
+  {
+   "w": "médico",
+   "t": [
+    "医生"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Necesito ver a un médico.",
+   "sz": "我需要看医生。"
+  },
+  {
+   "w": "farmacia",
+   "t": [
+    "药店"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "La farmacia está al lado.",
+   "sz": "药店就在旁边。"
+  },
+  {
+   "w": "vida",
+   "t": [
+    "生活；生命"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "La vida es corta.",
+   "sz": "人生短暂。"
+  },
+  {
+   "w": "amor",
+   "t": [
+    "爱"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "El amor es importante.",
+   "sz": "爱很重要。"
+  },
+  {
+   "w": "mundo",
+   "t": [
+    "世界"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "El mundo es grande.",
+   "sz": "世界很大。"
+  },
+  {
+   "w": "idioma",
+   "t": [
+    "语言"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "El español es un idioma bonito.",
+   "sz": "西班牙语是一门美丽的语言。"
+  },
+  {
+   "w": "palabra",
+   "t": [
+    "单词；词"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "No sé esta palabra.",
+   "sz": "我不认识这个单词。"
+  },
+  {
+   "w": "pregunta",
+   "t": [
+    "问题"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Tengo una pregunta.",
+   "sz": "我有一个问题。"
+  },
+  {
+   "w": "respuesta",
+   "t": [
+    "回答；答案"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Tu respuesta es correcta.",
+   "sz": "你的回答是对的。"
+  },
+  {
+   "w": "problema",
+   "t": [
+    "问题；麻烦"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "No hay problema.",
+   "sz": "没问题。"
+  },
+  {
+   "w": "idea",
+   "t": [
+    "主意；想法"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Es una buena idea.",
+   "sz": "这是个好主意。"
+  },
+  {
+   "w": "ejemplo",
+   "t": [
+    "例子"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Dame un ejemplo.",
+   "sz": "给我一个例子。"
+  },
+  {
+   "w": "historia",
+   "t": [
+    "历史；故事"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Me gusta la historia de España.",
+   "sz": "我喜欢西班牙的历史。"
+  },
+  {
+   "w": "música",
+   "t": [
+    "音乐"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Escucho música española.",
+   "sz": "我听西班牙音乐。"
+  },
+  {
+   "w": "película",
+   "t": [
+    "电影"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "La película empieza a las ocho.",
+   "sz": "电影八点开始。"
+  },
+  {
+   "w": "mucho gusto",
+   "t": [
+    "很高兴认识你"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Mucho gusto, me llamo Ana.",
+   "sz": "很高兴认识你，我叫安娜。"
+  },
+  {
+   "w": "de nada",
+   "t": [
+    "不客气"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "De nada, con gusto.",
+   "sz": "不客气，乐意效劳。"
+  },
+  {
+   "w": "lo siento",
+   "t": [
+    "我很抱歉"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Lo siento, no puedo ir.",
+   "sz": "很抱歉，我去不了。"
+  },
+  {
+   "w": "¿cómo estás?",
+   "t": [
+    "你好吗？"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Hola, ¿cómo estás?",
+   "sz": "你好，你好吗？"
+  },
+  {
+   "w": "hasta luego",
+   "t": [
+    "回头见"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Hasta luego, amigo.",
+   "sz": "回头见，朋友。"
+  },
+  {
+   "w": "buena suerte",
+   "t": [
+    "祝你好运"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Buena suerte en el examen.",
+   "sz": "祝你考试好运。"
+  },
+  {
+   "w": "me gusta",
+   "t": [
+    "我喜欢"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Me gusta esta ciudad.",
+   "sz": "我喜欢这座城市。"
+  },
+  {
+   "w": "no entiendo",
+   "t": [
+    "我不明白"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "Lo siento, no entiendo.",
+   "sz": "抱歉，我不明白。"
+  },
+  {
+   "w": "¿cuánto cuesta?",
+   "t": [
+    "多少钱？"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "¿Cuánto cuesta esto?",
+   "sz": "这个多少钱？"
+  },
+  {
+   "w": "¿dónde está?",
+   "t": [
+    "在哪里？"
+   ],
+   "us": "",
+   "uk": "",
+   "s": "¿Dónde está la estación?",
+   "sz": "车站在哪里？"
+  }
+ ]
+}

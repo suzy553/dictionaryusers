@@ -56,7 +56,10 @@
   /* 优先在线音频（保证有声），TTS 兜底 */
   var _phon = null;
   function speak(text, rate) {
-    var url = 'https://dict.youdao.com/dictvoice?audio=' + encodeURIComponent(text) + '&type=2';
+    var _lg = (typeof bookAudioLang === 'function') ? bookAudioLang() : '';
+    var url = _lg
+      ? 'https://dict.youdao.com/dictvoice?audio=' + encodeURIComponent(text) + '&le=' + _lg
+      : 'https://dict.youdao.com/dictvoice?audio=' + encodeURIComponent(text) + '&type=2';
     try {
       if (!_phon) _phon = new Audio();
       _phon.onerror = function () { ttsSpeak(text, rate); };
@@ -76,7 +79,8 @@
             || voices.filter(function (v) { return /^en/i.test(v.lang); })[0];
       synth.cancel();
       var u = new SpeechSynthesisUtterance(text);
-      u.lang = en ? en.lang : 'en-US';
+      var _b = (typeof bookAudioLang === 'function') ? bookAudioLang() : '';
+      u.lang = _b === 'es' ? 'es-ES' : (en ? en.lang : 'en-US');
       if (en) u.voice = en;
       u.rate = rate || 0.85; u.volume = 1;
       synth.speak(u);
@@ -91,10 +95,22 @@
     return null;
   }
 
+  /* 西语题面适配：把「英文单词」类文案换成「西语单词」 */
+  function adaptTag(qq) {
+    try {
+      if (!(typeof isLangBook === 'function' && isLangBook('es'))) return qq;
+      if (!qq || !qq.tag) return qq;
+      qq.tag = String(qq.tag)
+        .replace(/英文单词/g, '西语单词')
+        .replace(/英文/g, '西语');
+    } catch (e) { }
+    return qq;
+  }
+
   function buildQuestion(word, pool, wanted) {
     var lib = coreLib();
     if (!lib) { console.error('XYCore 未加载，无法出题'); return null; }
-    return lib.buildQuestion(word, pool, wanted);
+    return adaptTag(lib.buildQuestion(word, pool, wanted));
   }
 
   /* ---------------- 开始一关 ---------------- */

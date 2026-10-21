@@ -129,7 +129,8 @@
 
   /* T6 听写（听+写）：点字母拼词，不用键盘 */
   function qSpell(word, pool) {
-    if (!/^[a-zA-Z]{3,12}$/.test(word.w)) return null;
+    /* 允许西语重音字母：á é í ó ú ñ ü */
+    if (!/^[a-zA-ZáéíóúñüÁÉÍÓÚÑÜ]{3,12}$/.test(word.w)) return null;
     var letters = word.w.split('');
     var alphabet = 'abcdefghijklmnopqrstuvwxyz';
     var filler = [];
