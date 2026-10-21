@@ -176,6 +176,32 @@
     };
   }
 
+
+  /* ======================= 备份合并 ======================= */
+  /**
+   * 合并两份学习进度（按词）。
+   * 规则：复习次数多的优先 → 记忆等级高的优先 → 最近复习的优先
+   * @returns {{merged: object, added: number, updated: number, kept: number}}
+   */
+  function mergeProgress(cur, inc) {
+    var merged = {};
+    var k;
+    for (k in cur) if (Object.prototype.hasOwnProperty.call(cur, k)) merged[k] = cur[k];
+
+    var added = 0, updated = 0, kept = 0;
+    for (k in inc) {
+      if (!Object.prototype.hasOwnProperty.call(inc, k)) continue;
+      var a = merged[k], b = inc[k];
+      if (!a) { merged[k] = b; added++; continue; }
+      var pick;
+      if ((b.r || 0) !== (a.r || 0)) pick = (b.r || 0) > (a.r || 0) ? b : a;
+      else if ((b.b || 0) !== (a.b || 0)) pick = (b.b || 0) > (a.b || 0) ? b : a;
+      else pick = (b.last || 0) > (a.last || 0) ? b : a;
+      if (pick === b) { merged[k] = b; updated++; } else { kept++; }
+    }
+    return { merged: merged, added: added, updated: updated, kept: kept };
+  }
+
   /* ============================ 出题调度 ============================ */
   var GEN = {
     choice: qChoice, cn2en: qCnToEn, cloze: qCloze, listen: qListen,
@@ -205,6 +231,7 @@
     pickN: pickN, shuffled: shuffled, hasSentence: hasSentence,
     qChoice: qChoice, qCnToEn: qCnToEn, qCloze: qCloze, qListen: qListen,
     qMatch: qMatch, qSpell: qSpell, qOrder: qOrder, qTrueFalse: qTrueFalse,
-    buildQuestion: buildQuestion, GEN: GEN
+    buildQuestion: buildQuestion, GEN: GEN,
+    mergeProgress: mergeProgress
   };
 });

@@ -395,7 +395,7 @@
         <button class="btn btn-outline" id="btnImport">⬆️ 导入学习进度</button>
         <input type="file" id="fileImport" accept="application/json" hidden>
         <button class="btn btn-danger" id="btnReset">清空所有进度</button>
-        <p class="hint">进度只存在这台设备上，不联网、不上传。</p>
+        <p class="hint" id="dataStats">进度只存在这台设备上，不联网、不上传。</p>
       </div>
 
       <p class="footer-note">小越背单词 · 词库来自开源项目 qwerty-learner，例句来自 ManyThings / Tatoeba</p>
@@ -558,5 +558,19 @@
 <script src="js/app.js"></script>
 <script src="js/core.js"></script>
 <script src="js/quiz.js"></script>
+
+  <!-- 导入确认弹层 -->
+  <div class="imp-mask" id="importSheet">
+    <div class="imp-card">
+      <h3>导入备份</h3>
+      <div class="imp-info" id="impInfo"></div>
+      <div class="imp-actions">
+        <button class="imp-btn imp-merge" id="impMerge">合并到现有进度</button>
+        <button class="imp-btn imp-replace" id="impReplace">完全覆盖</button>
+        <button class="imp-btn imp-cancel" id="impCancel">取消</button>
+      </div>
+      <p class="imp-tip">合并会保留两边最完整的记录；覆盖会用备份文件替换当前全部进度。</p>
+    </div>
+  </div>
 </body>
 </html>

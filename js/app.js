@@ -2847,14 +2847,56 @@ function bindSettings() {
   $('#btnIcs').onclick = downloadICS;
   $('#btnNotify').onclick = enableNotify;
 
+  /* ---------- 数据导出 / 导入（规范版） ---------- */
+  const BACKUP_KEY = 'vocab.shelf.lastBackup';
+  let pendingImport = null;     // 解析后的待导入数据
+
+  function dataCount() {
+    try { return Object.keys(state.progress || {}).length; } catch (e) { return 0; }
+  }
+
+  function dataBytes() {
+    try { return new Blob([JSON.stringify(state)]).size; } catch (e) { return 0; }
+  }
+
+  function fmtBytes(n) {
+    if (n < 1024) return n + ' B';
+    if (n < 1024 * 1024) return (n / 1024).toFixed(1) + ' KB';
+    return (n / 1024 / 1024).toFixed(2) + ' MB';
+  }
+
+  function refreshDataStats() {
+    const box = $('#dataStats');
+    if (!box) return;
+    const last = localStorage.getItem(BACKUP_KEY);
+    const lastTxt = last
+      ? '上次备份 ' + new Date(Number(last)).toLocaleDateString('zh-CN')
+      : '还没有备份过';
+    box.innerHTML = '已学 <b>' + dataCount() + '</b> 个词 · 占用 <b>' + fmtBytes(dataBytes())
+      + '</b> · ' + lastTxt + '<br>进度只存在这台设备上，不联网、不上传。换手机或清缓存会丢失。';
+  }
+
   $('#btnExport').onclick = () => {
-    const blob = new Blob([JSON.stringify(state, null, 1)], { type: 'application/json' });
+    const payload = {
+      _app: 'xiaoyue-vocab',
+      _version: 1,
+      _exportedAt: new Date().toISOString(),
+      _words: dataCount(),
+      state: state
+    };
+    const blob = new Blob([JSON.stringify(payload, null, 1)], { type: 'application/json' });
     const a = document.createElement('a');
+    const d = new Date();
+    const stamp = d.getFullYear() + String(d.getMonth() + 1).padStart(2, '0')
+      + String(d.getDate()).padStart(2, '0') + '-' + String(d.getHours()).padStart(2, '0')
+      + String(d.getMinutes()).padStart(2, '0');
     a.href = URL.createObjectURL(blob);
-    a.download = `小越背单词-进度-${dateKey()}.json`;
+    a.download = 'xiaoyue-backup-' + stamp + '.json';
     a.click();
     setTimeout(() => URL.revokeObjectURL(a.href), 3000);
-    toast('进度已导出');
+    localStorage.setItem(BACKUP_KEY, String(Date.now()));
+    refreshDataStats();
+    toast('已导出 ' + dataCount() + ' 个词的进度');
   };
 
   $('#btnImport').onclick = () => $('#fileImport').click();
@@ -2862,16 +2904,75 @@ function bindSettings() {
     const f = e.target.files[0];
     if (!f) return;
     try {
-      const data = JSON.parse(await f.text());
-      if (!data.progress) throw new Error('格式不对');
-      state = { ...defaultState(), ...data };
-      saveState();
-      await loadBook(state.activeBook);
-      renderAll();
-      toast('进度已导入');
-    } catch (err) { toast('导入失败：文件格式不正确'); }
+      const raw = JSON.parse(await f.text());
+      /* 兼容老格式（直接是 state）与新格式（带 _meta 包装） */
+      const data = raw && raw.state ? raw.state : raw;
+      if (!data || typeof data !== 'object' || !data.progress) throw new Error('bad format');
+
+      const words = Object.keys(data.progress).length;
+      pendingImport = data;
+
+      const info = $('#impInfo');
+      if (info) {
+        info.innerHTML =
+          '文件：<b>' + f.name + '</b><br>' +
+          '里面包含 <b>' + words + '</b> 个词的进度<br>' +
+          '当前设备已有 <b>' + dataCount() + '</b> 个词';
+      }
+      $('#importSheet').classList.add('is-open');
+    } catch (err) {
+      toast('导入失败：不是有效的备份文件');
+    }
     e.target.value = '';
   };
+
+  function closeImportSheet() {
+    $('#importSheet').classList.remove('is-open');
+    pendingImport = null;
+  }
+
+  $('#impCancel').onclick = closeImportSheet;
+  $('#importSheet').onclick = ev => { if (ev.target.id === 'importSheet') closeImportSheet(); };
+
+  $('#impReplace').onclick = async () => {
+    if (!pendingImport) return;
+    if (!confirm('确定用备份覆盖当前全部进度？当前数据会被替换。')) return;
+    const data = pendingImport;
+    closeImportSheet();
+    state = { ...defaultState(), ...data };
+    saveState();
+    await loadBook(state.activeBook);
+    renderAll();
+    refreshDataStats();
+    toast('已覆盖导入');
+  };
+
+  $('#impMerge').onclick = async () => {
+    if (!pendingImport) return;
+    const data = pendingImport;
+    closeImportSheet();
+
+    const cur = state.progress || {};
+    const inc = data.progress || {};
+    const res = (typeof XYCore !== 'undefined' && XYCore.mergeProgress)
+      ? XYCore.mergeProgress(cur, inc)
+      : { merged: Object.assign({}, inc, cur), added: 0, updated: 0, kept: 0 };
+    const added = res.added, updated = res.updated;
+    state.progress = res.merged;
+
+    /* 其它字段：缺的补上，已有的保留当前 */
+    for (const key of Object.keys(data)) {
+      if (key === 'progress') continue;
+      if (state[key] == null) state[key] = data[key];
+    }
+    saveState();
+    await loadBook(state.activeBook);
+    renderAll();
+    refreshDataStats();
+    toast('已合并：新增 ' + added + ' 个词，更新 ' + updated + ' 个');
+  };
+
+  refreshDataStats();
 
   $('#btnReset').onclick = () => {
     if (!confirm('确定清空所有学习进度？此操作不可恢复。')) return;
