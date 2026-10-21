@@ -1458,7 +1458,29 @@ function fallbackToStill(silent) {
   /* 静默处理，不打扰用户 */
 }
 
-function initVideoBg() { /* 素材已下架，静态显示 */ }
+function initVideoBg() {
+  const v = document.getElementById('bgVideo');
+  if (!v) return;
+
+  /* 用户关掉「动态背景」→ 只用静态图 */
+  if (!state.settings.liveBg) { v.style.display = 'none'; try { v.pause(); } catch (e) { } return; }
+
+  /* 省流/低端设备 → 不加载视频 */
+  if (typeof prefersLiteAssets === 'function' && prefersLiteAssets()) {
+    v.style.display = 'none';
+    return;
+  }
+
+  v.muted = true;
+  v.loop = true;
+  v.playsInline = true;
+  v.setAttribute('webkit-playsinline', '');
+  if (!v.getAttribute('src')) v.setAttribute('src', 'data/hero.mp4');
+  v.style.display = 'block';
+
+  const p = v.play();
+  if (p && p.catch) p.catch(function () { v.style.display = 'none'; });
+}
 function offerPlayButton() {
   const box = document.getElementById('heroQuote');
   if (!box || document.getElementById('bgPlayBtn')) return;
@@ -1984,7 +2006,8 @@ function bindSettings() {
 
   const lbEl = $('#chkLiveBg');
   if (lbEl) lbEl.onchange = e => {
-    state.settings.liveBg = e.target.checked;
+    state.settings.state.settings.liveBg = e.target.checked;
+    if (typeof initVideoBg === 'function') { initVideoBg(); }
     saveState();
     if (!e.target.checked) {
       fallbackToStill(true);
