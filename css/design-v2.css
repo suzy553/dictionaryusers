@@ -700,3 +700,45 @@ html body #screen-home .sheet{
   flex: 1 1 auto !important;
   min-height: 0 !important;
 }
+
+/* ==========================================================================
+   v2 · 修复：面板内容被底部导航遮挡
+   #screen-home 是 overflow:hidden 的弹性列，.sheet 必须在内部滚动，
+   并预留 tabbar + 安全区高度，否则「开始学习」被压在导航栏后面。
+   ========================================================================== */
+html body #screen-home .sheet{
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: calc(var(--tab-h) + var(--safe-b) + 28px) !important;
+}
+/* 面板底部再垫一层渐变，滚动到底时按钮不与导航栏贴边 */
+html body #screen-home .sheet::after{
+  content: "";
+  display: block;
+  height: 8px;
+}
+/* 其他可滚动页面同样留足底部安全区 */
+.screen{
+  padding-bottom: calc(var(--tab-h) + var(--safe-b) + 28px) !important;
+}
+
+/* 三按钮操作行（跳过 / 撤销 / 确认） */
+.q-actions-3{
+  display: grid !important;
+  grid-template-columns: 0.9fr 1fr 1.1fr;
+  gap: 8px !important;
+}
+.q-actions-3 .q-btn{
+  height: 50px !important;
+  font-size: 14.5px !important;
+  padding: 0 !important;
+}
+.q-btn-ghost{
+  background: transparent !important;
+  border: 1.5px dashed var(--rule) !important;
+  color: var(--ink-3) !important;
+}
+.q-btn-ghost:active{ background: var(--paper-2) !important; }
+.q-btn-ghost[disabled]{ opacity: .4 !important; }

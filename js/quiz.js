@@ -415,11 +415,13 @@
       body.innerHTML = head +
         '<div class="q-order-line" id="qLine"></div>' +
         '<div class="q-tiles" id="qTiles">' + otiles + '</div>' +
-        '<div class="q-actions">' +
+        '<div class="q-actions q-actions-3">' +
+          '<button class="q-btn q-btn-ghost" id="qSkip">跳过</button>' +
           '<button class="q-btn q-btn-again" id="qUndo">撤销</button>' +
           '<button class="q-btn q-btn-good" id="qSubmit" disabled>确认</button>' +
         '</div>' + prog;
       bindOrder(body, q);
+      bindSkip(body, q);
     } else if (q.type === 'spell') {
       var slots = '', tiles = '';
       for (var i = 0; i < q.answer.length; i++) slots += '<i></i>';
@@ -427,11 +429,13 @@
       body.innerHTML = head +
         '<div class="q-slots" id="qSlots">' + slots + '</div>' +
         '<div class="q-tiles" id="qTiles">' + tiles + '</div>' +
-        '<div class="q-actions">' +
+        '<div class="q-actions q-actions-3">' +
+          '<button class="q-btn q-btn-ghost" id="qSkip">跳过</button>' +
           '<button class="q-btn q-btn-again" id="qUndo">撤销</button>' +
           '<button class="q-btn q-btn-good" id="qSubmit" disabled>确认</button>' +
         '</div>' + prog;
       bindSpell(body, q);
+      bindSkip(body, q);
     }
 
     var sp = el('qSpeak');
@@ -527,6 +531,33 @@
         judge();
       };
     });
+  }
+
+
+  /* 跳过：记为答错，亮出正确答案后进入下一题 */
+  function bindSkip(body, q) {
+    const btn = el('qSkip');
+    if (!btn) return;
+    btn.onclick = function () {
+      sfx('no');
+      if (quiz.wrongWords.indexOf(q.word.w) < 0) quiz.wrongWords.push(q.word.w);
+      const slots = el('qSlots');
+      if (slots && q.answer) {
+        const ss = slots.querySelectorAll('i');
+        for (let i = 0; i < ss.length; i++) {
+          ss[i].textContent = q.answer[i] || '';
+          ss[i].className = 'on ok';
+        }
+        slots.classList.add('is-right');
+      }
+      const line = el('qLine');
+      if (line) { line.innerHTML = ''; line.classList.add('is-wrong'); }
+      showAnswerLine(body, q.answer || '');
+      btn.disabled = true;
+      const sub = el('qSubmit'); if (sub) sub.disabled = true;
+      const undo = el('qUndo'); if (undo) undo.disabled = true;
+      setTimeout(nextQuestion, 1800);
+    };
   }
 
   function bindSpell(body, q) {
