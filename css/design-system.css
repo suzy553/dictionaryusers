@@ -1,0 +1,159 @@
+/* ==========================================================================
+   设计系统 v250
+   —— 统一令牌 + 修复设置页布局 + 图标规范
+   ========================================================================== */
+
+:root{
+  /* 品牌色 */
+  --c-brand:      #58cc02;
+  --c-brand-d:    #46a302;
+  --c-brand-soft: #eef9e5;
+  /* 文字层级 */
+  --c-ink-1: #1c2a24;
+  --c-ink-2: #4a5c52;
+  --c-ink-3: #8b98a6;
+  /* 面与线 */
+  --c-surface: #ffffff;
+  --c-line:    #e8f0ea;
+  /* 圆角 */
+  --r-chip: 999px;
+  --r-btn:  14px;
+  --r-card: 20px;
+  /* 间距 */
+  --s1: 4px;  --s2: 8px;  --s3: 12px; --s4: 16px; --s5: 20px; --s6: 24px;
+  /* 阴影 */
+  --sh-1: 0 1px 2px rgba(20,60,40,.06);
+  --sh-2: 0 6px 18px rgba(20,60,40,.08);
+  --sh-3: 0 14px 36px rgba(20,60,40,.12);
+}
+
+/* ---------------- 图标规范 ---------------- */
+.ic{
+  width: 20px; height: 20px; flex: 0 0 20px;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--c-brand-d);
+}
+.ic svg{ width: 100%; height: 100%; display: block; }
+
+/* 顶栏图标 */
+.flame svg{ width: 18px; height: 18px; color: #ff8a3d; }
+.hrt svg{ width: 18px; height: 18px; color: #ff5a73; fill: #ff5a73; fill-opacity: .12; }
+#btnSettingsQuick svg{ width: 20px; height: 20px; color: var(--c-ink-2); }
+
+/* 国旗小图 */
+.flag{
+  width: 18px; height: 13px; border-radius: 3px; object-fit: cover;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.08); margin-right: 6px;
+  vertical-align: -2px;
+}
+
+/* ---------------- 设置页：功能入口行 ---------------- */
+.set-row{
+  display: flex; align-items: center; gap: 12px;
+  width: 100%; height: 54px;
+  padding: 0 16px !important;
+  margin: 0 0 10px !important;
+  background: var(--c-surface) !important;
+  border: 1.5px solid var(--c-line) !important;
+  border-radius: var(--r-btn) !important;
+  box-shadow: var(--sh-1) !important;
+  color: var(--c-ink-1) !important;
+  font-size: 15px !important; font-weight: 700 !important;
+  text-align: left;
+  transform: none !important;
+}
+.set-row:active{ transform: scale(.985) !important; background: #f7fbf8 !important; }
+.set-row-t{ flex: 1 1 auto; min-width: 0; }
+.set-row .chev{
+  width: 16px; height: 16px; flex: 0 0 16px; color: var(--c-ink-3);
+  display: inline-flex;
+}
+.set-row .chev svg{ width: 100%; height: 100%; }
+
+/* ---------------- 设置页：修复右侧溢出 ---------------- */
+#screen-settings .row > div:first-child{
+  flex: 1 1 auto; min-width: 0;
+}
+#screen-settings .row > .stepper,
+#screen-settings .row > .seg,
+#screen-settings .row > .theme-seg,
+#screen-settings .row > .switch{
+  flex: 0 0 auto;
+}
+#screen-settings .row-t,
+#screen-settings .row-s{
+  overflow-wrap: break-word;
+}
+/* 底部留白，避免被 tabbar 压住 */
+#screen-settings{
+  padding-bottom: calc(var(--tab-h) + var(--safe-b) + 40px) !important;
+}
+
+/* ---------------- 卡片与分区统一 ---------------- */
+.setting-group{
+  border-radius: var(--r-card) !important;
+  padding: 4px 16px !important;
+  margin-bottom: 14px !important;
+  box-shadow: var(--sh-1) !important;
+}
+.setting-group .row{ padding: 15px 0 !important; }
+.setting-group .row:last-child{ border-bottom: none !important; }
+
+/* 分段控件：圆角与选中态统一 */
+.seg, .theme-seg{ border-radius: var(--r-chip) !important; padding: 3px !important; }
+.seg button, .theme-seg button{ border-radius: var(--r-chip) !important; }
+
+/* 开关：统一尺寸 */
+.switch{ flex: 0 0 auto; }
+
+/* ---------------- 数据备份区 ---------------- */
+.data-btns{ display: flex; gap: 10px; margin: 6px 0 10px; }
+.data-btns .btn{ flex: 1 1 0; height: 46px; margin: 0 !important; }
+.data-note{
+  margin: 4px 0 6px; font-size: 11.5px; line-height: 1.7;
+  color: var(--c-ink-3);
+}
+.data-note b{ color: var(--c-ink-2); }
+
+
+/* ---------------- 首页任务卡：防溢出 ---------------- */
+.tc-tasks{
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 10px !important;
+}
+.tc-task{
+  min-width: 0 !important;
+  overflow: hidden !important;
+  gap: 8px !important;
+}
+.tc-task .t-name{
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+.tc-task b{
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: right;
+  font-size: 13px !important;
+}
+
+/* 小号图标（行内） */
+.ic-sm{
+  width: 17px !important; height: 17px !important; flex: 0 0 17px !important;
+  margin-right: 6px;
+  vertical-align: -3px;
+}
+.ic-sm svg{ width: 100%; height: 100%; }
+
+/* 签到行 / 挑战卡内图标配色 */
+.ck-row .ic, .ch-card .ic{ color: #2f8f4e; }
+
+/* 主 CTA：去掉像进度条的高光，改成干净的实心按钮 */
+.btn-primary.btn-3d{
+  background: linear-gradient(180deg, #62d90b, #4cbb02) !important;
+  box-shadow: 0 4px 0 #3f9c02, 0 8px 18px rgba(76,187,2,.28) !important;
+}
+.btn-primary.btn-3d::after{ display: none !important; }

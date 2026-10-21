@@ -47,6 +47,7 @@
 <link rel="stylesheet" href="css/cute.css">
 <link rel="stylesheet" href="css/path.css">
 <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/design-system.css">
 </head>
 <body>
 
@@ -170,15 +171,15 @@
   <header id="topbar">
     <div class="tb-left">
       <div class="streak" id="streakChip" title="连续学习天数">
-        <span class="flame">🔥</span><b id="streakNum">0</b>
+        <span class="flame"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s5 4.2 5 9a5 5 0 0 1-10 0c0-2 1-3.5 2-4.5 0 1.5.8 2.4 1.6 2.4 1 0 1.4-.8 1.4-2 0-1.8-1-3.4-1-4.9z"/></svg></span><b id="streakNum">0</b>
       </div>
       <div class="hearts" id="heartChip" title="今天还剩的爱心">
-        <span>❤️</span><b id="heartNum">20</b>
+        <span class="hrt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-9.2A4 4 0 0 1 12 8a4 4 0 0 1 7 2.8C19 15.6 12 20 12 20z"/></svg></span><b id="heartNum">20</b>
       </div>
       <button class="tb-book" id="tbBook" type="button">选择词书</button>
       <span class="done-badge" id="doneBadge" hidden>今日达标</span>
     </div>
-    <button class="icon-btn" id="btnSettingsQuick" aria-label="设置">⚙️</button>
+    <button class="icon-btn" id="btnSettingsQuick" aria-label="设置"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-2.9 1.2v.2a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0-1.2-2.9H2a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.6-1.1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 2.9-1.2V2a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 2.9 1.2l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0 1.2 2.9h.2a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
   </header>
 
   <main id="screens">
@@ -209,19 +210,19 @@
         <!-- 每日签到 + 成就入口（v200） -->
         <div class="ck-row" id="ckRow">
           <div class="ck-main">
-            <div class="ck-title">📅 连续签到 <b id="ckStreak">0</b> 天</div>
+            <div class="ck-title"><span class="ic ic-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M8 3v4M16 3v4M3.5 10h17"/></svg></span>连续签到 <b id="ckStreak">0</b> 天</div>
             <div class="ck-sub" id="ckSub">签到领 5 XP + 2 颗心</div>
           </div>
           <button class="ck-btn" id="ckBtn" type="button">签到</button>
           <button class="achv-btn" id="achvBtn" type="button" aria-label="成就" title="成就">
-            <span>🏅</span><i class="achv-num is-zero" id="achvNum">0</i>
+            <span><span class="ic ic-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="15" r="5.5"/><path d="M8.5 10 6 3h12l-2.5 7"/></svg></span></span><i class="achv-num is-zero" id="achvNum">0</i>
           </button>
         </div>
 
         <!-- 每日挑战（v200） -->
         <div class="ch-card" id="chCard">
           <div class="ch-top">
-            <span class="ch-label">🎯 今日挑战</span>
+            <span class="ch-label"><span class="ic ic-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/></svg></span>今日挑战</span>
             <span class="ch-count" id="chCount">0/30</span>
           </div>
           <div class="ch-name" id="chName">答对 30 个词</div>
@@ -319,9 +320,7 @@
     <section class="screen" id="screen-settings">
       <h2 class="page-title">设置</h2>
 
-      <button class="btn btn-ghost btn-3d stat-entry" id="btnStats">
-        📊 学习统计
-      </button>
+      <button class="btn set-row" id="btnStats"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span><span class="set-row-t">学习统计</span><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg></span></button>
 
 
       <div class="setting-group">
@@ -355,8 +354,8 @@
         <div class="row">
           <div><div class="row-t">发音口音</div><div class="row-s">默认播放哪一种</div></div>
           <div class="seg" id="segAccent">
-            <button data-accent="us">🇺🇸 美音</button>
-            <button data-accent="uk">🇬🇧 英音</button>
+            <button data-accent="us"><img class="flag" src="data/flags/us.webp" alt="">美音</button>
+            <button data-accent="uk"><img class="flag" src="data/flags/gb.webp" alt="">英音</button>
           </div>
         </div>
         <label class="row">
@@ -386,14 +385,14 @@
           <div><div class="row-t">每日提醒</div><div class="row-s">每天早上几点提醒你</div></div>
           <input type="time" id="inpRemind" value="07:00" class="time-input">
         </div>
-        <button class="btn btn-outline" id="btnIcs">📅 添加每日提醒到系统日历</button>
-        <button class="btn btn-outline" id="btnNotify">🔔 在浏览器里开启通知</button>
+        <button class="btn set-row" id="btnIcs"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M8 3v4M16 3v4M3.5 10h17"/></svg></span><span class="set-row-t">添加每日提醒到系统日历</span><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg></span></button>
+        <button class="btn set-row" id="btnNotify"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 9a6 6 0 1 0-12 0c0 5-2 6.5-2 6.5h16S18 14 18 9"/><path d="M10.3 19.5a2 2 0 0 0 3.4 0"/></svg></span><span class="set-row-t">在浏览器里开启通知</span><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg></span></button>
         <p class="hint" id="notifyHint"></p>
       </div>
 
       <div class="setting-group">
-        <button class="btn btn-outline" id="btnExport">⬇️ 导出学习进度</button>
-        <button class="btn btn-outline" id="btnImport">⬆️ 导入学习进度</button>
+        <button class="btn set-row" id="btnExport"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v11M7.5 10.5 12 15l4.5-4.5"/><path d="M4 17v2.5A1.5 1.5 0 0 0 5.5 21h13A1.5 1.5 0 0 0 20 19.5V17"/></svg></span><span class="set-row-t">导出学习进度</span><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg></span></button>
+        <button class="btn set-row" id="btnImport"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V4M7.5 8.5 12 4l4.5 4.5"/><path d="M4 17v2.5A1.5 1.5 0 0 0 5.5 21h13A1.5 1.5 0 0 0 20 19.5V17"/></svg></span><span class="set-row-t">导入学习进度</span><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg></span></button>
         <input type="file" id="fileImport" accept="application/json" hidden>
         <button class="btn btn-danger" id="btnReset">清空所有进度</button>
         <p class="hint" id="dataStats">进度只存在这台设备上，不联网、不上传。</p>

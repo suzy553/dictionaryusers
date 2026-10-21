@@ -3113,6 +3113,22 @@ async function boot() {
       else if (mq.addListener) mq.addListener(onChange);
     } catch (e) { /* 忽略 */ }
   }
+  
+  if (new URLSearchParams(location.search).get('probe') === '1') {
+    setTimeout(function () {
+      try {
+        var vw = window.innerWidth;
+        var sw = document.documentElement.scrollWidth;
+        var worst = '', wmax = 0;
+        document.querySelectorAll('body *').forEach(function (el) {
+          var r = el.getBoundingClientRect();
+          if (r.right > wmax) { wmax = r.right; worst = el.tagName + (el.id ? '#' + el.id : '') + (el.className && typeof el.className === 'string' ? '.' + el.className.split(' ')[0] : ''); }
+        });
+        document.title = 'vw=' + vw + ' sw=' + sw + ' maxRight=' + Math.round(wmax) + ' at=' + worst;
+      } catch (e) { document.title = 'PROBE-ERR:' + e.message; }
+    }, 2200);
+  }
+
   bindEvents();
   bindSettings();
   try {
