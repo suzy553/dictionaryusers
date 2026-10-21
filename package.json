@@ -6,7 +6,7 @@
   "scripts": {
     "test": "vitest run",
     "test:watch": "vitest",
-    "check": "node scripts/check-types.js"
+    "check:refs": "node scripts/check-refs.js"
   },
   "devDependencies": {
     "vitest": "^2.1.8"

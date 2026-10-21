@@ -775,21 +775,10 @@ function renderHome() {
     const hh = state.history[key];
     dots.push({ on: !!(hh && (hh.n + hh.r) > 0), today: i === 0 });
   }
-  const wk = $('#weekDots');
-  if (wk) {
-    const names = ['日', '一', '二', '三', '四', '五', '六'];
-    wk.innerHTML = dots.map((d, i) => {
-      const dt = new Date();
-      dt.setDate(dt.getDate() - (6 - i));
-      return `<span class="wd"><i class="${d.on ? 'on' : ''}${d.today ? ' today' : ''}"></i><em>${names[dt.getDay()]}</em></span>`;
-    }).join('');
-  }
   setText('#weekCount', dots.filter(d => d.on).length);
   setText('#streakDays', `${displayStreak()} 天`);
 
   // 词书进度（meta/learned 已在上方定义）
-  const tb = document.getElementById('tbProgress');
-  if (tb) tb.textContent = `坚持 ${dayN} 天 · 完成 ${bpct}%`;
 
   const fab = $('#btnStart');
   const cta = document.getElementById('ctaLabel');
@@ -807,15 +796,6 @@ function renderHome() {
           : done > 0 ? '继续学习' : '开始今天的学习';
   }
 
-  // 吉祥物说的话
-  const bubble = $('#bubbleText');
-  if (bubble) {
-    if (hp <= 0) bubble.textContent = '心用完啦，明天 0 点恢复，先歇一下～';
-    else if (done >= goal && goal > 0) bubble.textContent = due > 0 ? `目标完成啦！还有 ${due} 个词要复习吗？` : '今天全部搞定，你太棒啦！🎉';
-    else if (done > 0) bubble.textContent = `还剩 ${leftNew} 个词，冲鸭！`;
-    else if (due > 0) bubble.textContent = `有 ${due} 个词在等你复习哦～`;
-    else bubble.textContent = `今天的目标是 ${goal} 个单词，开始吧！`;
-  }
 
   // v200：签到条 + 每日挑战（只读渲染，完成判定在答题/复习/互动时触发）
   ensureDailyCheckin();
@@ -1044,12 +1024,12 @@ function petOwlSVG(mood, extra) {
   </svg>`;
 }
 /* ---------------- 宠物帧动画 ---------------- */
-const PET_FRAME_URL = n => (PET_ENABLED ? `url("data/pet/pet-${n}.webp")` : 'none');
+const PET_FRAME_URL = () => 'none';   /* 爱宠模块已下架 */
 let _petFrameTimer = null;
 let _petBlinkTimer = null;
 
 /* ---------------- 逐帧动画播放器 ---------------- */
-const PET_SPRITE = 'url("data/pet/idle-strip.webp")';
+const PET_SPRITE = 'none';   /* 爱宠模块已下架 */
 const PET_SPRITE_FRAMES = 20;
 let _petSpriteTimer = null;
 let _petSpriteIdx = 0;
@@ -1064,7 +1044,7 @@ const SEQ_MS = { idle: 110, eat: 95, drink: 95, angry: 95, happy: 90, back: 95, 
 let _seqName = null, _seqIdx = 0, _seqTimer = null, _seqLoop = false, _seqEnd = null;
 
 function seqURL(name, i) {
-  return 'data/pet/seq/' + name + '/' + String(i).padStart(2, '0') + '.webp';
+  return '';   /* 爱宠模块已下架，序列帧不再请求 */
 }
 
 function stopSeq() {
@@ -1175,7 +1155,7 @@ function petBlinkOnce(done) {
     if (done) done();
   };
   img.addEventListener('error', finish);
-  img.src = 'data/pet/pet-blink.webp';
+  return;   /* 爱宠模块已下架 */
   _petBlinkTimer = setTimeout(finish, 160);
 }
 
@@ -1337,7 +1317,7 @@ function renderPet() {
   if (!p.name) {
     stage.innerHTML = `
       <div class="pet-onboard">
-        <div class="pet-onboard-owl"><span class="owl-float"><span class="owl-breathe"><img class="pet-owl-img" id="petImg" alt="" src="data/pet/pet-idle.webp"></span></span></div>
+        <div class="pet-onboard-owl"><span class="owl-float"><span class="owl-breathe"><img class="pet-owl-img" id="petImg" alt="" src=""></span></span></div>
         <h3>给你的猫头鹰起个名字</h3>
         <p>他会盯着你背单词，脾气不太好。</p>
         <input id="petNameInput" maxlength="8" placeholder="比如：木木枭" autocomplete="off">
@@ -1381,7 +1361,7 @@ function renderPet() {
       <div class="pet-bubble" id="petBubble">${esc(line)}</div>
 
       <div class="pet-owl" id="petOwlBtn">
-        <span class="owl-float"><span class="owl-breathe"><img class="pet-owl-img" id="petImg" alt="" src="data/pet/pet-idle.webp"></span></span>
+        <span class="owl-float"><span class="owl-breathe"><img class="pet-owl-img" id="petImg" alt="" src=""></span></span>
         <span class="pet-sticker" id="petSticker" hidden></span>
       </div>
       <div class="pet-zones">
@@ -3018,7 +2998,6 @@ function bindEvents() {
   const tN = $('#taskNew'); if (tN) tN.onclick = () => startSession('learn');
   const tR = $('#taskRev'); if (tR) tR.onclick = () => startSession('review');
   const tbBtn = $('#tbBook'); if (tbBtn) tbBtn.onclick = () => go('books');
-  const hB = $('#hBook'); if (hB) hB.onclick = () => go('books');
   // 复习卡片：进入词表页（右上角"开始"再进单词卡）
   const rvW = $('#rvCardWords'); if (rvW) rvW.onclick = () => openReviewDetail('words');
   const rvX = $('#rvCardWrong'); if (rvX) rvX.onclick = () => openReviewDetail('wrong');

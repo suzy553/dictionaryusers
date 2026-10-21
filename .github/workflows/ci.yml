@@ -1,4 +1,4 @@
-name: CI
+﻿name: CI
 
 on:
   push:
@@ -41,6 +41,9 @@ jobs:
             echo "检查 $f"
             node --check "$f"
           done
+      - name: 检查资源引用
+        run: node scripts/check-refs.js
+
       - name: 检查关键文件存在
         run: |
           test -f index.html
@@ -48,3 +51,4 @@ jobs:
           test -f manifest.webmanifest
           test -f js/core.js
           echo "结构完整"
+
