@@ -2358,6 +2358,25 @@ async function boot() {
     }, 2200);
   }
 
+  
+  if (new URLSearchParams(location.search).get('dbgfit') === '1') {
+    setTimeout(function () {
+      try {
+        var hv = document.getElementById('heroView');
+        var sh = document.querySelector('#screen-home .sheet');
+        var scr = document.getElementById('screen-home');
+        var r = hv ? hv.getBoundingClientRect() : null;
+        var r2 = sh ? sh.getBoundingClientRect() : null;
+        document.title = 'hero=' + (r ? Math.round(r.height) : '?') +
+          ' top=' + (r ? Math.round(r.top) : '?') +
+          ' sheetTop=' + (r2 ? Math.round(r2.top) : '?') +
+          ' sheetH=' + (r2 ? Math.round(r2.height) : '?') +
+          ' scrH=' + (scr ? Math.round(scr.getBoundingClientRect().height) : '?') +
+          ' cls=' + (hv ? hv.className : '?');
+      } catch (e) { document.title = 'FIT-ERR:' + e.message; }
+    }, 2200);
+  }
+
   bindEvents();
   bindSettings();
   try {
@@ -2436,7 +2455,12 @@ async function boot() {
     renderPet();
   }
   initOnboard();
-  initSheetDrag();
+  /* 面板上拉拖拽已停用：它会把整块面板下移，导致首页主视觉占满、内容空旷。
+     现在面板占满剩余空间并内部滚动。 */
+  try {
+    const _sheet = document.querySelector('#screen-home .sheet');
+    if (_sheet) { _sheet.style.transform = 'translateY(0px)'; _sheet.classList.remove('is-collapsed'); }
+  } catch (e) { }
 
   // 支持 #home/#books/#review/#settings 直接打开某个页面，方便分享与调试
   const q = new URLSearchParams(location.search);

@@ -202,28 +202,6 @@
           <span class="st-today" id="xpToday">+0</span>
         </div>
 
-        <!-- 每日签到 + 成就入口（v200） -->
-        <div class="ck-row" id="ckRow">
-          <div class="ck-main">
-            <div class="ck-title"><span class="ic ic-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M8 3v4M16 3v4M3.5 10h17"/></svg></span>连续签到 <b id="ckStreak">0</b> 天</div>
-            <div class="ck-sub" id="ckSub">签到领 5 XP + 2 颗心</div>
-          </div>
-          <button class="ck-btn" id="ckBtn" type="button">签到</button>
-          <button class="achv-btn" id="achvBtn" type="button" aria-label="成就" title="成就">
-            <span><span class="ic ic-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="15" r="5.5"/><path d="M8.5 10 6 3h12l-2.5 7"/></svg></span></span><i class="achv-num is-zero" id="achvNum">0</i>
-          </button>
-        </div>
-
-        <!-- 每日挑战（v200） -->
-        <div class="ch-card" id="chCard">
-          <div class="ch-top">
-            <span class="ch-label"><span class="ic ic-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/></svg></span>今日挑战</span>
-            <span class="ch-count" id="chCount">0/30</span>
-          </div>
-          <div class="ch-name" id="chName">答对 30 个词</div>
-          <div class="ch-bar"><i id="chBar"></i></div>
-        </div>
-
         <div class="tc-head"><em>今日任务</em><span id="taskCount">0 / 1</span></div>
         <div class="tc-tasks">
           <button class="tc-task" id="taskNew">
@@ -237,8 +215,6 @@
             <b id="taskRevNum">今日无复习</b>
           </button>
         </div>
-
-        
 
         <button class="btn btn-primary btn-3d sheet-cta" id="btnStart">
           <span id="ctaLabel">开始今天的学习</span>
@@ -297,6 +273,29 @@
           </span>
           <span class="rv-go">开始 ›</span>
         </button>
+
+        <div class="rv-daily-title">今日任务</div>
+        <!-- 签到 + 成就入口（从首页移入） -->
+        <div class="ck-row" id="ckRow">
+          <div class="ck-main">
+            <div class="ck-title"><span class="ic ic-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M8 3v4M16 3v4M3.5 10h17"/></svg></span>连续签到 <b id="ckStreak">0</b> 天</div>
+            <div class="ck-sub" id="ckSub">签到领 5 XP + 2 颗心</div>
+          </div>
+          <button class="ck-btn" id="ckBtn" type="button">签到</button>
+          <button class="achv-btn" id="achvBtn" type="button" aria-label="成就" title="成就">
+            <span><span class="ic ic-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="15" r="5.5"/><path d="M8.5 10 6 3h12l-2.5 7"/></svg></span></span><i class="achv-num is-zero" id="achvNum">0</i>
+          </button>
+        </div>
+
+        <!-- 每日挑战（从首页移入） -->
+        <div class="ch-card" id="chCard">
+          <div class="ch-top">
+            <span class="ch-label"><span class="ic ic-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/></svg></span>今日挑战</span>
+            <span class="ch-count" id="chCount">0/30</span>
+          </div>
+          <div class="ch-name" id="chName">答对 30 个词</div>
+          <div class="ch-bar"><i id="chBar"></i></div>
+        </div>
 
         <div class="box-legend" id="boxLegend"></div>
       </div>

@@ -742,3 +742,37 @@ html body #screen-home .sheet::after{
 }
 .q-btn-ghost:active{ background: var(--paper-2) !important; }
 .q-btn-ghost[disabled]{ opacity: .4 !important; }
+/* ==========================================================================
+   v2 · 复习页：今日任务区（签到 + 挑战从首页移入）
+   ========================================================================== */
+.rv-daily-title{
+  margin: 22px 0 10px;
+  font-size: var(--t-sub);
+  font-weight: 800;
+  color: var(--ink-2);
+  letter-spacing: .5px;
+}
+#screen-review .ck-row,
+#screen-review .ch-card{
+  margin-bottom: 12px;
+}
+#screen-review .ck-row{
+  background: var(--surface) !important;
+  border: 1px solid var(--rule) !important;
+  border-radius: var(--r-md) !important;
+  padding: 14px 16px !important;
+  box-shadow: 0 1px 2px rgba(27,42,34,.04) !important;
+}
+#screen-review .ch-card{
+  background: var(--surface) !important;
+  border: 1px solid var(--rule) !important;
+  border-left: 3px solid var(--accent) !important;
+  border-radius: var(--r-md) !important;
+  padding: 14px 16px !important;
+  box-shadow: 0 1px 2px rgba(27,42,34,.04) !important;
+}
+#screen-review .box-legend{ margin-top: 18px; }
+
+/* 首页移除后：今日任务区更紧凑 */
+#screen-home .tc-head{ margin-top: 16px !important; }
+#screen-home .sheet{ padding-top: 6px !important; }
