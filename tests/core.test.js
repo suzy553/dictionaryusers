@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+﻿import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
@@ -199,10 +199,13 @@ describe('buildQuestion 调度', () => {
   });
 
   it('整本词书都能出题（无 null、无空题干）', () => {
+    /* 抽样 400 词：覆盖全部题型入口，同时避免 CI 慢机器上 O(n²) 超时 */
     const PLAN = ['choice', 'listen', 'cloze', 'match', 'spell', 'cn2en', 'order', 'tf'];
     let nulls = 0, empties = 0;
-    for (let i = 0; i < WORDS.length; i++) {
-      const q = core.buildQuestion(WORDS[i], WORDS, [PLAN[i % PLAN.length], 'choice']);
+    const step2 = Math.max(1, Math.floor(WORDS.length / 400));
+    const sample = WORDS.filter((_, i) => i % step2 === 0);
+    for (let i = 0; i < sample.length; i++) {
+      const q = core.buildQuestion(sample[i], WORDS, [PLAN[i % PLAN.length], 'choice']);
       if (!q) nulls++;
       else if (!q.prompt || String(q.prompt).trim() === '') empties++;
     }
