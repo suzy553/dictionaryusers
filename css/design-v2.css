@@ -801,3 +801,71 @@ html:not([data-theme="night"]) .bg-photo{
 #heroView{
   background-position: center 34% !important;
 }
+
+/* ==========================================================================
+   底部导航：4 个 tab 等分（此前仍是 5 列，右侧空出一格）
+   ========================================================================== */
+#tabbar{
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  align-items: center !important;
+}
+#tabbar .tab{
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 2px !important;
+  padding: 6px 0 4px !important;
+  min-width: 0 !important;
+}
+#tabbar .tab .ti{
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 28px !important;
+  width: 44px !important;
+  margin: 0 !important;
+}
+#tabbar .tab.is-active .ti{
+  height: 28px !important;
+  width: 44px !important;
+  padding: 0 !important;
+}
+
+/* ---------------- 面板抓手：可点击 + 足够大的触摸区 ---------------- */
+.sheet-grab{
+  height: 30px !important;
+  margin: -8px auto 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  touch-action: manipulation !important;
+  -webkit-tap-highlight-color: transparent;
+}
+.sheet-grab::before{
+  content: "" !important;
+  display: block !important;
+  width: 46px !important;
+  height: 5px !important;
+  border-radius: 999px !important;
+  background: rgba(27, 42, 34, .18) !important;
+  transition: background .15s, width .15s;
+}
+.sheet-grab:active::before{
+  background: rgba(27, 42, 34, .32) !important;
+  width: 54px !important;
+}
+html[data-theme="night"] .sheet-grab::before{ background: rgba(255,255,255,.22) !important; }
+
+/* 抓手：清掉旧样式自带的背景，只保留中间的细条 */
+.sheet-grab{
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  width: auto !important;
+  min-width: 64px !important;
+}
+html[data-theme="night"] .sheet-grab{ background: transparent !important; }

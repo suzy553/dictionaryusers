@@ -1424,6 +1424,44 @@ function renderAll() {
 }
 
 /* ---------------- 面板下拉：露出完整画面 ---------------- */
+
+/* 面板抓手：点击收起 / 再点展开（纯点击，不做拖拽位移） */
+function initSheetToggle() {
+  const sheet = document.querySelector('#screen-home .sheet');
+  const grab = sheet && sheet.querySelector('.sheet-grab');
+  if (!sheet || !grab || sheet.dataset.toggle === '1') return;
+  sheet.dataset.toggle = '1';
+
+  let collapsed = false;
+  const peek = () => Math.min(140, Math.max(96, Math.round(sheet.offsetHeight * 0.28)));
+
+  const apply = () => {
+    sheet.style.transition = 'transform .32s cubic-bezier(.2,.9,.3,1)';
+    if (collapsed) {
+      const down = Math.max(0, sheet.offsetHeight - peek());
+      sheet.style.transform = 'translateY(' + down + 'px)';
+      sheet.classList.add('is-collapsed');
+      grab.setAttribute('aria-label', '展开面板');
+    } else {
+      sheet.style.transform = 'translateY(0px)';
+      sheet.classList.remove('is-collapsed');
+      grab.setAttribute('aria-label', '收起面板');
+    }
+  };
+
+  grab.setAttribute('role', 'button');
+  grab.setAttribute('aria-label', '收起面板');
+  grab.addEventListener('click', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    collapsed = !collapsed;
+    apply();
+  });
+
+  /* 窗口尺寸变化时，收起态需要重新计算位移 */
+  window.addEventListener('resize', function () { if (collapsed) apply(); });
+}
+
 function initSheetDrag() {
   const sheet = document.querySelector('#screen-home .sheet');
   const grab = sheet && sheet.querySelector('.sheet-grab');
@@ -2528,6 +2566,24 @@ async function boot() {
     }
   })();
 
+  
+  if (new URLSearchParams(location.search).get('dbgtoggle') === '1') {
+    setTimeout(function () {
+      try {
+        var sh = document.querySelector('#screen-home .sheet');
+        var g = sh && sh.querySelector('.sheet-grab');
+        if (!g) { document.title = 'NO-GRAB'; return; }
+        g.click();
+        var t1 = sh.style.transform;
+        setTimeout(function () {
+          g.click();
+          var t2 = sh.style.transform;
+          document.title = 'collapsed=' + t1 + ' expanded=' + t2;
+        }, 500);
+      } catch (e) { document.title = 'TOGGLE-ERR:' + e.message; }
+    }, 2500);
+  }
+
   bindEvents();
   bindSettings();
   try {
@@ -2611,6 +2667,7 @@ async function boot() {
   try {
     const _sheet = document.querySelector('#screen-home .sheet');
     if (_sheet) { _sheet.style.transform = 'translateY(0px)'; _sheet.classList.remove('is-collapsed'); }
+    initSheetToggle();
   } catch (e) { }
 
   // 支持 #home/#books/#review/#settings 直接打开某个页面，方便分享与调试
