@@ -2244,7 +2244,10 @@ function bindSettings() {
       + '</b> · ' + lastTxt
       + '<br>本地快照 <b>' + snaps.length + '</b> 份'
       + (snaps.length ? '（最近 ' + snaps[0].date + '，' + snaps[0].words + ' 词）' : '')
-      + '<br>数据只在这台设备，不联网、不上传。主档损坏时会自动从备份或快照恢复。';
+      + '<br>数据只在这台设备，不联网、不上传。主档损坏时会自动从备份或快照恢复。'
+      + '<br><span style="color:#a8b3ad;font-size:11px">屏幕 ' + innerWidth + '×' + innerHeight
+      + ' · 缩放 ' + (window.devicePixelRatio || 1) + '× · 安全区 '
+      + (getComputedStyle(document.documentElement).getPropertyValue('--safe-b').trim() || '0') + '</span>';
   }
 
   $('#btnExport').onclick = () => {
