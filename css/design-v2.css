@@ -689,30 +689,15 @@ html[data-theme="night"] #bgPhoto{
   object-position: center 38% !important;
 }
 /* 主视觉：固定占位，保证面板首屏露出「今日任务 + 开始学习」 */
-html body #screen-home #heroView.hero{
-  flex: 0 0 auto !important;
-  height: clamp(240px, 42vh, 360px) !important;
-  min-height: 240px !important;
-  max-height: 42vh !important;
-  overflow: hidden !important;
-}
-html body #screen-home .sheet{
-  flex: 1 1 auto !important;
-  min-height: 0 !important;
-}
+
+
 
 /* ==========================================================================
    v2 · 修复：面板内容被底部导航遮挡
    #screen-home 是 overflow:hidden 的弹性列，.sheet 必须在内部滚动，
    并预留 tabbar + 安全区高度，否则「开始学习」被压在导航栏后面。
    ========================================================================== */
-html body #screen-home .sheet{
-  flex: 1 1 auto !important;
-  min-height: 0 !important;
-  overflow-y: auto !important;
-  -webkit-overflow-scrolling: touch;
-  padding-bottom: calc(var(--tab-h) + var(--safe-b) + 28px) !important;
-}
+
 /* 面板底部再垫一层渐变，滚动到底时按钮不与导航栏贴边 */
 html body #screen-home .sheet::after{
   content: "";
@@ -776,3 +761,43 @@ html body #screen-home .sheet::after{
 /* 首页移除后：今日任务区更紧凑 */
 #screen-home .tc-head{ margin-top: 16px !important; }
 #screen-home .sheet{ padding-top: 6px !important; }
+
+/* ==========================================================================
+   v2 · 首页布局最终版
+   主视觉占满剩余空间；面板贴合内容高度（最高 64vh，超出内部滚动）
+   ========================================================================== */
+html body #screen-home #heroView.hero{
+  flex: 1 1 auto !important;
+  height: auto !important;
+  min-height: 200px !important;
+  max-height: none !important;
+  overflow: hidden !important;
+}
+html body #screen-home .sheet{
+  flex: 0 1 auto !important;
+  max-height: 64vh !important;
+  min-height: 0 !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: calc(var(--tab-h) + var(--safe-b) + 8px) !important;
+}
+/* 面板内容本身不需要额外撑高 */
+html body #screen-home .sheet > *:last-child{
+  margin-bottom: 4px !important;
+}
+
+/* 首页：面板底边与导航栏贴合，去掉多余空白 */
+html body #screen-home{
+  padding-bottom: 0 !important;
+}
+html body #screen-home #heroView.hero{
+  margin-bottom: 0 !important;
+}
+/* 主视觉取景上移，避免主体被面板裁掉 */
+html:not([data-theme="night"]) .bg-video,
+html:not([data-theme="night"]) .bg-photo{
+  object-position: center 34% !important;
+}
+#heroView{
+  background-position: center 34% !important;
+}
