@@ -869,3 +869,53 @@ html[data-theme="night"] .sheet-grab::before{ background: rgba(255,255,255,.22) 
   min-width: 64px !important;
 }
 html[data-theme="night"] .sheet-grab{ background: transparent !important; }
+
+/* ==========================================================================
+   首页操作区压缩：让主视觉露出更多
+   ========================================================================== */
+html body #screen-home .sheet{
+  padding-top: 2px !important;
+}
+/* 抓手再薄一点 */
+html body #screen-home .sheet-grab{
+  height: 22px !important;
+  margin: -4px auto 0 !important;
+}
+html body #screen-home .sheet-grab::before{
+  height: 4px !important;
+  width: 42px !important;
+}
+/* 等级条更紧凑 */
+html body #screen-home .st-row,
+html body #screen-home .level-row{
+  margin: 2px 0 6px !important;
+  padding: 0 !important;
+}
+/* 今日任务标题 */
+html body #screen-home .tc-head{
+  margin: 6px 0 8px !important;
+}
+html body #screen-home .tc-head em{
+  font-size: 13px !important;
+}
+/* 任务卡矮一点 */
+html body #screen-home .tc-task{
+  height: 44px !important;
+  border-radius: 12px !important;
+}
+html body #screen-home .tc-task .t-name{ font-size: 14px !important; }
+html body #screen-home .tc-task b{ font-size: 12.5px !important; }
+/* 主按钮矮一点，前后间距收紧 */
+html body #screen-home #btnStart.sheet-cta{
+  height: 50px !important;
+  margin: 10px 0 2px !important;
+  font-size: 15.5px !important;
+}
+/* 面板内底部留白再收一点 */
+html body #screen-home .sheet{
+  padding-bottom: calc(var(--tab-h) + var(--safe-b) + 6px) !important;
+}
+/* 主视觉至少占 52%，保证背景露出 */
+html body #screen-home #heroView.hero{
+  min-height: 52vh !important;
+}

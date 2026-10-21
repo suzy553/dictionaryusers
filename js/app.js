@@ -288,7 +288,7 @@ function goObStep(n) {
   document.querySelectorAll('.ob-step').forEach(s => s.classList.toggle('is-on', Number(s.dataset.step) === n));
   document.querySelectorAll('.ob-dots i').forEach((d, i) => d.classList.toggle('on', i < n));
   const next = document.getElementById('obNext');
-  if (next) next.querySelector('span').textContent = n === 3 ? '开始背单词' : '下一步';
+  if (next) next.querySelector('span').textContent = n === 3 ? '完成设置' : '下一步';
 }
 
 async function finishOnboard(skipped) {
@@ -306,11 +306,9 @@ async function finishOnboard(skipped) {
   const box = document.getElementById('onboard');
   if (box) box.classList.remove('is-open');
   renderAll();
-  if (!skipped) {
-    toast('开始吧！每天进步一点点', 2600);
-    // 按钮写的是“开始背单词”，就真的进第一张卡，不再让用户回首页多点一次
-    setTimeout(() => { if (!session && remainingNew() > 0) startSession('learn'); }, 320);
-  }
+  /* 设置完成后回到首页，由用户自己点「开始今天的学习」 */
+  go('home');
+  toast(skipped ? '设置完成，随时可以在书架里调整' : '设置完成，点「开始今天的学习」就可以开始啦', 2800);
 }
 
 /* ---------------- 爱心 & 经验 ---------------- */
