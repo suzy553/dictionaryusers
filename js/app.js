@@ -2582,6 +2582,28 @@ async function boot() {
     }, 2500);
   }
 
+  
+  if (new URLSearchParams(location.search).get('dbgcta') === '1') {
+    setTimeout(function () {
+      try {
+        var cta = document.getElementById('btnStart');
+        var sh = document.querySelector('#screen-home .sheet');
+        var tb = document.getElementById('tabbar');
+        var r = cta ? cta.getBoundingClientRect() : null;
+        var r2 = sh ? sh.getBoundingClientRect() : null;
+        var r3 = tb ? tb.getBoundingClientRect() : null;
+        var vis = r && r3 ? (r.bottom <= r3.top) : false;
+        document.title = 'ctaTop=' + (r ? Math.round(r.top) : '?') +
+          ' ctaBot=' + (r ? Math.round(r.bottom) : '?') +
+          ' sheetH=' + (r2 ? Math.round(r2.height) : '?') +
+          ' sheetScroll=' + (sh ? sh.scrollHeight : '?') +
+          ' tabTop=' + (r3 ? Math.round(r3.top) : '?') +
+          ' winH=' + innerHeight +
+          ' VISIBLE=' + vis;
+      } catch (e) { document.title = 'CTA-ERR:' + e.message; }
+    }, 2200);
+  }
+
   bindEvents();
   bindSettings();
   try {

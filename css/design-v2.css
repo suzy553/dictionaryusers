@@ -766,21 +766,8 @@ html body #screen-home .sheet::after{
    v2 · 首页布局最终版
    主视觉占满剩余空间；面板贴合内容高度（最高 64vh，超出内部滚动）
    ========================================================================== */
-html body #screen-home #heroView.hero{
-  flex: 1 1 auto !important;
-  height: auto !important;
-  min-height: 200px !important;
-  max-height: none !important;
-  overflow: hidden !important;
-}
-html body #screen-home .sheet{
-  flex: 0 1 auto !important;
-  max-height: 64vh !important;
-  min-height: 0 !important;
-  overflow-y: auto !important;
-  -webkit-overflow-scrolling: touch;
-  padding-bottom: calc(var(--tab-h) + var(--safe-b) + 8px) !important;
-}
+
+
 /* 面板内容本身不需要额外撑高 */
 html body #screen-home .sheet > *:last-child{
   margin-bottom: 4px !important;
@@ -790,9 +777,7 @@ html body #screen-home .sheet > *:last-child{
 html body #screen-home{
   padding-bottom: 0 !important;
 }
-html body #screen-home #heroView.hero{
-  margin-bottom: 0 !important;
-}
+
 /* 主视觉取景上移，避免主体被面板裁掉 */
 html:not([data-theme="night"]) .bg-video,
 html:not([data-theme="night"]) .bg-photo{
@@ -873,9 +858,7 @@ html[data-theme="night"] .sheet-grab{ background: transparent !important; }
 /* ==========================================================================
    首页操作区压缩：让主视觉露出更多
    ========================================================================== */
-html body #screen-home .sheet{
-  padding-top: 2px !important;
-}
+
 /* 抓手再薄一点 */
 html body #screen-home .sheet-grab{
   height: 22px !important;
@@ -912,10 +895,60 @@ html body #screen-home #btnStart.sheet-cta{
   font-size: 15.5px !important;
 }
 /* 面板内底部留白再收一点 */
+
+/* 主视觉至少占 52%，保证背景露出 */
+
+
+/* ==========================================================================
+   首页布局最终定案：面板永远完整可见，主视觉吃剩余空间
+   （小屏手机上 52vh 的主视觉会把「继续学习」挤出可视区）
+   ========================================================================== */
+
+
+/* 极矮屏幕：允许主视觉继续让步 */
+@media (max-height: 640px){
+  
+}
+
+/* ==========================================================================
+   首页布局定案（高度不变 + 内容自适应）
+   主视觉 flex:1 吃掉剩余高度；面板 flex:0 1 auto，
+   中部 .sheet-scroll 可滚动，底部按钮常驻，永不消失。
+   ========================================================================== */
+html body #screen-home #heroView.hero{
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: hidden !important;
+  margin-bottom: 0 !important;
+}
 html body #screen-home .sheet{
+  flex: 0 1 auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: 0 !important;
+  max-height: 74vh !important;
+  overflow: hidden !important;
   padding-bottom: calc(var(--tab-h) + var(--safe-b) + 6px) !important;
 }
-/* 主视觉至少占 52%，保证背景露出 */
-html body #screen-home #heroView.hero{
-  min-height: 52vh !important;
+html body #screen-home .sheet-scroll{
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+/* 按钮常驻底部 */
+html body #screen-home .sheet > #btnStart.sheet-cta{
+  flex: 0 0 auto !important;
+  margin: 8px 0 0 !important;
+  height: 50px !important;
+}
+/* 极矮屏幕进一步压缩内容间距 */
+@media (max-height: 680px){
+  html body #screen-home .sheet-grab{ height: 16px !important; margin-top: -2px !important; }
+  html body #screen-home .tc-head{ margin: 2px 0 6px !important; }
+  html body #screen-home .tc-task{ height: 40px !important; }
+  html body #screen-home .sheet > #btnStart.sheet-cta{ height: 46px !important; margin-top: 6px !important; }
 }
