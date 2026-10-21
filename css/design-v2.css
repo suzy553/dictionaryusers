@@ -1,0 +1,371 @@
+﻿/* ==========================================================================
+   Design System v2 —— 「纸感学院风」
+   底色暖纸白，强调色收敛为单色墨绿，亮绿降级为状态色
+   ========================================================================== */
+
+:root{
+  /* —— 色板 —— */
+  --paper:        #F7F6F2;   /* 页面底色 */
+  --paper-2:      #F0EEE7;   /* 次级底色 */
+  --surface:      #FFFFFF;
+  --ink:          #1B2A22;   /* 主文字 */
+  --ink-2:        #4C5B53;   /* 次文字 */
+  --ink-3:        #8A948E;   /* 辅助文字 */
+  --rule:         #E4E2DA;   /* 分隔线 */
+
+  --accent:       #1F6B45;   /* 主强调：墨绿 */
+  --accent-d:     #175534;
+  --accent-soft:  #EAF1EC;   /* 强调色浅底 */
+  --state-ok:     #3F9E5A;   /* 正确 */
+  --state-bad:    #C24C45;   /* 错误 */
+  --state-warn:   #C98A2E;   /* 提醒 */
+
+  /* —— 字号阶梯 —— */
+  --t-display: 26px;   /* 页面主标题 */
+  --t-title:   19px;   /* 区域标题 */
+  --t-body:    15px;   /* 正文 */
+  --t-sub:     13px;   /* 说明 */
+  --t-cap:     11.5px; /* 标签/注释 */
+
+  /* —— 圆角 —— */
+  --r-sm: 10px;
+  --r-md: 14px;
+  --r-lg: 18px;
+}
+
+/* ---------------- 1. 页面底色与分区 ---------------- */
+body{ background: var(--paper) !important; }
+#app{ background: transparent !important; }
+.screen{ background: transparent !important; }
+
+.page-title{
+  font-size: var(--t-display) !important;
+  font-weight: 800 !important;
+  letter-spacing: .5px !important;
+  color: var(--ink) !important;
+}
+.page-sub{
+  font-size: var(--t-sub) !important;
+  color: var(--ink-3) !important;
+  margin-top: 4px !important;
+}
+
+/* ---------------- 2. 卡片：白面 + 细线，取消重阴影 ---------------- */
+.setting-group,
+.hero-card,
+.card,
+.tc-card{
+  background: var(--surface) !important;
+  border: 1px solid var(--rule) !important;
+  border-radius: var(--r-lg) !important;
+  box-shadow: 0 1px 2px rgba(27,42,34,.04) !important;
+}
+
+.row-t{ font-size: var(--t-body) !important; font-weight: 700 !important; color: var(--ink) !important; }
+.row-s{ font-size: var(--t-cap) !important; color: var(--ink-3) !important; }
+
+/* ---------------- 3. 按钮：取消高光与立体感 ---------------- */
+.btn{
+  border-radius: var(--r-md) !important;
+  letter-spacing: .3px !important;
+}
+.btn-primary{
+  background: var(--accent) !important;
+  color: #fff !important;
+  border: none !important;
+}
+.btn-primary.btn-3d{
+  background: var(--accent) !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+.btn-primary.btn-3d::after,
+.btn-primary.btn-3d::before{ display: none !important; }
+.btn-primary:active{ background: var(--accent-d) !important; transform: none !important; }
+
+.btn-outline,
+.btn-ghost{
+  background: var(--surface) !important;
+  border: 1px solid var(--rule) !important;
+  color: var(--ink) !important;
+}
+
+/* 主 CTA 单独加强：实心墨绿，高度更稳 */
+#btnStart{
+  height: 54px !important;
+  font-size: var(--t-body) !important;
+  font-weight: 800 !important;
+  background: var(--accent) !important;
+  box-shadow: 0 2px 0 var(--accent-d) !important;
+}
+
+/* ---------------- 4. 顶栏：chip 收敛 ---------------- */
+#topbar{ background: var(--paper) !important; border-bottom: 1px solid var(--rule) !important; }
+.streak, .hearts{
+  background: var(--surface) !important;
+  border: 1px solid var(--rule) !important;
+  border-radius: 999px !important;
+  height: 30px !important;
+  padding: 0 10px !important;
+  box-shadow: none !important;
+}
+.streak b, .hearts b{ font-size: 13px !important; color: var(--ink) !important; font-weight: 800 !important; }
+.tb-book{
+  background: var(--surface) !important;
+  border: 1px solid var(--rule) !important;
+  border-radius: 999px !important;
+  height: 30px !important;
+  font-size: 12.5px !important;
+  color: var(--ink-2) !important;
+  box-shadow: none !important;
+}
+
+/* ---------------- 5. 底部导航：选中态用胶囊底 ---------------- */
+#tabbar{
+  background: rgba(255,255,255,.96) !important;
+  border-top: 1px solid var(--rule) !important;
+  backdrop-filter: blur(12px);
+}
+#tabbar .tab{
+  color: var(--ink-3) !important;
+  font-size: 10.5px !important;
+  position: relative;
+  transition: color .15s;
+}
+#tabbar .tab .ti svg{ stroke-width: 1.7; }
+#tabbar .tab.is-active{ color: var(--accent) !important; }
+#tabbar .tab.is-active .ti{
+  background: var(--accent-soft);
+  border-radius: 12px;
+  padding: 3px 12px;
+  transition: background .15s;
+}
+#tabbar .tab .ti{ display:inline-flex; align-items:center; justify-content:center; }
+
+/* ---------------- 6. 题型标签：从亮绿胶囊改为中性 chip ---------------- */
+.q-tag{
+  background: var(--accent-soft) !important;
+  color: var(--accent) !important;
+  font-size: var(--t-cap) !important;
+  font-weight: 700 !important;
+  letter-spacing: .3px !important;
+  border-radius: 999px !important;
+  padding: 4px 12px !important;
+  box-shadow: none !important;
+}
+.q-dim{
+  background: #fff !important;
+  color: var(--ink-3) !important;
+  border: 1px solid var(--rule) !important;
+  font-weight: 600 !important;
+}
+
+/* 选项：改为描边卡片，选中才上色 */
+.q-opt, .q-match-item, .q-tile{
+  background: var(--surface) !important;
+  border: 1.5px solid var(--rule) !important;
+  border-radius: var(--r-md) !important;
+  box-shadow: none !important;
+  color: var(--ink) !important;
+}
+.q-opt:active{ background: var(--paper-2) !important; }
+.q-letter{
+  background: var(--paper-2) !important;
+  color: var(--ink-2) !important;
+  border-radius: 8px !important;
+}
+.q-opt.is-right{ border-color: var(--state-ok) !important; background: #F0F8F2 !important; }
+.q-opt.is-wrong{ border-color: var(--state-bad) !important; background: #FCF1F0 !important; }
+
+/* 播放按钮：墨绿 */
+.q-hero{
+  background: var(--accent) !important;
+  box-shadow: 0 3px 0 var(--accent-d) !important;
+}
+.q-hero-icon, .q-hero-label{ color: #fff !important; }
+.q-hero::after{ border-color: rgba(31,107,69,.25) !important; }
+
+/* 闯关外壳 */
+.quiz-inner{
+  background: var(--paper) !important;
+}
+.quiz-inner::after{
+  background: linear-gradient(180deg, rgba(247,246,242,.55) 0%, rgba(247,246,242,.86) 45%, rgba(247,246,242,.96) 100%) !important;
+}
+#quizBar{ background: var(--accent) !important; }
+
+/* ---------------- 7. 进度条统一 ---------------- */
+.lv-bar, .ch-bar, .quiz-bar-wrap, .progress{
+  background: var(--paper-2) !important;
+  border-radius: 999px !important;
+}
+.lv-bar > i, .ch-bar > i{
+  background: var(--accent) !important;
+  border-radius: 999px !important;
+}
+
+/* ---------------- 8. 夜间模式适配（纸感暗版） ---------------- */
+html[data-theme="night"]{
+  --paper: #141A17;
+  --paper-2: #1B231E;
+  --surface: #1E2721;
+  --ink: #E8EDE9;
+  --ink-2: #B4C0B8;
+  --ink-3: #7D8A82;
+  --rule: #2C3730;
+  --accent: #58B67C;
+  --accent-d: #3E8C5C;
+  --accent-soft: #1F2C24;
+}
+html[data-theme="night"] body{ background: var(--paper) !important; }
+html[data-theme="night"] #topbar{ background: var(--paper) !important; }
+html[data-theme="night"] #tabbar{ background: rgba(20,26,23,.96) !important; }
+html[data-theme="night"] .q-opt,
+html[data-theme="night"] .q-match-item,
+html[data-theme="night"] .q-tile{ background: var(--surface) !important; }
+
+/* ==========================================================================
+   v2 补充：把仍在使用亮绿的组件收敛到强调色
+   ========================================================================== */
+
+/* 签到按钮：墨绿实心 */
+#ckBtn, .ck-btn{
+  background: var(--accent) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: var(--r-md) !important;
+  box-shadow: none !important;
+  font-weight: 800 !important;
+}
+#ckBtn:active, .ck-btn:active{ background: var(--accent-d) !important; }
+
+/* 今日挑战卡：中性底 + 左侧强调条，不再整块绿 */
+.ch-card, .challenge-card{
+  background: var(--surface) !important;
+  border: 1px solid var(--rule) !important;
+  border-left: 3px solid var(--accent) !important;
+  border-radius: var(--r-md) !important;
+  box-shadow: none !important;
+}
+.ch-card .ic, .challenge-card .ic{ color: var(--accent) !important; }
+
+/* 今日任务卡：白底描边 */
+.tc-task{
+  background: var(--surface) !important;
+  border: 1.5px solid var(--rule) !important;
+  border-radius: var(--r-md) !important;
+  box-shadow: none !important;
+  height: 52px !important;
+}
+.tc-task:active{ background: var(--paper-2) !important; }
+.tc-task .tick{ border-color: var(--rule) !important; }
+.tc-task.is-done, .tc-task .tick.on{
+  border-color: var(--accent) !important;
+}
+
+/* 等级条 */
+.lv-bar, .lv-bar i{ border-radius: 999px !important; }
+.lv-bar{ background: var(--paper-2) !important; }
+.lv-bar i{ background: var(--accent) !important; }
+#lvText, .lv-num{ color: var(--ink-3) !important; font-size: 12px !important; }
+
+/* 顶栏齿轮按钮 */
+#btnSettingsQuick{
+  background: var(--surface) !important;
+  border: 1px solid var(--rule) !important;
+  border-radius: 999px !important;
+  width: 30px !important; height: 30px !important;
+}
+
+/* 主 CTA 文案层级 */
+#ctaLabel{ font-size: var(--t-body) !important; font-weight: 800 !important; letter-spacing: .5px !important; }
+
+/* 底部安全区：纸色 */
+#tabbar{ padding-bottom: var(--safe-b) !important; }
+
+/* 修正：签到行结构（按钮单独上色，副标题保持中性） */
+.ck-row{
+  background: var(--surface) !important;
+  border: 1px solid var(--rule) !important;
+  border-radius: var(--r-md) !important;
+  padding: 12px 14px !important;
+  box-shadow: none !important;
+}
+.ck-title{ font-size: var(--t-body) !important; font-weight: 700 !important; color: var(--ink) !important; }
+.ck-sub{ font-size: var(--t-cap) !important; color: var(--ink-3) !important; background: none !important; }
+.ck-btn{
+  height: 36px !important; padding: 0 18px !important;
+  border-radius: 999px !important;
+  background: var(--accent) !important;
+  color: #fff !important;
+  font-size: 13px !important; font-weight: 800 !important;
+  border: none !important; box-shadow: none !important;
+}
+.achv-btn{
+  width: 36px !important; height: 36px !important;
+  border-radius: 999px !important;
+  background: var(--surface) !important;
+  border: 1px solid var(--rule) !important;
+  box-shadow: none !important;
+}
+/* 修正：题型标签在白底上要可读，改成描边胶囊 */
+.q-tag{
+  background: #fff !important;
+  color: var(--accent) !important;
+  border: 1px solid rgba(31,107,69,.35) !important;
+  box-shadow: none !important;
+}
+/* 题干卡片给个可见的面 */
+.q-card.q-quiz-card{
+  background: var(--surface) !important;
+  border: 1px solid var(--rule) !important;
+  border-radius: var(--r-lg) !important;
+  box-shadow: 0 1px 2px rgba(27,42,34,.04) !important;
+}
+/* 配对题的左右两列：统一高度与描边 */
+.q-match-item{ min-height: 64px !important; }
+.q-match-col:first-child .q-match-item{ font-weight: 800 !important; }
+/* 闯关按钮：统一到强调色 */
+.q-btn{
+  border-radius: var(--r-md) !important;
+  font-weight: 800 !important;
+  letter-spacing: .3px !important;
+  box-shadow: none !important;
+  height: 52px !important;
+}
+.q-btn-good{
+  background: var(--accent) !important;
+  color: #fff !important;
+  border: none !important;
+}
+.q-btn-good:active{ background: var(--accent-d) !important; }
+.q-btn-again{
+  background: var(--surface) !important;
+  color: var(--ink-2) !important;
+  border: 1.5px solid var(--rule) !important;
+}
+.q-btn-again:active{ background: var(--paper-2) !important; }
+.q-btn[disabled]{ opacity: .45 !important; }
+
+/* 字母槽位 */
+.q-slots i{
+  border: 1.5px solid var(--rule) !important;
+  border-radius: var(--r-sm) !important;
+  background: var(--surface) !important;
+}
+.q-slots i.on{ border-color: var(--accent) !important; background: var(--accent-soft) !important; }
+
+/* 进度条 */
+#quizBar{ background: var(--accent) !important; }
+.quiz-bar, .quiz-bar-wrap{ background: var(--paper-2) !important; }
+
+/* 题号/答对统计 */
+.q-progress{ color: var(--ink-3) !important; font-size: var(--t-cap) !important; }
+
+/* 正确答案提示条 */
+.q-answer{
+  border: 1px solid rgba(63,158,90,.35) !important;
+  background: #F2F9F4 !important;
+  color: var(--ink-2) !important;
+}
+.q-answer b{ color: var(--state-ok) !important; }

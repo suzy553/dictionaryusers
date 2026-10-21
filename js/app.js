@@ -1395,7 +1395,12 @@ function prefersLiteAssets() {
   return false;
 }
 
-function initSplash() { /* 素材已下架，静态显示 */ }
+function initSplash() {
+  /* 启动视频已移除：直接删掉开屏层并进入引导 */
+  const box = document.getElementById('splash');
+  if (box) box.remove();
+  setTimeout(function () { if (window.__startIntro) window.__startIntro(); }, 60);
+}
 /* ---------------- 图片底图 ---------------- */
 let photoBg = { day: '', night: '' };
 
