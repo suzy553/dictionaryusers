@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:"Century Gothic","Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    background:#EDEDEA;padding:18px;display:grid;grid-template-columns:380px 380px;gap:16px;
+    justify-content:center;
+  }
+  .panel{width:380px}
+  .lbl{font-size:13px;font-weight:800;color:#3a3a3a;letter-spacing:.4px;margin:0 0 8px 2px}
+  .lbl small{font-weight:500;color:#8a8a86;margin-left:6px;letter-spacing:0}
+  .phone{width:380px;height:520px;border-radius:26px;overflow:hidden;position:relative}
+
+  /* ---------- 共用 ---------- */
+  .bar{display:flex;align-items:center;gap:8px;padding:14px 16px 10px;font-size:12px}
+  .bar b{font-size:12.5px}
+  .bar .sp{flex:1}
+  .bar em{font-style:normal;font-size:11px;font-weight:700}
+  .card{border-radius:16px;padding:14px 16px}
+  .row{display:flex;align-items:center;justify-content:space-between}
+  .prog{height:7px;border-radius:99px;overflow:hidden;margin:10px 0 7px}
+  .prog i{display:block;height:100%;border-radius:99px}
+  .foot{display:flex;justify-content:space-between;font-size:10.5px}
+  .cta{display:block;width:100%;border:none;border-radius:14px;padding:15px;
+       font-size:15px;font-weight:700;font-family:inherit;margin-top:14px}
+  .art{position:absolute;left:0;right:0;bottom:0;height:214px}
+
+  /* ---------- A 极简编辑 ---------- */
+  .a .phone{background:#FBFAF7}
+  .a .bar{color:#6E6A60}
+  .a .bar b{color:#23211D;font-weight:700;letter-spacing:.3px}
+  .a .card{background:#fff;border:1px solid #E7E4DC;border-radius:12px;margin:6px 16px 0}
+  .a .lv{font-size:12px;font-weight:700;color:#1F3D2B;letter-spacing:1px;text-transform:uppercase}
+  .a .xp{font-size:19px;font-weight:600;color:#23211D}
+  .a .prog{background:#EFEBE2}
+  .a .prog i{background:#1F3D2B;border-radius:0}
+  .a .foot{color:#918C80}
+  .a .cta{background:#1F3D2B;color:#F7F5EF;border-radius:6px;margin:14px 16px 0;width:calc(100% - 32px)}
+  .a .art{opacity:.5}
+
+  /* ---------- B 深色高级 ---------- */
+  .b .phone{background:radial-gradient(120% 80% at 80% 0%,#1C2230 0%,#0E1013 58%)}
+  .b .bar{color:#7C8794}
+  .b .bar b{color:#E9EDF2;font-weight:600}
+  .b .card{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09);
+           border-radius:14px;margin:6px 16px 0;backdrop-filter:blur(8px)}
+  .b .lv{font-size:11px;font-weight:600;color:#C8FF4D;letter-spacing:1.4px}
+  .b .xp{font-size:20px;font-weight:600;color:#fff}
+  .b .prog{background:rgba(255,255,255,.09)}
+  .b .prog i{background:linear-gradient(90deg,#7BB800,#C8FF4D)}
+  .b .foot{color:#6F7A87}
+  .b .cta{background:linear-gradient(180deg,#E4FF7A,#C8FF4D);color:#16210A;margin:14px 16px 0;width:calc(100% - 32px);
+          box-shadow:0 10px 26px rgba(200,255,77,.22)}
+  .b .art{opacity:.85}
+
+  /* ---------- C 柔和玻璃 ---------- */
+  .c .phone{background:linear-gradient(165deg,#DCE8FA 0%,#F4ECF7 48%,#FDF3E8 100%)}
+  .c .bar{color:#5A6478}
+  .c .bar b{color:#2A3040;font-weight:700}
+  .c .card{background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.85);
+           border-radius:20px;margin:6px 16px 0;backdrop-filter:blur(14px);
+           box-shadow:0 10px 26px rgba(90,110,150,.13)}
+  .c .lv{font-size:12px;font-weight:800;color:#4C6FD8;letter-spacing:.4px}
+  .c .xp{font-size:20px;font-weight:800;color:#252B3B}
+  .c .prog{background:rgba(120,140,180,.18)}
+  .c .prog i{background:linear-gradient(90deg,#6E8CF5,#8FB0FF)}
+  .c .foot{color:#7C8598}
+  .c .cta{background:linear-gradient(180deg,#6E8CF5,#4C6FD8);color:#fff;margin:14px 16px 0;
+          width:calc(100% - 32px);box-shadow:0 12px 22px rgba(76,111,216,.3)}
+  .c .art{opacity:.9}
+
+  /* ---------- D 莫兰迪插画 ---------- */
+  .d .phone{background:#F2EFE9}
+  .d .bar{color:#7C7669}
+  .d .bar b{color:#3A352C;font-weight:700}
+  .d .card{background:#FFFDFA;border-radius:18px;margin:6px 16px 0;
+           box-shadow:0 6px 18px rgba(120,110,90,.10)}
+  .d .lv{font-size:11.5px;font-weight:700;color:#7C8B6F;letter-spacing:1px}
+  .d .xp{font-size:20px;font-weight:700;color:#3A352C}
+  .d .prog{background:#E7E2D7}
+  .d .prog i{background:#8C9A7C}
+  .d .foot{color:#9A9384}
+  .d .cta{background:#3A352C;color:#F6F2E9;margin:14px 16px 0;width:calc(100% - 32px);
+          border-radius:18px;letter-spacing:.4px}
+  .d .art{opacity:1}
+
+  .tag{position:absolute;right:14px;top:14px;font-size:9px;letter-spacing:.6px;
+       padding:3px 7px;border-radius:6px;font-weight:700}
+  .a .tag{background:#EFEBE2;color:#6E6A60}
+  .b .tag{background:rgba(200,255,77,.14);color:#C8FF4D}
+  .c .tag{background:rgba(255,255,255,.7);color:#4C6FD8}
+  .d .tag{background:#E7E2D7;color:#7C8B6F}
+</style>
+</head>
+<body>
+
+<!-- A -->
+<div class="panel a">
+  <div class="lbl">A · 极简编辑风 <small>Notion / 高端杂志 · 无阴影少颜色</small></div>
+  <div class="phone">
+    <div class="bar"><b>牛津 3000</b><span class="sp"></span><em>连击 3</em><em>·</em><em>爱心 18</em></div>
+    <div class="card">
+      <div class="row"><span class="lv">Level 03</span><span class="xp">+120</span></div>
+      <div class="prog"><i style="width:62%"></i></div>
+      <div class="foot"><span>186 / 300 XP</span><span>12 / 20 今日</span></div>
+    </div>
+    <button class="cta">继续学习</button>
+    <div class="art">
+      <svg viewBox="0 0 380 190" width="100%" height="100%">
+        <path d="M0 130 Q60 96 120 126 Q180 92 240 122 Q300 96 380 128" fill="none" stroke="#20201C" stroke-width="1"/>
+        <path d="M0 152 Q70 124 140 148 Q210 118 280 144 Q330 130 380 148" fill="none" stroke="#20201C" stroke-width="1" opacity=".55"/>
+        <path d="M0 174 Q80 152 160 172 Q240 148 320 170 Q352 162 380 172" fill="none" stroke="#20201C" stroke-width="1" opacity=".3"/>
+        <circle cx="300" cy="58" r="18" fill="none" stroke="#20201C" stroke-width="1"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- B -->
+<div class="panel b">
+  <div class="lbl">B · 深色高级风 <small>Whoop / Oura · 暗底 + 荧光点缀</small></div>
+  <div class="phone">
+    <div class="bar"><b>牛津 3000</b><span class="sp"></span><em>3 天</em><em>·</em><em>18 ❤</em></div>
+    <div class="card">
+      <div class="row"><span class="lv">LV 03</span><span class="xp">+120</span></div>
+      <div class="prog"><i style="width:62%"></i></div>
+      <div class="foot"><span>186 / 300 XP</span><span>12 / 20</span></div>
+    </div>
+    <button class="cta">继续学习</button>
+    <div class="art">
+      <svg viewBox="0 0 380 190" width="100%" height="100%">
+        <defs>
+          <linearGradient id="bg1" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#C8FF4D" stop-opacity=".22"/>
+            <stop offset="100%" stop-color="#C8FF4D" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <path d="M0 128 Q60 96 120 124 Q180 92 240 120 Q300 96 380 126 V190 H0 Z" fill="url(#bg1)"/>
+        <path d="M0 128 Q60 96 120 124 Q180 92 240 120 Q300 96 380 126" fill="none" stroke="#C8FF4D" stroke-width="1.4" opacity=".75"/>
+        <path d="M0 150 Q70 124 140 146 Q210 118 280 142 Q330 130 380 146" fill="none" stroke="#C8FF4D" stroke-width="1" opacity=".35"/>
+        <circle cx="298" cy="56" r="14" fill="#C8FF4D" opacity=".9"/>
+        <circle cx="298" cy="56" r="26" fill="#C8FF4D" opacity=".10"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- C -->
+<div class="panel c">
+  <div class="lbl">C · 柔和玻璃拟态 <small>iOS / Apple 健身 · 雾面渐变</small></div>
+  <div class="phone">
+    <div class="bar"><b>牛津 3000</b><span class="sp"></span><em>🔥 3</em><em>❤ 18</em></div>
+    <div class="card">
+      <div class="row"><span class="lv">Lv. 3</span><span class="xp">+120</span></div>
+      <div class="prog"><i style="width:62%"></i></div>
+      <div class="foot"><span>186 / 300 XP</span><span>12 / 20</span></div>
+    </div>
+    <button class="cta">继续学习</button>
+    <div class="art">
+      <svg viewBox="0 0 380 190" width="100%" height="100%">
+        <defs>
+          <radialGradient id="c1"><stop offset="0%" stop-color="#8FB0FF" stop-opacity=".55"/><stop offset="100%" stop-color="#8FB0FF" stop-opacity="0"/></radialGradient>
+          <radialGradient id="c2"><stop offset="0%" stop-color="#FFC9DE" stop-opacity=".55"/><stop offset="100%" stop-color="#FFC9DE" stop-opacity="0"/></radialGradient>
+          <radialGradient id="c3"><stop offset="0%" stop-color="#FFE2B8" stop-opacity=".6"/><stop offset="100%" stop-color="#FFE2B8" stop-opacity="0"/></radialGradient>
+        </defs>
+        <circle cx="70" cy="120" r="110" fill="url(#c1)"/>
+        <circle cx="290" cy="150" r="120" fill="url(#c2)"/>
+        <circle cx="200" cy="80" r="90" fill="url(#c3)"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- D -->
+<div class="panel d">
+  <div class="lbl">D · 莫兰迪插画 <small>Headspace · 保留插画但降饱和</small></div>
+  <div class="phone">
+    <div class="bar"><b>牛津 3000</b><span class="sp"></span><em>连击 3</em><em>爱心 18</em></div>
+    <div class="card">
+      <div class="row"><span class="lv">LV 03</span><span class="xp">+120</span></div>
+      <div class="prog"><i style="width:62%"></i></div>
+      <div class="foot"><span>186 / 300 XP</span><span>12/20</span></div>
+    </div>
+    <button class="cta">继续学习</button>
+    <div class="art">
+      <svg viewBox="0 0 380 190" width="100%" height="100%">
+        <path d="M0 118 Q70 88 140 114 Q210 84 280 112 Q330 96 380 116 V190 H0 Z" fill="#C9D6C2"/>
+        <path d="M0 140 Q80 116 160 138 Q240 112 320 136 Q352 128 380 138 V190 H0 Z" fill="#A8B5A2"/>
+        <circle cx="312" cy="46" r="16" fill="#E8D5B7"/>
+        <g transform="translate(148,128)">
+          <ellipse cx="0" cy="24" rx="34" ry="8" fill="#8E9C86" opacity=".35"/>
+          <path d="M-30 24 q14 -20 30 -20 q16 0 30 20 Z" fill="#7E8C78"/>
+          <rect x="-22" y="-16" width="44" height="40" rx="18" fill="#8C9A7C"/>
+          <circle cx="0" cy="-34" r="20" fill="#D8C4AE"/>
+          <path d="M-20 -37 a20 20 0 0 1 40 0 q-9 -13 -20 -11 q-11 -2 -20 11 Z" fill="#4A443C"/>
+          <g fill="#FFFDF8">
+            <path d="M-30 6 L-2 -2 L-2 26 L-30 34 Z"/>
+            <path d="M2 -2 L30 6 L30 34 L2 26 Z"/>
+          </g>
+        </g>
+        <g transform="translate(272,142)">
+          <ellipse cx="0" cy="16" rx="14" ry="3.5" fill="#8E9C86" opacity=".35"/>
+          <ellipse cx="0" cy="0" rx="16" ry="14.5" fill="#C4B79C"/>
+          <ellipse cx="0" cy="4" rx="10" ry="8" fill="#F6F1E6"/>
+          <circle cx="-5.5" cy="-3" r="4.4" fill="#3A3630"/>
+          <circle cx="5.5" cy="-3" r="4.4" fill="#3A3630"/>
+          <path d="M0 3 l2.8 2.4 -2.8 2.6 -2.8 -2.6z" fill="#C9945E"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

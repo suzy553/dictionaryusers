@@ -1,0 +1,208 @@
+﻿/* ==========================================================================
+   v3：爱心 / 等级经验 / 环游世界学习路径 / 单词卡风景背景
+   ========================================================================== */
+
+/* ---------------- 顶栏爱心 ---------------- */
+.hearts{
+  display:flex;align-items:center;gap:3px;flex:0 0 auto;
+  padding:5px 9px;border-radius:999px;
+  background:#ffeef0;color:#e03d3d;font-size:14px;font-weight:800;
+}
+.hearts span{font-size:13px}
+.hearts.low{animation:heartBeat 1.1s ease-in-out infinite}
+.hearts.empty{background:#f2f2f2;color:#b9b9b9;filter:grayscale(1)}
+@keyframes heartBeat{0%,100%{transform:scale(1)}50%{transform:scale(1.09)}}
+
+.sess-heart{
+  display:flex;align-items:center;gap:2px;flex:0 0 auto;
+  font-size:12px;font-weight:900;color:#e03d3d;
+  background:#ffeef0;padding:3px 8px;border-radius:999px;
+}
+
+/* ---------------- 等级经验 ---------------- */
+.level-row{display:flex;align-items:center;gap:10px;margin:16px 2px 16px}
+.lv-badge{
+  flex:0 0 auto;font-size:12px;font-weight:900;color:#8a5a00;
+  padding:4px 10px;border-radius:999px;
+  background:linear-gradient(180deg,#ffe07a,#ffc21a);
+  box-shadow:0 3px 0 #e0a800;
+}
+.lv-bar{
+  flex:1;height:15px;border-radius:99px;overflow:hidden;
+  background:#f1f1f1;border:2px solid #e8e8e8;
+}
+.lv-bar i{
+  display:block;height:100%;width:0;border-radius:99px;
+  background:linear-gradient(90deg,#ffd54a,#ffb300);
+  transition:width .7s cubic-bezier(.2,.9,.3,1.2);
+}
+.lv-xp{flex:0 0 auto;font-size:11px;font-weight:800;color:var(--ink-3)}
+
+/* ---------------- 路径标题 ---------------- */
+.path-head{display:flex;align-items:baseline;justify-content:space-between;margin:24px 2px 10px}
+.path-head h2{font-size:19px;font-weight:900;letter-spacing:-.3px}
+.path-head span{font-size:11.5px;color:var(--ink-3);font-weight:700}
+
+.path-wrap{
+  display:flex;flex-direction:column;gap:2px;padding:8px 8px 16px;
+  border-radius:28px;
+  background:
+    radial-gradient(circle, rgba(110,170,110,.10) 1px, transparent 1.5px) 0 0 / 17px 17px,
+    radial-gradient(130% 55% at 10% 0%, #e6f7d8 0%, rgba(230,247,216,0) 64%),
+    radial-gradient(130% 55% at 90% 100%, #ddecff 0%, rgba(221,236,255,0) 64%),
+    #f7fcf3;
+  box-shadow:inset 0 0 0 2px #e9f1e2;
+}
+
+/* ---------------- 章节 = 一个国家 ---------------- */
+.chapter-head{
+  position:relative;overflow:hidden;
+  background:linear-gradient(140deg,var(--sky1),var(--sky2));
+  border-radius:22px;padding:14px 16px;margin:10px 0 2px;
+  border:2.5px solid rgba(0,0,0,.05);
+  box-shadow:0 4px 0 rgba(0,0,0,.06);
+}
+.chapter-head h3{font-size:16px;font-weight:900;position:relative;z-index:2;color:#2f2f2f}
+.chapter-head p{font-size:11px;font-weight:700;color:rgba(0,0,0,.42);margin-top:3px;position:relative;z-index:2}
+.ch-emoji{
+  position:absolute;right:12px;top:50%;transform:translateY(-50%) rotate(-6deg);
+  font-size:46px;line-height:1;opacity:.92;
+  filter:drop-shadow(0 4px 5px rgba(0,0,0,.13));
+}
+.ch-progress{
+  position:relative;z-index:2;margin-top:9px;height:7px;border-radius:99px;
+  background:rgba(255,255,255,.7);overflow:hidden;
+}
+.ch-progress i{display:block;height:100%;border-radius:99px;background:var(--green);transition:width .6s}
+
+/* ---------------- 关卡节点 ---------------- */
+.chapter-body{position:relative;padding:6px 0 10px}
+.path-line{
+  position:absolute;inset:0;width:100%;height:100%;
+  overflow:visible;pointer-events:none;z-index:0;
+}
+.path-line path{
+  fill:none;stroke:#e4e4e4;stroke-width:7;
+  stroke-linecap:round;stroke-linejoin:round;
+}
+
+.node{
+  position:absolute;z-index:1;
+  width:64px;height:64px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  /* 每一关的「风景」：天空渐变 + 一轮太阳 */
+  background:
+    radial-gradient(circle at 72% 24%, rgba(255,255,255,.9) 0 9%, rgba(255,255,255,0) 10%),
+    linear-gradient(var(--ang,160deg),var(--sky1,#eaf7ff) 0%,var(--sky2,#c9eaff) 100%);
+  border:3px solid #fff;
+  box-shadow:0 5px 0 rgba(0,0,0,.14),0 0 0 1.5px rgba(0,0,0,.06);
+  transition:transform .12s ease;
+  -webkit-user-select:none;user-select:none;
+}
+.node:active{transform:translateY(3px)}
+.node .face{
+  position:relative;z-index:2;font-size:27px;line-height:1;
+  filter:drop-shadow(0 2px 2px rgba(0,0,0,.2));
+}
+.node .badge{
+  position:absolute;right:-3px;bottom:-3px;z-index:3;
+  width:23px;height:23px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-style:normal;font-weight:900;
+  background:#fff;color:#6b6b6b;
+  box-shadow:0 2px 4px rgba(0,0,0,.22);
+}
+.node.done{
+  border-color:var(--green);
+  box-shadow:0 5px 0 var(--green-d),0 0 0 1.5px rgba(88,204,2,.45);
+}
+.node.done .badge{background:var(--green);color:#fff}
+.node.current{
+  border-color:var(--green);
+  box-shadow:0 5px 0 var(--green-d),0 0 0 1.5px rgba(88,204,2,.45);
+  animation:nodePulse 1.9s ease-in-out infinite;
+}
+.node.current::before{
+  content:"";position:absolute;inset:0;border-radius:50%;z-index:1;
+  background:radial-gradient(circle,rgba(255,255,255,.28),transparent 70%);
+}
+.node.locked{
+  filter:grayscale(.88);opacity:.62;cursor:not-allowed;
+  box-shadow:0 4px 0 rgba(0,0,0,.08);
+}
+@keyframes nodePulse{
+  0%,100%{box-shadow:0 5px 0 var(--green-d),0 0 0 0 rgba(88,204,2,.45)}
+  55%{box-shadow:0 5px 0 var(--green-d),0 0 0 13px rgba(88,204,2,0)}
+}
+.node-caption{
+  position:absolute;z-index:1;transform:translateX(-50%);
+  font-size:10px;font-weight:800;color:var(--ink-3);white-space:nowrap;
+}
+
+/* ---------------- 单词卡的风景背景 ---------------- */
+.word-card{
+  background:linear-gradient(168deg,var(--sky1,#ffffff) 0%,var(--sky2,#f7f7f7) 100%);
+}
+.card-scene{position:absolute;inset:0;pointer-events:none;z-index:0;border-radius:inherit;overflow:hidden}
+.card-emoji{
+  position:absolute;right:12px;bottom:8px;font-size:64px;line-height:1;
+  opacity:.24;transform:rotate(-7deg);
+}
+.card-hill{
+  position:absolute;left:-12%;bottom:-44px;width:74%;height:96px;
+  background:rgba(255,255,255,.55);border-radius:50%;
+}
+.card-hill.h2{
+  left:auto;right:-16%;bottom:-56px;width:70%;height:110px;
+  background:rgba(255,255,255,.42);
+}
+.word-card > *:not(.card-scene):not(.wc-badge){position:relative;z-index:1}
+
+/* ---------------- 深色模式 ---------------- */
+
+
+/* ==========================================================================
+   v4：首页简化 —— 等级 / 今日经验 / 今日目标，合成一张卡
+   ========================================================================== */
+.hero-card{
+  background:linear-gradient(160deg,#f7fff1 0%,#eef8ff 100%);
+  border:2.5px solid #e3f1d8;border-radius:26px;
+  padding:15px 16px 13px;margin:2px 0 16px;
+  box-shadow:0 4px 0 #e3f1d8;
+}
+.hero-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:11px}
+.lv-pill{
+  display:flex;align-items:baseline;gap:1px;
+  font-size:13px;font-weight:900;color:#8a5a00;
+  padding:4px 12px;border-radius:999px;
+  background:linear-gradient(180deg,#ffe07a,#ffc21a);
+  box-shadow:0 3px 0 #e0a800;
+}
+.lv-pill b{font-size:17px}
+.xp-today{display:flex;align-items:baseline;gap:5px}
+.xp-today b{font-size:22px;font-weight:900;color:var(--green-d);letter-spacing:-.5px}
+.xp-today em{font-size:11px;font-style:normal;font-weight:800;color:var(--ink-3)}
+.xp-bar{
+  height:14px;border-radius:99px;overflow:hidden;
+  background:#e9efe3;border:2px solid #e2ecd9;
+}
+.xp-bar i{
+  display:block;height:100%;width:0;border-radius:99px;
+  background:linear-gradient(90deg,#a8e83a,#58cc02);
+  transition:width .7s cubic-bezier(.2,.9,.3,1.2);
+}
+.hero-foot{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-top:8px;font-size:11px;font-weight:800;color:var(--ink-3);
+}
+.goal-pill{display:flex;align-items:center;gap:6px;color:var(--ink-2)}
+.goal-mini{
+  display:block;width:64px;height:8px;border-radius:99px;
+  background:#e9efe3;overflow:hidden;
+}
+.goal-mini i{
+  display:block;height:100%;width:0;border-radius:99px;
+  background:var(--blue);transition:width .6s cubic-bezier(.2,.9,.3,1.2);
+}
+
+

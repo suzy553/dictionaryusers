@@ -1,0 +1,34 @@
+name: 每日新闻更新
+
+on:
+  schedule:
+    - cron: "30 22 * * *"   # UTC 22:30 = 北京时间 06:30，赶在 7 点提醒前更新
+  workflow_dispatch:          # 也可以在网页上手动点一次
+
+permissions:
+  contents: write
+
+jobs:
+  news:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 抓取英文新闻
+        run: python scripts/fetch_news.py
+
+      - name: 提交更新
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/news.json
+          if git diff --staged --quiet; then
+            echo "没有新内容"
+          else
+            git commit -m "chore: 更新每日新闻"
+            git push
+          fi

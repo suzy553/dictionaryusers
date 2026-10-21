@@ -1,0 +1,76 @@
+{
+ "books": [
+  {
+   "id": "oxford3000",
+   "title": "牛津 3000",
+   "subtitle": "英语核心基础词",
+   "tag": "基础",
+   "count": 1339,
+   "sizeKB": 314
+  },
+  {
+   "id": "voa",
+   "title": "VOA 新闻英语",
+   "subtitle": "新闻高频 · 配合每日新闻",
+   "tag": "新闻",
+   "count": 1505,
+   "sizeKB": 263
+  },
+  {
+   "id": "cet6",
+   "title": "六级词汇",
+   "subtitle": "大学英语六级",
+   "tag": "四六级",
+   "count": 2345,
+   "sizeKB": 466
+  },
+  {
+   "id": "cet4",
+   "title": "四级词汇",
+   "subtitle": "大学英语四级",
+   "tag": "四六级",
+   "count": 2607,
+   "sizeKB": 530
+  },
+  {
+   "id": "ielts",
+   "title": "雅思核心词汇",
+   "subtitle": "剑桥雅思高频词",
+   "tag": "雅思",
+   "count": 3575,
+   "sizeKB": 622
+  },
+  {
+   "id": "kaoyan",
+   "title": "考研词汇",
+   "subtitle": "考研英语大纲词",
+   "tag": "考研",
+   "count": 3727,
+   "sizeKB": 688
+  },
+  {
+   "id": "toefl",
+   "title": "托福核心词汇",
+   "subtitle": "TOEFL 高频",
+   "tag": "托福",
+   "count": 4264,
+   "sizeKB": 707
+  },
+  {
+   "id": "ielts7000",
+   "title": "雅思 7000",
+   "subtitle": "完整覆盖版",
+   "tag": "雅思",
+   "count": 5457,
+   "sizeKB": 878
+  },
+  {
+   "id": "gre",
+   "title": "GRE 词汇",
+   "subtitle": "GRE 高频难词",
+   "tag": "GRE",
+   "count": 6514,
+   "sizeKB": 744
+  }
+ ]
+}

@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8">
+<style>
+  body{margin:0;background:#20242A;display:flex;gap:24px;padding:24px;justify-content:center;
+       font-family:"Century Gothic","Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+  .box{text-align:center}
+  .cap{color:#C9D2DC;font-size:13px;font-weight:700;letter-spacing:.4px;margin-bottom:10px}
+  .frame{width:390px;height:844px;border-radius:26px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.5)}
+  svg{display:block}
+</style></head>
+<body>
+<div class="box">
+  <div class="cap">白天 · 动漫场景 + 人物 + 木木枭</div>
+  <div class="frame">
+    <svg width="390" height="844" viewBox="0 0 390 844">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#1B6BC9"/>
+          <stop offset="38%" stop-color="#4E9DE3"/>
+          <stop offset="70%" stop-color="#9CCEF2"/>
+          <stop offset="100%" stop-color="#DCEFFB"/>
+        </linearGradient>
+        <radialGradient id="sunglow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#FFF7E0" stop-opacity=".95"/>
+          <stop offset="55%" stop-color="#FFEFCD" stop-opacity=".35"/>
+          <stop offset="100%" stop-color="#FFEFCD" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="cloudShade" cx="50%" cy="35%" r="60%">
+          <stop offset="0%" stop-color="#FFFFFF"/>
+          <stop offset="62%" stop-color="#EAF4FE"/>
+          <stop offset="100%" stop-color="#BBD8F0"/>
+        </radialGradient>
+        <linearGradient id="hedge" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#7FA86A"/>
+          <stop offset="100%" stop-color="#4C7248"/>
+        </linearGradient>
+        <linearGradient id="road" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#B9C6CE"/>
+          <stop offset="100%" stop-color="#98A7B1"/>
+        </linearGradient>
+        <filter id="soft"><feGaussianBlur stdDeviation="1.4"/></filter>
+        <filter id="softer"><feGaussianBlur stdDeviation="3"/></filter>
+      </defs>
+
+      <rect width="390" height="844" fill="url(#sky)"/>
+      <circle cx="60" cy="150" r="170" fill="url(#sunglow)"/>
+
+      <!-- 积云 -->
+      <g opacity=".38" filter="url(#softer)">
+        <ellipse cx="292" cy="208" rx="86" ry="20" fill="#8FB9DB"/>
+        <ellipse cx="120" cy="292" rx="60" ry="14" fill="#8FB9DB"/>
+      </g>
+      <g filter="url(#soft)">
+        <ellipse cx="292" cy="188" rx="78" ry="26" fill="url(#cloudShade)"/>
+        <circle cx="248" cy="170" r="30" fill="#FBFDFF"/>
+        <circle cx="286" cy="150" r="42" fill="#FFFFFF"/>
+        <circle cx="330" cy="172" r="28" fill="#FAFDFF"/>
+        <circle cx="352" cy="188" r="17" fill="#EAF4FE"/>
+      </g>
+      <g filter="url(#soft)" opacity=".9">
+        <ellipse cx="110" cy="286" rx="54" ry="16" fill="url(#cloudShade)"/>
+        <circle cx="92" cy="272" r="22" fill="#FFFFFF"/>
+        <circle cx="122" cy="264" r="28" fill="#FDFEFF"/>
+        <circle cx="148" cy="280" r="17" fill="#EDF6FE"/>
+      </g>
+      <g filter="url(#softer)" opacity=".55">
+        <ellipse cx="60" cy="112" rx="44" ry="10" fill="#FFFFFF"/>
+        <ellipse cx="200" cy="80" rx="30" ry="7" fill="#FFFFFF"/>
+      </g>
+
+      <!-- 远景城镇 -->
+      <g opacity=".55">
+        <rect x="0" y="452" width="390" height="80" fill="#B7D2E6"/>
+        <rect x="18" y="430" width="34" height="52" fill="#A6C3DA"/>
+        <rect x="58" y="440" width="26" height="42" fill="#B0CBE0"/>
+        <rect x="150" y="424" width="30" height="58" fill="#A6C3DA"/>
+        <rect x="186" y="436" width="22" height="46" fill="#B0CBE0"/>
+        <rect x="232" y="428" width="28" height="54" fill="#A6C3DA"/>
+        <rect x="300" y="438" width="34" height="44" fill="#AEC9DE"/>
+      </g>
+
+      <!-- 左侧房子 -->
+      <g>
+        <path d="M-10 470 L96 452 L96 560 L-10 560 Z" fill="#F3F6F8"/>
+        <path d="M-14 468 L100 448 L100 462 L-14 482 Z" fill="#5C7290"/>
+        <path d="M-14 482 L100 462 L100 470 L-14 490 Z" fill="#485C78" opacity=".8"/>
+        <rect x="14" y="496" width="26" height="30" fill="#BFD8EA"/>
+        <rect x="52" y="490" width="26" height="30" fill="#BFD8EA"/>
+        <rect x="14" y="496" width="26" height="8" fill="#DCEBF7" opacity=".7"/>
+        <rect x="52" y="490" width="26" height="8" fill="#DCEBF7" opacity=".7"/>
+      </g>
+
+      <!-- 右侧房子 -->
+      <g>
+        <path d="M262 512 L296 486 L330 512 L330 600 L262 600 Z" fill="#F6F7F6"/>
+        <path d="M256 510 L296 480 L336 510 L336 518 L256 518 Z" fill="#6E86A4"/>
+        <rect x="292" y="524" width="30" height="26" fill="#C6DEEE"/>
+        <rect x="292" y="524" width="30" height="7" fill="#E3F1FA" opacity=".8"/>
+        <rect x="272" y="556" width="18" height="44" fill="#DCE6EC"/>
+        <rect x="316" y="556" width="10" height="44" fill="#DCE6EC"/>
+      </g>
+
+      <!-- 电线杆 -->
+      <g stroke="#7E94A8" stroke-width="3" stroke-linecap="round">
+        <path d="M236 300 L236 560"/>
+        <path d="M222 322 L250 322"/>
+        <path d="M224 340 L248 340"/>
+      </g>
+      <g stroke="#5E7285" stroke-width="1" fill="none" opacity=".65">
+        <path d="M0 292 Q120 322 236 322"/>
+        <path d="M236 322 Q316 336 390 318"/>
+        <path d="M0 316 Q120 344 236 340"/>
+        <path d="M236 340 Q316 356 390 340"/>
+      </g>
+
+      <!-- 地面 / 路 -->
+      <path d="M0 560 L390 560 L390 844 L0 844 Z" fill="#CBD6DB"/>
+      <path d="M120 560 L268 560 L330 844 L58 844 Z" fill="url(#road)"/>
+      <path d="M196 596 L200 620 L204 620 L200 596 Z" fill="#F2F5F6" opacity=".85"/>
+      <path d="M186 664 L192 712 L202 712 L196 664 Z" fill="#F2F5F6" opacity=".85"/>
+
+      <!-- 树（右） -->
+      <g>
+        <rect x="356" y="556" width="10" height="60" fill="#7A6A54"/>
+        <circle cx="361" cy="536" r="42" fill="#6FA25E"/>
+        <circle cx="331" cy="556" r="28" fill="#7CB169"/>
+        <circle cx="390" cy="556" r="30" fill="#639457"/>
+        <circle cx="356" cy="512" r="24" fill="#8CC078"/>
+      </g>
+
+      <!-- 矮墙 + 绿篱 -->
+      <g>
+        <rect x="-6" y="632" width="200" height="18" rx="4" fill="#E8E5DC"/>
+        <rect x="-6" y="648" width="200" height="46" fill="#D8D3C7"/>
+        <rect x="-6" y="694" width="200" height="150" fill="url(#hedge)"/>
+        <circle cx="24" cy="690" r="26" fill="#7FA86A"/>
+        <circle cx="74" cy="684" r="30" fill="#6E9A5B"/>
+        <circle cx="126" cy="690" r="26" fill="#7FA86A"/>
+        <circle cx="172" cy="686" r="24" fill="#6E9A5B"/>
+      </g>
+
+      <!-- 人物：坐在矮墙上看书（侧身） -->
+      <g transform="translate(126,628)">
+        <!-- 影子 -->
+        <ellipse cx="10" cy="12" rx="30" ry="6" fill="#3A4A3A" opacity=".18"/>
+        <!-- 垂下的腿 -->
+        <path d="M2 4 q10 22 6 42 l-9 1 q-1 -22 -8 -40 Z" fill="#EDEFF3"/>
+        <path d="M2 4 q10 22 6 42 l-9 1 q-1 -22 -8 -40 Z" fill="#D8DDE6" opacity=".55"/>
+        <rect x="-6" y="44" width="16" height="9" rx="4" fill="#4A5568"/>
+        <!-- 裙 -->
+        <path d="M-14 -6 q14 -6 28 0 l6 12 q-20 6 -40 0 Z" fill="#3E4E6B"/>
+        <!-- 上身（略前倾） -->
+        <path d="M-11 -46 q12 -6 22 0 q4 22 2 40 q-13 5 -26 0 q-2 -18 2 -40 Z" fill="#F4F6F9"/>
+        <!-- 手臂 -->
+        <path d="M8 -40 q10 8 12 18 l-6 3 q-4 -10 -12 -16 Z" fill="#EBD3BE"/>
+        <!-- 头 -->
+        <g transform="translate(4,-62)">
+          <circle cx="0" cy="0" r="17" fill="#F3D6C0"/>
+          <!-- 侧脸轮廓 -->
+          <path d="M12 -2 q4 3 3 7 q-3 2 -4 0" fill="#F3D6C0"/>
+          <!-- 头发 -->
+          <path d="M-17 -2 q-2 -20 15 -20 q17 0 17 18 q-2 8 -6 10 q3 -12 -6 -16 q-10 -4 -15 4 q-3 4 -5 4 Z" fill="#3B2E2A"/>
+          <path d="M-14 -8 q6 -10 16 -8 q7 1 9 8 q-8 -5 -15 -3 q-7 1 -10 3 Z" fill="#584340"/>
+          <!-- 眼睛（侧视，一只） -->
+          <ellipse cx="9" cy="1" rx="2.1" ry="2.6" fill="#2E2A28"/>
+          <circle cx="9.6" cy="0" r=".8" fill="#fff" opacity=".9"/>
+        </g>
+        <!-- 摊开的书 -->
+        <g transform="rotate(-8 14 -30)">
+          <path d="M10 -36 L34 -42 L36 -28 L12 -22 Z" fill="#FFFFFF"/>
+          <path d="M34 -42 L56 -36 L54 -22 L36 -28 Z" fill="#F3F4F6"/>
+          <path d="M34 -42 L36 -28" stroke="#D5DAE1" stroke-width="1.4"/>
+          <path d="M15 -33 h15 M15 -29 h15" stroke="#C9D0DA" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M39 -33 h13 M39 -29 h13" stroke="#C9D0DA" stroke-width="1.2" stroke-linecap="round"/>
+        </g>
+        <!-- 手 -->
+        <circle cx="12" cy="-26" r="4.2" fill="#F3D6C0"/>
+        <circle cx="44" cy="-28" r="4.2" fill="#F3C9B0"/>
+      </g>
+
+      <!-- 木木枭 -->
+      <g transform="translate(238,614)">
+        <ellipse cx="0" cy="19" rx="20" ry="5" fill="#3A4A3A" opacity=".16"/>
+        <ellipse cx="0" cy="0" rx="19" ry="17" fill="#E2CBA4"/>
+        <ellipse cx="0" cy="5" rx="12" ry="10" fill="#FCF6E7"/>
+        <ellipse cx="0" cy="-6" rx="15" ry="10" fill="#EBD7B4" opacity=".7"/>
+        <circle cx="-6.5" cy="-3" r="5.6" fill="#2E2A28"/>
+        <circle cx="6.5" cy="-3" r="5.6" fill="#2E2A28"/>
+        <circle cx="-4.6" cy="-5.2" r="1.9" fill="#fff"/>
+        <circle cx="8.4" cy="-5.2" r="1.9" fill="#fff"/>
+        <path d="M0 3 l3.4 3 -3.4 3.2 -3.4 -3.2z" fill="#E8A45E"/>
+        <circle cx="-13" cy="3" r="2.8" fill="#F2B8AE" opacity=".85"/>
+        <circle cx="13" cy="3" r="2.8" fill="#F2B8AE" opacity=".85"/>
+        <path d="M1 -15 C-3 -24 -13 -22 -14 -16 C-9 -13.4 -3 -13.6 1 -15 Z" fill="#79C144"/>
+        <path d="M1 -15 C5 -24 15 -22 16 -16 C11 -13.4 5 -13.6 1 -15 Z" fill="#95D75C"/>
+        <path d="M0 9 C-5 4 -11 6 -9 11 C-5 11 -2 10 0 10 Z" fill="#79C144"/>
+        <path d="M0 9 C5 4 11 6 9 11 C5 11 2 10 0 10 Z" fill="#95D75C"/>
+      </g>
+
+      <!-- 前景草 -->
+      <g fill="#5B8A4E" opacity=".9">
+        <path d="M0 844 L0 700 q18 -14 34 0 q16 -18 34 2 q18 -12 34 4 L102 844 Z"/>
+        <path d="M300 844 L292 730 q20 -10 34 4 q16 -12 32 4 q18 -8 32 6 L390 844 Z"/>
+      </g>
+    </svg>
+  </div>
+</div>
+</body></html>

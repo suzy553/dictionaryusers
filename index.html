@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<script>
+/* 在 CSS 生效前定好白天/夜晚，避免闪一下白屏 */
+(function () {
+  var t = 'day';
+  try {
+    var raw = localStorage.getItem('vocab.shelf.v1');
+    var mode = raw ? ((JSON.parse(raw).settings || {}).theme || 'day') : 'day';
+    if (mode === 'day' || mode === 'night') t = mode;
+    /* 不再跟随系统深色：夜间主题仍在打磨，统一走白天 */
+  } catch (e) { }
+  document.documentElement.setAttribute('data-theme', t);
+})();
+</script>
+<meta name="format-detection" content="telephone=no,email=no,address=no">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>小越背单词</title>
+<meta name="description" content="离线可用的雅思/托福/考研词书，每天提醒你背单词">
+<link rel="preload" as="image" href="data/bg-day.jpg" fetchpriority="high">
+  <meta name="color-scheme" content="only light">
+  <meta name="theme-color" content="#58cc02">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta property="og:title" content="小越背单词">
+  <meta name="apple-mobile-web-app-title" content="小越背单词">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="icons/icon-180.png">
+<link rel="apple-touch-icon" sizes="152x152" href="icons/icon-152.png">
+<link rel="apple-touch-icon" sizes="167x167" href="icons/icon-167.png">
+<link rel="apple-touch-icon" sizes="120x120" href="icons/icon-120.png">
+<link rel="stylesheet" href="css/app.css">
+<link rel="stylesheet" href="css/cute.css">
+<link rel="stylesheet" href="css/path.css">
+<link rel="stylesheet" href="css/theme.css">
+</head>
+<body>
+
+<div id="splash" aria-hidden="true">
+  <video id="splashVideo" muted playsinline webkit-playsinline x5-playsinline
+         x5-video-player-type="h5" x5-video-player-fullscreen="false"
+         preload="metadata" disablepictureinpicture
+         controlslist="nodownload nofullscreen noremoteplayback"></video>
+  <div class="splash-fade"></div>
+  <div class="splash-brand">小越背单词</div>
+  <button id="splashSkip" type="button">跳过</button>
+</div>
+
+
+<div class="bg-scene" aria-hidden="true">
+  <video class="bg-video" id="bgVideo" muted loop playsinline webkit-playsinline x5-playsinline x5-video-player-type="h5" x5-video-player-fullscreen="false" preload="metadata" disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback"></video></video>
+  <div class="bg-fx" id="bgFx"></div>
+  <div class="stars"></div>
+  <i class="orb"></i>
+  <i class="cloud c1"></i>
+  <i class="cloud c2"></i>
+  <i class="cloud c3"></i>
+
+  <svg class="bg-art" viewBox="0 0 390 844" preserveAspectRatio="xMidYMax slice">
+    <defs>
+      <linearGradient id="gGrass" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#9ae765"/>
+        <stop offset="100%" stop-color="#4aa32a"/>
+      </linearGradient>
+      <linearGradient id="gGrass2" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#b3f07f"/>
+        <stop offset="100%" stop-color="#63c433"/>
+      </linearGradient>
+    </defs>
+
+    <!-- 远山 -->
+    <path class="art-far" d="M0 560 Q70 518 140 552 Q210 514 280 548 Q338 522 390 556 L390 844 L0 844 Z" opacity=".6"/>
+
+    <!-- 房子 -->
+    <g class="house">
+      <rect class="h-wall" x="256" y="470" width="122" height="112" rx="10"/>
+      <path class="h-roof" d="M238 478 L317 398 L396 478 Z"/>
+      <rect class="h-chimney" x="350" y="416" width="14" height="36" rx="4"/>
+      <rect class="h-door" x="278" y="514" width="42" height="68" rx="8"/>
+      <rect class="h-win" x="332" y="502" width="30" height="26" rx="6"/>
+      <path class="h-win-split" d="M347 502 v26"/>
+    </g>
+
+    <!-- 大树 -->
+    <g class="tree">
+      <rect class="t-trunk" x="60" y="524" width="14" height="62" rx="6"/>
+      <circle class="t-leaf" cx="67" cy="502" r="37"/>
+      <circle class="t-leaf" cx="40" cy="524" r="25"/>
+      <circle class="t-leaf" cx="94" cy="524" r="25"/>
+    </g>
+
+    <!-- 小树（右侧边缘） -->
+    <g class="tree">
+      <rect class="t-trunk" x="368" y="558" width="10" height="42" rx="4"/>
+      <circle class="t-leaf" cx="373" cy="544" r="24"/>
+    </g>
+
+    <!-- 草地 -->
+    <path class="g-grass" d="M0 602 Q100 578 200 596 T390 586 L390 844 L0 844 Z" fill="url(#gGrass)"/>
+    <path class="g-grass2" d="M0 694 Q120 670 240 688 T390 678 L390 844 L0 844 Z" fill="url(#gGrass2)"/>
+
+    <!-- 小孩：坐在草坡上看书 -->
+    <g class="kid" transform="translate(150,0)">
+      <ellipse cx="0" cy="674" rx="50" ry="14" fill="#2f5c3a" opacity=".2"/>
+      <g class="kid-body">
+        <path class="kid-pants" d="M-34 674 q15 -23 34 -23 q19 0 34 23 Z"/>
+        <rect class="kid-shirt" x="-25" y="608" width="50" height="62" rx="23"/>
+        <rect class="kid-shirt" x="-33" y="620" width="14" height="38" rx="7" transform="rotate(15 -26 626)"/>
+        <rect class="kid-shirt" x="19" y="620" width="14" height="38" rx="7" transform="rotate(-15 26 626)"/>
+        <circle class="kid-skin" cx="0" cy="586" r="24"/>
+        <path class="kid-hair" d="M-24 583 a24 24 0 0 1 48 0 q-10 -16 -24 -13.5 q-14 -2.5 -24 13.5 Z"/>
+        <path d="M-11 591 q4 3.6 9 0" stroke="#3a3340" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+        <path d="M2 591 q4 3.6 9 0" stroke="#3a3340" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+        <circle cx="-17" cy="597" r="4.2" fill="#f6b4b4" opacity=".75"/>
+        <circle cx="17" cy="597" r="4.2" fill="#f6b4b4" opacity=".75"/>
+        <g class="kid-book">
+          <path d="M-38 634 L-3 626 L-3 660 L-38 668 Z" fill="#ffffff"/>
+          <path d="M3 626 L38 634 L38 668 L3 660 Z" fill="#f0f0f0"/>
+          <path d="M-3 626 L3 626 L3 660 L-3 660 Z" fill="#dcdcdc"/>
+          <path d="M-32 642 h22 M-32 651 h22" stroke="#c9d6e2" stroke-width="2" stroke-linecap="round"/>
+          <path d="M9 642 h22 M9 651 h22" stroke="#c9d6e2" stroke-width="2" stroke-linecap="round"/>
+        </g>
+      </g>
+    </g>
+
+    <!-- 木木枭：在草地上来回走 -->
+    <g class="rowlet-walk">
+      <g transform="translate(286,712) scale(1.55)">
+        <ellipse cx="0" cy="18" rx="17" ry="4.5" fill="#2f5c3a" opacity=".2"/>
+        <g id="mascot" class="rowlet-art">
+          <ellipse cx="0" cy="0" rx="17" ry="15.5" fill="#dcc39a" stroke="#cdb185" stroke-width="1"/>
+          <ellipse cx="0" cy="4.5" rx="11" ry="9" fill="#fdf7e8"/>
+          <g class="m-eyes">
+            <circle cx="-6" cy="-3" r="5.2" fill="#2f2a28"/>
+            <circle cx="6" cy="-3" r="5.2" fill="#2f2a28"/>
+            <circle cx="-4.6" cy="-5" r="1.7" fill="#fff"/>
+            <circle cx="7.4" cy="-5" r="1.7" fill="#fff"/>
+          </g>
+          <path d="M0 3 l3.2 2.8 -3.2 3 -3.2 -3z" fill="#eda45c"/>
+          <circle cx="-12" cy="3" r="2.6" fill="#f5c0b8" opacity=".85"/>
+          <circle cx="12" cy="3" r="2.6" fill="#f5c0b8" opacity=".85"/>
+          <g class="m-leaf">
+            <path d="M1 -14 C-3 -22 -12 -21 -13 -15 C-8 -12.5 -3 -12.8 1 -14 Z" fill="#7cc242" stroke="#5aa02f" stroke-width=".7"/>
+            <path d="M1 -14 C5 -22 14 -21 15 -15 C10 -12.5 5 -12.8 1 -14 Z" fill="#93d35a" stroke="#5aa02f" stroke-width=".7"/>
+          </g>
+          <path d="M0 8.5 C-5 3.5 -10.5 5.5 -8.5 10.5 C-4.5 10.5 -2 9.5 0 9.5 Z" fill="#7cc242"/>
+          <path d="M0 8.5 C5 3.5 10.5 5.5 8.5 10.5 C4.5 10.5 2 9.5 0 9.5 Z" fill="#93d35a"/>
+        </g>
+      </g>
+    </g>
+  </svg>
+</div>
+
+<div id="app">
+
+  <header id="topbar">
+    <div class="tb-left">
+      <div class="streak" id="streakChip" title="连续学习天数">
+        <span class="flame">🔥</span><b id="streakNum">0</b>
+      </div>
+      <div class="hearts" id="heartChip" title="今天还剩的爱心">
+        <span>❤️</span><b id="heartNum">20</b>
+      </div>
+      <button class="tb-book" id="tbBook" type="button">选择词书</button>
+      <span class="done-badge" id="doneBadge" hidden>今日达标</span>
+    </div>
+    <button class="icon-btn" id="btnSettingsQuick" aria-label="设置">⚙️</button>
+  </header>
+
+  <main id="screens">
+
+    <!-- ============ 今日 ============ -->
+    <section class="screen is-active" id="screen-home">
+
+      <div class="hero" id="heroView">
+        <div class="hero-quote" id="heroQuote">
+          <span class="day-chip" id="dayCount">今天是你第 1 天</span>
+          <p class="daily-quote" id="gNewsText">The best way to predict the future is to invent it.</p>
+          <p class="quote-zh" id="quoteZh">— 预测未来最好的方式，就是创造它。</p>
+        </div>
+      </div>
+
+      <section class="sheet">
+        <div class="sheet-grab"></div>
+
+        <div class="quote-inline" id="quoteInline"><p id="gNewsInline">The best way to predict the future is to invent it.</p></div>
+
+        <div class="sheet-top">
+          <span class="st-lv">Lv.<b id="lvNum">1</b></span>
+          <span class="st-bar"><i id="lvBar"></i></span>
+          <span class="st-xp" id="lvXp">0/100</span>
+          <span class="st-today" id="xpToday">+0</span>
+        </div>
+
+        <!-- 每日签到 + 成就入口（v200） -->
+        <div class="ck-row" id="ckRow">
+          <div class="ck-main">
+            <div class="ck-title">📅 连续签到 <b id="ckStreak">0</b> 天</div>
+            <div class="ck-sub" id="ckSub">签到领 5 XP + 2 颗心</div>
+          </div>
+          <button class="ck-btn" id="ckBtn" type="button">签到</button>
+          <button class="achv-btn" id="achvBtn" type="button" aria-label="成就" title="成就">
+            <span>🏅</span><i class="achv-num is-zero" id="achvNum">0</i>
+          </button>
+        </div>
+
+        <!-- 每日挑战（v200） -->
+        <div class="ch-card" id="chCard">
+          <div class="ch-top">
+            <span class="ch-label">🎯 今日挑战</span>
+            <span class="ch-count" id="chCount">0/30</span>
+          </div>
+          <div class="ch-name" id="chName">答对 30 个词</div>
+          <div class="ch-bar"><i id="chBar"></i></div>
+        </div>
+
+        <div class="tc-head"><em>今日任务</em><span id="taskCount">0 / 1</span></div>
+        <div class="tc-tasks">
+          <button class="tc-task" id="taskNew">
+            <i class="tick" id="tickNew"></i>
+            <span class="t-name">新词</span>
+            <b id="taskNewNum">0/20</b>
+          </button>
+          <button class="tc-task" id="taskRev">
+            <i class="tick" id="tickRev"></i>
+            <span class="t-name">复习</span>
+            <b id="taskRevNum">今日无复习</b>
+          </button>
+        </div>
+
+        
+
+        <button class="btn btn-primary btn-3d sheet-cta" id="btnStart">
+          <span id="ctaLabel">开始今天的学习</span>
+        </button>
+      </section>
+
+    </section>
+
+    <!-- ============ 学习 ============ -->
+    <section class="screen" id="screen-learn">
+      <div class="path-head">
+        <h2>学习路径</h2>
+        <span>跟着小鸟环游世界</span>
+      </div>
+      <div id="pathWrap" class="path-wrap"></div>
+
+      <article class="card news-card" id="newsCard">
+        <div class="news-head">
+          <span class="news-tag">每日新闻</span>
+          <span class="news-date" id="newsDate"></span>
+        </div>
+        <h3 class="news-title" id="newsTitle">正在加载…</h3>
+        <p class="news-desc" id="newsDesc"></p>
+        <a class="news-link" id="newsLink" target="_blank" rel="noopener">阅读原文 →</a>
+      </article>
+    </section>
+
+    <!-- ============ 书架 ============ -->
+    <section class="screen" id="screen-books">
+      <h2 class="page-title">书架</h2>
+      <p class="page-sub">选一本正在背的词书，随时切换</p>
+      <div id="bookGrid" class="book-grid"></div>
+    </section>
+
+    <!-- ============ 复习 ============ -->
+    <section class="screen" id="screen-review">
+      <div class="rv-view" id="rvHome">
+        <h2 class="page-title">复习</h2>
+        <p class="page-sub">把学过的和做错的，再过一遍</p>
+
+        <button class="rv-card" id="rvCardWords">
+          <span class="rv-ico" id="rvIcoWords">📖</span>
+          <span class="rv-main">
+            <b>单词复习</b>
+            <em>可复习 <b id="rvWordCount">0</b> 个词，今天再巩固一遍</em>
+          </span>
+          <span class="rv-go">开始 ›</span>
+        </button>
+
+        <button class="rv-card rv-wrong" id="rvCardWrong">
+          <span class="rv-ico" id="rvIcoWrong">✍️</span>
+          <span class="rv-main">
+            <b>错题复习</b>
+            <em>答错过的 <b id="rvWrongCount">0</b> 个词，重点攻克</em>
+          </span>
+          <span class="rv-go">开始 ›</span>
+        </button>
+
+        <div class="box-legend" id="boxLegend"></div>
+      </div>
+
+      <div class="rv-view" id="rvDetail" hidden>
+        <div class="rv-head">
+          <button class="rv-back" id="rvBack">‹ 返回</button>
+          <b id="rvDetailTitle">单词列表</b>
+          <button class="rv-start" id="rvStartBtn">开始</button>
+        </div>
+        <div id="rvDetailList" class="rv-list"></div>
+      </div>
+    </section>
+
+    <!-- ============ 设置 ============ -->
+    <section class="screen" id="screen-settings">
+      <h2 class="page-title">设置</h2>
+
+      <button class="btn btn-ghost btn-3d stat-entry" id="btnStats">
+        📊 学习统计
+      </button>
+
+
+      <div class="setting-group">
+        <label class="row">
+          <div><div class="row-t">每日新词</div><div class="row-s">今天要学多少个新单词</div></div>
+          <div class="stepper">
+            <button data-step="dailyNew" data-d="-5">−</button>
+            <b id="valDailyNew">20</b>
+            <button data-step="dailyNew" data-d="5">+</button>
+          </div>
+        </label>
+        <label class="row">
+          <div><div class="row-t">每日复习</div><div class="row-s">每天最多复习多少个旧词</div></div>
+          <div class="stepper">
+            <button data-step="dailyReview" data-d="-5">−</button>
+            <b id="valDailyReview">20</b>
+            <button data-step="dailyReview" data-d="5">+</button>
+          </div>
+        </label>
+      </div>
+
+      <div class="setting-group">
+        <div class="row">
+          <div><div class="row-t">主题</div><div class="row-s">建议白天使用；夜间模式仍在打磨中</div></div>
+          <div class="theme-seg" id="themeSeg">
+            
+            <button data-theme-mode="day">白天</button>
+            <button data-theme-mode="night">夜晚</button>
+          </div>
+        </div>
+        <div class="row">
+          <div><div class="row-t">发音口音</div><div class="row-s">默认播放哪一种</div></div>
+          <div class="seg" id="segAccent">
+            <button data-accent="us">🇺🇸 美音</button>
+            <button data-accent="uk">🇬🇧 英音</button>
+          </div>
+        </div>
+        <label class="row">
+          <div><div class="row-t">自动朗读</div><div class="row-s">出现单词时自动发音</div></div>
+          <input type="checkbox" id="chkAutoplay" class="switch">
+        </label>
+        <label class="row">
+          <div><div class="row-t">音效</div><div class="row-s">答对答错的提示音</div></div>
+          <input type="checkbox" id="chkSound" class="switch">
+        </label>
+        <label class="row">
+          <div><div class="row-t">动态背景</div><div class="row-s">关闭后只显示静态图，更省电</div></div>
+          <input type="checkbox" id="chkLiveBg" class="switch">
+        </label>
+        <label class="row">
+          <div><div class="row-t">强制尝试背景视频</div><div class="row-s">你的浏览器默认被判定会接管视频；开启可强制试一次</div></div>
+          <input type="checkbox" id="chkForceVideo" class="switch">
+        </label>
+        <label class="row">
+          <div><div class="row-t">显示英文释义</div><div class="row-s">中文之外再显示英英解释</div></div>
+          <input type="checkbox" id="chkEnDef" class="switch">
+        </label>
+      </div>
+
+      <div class="setting-group">
+        <div class="row">
+          <div><div class="row-t">每日提醒</div><div class="row-s">每天早上几点提醒你</div></div>
+          <input type="time" id="inpRemind" value="07:00" class="time-input">
+        </div>
+        <button class="btn btn-outline" id="btnIcs">📅 添加每日提醒到系统日历</button>
+        <button class="btn btn-outline" id="btnNotify">🔔 在浏览器里开启通知</button>
+        <p class="hint" id="notifyHint"></p>
+      </div>
+
+      <div class="setting-group">
+        <button class="btn btn-outline" id="btnExport">⬇️ 导出学习进度</button>
+        <button class="btn btn-outline" id="btnImport">⬆️ 导入学习进度</button>
+        <input type="file" id="fileImport" accept="application/json" hidden>
+        <button class="btn btn-danger" id="btnReset">清空所有进度</button>
+        <p class="hint">进度只存在这台设备上，不联网、不上传。</p>
+      </div>
+
+      <p class="footer-note">小越背单词 · 词库来自开源项目 qwerty-learner，例句来自 ManyThings / Tatoeba</p>
+    </section>
+
+  </main>
+
+  <nav id="tabbar">
+    <button class="tab is-active" data-tab="home"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 10.6 12 3.8l8.5 6.8V20a1 1 0 0 1-1 1h-4.8v-6H9.3v6H4.5a1 1 0 0 1-1-1z"/></svg></span>今日</button>
+    <button class="tab" data-tab="learn"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4.5 3.6 6.4v13.1L9 17.6l6 1.9 5.4-1.9V4.5L15 6.4z"/><path d="M9 4.5v13.1M15 6.4v13.1"/></svg></span>学习</button>
+    <button class="tab" data-tab="books"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4.6" y="3.6" width="14.2" height="16.8" rx="2.2"/><path d="M9.2 3.6v16.8"/></svg></span>书架</button>
+    <button class="tab" data-tab="review"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20.2 4.2v4.6h-4.6"/></svg></span>复习</button>
+  </nav>
+</div>
+
+<!-- ============ 学习会话 ============ -->
+<div id="session" class="overlay">
+  <img id="sessBg" class="sess-bg" alt="">
+  <div class="sess-top">
+    <button class="icon-btn" id="btnQuit" aria-label="退出">✕</button>
+    <div class="sess-bar"><i id="sessBar"></i></div>
+    <div class="sess-heart" id="sessHeartWrap">❤️<b id="sessHeart">20</b></div>
+    <div class="sess-count"><b id="sessDone">0</b>/<span id="sessTotal">0</span></div>
+  </div>
+
+  <div class="sess-body">
+    <div class="word-card" id="wordCard">
+      <div class="card-scene" id="cardScene" aria-hidden="true">
+        <span class="card-emoji" id="cardEmoji">🏯</span>
+        <i class="card-hill"></i>
+        <i class="card-hill h2"></i>
+      </div>
+      <div class="wc-badge" id="wcBadge">新词</div>
+      <h2 class="wc-word" id="wcWord">word</h2>
+      <div class="wc-phon">
+        <button class="phon-btn" data-play="us"><span>🇺🇸</span><i id="wcUs">/…/</i></button>
+        <button class="phon-btn" data-play="uk"><span>🇬🇧</span><i id="wcUk">/…/</i></button>
+      </div>
+      <div class="wc-flip-hint" id="flipHint">轻点卡片看释义</div>
+
+      <div class="wc-answer" id="wcAnswer">
+        <div class="wc-trans" id="wcTrans"></div>
+        <div class="wc-def" id="wcDef"></div>
+        <div class="wc-sentence">
+          <p class="sent" id="wcSent"></p>
+          <p class="sent-zh" id="wcSentZh"></p>
+        </div>
+      </div>
+    </div>
+    <div class="feedback" id="feedback"></div>
+  </div>
+
+  <div class="sess-actions" id="sessActions">
+    <button class="btn btn-again btn-3d" data-ans="again">不认识</button>
+    <button class="btn btn-hard btn-3d" data-ans="hard">模糊</button>
+    <button class="btn btn-good btn-3d" data-ans="good">认识</button>
+  </div>
+  <div class="sess-next hidden" id="sessNext">
+    <button class="btn btn-primary btn-3d btn-xl" id="btnNext">继续 →</button>
+  </div>
+</div>
+
+
+
+<!-- ============ 闯关模式 ============ -->
+<div id="quizPanel" class="overlay">
+  <div class="quiz-inner">
+    <img id="quizBg" class="quiz-bg" alt="">
+    <div class="quiz-top">
+      <button class="icon-btn" id="quizClose" aria-label="退出">✕</button>
+      <div class="quiz-bar"><i id="quizBar"></i></div>
+      <div class="quiz-title" id="quizTitle"></div>
+    </div>
+    <div id="quizBody" class="quiz-body"></div>
+  </div>
+</div>
+
+<!-- ============ 学习统计 ============ -->
+<div id="statsPanel" class="overlay">
+  <div class="stats-inner">
+    <div class="stats-head">
+      <h2>学习统计</h2>
+      <button class="icon-btn" id="statsClose" aria-label="关闭">✕</button>
+    </div>
+    <div class="stats-grid" id="statsGrid"></div>
+    <h3 class="stats-sub">近 7 天</h3>
+    <div class="stats-chart" id="statsChart"></div>
+    <h3 class="stats-sub">词书进度</h3>
+    <div class="stats-books" id="statsBooks"></div>
+  </div>
+</div>
+
+<!-- ============ 结算 ============ -->
+<div id="summary" class="overlay">
+  <div class="sum-inner">
+    <div class="sum-emoji" id="sumEmoji">🎉</div>
+    <h2 id="sumTitle">今天完成啦！</h2>
+    <p class="sum-sub" id="sumSub"></p>
+    <p class="sum-next" id="sumNext"></p>
+    <div class="sum-stats">
+      <div><b id="sumNew">0</b><span>新词</span></div>
+      <div><b id="sumReview">0</b><span>复习</span></div>
+      <div><b id="sumAcc">0%</b><span>正确率</span></div>
+    </div>
+    <button class="btn btn-primary btn-3d btn-xl" id="btnSumClose">继续加油</button>
+  </div>
+</div>
+
+<!-- ============ 首次引导 ============ -->
+<div id="onboard" class="onboard">
+  <div class="ob-card">
+    <div class="ob-dots"><i class="on"></i><i></i><i></i></div>
+
+    <section class="ob-step is-on" data-step="1">
+      <h2>先选一本词书</h2>
+      <p>之后随时可以在「书架」里换</p>
+      <div class="ob-books" id="obBooks"></div>
+    </section>
+
+    <section class="ob-step" data-step="2">
+      <h2>每天背多少词？</h2>
+      <p>按你的时间安排来，随时能改</p>
+      <div class="ob-goal" id="obGoal">
+        <button data-n="10">10</button>
+        <button data-n="20" class="on">20</button>
+        <button data-n="30">30</button>
+        <button data-n="50">50</button>
+      </div>
+    </section>
+
+    <section class="ob-step" data-step="3">
+      <h2>每天几点提醒？</h2>
+      <p>用系统日历提醒，准时、不耗电</p>
+      <input type="time" id="obTime" value="07:00" class="ob-time">
+    </section>
+
+    <div class="ob-actions">
+      <button class="ob-skip" id="obSkip">跳过</button>
+      <button class="btn btn-primary btn-3d" id="obNext"><span>下一步</span></button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 成就（v200） ============ -->
+<div id="achvPanel" class="overlay achv-panel">
+  <div class="achv-inner">
+    <div class="achv-head">
+      <b>🏅 我的成就</b>
+      <span id="achvCount">0 / 6</span>
+      <button class="achv-close" id="achvClose" type="button" aria-label="关闭">✕</button>
+    </div>
+    <p class="achv-sub">把每一个小进步都存下来</p>
+    <div class="achv-grid" id="achvGrid"></div>
+  </div>
+</div>
+
+<div id="toast"></div>
+<canvas id="fx"></canvas>
+
+<script src="js/app.js"></script>
+<script src="js/quiz.js"></script>
+</body>
+</html>

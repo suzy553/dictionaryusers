@@ -1,0 +1,20 @@
+# 依赖与系统垃圾
+node_modules/
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# 本地导出的进度备份
+vocabshelf-progress-*.json
+*.ics
+
+# 编辑器
+.vscode/
+.idea/
+
+# 备份文件
+*.bak.js
+*.bak
+
+# 构建产物
+*.zip

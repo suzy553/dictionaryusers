@@ -1,0 +1,171 @@
+﻿/* ==========================================================================
+   v2 可爱化：多邻国风格 —— 圆角、厚描边、3D 按钮、吉祥物
+   （覆盖前面的基础样式，保持结构不变）
+   ========================================================================== */
+
+:root{
+  /* 拉丁字形优先用几何圆体；中文落到系统圆体。避免幼圆的等宽拉丁 */
+  --font-round:"Century Gothic","URW Gothic","Trebuchet MS",-apple-system,
+               BlinkMacSystemFont,"Segoe UI","YouYuan","Yuanti SC",
+               "PingFang SC","Microsoft YaHei",sans-serif;
+  --mint:#eafbe0;   --mint-line:#d3efc0;
+  --sky:#eaf7ff;    --sky-line:#c9eaff;
+  --lemon:#fff6d9;  --lemon-line:#ffe9a8;
+  --peach:#fff3e8;  --peach-line:#ffdfc2;
+  --pinkish:#ffeef3;--pink-line:#ffd6e2;
+  --line:#e9e9e9;
+  --radius:22px;
+}
+
+body{
+  font-family:var(--font-round);
+  background:linear-gradient(180deg,#fffdf6 0%,#ffffff 46%) fixed;
+  letter-spacing:.2px;
+}
+
+/* ---------------- 吉祥物 ---------------- */
+.mascot-row{display:flex;align-items:center;gap:2px;margin:4px 0 18px}
+.mascot-box{width:98px;height:98px;flex:0 0 auto}
+.mascot{
+  width:100%;height:100%;overflow:visible;
+  transform-origin:50% 88%;
+  animation:floaty 3.4s ease-in-out infinite;
+  filter:drop-shadow(0 6px 7px rgba(150,120,80,.28));
+}
+@keyframes floaty{
+  0%,100%{transform:translateY(0) rotate(-1.5deg)}
+  50%{transform:translateY(-7px) rotate(1.5deg)}
+}
+.m-eyes{transform-box:fill-box;transform-origin:center;animation:blink 6s infinite}
+@keyframes blink{0%,92%,100%{transform:scaleY(1)}96%{transform:scaleY(.12)}}
+
+/* 木木枭：头顶叶子随风轻摆 */
+.m-leaf{transform-box:fill-box;transform-origin:50% 100%;animation:leafSway 4.2s ease-in-out infinite}
+@keyframes leafSway{0%,100%{transform:rotate(-3.5deg)}50%{transform:rotate(4.5deg)}}
+
+.mascot.happy{animation:hop .66s cubic-bezier(.3,1.6,.5,1)}
+@keyframes hop{
+  0%{transform:translateY(0) scale(1)}
+  38%{transform:translateY(-15px) scale(1.07)}
+  68%{transform:translateY(2px) scale(.96)}
+  100%{transform:translateY(0) scale(1)}
+}
+.mascot.sad{animation:wobble .5s ease}
+@keyframes wobble{0%,100%{transform:rotate(0)}25%{transform:rotate(-7deg)}75%{transform:rotate(7deg)}}
+
+/* ---------------- 对话气泡 ---------------- */
+.bubble{
+  position:relative;flex:1;min-height:52px;
+  display:flex;align-items:center;
+  background:#fff;border:2.5px solid var(--line);border-radius:20px;
+  padding:12px 15px;font-size:13.5px;font-weight:800;line-height:1.45;color:var(--ink);
+  box-shadow:0 4px 0 var(--line);
+  animation:popIn .32s cubic-bezier(.2,1.4,.5,1);
+}
+.bubble::before{
+  content:"";position:absolute;left:-8px;top:22px;width:14px;height:14px;
+  background:#fff;border-left:2.5px solid var(--line);border-bottom:2.5px solid var(--line);
+  border-radius:0 0 0 5px;transform:rotate(45deg);
+}
+
+/* ---------------- 今日目标卡 ---------------- */
+.goal-card{
+  display:flex;align-items:center;gap:16px;
+  background:var(--mint);border:2.5px solid var(--mint-line);border-radius:28px;
+  padding:16px 16px;margin-bottom:18px;box-shadow:0 4px 0 var(--mint-line);
+}
+.goal-card .ring-wrap{width:96px;height:96px}
+.ring-bg{stroke:#d9eec6;stroke-width:11}
+.ring-fg{
+  stroke-width:11;stroke-linecap:round;
+  filter:drop-shadow(0 2px 3px rgba(88,204,2,.35));
+}
+.ring-num{font-size:27px}
+.goal-card .hero-text{flex:1;text-align:center}
+.goal-card .hero-text h1{font-size:20px}
+.goal-card .hero-text p{font-size:12.5px}
+
+/* ---------------- 数据胶囊 ---------------- */
+.chip-row{display:flex;gap:10px;margin:18px 0 20px}
+.chip{
+  flex:1;display:flex;flex-direction:column;align-items:center;gap:1px;
+  padding:11px 6px;border-radius:20px;border:2.5px solid var(--line);
+  background:#fff;box-shadow:0 3px 0 var(--line);
+}
+.chip span{font-size:18px;line-height:1.15}
+.chip b{font-size:17px;font-weight:900;line-height:1.1}
+.chip em{font-size:10.5px;font-style:normal;color:var(--ink-3);font-weight:800}
+.chip-fire{background:var(--peach);border-color:var(--peach-line);box-shadow:0 3px 0 var(--peach-line)}
+.chip-gem{background:var(--sky);border-color:var(--sky-line);box-shadow:0 3px 0 var(--sky-line)}
+.chip-xp{background:var(--lemon);border-color:var(--lemon-line);box-shadow:0 3px 0 var(--lemon-line)}
+
+/* ---------------- 按钮 ---------------- */
+.btn{border-radius:20px;letter-spacing:.3px}
+.btn-3d{box-shadow:0 5px 0 var(--shadow-c,var(--green-d))}
+.btn-3d:active{transform:translateY(4px);box-shadow:0 1px 0 var(--shadow-c,var(--green-d))}
+.btn-primary{background:linear-gradient(180deg,#74e00c,#58cc02)}
+.btn-xl{font-size:18px;padding:18px 20px;border-radius:22px}
+.btn-ghost{font-size:13px}
+.btn-outline{border-width:2.5px;border-radius:16px;box-shadow:0 4px 0 var(--line)}
+.btn-again,.btn-hard,.btn-good{border-radius:16px}
+
+/* ---------------- 学习卡片 ---------------- */
+.word-card{
+  border-radius:30px;border:3px solid #efefef;
+  box-shadow:0 7px 0 #efefef;
+  background:#fff;
+}
+.word-card::after{
+  content:"✨";position:absolute;top:12px;right:16px;font-size:16px;
+  opacity:.75;animation:twinkle 2.6s ease-in-out infinite;
+}
+@keyframes twinkle{0%,100%{opacity:.35;transform:scale(.9)}50%{opacity:.95;transform:scale(1.12)}}
+.wc-badge{border-radius:999px;padding:4px 12px;font-size:11px;letter-spacing:.4px}
+.wc-word{letter-spacing:-.8px}
+.phon-btn{
+  border-radius:999px;padding:8px 14px;
+  border:2px solid var(--sky-line);background:#f3fbff;color:#1a7fa8;
+}
+.phon-btn i{color:#1a7fa8}
+.phon-btn.playing{background:#d9f2ff;transform:scale(.96)}
+.wc-trans{font-size:17px}
+
+/* 会话顶部进度条 */
+.sess-bar{height:14px;border:2px solid #e9f7d8}
+.sess-count b{font-size:14px}
+
+/* ---------------- 书架 ---------------- */
+.book-card{border-radius:22px;border:2.5px solid var(--line);box-shadow:0 4px 0 var(--line)}
+.book-cover{
+  width:44px;height:44px;border-radius:14px;font-size:19px;
+  box-shadow:inset 0 -3px 0 rgba(0,0,0,.13);
+}
+.book-bar{height:8px}
+.book-card.is-active{box-shadow:0 4px 0 var(--green-d)}
+
+/* ---------------- 新闻卡 ---------------- */
+.news-card{
+  border-radius:24px;border:2.5px solid var(--sky-line);
+  background:#f8fcff;box-shadow:0 4px 0 var(--sky-line);
+}
+.news-tag{border-radius:999px;background:linear-gradient(180deg,#45c8ff,#1cb0f6);font-size:10.5px}
+.news-title{font-size:14.5px}
+
+/* ---------------- 设置 & 复习 ---------------- */
+.setting-group{border-radius:24px;border:2.5px solid var(--line)}
+.review-hero{
+  background:var(--lemon);border:2.5px solid var(--lemon-line);
+  box-shadow:0 4px 0 var(--lemon-line);border-radius:24px;
+}
+.legend-chip{border-radius:999px}
+.wrong-item{border-radius:14px}
+.sum-inner h2{font-size:25px}
+.sum-stats div{border-radius:18px}
+
+/* ---------------- 底部导航 ---------------- */
+#tabbar{border-top:2.5px solid var(--line)}
+.tab{font-size:10.5px}
+.tab.is-active span{transform:scale(1.22) translateY(-2px) rotate(-4deg)}
+
+/* ---------------- 深色模式 ---------------- */
+
