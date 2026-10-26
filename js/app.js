@@ -2245,7 +2245,7 @@ function bindSettings() {
       + '<br>本地快照 <b>' + snaps.length + '</b> 份'
       + (snaps.length ? '（最近 ' + snaps[0].date + '，' + snaps[0].words + ' 词）' : '')
       + '<br>数据只在这台设备，不联网、不上传。主档损坏时会自动从备份或快照恢复。'
-      + '<br><span style="color:#a8b3ad;font-size:11px">屏幕 ' + innerWidth + '×' + innerHeight
+      + '<br><span style="color:#a8b3ad;font-size:11px">版本 ' + (window.__SW_VER || '?') + ' · 屏幕 ' + innerWidth + '×' + innerHeight
       + ' · 缩放 ' + (window.devicePixelRatio || 1) + '× · 安全区 '
       + (getComputedStyle(document.documentElement).getPropertyValue('--safe-b').trim() || '0') + '</span>';
   }
@@ -2708,7 +2708,33 @@ async function boot() {
   if (q.get('reveal') === '1') setTimeout(revealCard, 900);
 
   if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
-    navigator.serviceWorker.register('sw.js').catch(err => console.warn('SW 注册失败', err));
+    window.__SW_VER = 'v286';
+    /* SW 自动更新：发现新版本 → 直接接管 → 刷新一次页面 */
+    navigator.serviceWorker.register('sw.js').then(function (reg) {
+      try { reg.update(); } catch (e) { }
+
+      function takeover(worker) {
+        if (!worker) return;
+        try { worker.postMessage({ type: 'SKIP_WAITING' }); } catch (e) { }
+      }
+
+      if (reg.waiting) takeover(reg.waiting);
+      reg.addEventListener('updatefound', function () {
+        var nw = reg.installing;
+        if (!nw) return;
+        nw.addEventListener('statechange', function () {
+          if (nw.state === 'installed' && navigator.serviceWorker.controller) takeover(nw);
+        });
+      });
+
+      /* 新 SW 接管后刷新一次（避免用户看到旧页面） */
+      var reloaded = false;
+      navigator.serviceWorker.addEventListener('controllerchange', function () {
+        if (reloaded) return;
+        reloaded = true;
+        try { location.reload(); } catch (e) { }
+      });
+    }).catch(function (err) { console.warn('SW 注册失败', err); });
   }
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'visible') {

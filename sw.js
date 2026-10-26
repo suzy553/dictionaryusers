@@ -1,5 +1,5 @@
 ﻿/* Service Worker：小越背单词 App 离线缓存 */
-const VER = 'xiaoyue-v286';
+const VER = 'xiaoyue-v287';
 const SHELL = [
   './css/reading.css', './js/reading.js', './data/reading.json',
   './', './index.html', './css/app.css', './css/cute.css', './css/path.css', './css/theme.css', './css/design-system.css', './css/design-v2.css', './js/app.js', './js/icons.js', './js/core.js', './js/quiz.js', './js/reading.js',
@@ -26,6 +26,11 @@ self.addEventListener('activate', e => {
 function isCode(url) {
   return /\.(css|js)$/i.test(url.pathname) || /\/index\.html$/.test(url.pathname) || url.pathname === '/';
 }
+
+/* 收到主线程指令：立刻接管，不再等旧页面关闭 */
+self.addEventListener('message', e => {
+  if (e.data && e.data.type === 'SKIP_WAITING') self.skipWaiting();
+});
 
 self.addEventListener('fetch', e => {
   const req = e.request;
