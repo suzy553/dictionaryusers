@@ -2374,7 +2374,7 @@ function bindSettings() {
 /* ---------------- 导航 ---------------- */
 function go(tab) {
   /* 点「学习」直接进入每日阅读 */
-  if (tab === 'learn' && window.XYReading && !window.__skipAutoRead) {
+  if (tab === 'learn' && window.XYReading && window.XYReading.isReady && window.XYReading.isReady() && !window.__skipAutoRead) {
     window.__skipAutoRead = true;
     setTimeout(function () { window.__skipAutoRead = false; }, 800);
     /* 立刻打开，避免先渲染学习页再被盖住造成闪跳 */
@@ -2409,13 +2409,9 @@ function bindEvents() {
     startNodeSession(info);
   };
 
-  $('#btnStart').onclick = () => {
-    /* 纯阅读模式：主按钮直接进每日阅读 */
-    if (window.XYReading) { window.XYReading.open(); return; }
-    startSession(remainingNew() > 0 ? 'learn' : 'review');
-  };
-  const tN = $('#taskNew'); if (tN) tN.onclick = () => { if (window.XYReading) window.XYReading.open(); else startSession('learn'); };
-  const tR = $('#taskRev'); if (tR) tR.onclick = () => { if (window.XYReading) window.XYReading.open(); else startSession('review'); };
+  $('#btnStart').onclick = () => startSession(remainingNew() > 0 ? 'learn' : 'review');
+  const tN = $('#taskNew'); if (tN) tN.onclick = () => startSession('learn');
+  const tR = $('#taskRev'); if (tR) tR.onclick = () => startSession('review');
   const tbBtn = $('#tbBook'); if (tbBtn) tbBtn.onclick = () => go('books');
   // 复习卡片：进入词表页（右上角"开始"再进单词卡）
   const rvW = $('#rvCardWords'); if (rvW) rvW.onclick = () => openReviewDetail('words');
@@ -2629,6 +2625,22 @@ async function boot() {
           ' winH=' + innerHeight +
           ' VISIBLE=' + vis;
       } catch (e) { document.title = 'CTA-ERR:' + e.message; }
+    }, 2200);
+  }
+
+  
+  if (new URLSearchParams(location.search).get('dbgtapstart') === '1') {
+    setTimeout(function () {
+      try {
+        var b = document.getElementById('btnStart');
+        if (!b) { document.title = 'NO-BTN'; return; }
+        b.click();
+        setTimeout(function () {
+          var sess = document.getElementById('session');
+          var open = sess && sess.classList.contains('is-open');
+          document.title = 'sessionOpen=' + open + ' card=' + (document.querySelector('#session .card, #session .q-word') ? 'yes' : 'no');
+        }, 900);
+      } catch (e) { document.title = 'ERR:' + e.message; }
     }, 2200);
   }
 

@@ -933,6 +933,7 @@
     prefetch: loadFeed,
     renderStrip: renderStrip,
     audioCheck: runAudioCheck,
+    isReady: function () { return !!el('readingTrack'); },
     open: open,
     close: close,
     openArchive: openArchive,

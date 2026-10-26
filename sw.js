@@ -1,5 +1,5 @@
 ﻿/* Service Worker：小越背单词 App 离线缓存 */
-const VER = 'xiaoyue-v295';
+const VER = 'xiaoyue-v296';
 const SHELL = [
   './css/reading.css', './js/reading.js', './data/reading.json', './data/reading-archive.json',
   './', './index.html', './css/app.css', './css/cute.css', './css/path.css', './css/theme.css', './css/design-system.css', './css/design-v2.css', './js/app.js', './js/icons.js', './js/core.js', './js/quiz.js', './js/reading.js',
