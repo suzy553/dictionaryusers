@@ -273,26 +273,150 @@
   }
 
   /* ---------------- 音频 ---------------- */
-  function stopAudio() {
-    if (audio) { try { audio.pause(); } catch (e) { } }
-    playingId = null;
-    var bs = document.querySelectorAll('.rd-play');
-    for (var i = 0; i < bs.length; i++) bs[i].classList.remove('is-playing');
+  var audioEl = null;
+  var unlocked = false;
+
+  function getAudio() {
+    if (!audioEl) audioEl = el('rdAudio');
+    return audioEl;
   }
+
+  /* 首次交互时静音播放 0.01 秒解锁音频通道（iOS / QQ 浏览器必需） */
+  function unlockAudio() {
+    if (unlocked) return;
+    var a = getAudio();
+    if (!a) return;
+    unlocked = true;
+    try {
+      a.muted = true;
+      var p = a.play();
+      if (p && p.then) {
+        p.then(function () { a.pause(); a.currentTime = 0; a.muted = false; })
+         .catch(function () { a.muted = false; });
+      } else {
+        a.pause(); a.muted = false;
+      }
+    } catch (e) { }
+  }
+
+  function setBtnsPlaying(id, on) {
+    var btns = document.querySelectorAll('[data-act="play"]');
+    for (var i = 0; i < btns.length; i++) {
+      if (btns[i].dataset.id === id) {
+        if (on) btns[i].classList.add('is-playing');
+        else btns[i].classList.remove('is-playing');
+        btns[i].classList.remove('is-loading');
+      }
+    }
+  }
+
+  function stopAudio() {
+    var a = getAudio();
+    if (a) { try { a.pause(); } catch (e) { } }
+    playingId = null;
+    var bs = document.querySelectorAll('[data-act="play"]');
+    for (var i = 0; i < bs.length; i++) {
+      bs[i].classList.remove('is-playing');
+      bs[i].classList.remove('is-loading');
+    }
+  }
+
+
+  /* 兜底：mp3 迟迟不缓冲就改用系统语音朗读 */
+  function ttsFallback(item) {
+    try {
+      if (!('speechSynthesis' in window)) { msg('音频加载失败'); return; }
+      var text = ((item.sentences || []).map(function (x) { return x.en; }).join(' ')) || item.title || '';
+      if (!text) { msg('没有可朗读的内容'); return; }
+      speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(text);
+      u.lang = 'en-US';
+      u.rate = 0.95;
+      u.onend = function () { playingId = null; setBtnsPlaying(item.id, false); };
+      u.onerror = function () { playingId = null; setBtnsPlaying(item.id, false); };
+      speechSynthesis.speak(u);
+      msg('已改用系统朗读');
+    } catch (e) { msg('朗读失败'); }
+  }
+
   function togglePlay(id, btn, itemList) {
     var list = itemList || ((FEED && FEED.items) || []);
     var item = list.filter(function (x) { return x.id === id; })[0];
     if (!item || !item.audio) { msg('这篇没有音频'); return; }
-    if (playingId === id) { stopAudio(); return; }
-    stopAudio();
-    if (!audio) audio = new Audio();
-    audio.src = item.audio;
-    audio.onended = stopAudio;
-    audio.onerror = function () { msg('音频加载失败'); stopAudio(); };
-    var p = audio.play();
+    var a = getAudio();
+    if (!a) { msg('这台设备不支持播放'); return; }
+
+    /* 已经在放同一篇 → 暂停 */
+    if (!a.paused && playingId === id) {
+      a.pause();
+      playingId = null;
+      setBtnsPlaying(id, false);
+      return;
+    }
+
+    unlockAudio();
     playingId = id;
-    if (btn) btn.classList.add('is-playing');
-    if (p && p.catch) p.catch(function () { msg('这台设备放不出声音'); stopAudio(); });
+    if (btn) btn.classList.add('is-loading');
+
+    try { a.volume = 1; a.muted = false; } catch (e) { }
+    if (a.dataset.src !== item.audio) {
+      a.dataset.src = item.audio;
+      a.src = item.audio;
+      try { a.load(); } catch (e) { }
+    }
+
+    var p = a.play();
+    /* 2.5 秒还没缓冲出数据 → 走系统朗读 */
+    clearTimeout(window.__rdAudioGuard);
+    window.__rdAudioGuard = setTimeout(function () {
+      if (playingId === id && a.readyState < 2) {
+        try { a.pause(); } catch (e) { }
+        playingId = null;
+        setBtnsPlaying(id, false);
+        ttsFallback(item);
+      }
+    }, 2500);
+
+    if (p && p.then) {
+      p.then(function () {
+        setBtnsPlaying(id, true);
+      }).catch(function (err) {
+        playingId = null;
+        setBtnsPlaying(id, false);
+        var n = err && err.name ? err.name : '';
+        if (n === 'NotAllowedError') msg('请再点一次播放');
+        else if (n === 'NotSupportedError') msg('音频格式不支持');
+        else msg('播放失败：' + (n || '未知错误'));
+      });
+    }
+  }
+
+  function bindAudioEvents() {
+    var a = getAudio();
+    if (!a || a.dataset.bound) return;
+    a.dataset.bound = '1';
+    a.addEventListener('ended', function () {
+      var id = playingId;
+      playingId = null;
+      if (id) setBtnsPlaying(id, false);
+    });
+    a.addEventListener('error', function () {
+      var id = playingId;
+      playingId = null;
+      if (id) setBtnsPlaying(id, false);
+      var c = a.error ? a.error.code : 0;
+      msg(c === 4 ? '音频打不开，可能文件异常' : '音频加载失败');
+    });
+    a.addEventListener('waiting', function () {
+      if (playingId) {
+        var bs = document.querySelectorAll('[data-act="play"]');
+        for (var i = 0; i < bs.length; i++) if (bs[i].dataset.id === playingId) bs[i].classList.add('is-loading');
+      }
+    });
+    a.addEventListener('playing', function () {
+      var bs = document.querySelectorAll('[data-act="play"]');
+      for (var i = 0; i < bs.length; i++) bs[i].classList.remove('is-loading');
+    });
   }
 
   /* ---------------- 事件 ---------------- */
@@ -328,6 +452,8 @@
     if (track.dataset.bound) return;
     track.dataset.bound = '1';
 
+    bindAudioEvents();
+    track.addEventListener('pointerdown', unlockAudio, { passive: true });
     bindTap(track, function (e) { handleTap(e, 'feed'); });
 
     track.addEventListener('click', function (e) {
@@ -380,7 +506,7 @@
     await loadFeed();
     render();
     var track = el('readingTrack');
-    if (track) { bindTrack(track); track.scrollTop = 0; }
+    if (track) { bindTrack(track); bindAudioEvents(); track.scrollTop = 0; }
     idx = 0;
     renderProgress();
   }
@@ -621,6 +747,67 @@
           ' cardH=' + (c ? c.getBoundingClientRect().height : '?');
       } catch (e) { document.title = 'ERR:' + e.message; }
     }, 2200);
+  }
+
+
+  if (new URLSearchParams(location.search).get('dbgaudio') === '1') {
+    setTimeout(function () {
+      try {
+        var a = new Audio();
+        a.preload = 'auto';
+        a.src = 'data/reading/audio/20261026-1.mp3';
+        var done = false;
+        a.addEventListener('loadedmetadata', function () {
+          if (done) return; done = true;
+          document.title = 'OK dur=' + a.duration.toFixed(1) + 's rs=' + a.readyState;
+        });
+        a.addEventListener('error', function () {
+          if (done) return; done = true;
+          document.title = 'ERR code=' + (a.error ? a.error.code : '?') +
+            ' msg=' + (a.error ? a.error.message : '');
+        });
+        setTimeout(function () { if (!done) { done = true; document.title = 'TIMEOUT rs=' + a.readyState; } }, 5000);
+      } catch (e) { document.title = 'EX:' + e.message; }
+    }, 2000);
+  }
+
+
+  if (new URLSearchParams(location.search).get('dbgdecode') === '1') {
+    setTimeout(function () {
+      fetch('data/reading/audio/20261026-1.mp3').then(function (r) {
+        return r.arrayBuffer();
+      }).then(function (buf) {
+        var AC = window.AudioContext || window.webkitAudioContext;
+        var ctx = new AC();
+        return ctx.decodeAudioData(buf).then(function (ab) {
+          document.title = 'DECODED bytes=' + buf.byteLength + ' dur=' + ab.duration.toFixed(1) + 's';
+        });
+      }).catch(function (e) {
+        document.title = 'FAIL ' + (e && e.message ? e.message : e);
+      });
+    }, 2000);
+  }
+
+
+  if (new URLSearchParams(location.search).get('dbgplay') === '1') {
+    setTimeout(function () {
+      try {
+        var b = document.querySelector('[data-act="play"]');
+        if (!b) { document.title = 'NO-BTN'; return; }
+        var a = document.getElementById('rdAudio');
+        var r = b.getBoundingClientRect();
+        var opt = { bubbles: true, clientX: r.left + 4, clientY: r.top + 4 };
+        b.dispatchEvent(new PointerEvent('pointerdown', opt));
+        b.dispatchEvent(new PointerEvent('pointerup', opt));
+        setTimeout(function () {
+          document.title = 'src=' + (a.src || '').split('/').pop() +
+            ' paused=' + a.paused + ' rs=' + a.readyState +
+            ' net=' + (a.networkState) +
+            ' err=' + (a.error ? a.error.code : 0) +
+            ' btnPlaying=' + b.classList.contains('is-playing');
+        }, 1500);
+      } catch (e) { document.title = 'ERR:' + e.message; }
+    }, 2400);
   }
 
   window.XYReading = {

@@ -864,3 +864,14 @@
   white-space: nowrap;
 }
 .bs-card-more{ font-size: 11px; white-space: nowrap; }
+
+
+/* 朗读按钮：加载中 */
+.rd-hbtn.is-loading{
+  border-color: rgba(255,255,255,.7);
+  animation: rdPulse 1s ease-in-out infinite;
+}
+@keyframes rdPulse{
+  0%, 100% { opacity: .55; }
+  50% { opacity: 1; }
+}
