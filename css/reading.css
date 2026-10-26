@@ -329,3 +329,217 @@
   filter: none;
   transform: none;
 }
+
+/* ==========================================================================
+   v2：逐句点译 + 点词查义 + 文章汇总
+   ========================================================================== */
+
+/* 句子与单词 */
+.rd-s{
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background .15s;
+}
+.rd-s.is-on{ background: rgba(255,255,255,.16); }
+.rd-w{
+  cursor: pointer;
+  border-radius: 3px;
+  padding: 0 1px;
+}
+.rd-w:active{ background: rgba(88,204,2,.45); }
+
+.rd-szh{
+  display: block;
+  margin: 6px 0 10px;
+  padding: 9px 12px;
+  border-left: 3px solid rgba(88,204,2,.75);
+  border-radius: 0 8px 8px 0;
+  background: rgba(0,0,0,.32);
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: rgba(255,255,255,.94);
+  backdrop-filter: blur(6px);
+}
+.rd-tip{
+  margin-top: 14px;
+  font-size: 11.5px;
+  color: rgba(255,255,255,.5);
+  letter-spacing: .3px;
+}
+
+/* 顶栏目录按钮 */
+#readingArchiveBtn{
+  pointer-events: auto;
+  height: 30px;
+  padding: 0 12px;
+  border: 1px solid rgba(255,255,255,.3);
+  border-radius: 999px;
+  background: rgba(0,0,0,.35);
+  color: #fff;
+  font-size: 12.5px;
+  font-weight: 700;
+  backdrop-filter: blur(6px);
+}
+
+/* 文章汇总 */
+#readingArchive,
+#readingArticle{
+  position: fixed;
+  inset: 0;
+  z-index: 210;
+  display: none;
+  background: var(--paper, #f7f6f2);
+}
+#readingArchive.is-open,
+#readingArticle.is-open{ display: flex; flex-direction: column; }
+
+.ra-head{
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: calc(env(safe-area-inset-top, 0px) + 14px) 18px 12px;
+  border-bottom: 1px solid var(--rule, rgba(0,0,0,.08));
+}
+.ra-head b{ font-size: 17px; color: var(--ink, #1b2a22); }
+.ra-head button{
+  height: 30px; padding: 0 12px;
+  border: 1px solid var(--rule, rgba(0,0,0,.1));
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink-3, #6b7a72);
+  font-size: 12.5px;
+}
+.ra-scroll{
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 12px 16px calc(env(safe-area-inset-bottom, 0px) + 24px);
+}
+.ra-day{ margin-bottom: 18px; }
+.ra-date{
+  font-size: 12px;
+  color: var(--ink-3, #6b7a72);
+  margin: 0 0 8px 2px;
+  letter-spacing: .4px;
+}
+.ra-row{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  border: 1px solid var(--rule, rgba(0,0,0,.08));
+  border-radius: 14px;
+  background: var(--surface, #fff);
+  text-align: left;
+}
+.ra-tag{
+  flex: 0 0 auto;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--accent, #1f6b45);
+  background: var(--accent-soft, #e8f3ec);
+  border-radius: 6px;
+  padding: 3px 7px;
+}
+.ra-tag.ra-topic{ color: #7a5b1f; background: #f6efe0; }
+.ra-main{ flex: 1 1 auto; min-width: 0; }
+.ra-main b{
+  display: block;
+  font-size: 14px;
+  color: var(--ink, #1b2a22);
+  font-weight: 700;
+  line-height: 1.4;
+}
+.ra-main em{
+  display: block;
+  font-style: normal;
+  font-size: 11.5px;
+  color: var(--ink-3, #8b9891);
+  margin-top: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ra-go{ flex: 0 0 auto; font-size: 11.5px; color: var(--ink-3, #8b9891); }
+.ra-empty{ padding: 60px 0; text-align: center; color: var(--ink-3, #8b9891); font-size: 13px; }
+
+/* 单篇阅读 */
+#readingArticle .rd-top{
+  position: static;
+  background: transparent;
+  padding: calc(env(safe-area-inset-top, 0px) + 12px) 16px 0;
+  justify-content: space-between;
+}
+.rd-atitle{ color: #fff; font-size: 13px; font-weight: 700; }
+#readingArticle{ background: #0c1210; }
+#raArticleBody{ flex: 1 1 auto; min-height: 0; overflow: hidden; }
+#raArticleBody .rd-card{ height: 100%; }
+
+/* 点词卡片 */
+#rdWordPop{
+  position: fixed;
+  left: 50%;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 22px);
+  transform: translate(-50%, 24px);
+  width: min(92vw, 420px);
+  z-index: 230;
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: rgba(20,32,26,.96);
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow: 0 18px 48px rgba(0,0,0,.45);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .18s, transform .18s;
+}
+#rdWordPop.is-open{
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, 0);
+}
+.rdp-word{
+  font-size: 20px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: .3px;
+}
+.rdp-zh{
+  margin-top: 6px;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: rgba(255,255,255,.82);
+}
+.rdp-acts{ display: flex; gap: 10px; margin-top: 14px; }
+.rdp-btn{
+  flex: 1 1 auto;
+  height: 40px;
+  border: none;
+  border-radius: 12px;
+  background: var(--accent, #1f6b45);
+  color: #fff;
+  font-size: 13.5px;
+  font-weight: 800;
+}
+.rdp-btn.is-done{ background: rgba(255,255,255,.16); color: rgba(255,255,255,.7); }
+.rdp-ghost{
+  flex: 0 0 84px;
+  background: rgba(255,255,255,.12);
+  color: rgba(255,255,255,.85);
+}
+
+/* 下一篇按钮 */
+.rd-next{
+  margin-left: auto;
+  height: 40px;
+  padding: 0 18px;
+  border: 1px solid rgba(255,255,255,.32);
+  border-radius: 999px;
+  background: rgba(255,255,255,.14);
+  color: #fff;
+  font-size: 13.5px;
+  font-weight: 800;
+  backdrop-filter: blur(6px);
+}

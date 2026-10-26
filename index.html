@@ -585,9 +585,31 @@
 <div id="readingFeed" aria-hidden="true">
   <div class="rd-top">
     <div id="readingProgress"></div>
+    <button id="readingArchiveBtn" type="button" aria-label="文章汇总">目录</button>
     <button id="readingClose" type="button" aria-label="关闭">✕</button>
   </div>
   <div id="readingTrack"></div>
 </div>
+
+<!-- ============ 文章汇总 ============ -->
+<div id="readingArchive">
+  <div class="ra-head">
+    <b>文章汇总</b>
+    <button id="raClose" type="button">关闭</button>
+  </div>
+  <div class="ra-scroll"><div id="raList"></div></div>
+</div>
+
+<!-- ============ 单篇阅读 ============ -->
+<div id="readingArticle">
+  <div class="rd-top">
+    <span class="rd-atitle">回看</span>
+    <button id="raArticleClose" type="button" aria-label="关闭">✕</button>
+  </div>
+  <div id="raArticleBody"></div>
+</div>
+
+<!-- ============ 点词释义 ============ -->
+<div id="rdWordPop"></div>
 </body>
 </html>

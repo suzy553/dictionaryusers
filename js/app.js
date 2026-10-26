@@ -2360,6 +2360,13 @@ function bindSettings() {
 
 /* ---------------- 导航 ---------------- */
 function go(tab) {
+  /* 点「学习」直接进入每日阅读 */
+  if (tab === 'learn' && window.XYReading && !window.__skipAutoRead) {
+    window.__skipAutoRead = true;
+    setTimeout(function () { window.__skipAutoRead = false; }, 800);
+    try { window.XYReading.open(); } catch (e) { }
+  }
+
   /* 目标页面不存在时回退首页，避免整屏空白 */
   if (!document.getElementById('screen-' + tab)) tab = 'home';
   document.documentElement.classList.toggle('on-home', tab === 'home');

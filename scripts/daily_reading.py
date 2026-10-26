@@ -1,28 +1,32 @@
 # -*- coding: utf-8 -*-
 """
-每日阅读流水线：抓轻松题材 → 翻译中文 → 生成朗读 mp3 → 写 data/reading.json
+每日阅读 v2 流水线
+  抓 RSS → 抓正文 → AI 精简改写为 200~350 词长文（逐句英文+中文）
+  → 全篇词汇表（点词查义） → 生成整篇朗读 mp3 → 写入 reading.json + 归档
+
 用法：
-    python scripts/daily_reading.py            # 正常跑（需要 SILICONFLOW_KEY）
-    python scripts/daily_reading.py --no-ai    # 不翻译，仅抓取+音频（调试）
+    python scripts/daily_reading.py
+    python scripts/daily_reading.py --no-ai      # 不调 AI，仅抓取（调试）
+    python scripts/daily_reading.py --limit 3    # 只做 3 篇
 """
-import asyncio, io, json, os, re, sys, time, urllib.request, urllib.error
+import asyncio, io, json, os, re, sys, time, urllib.request
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-# 兼容两种布局：仓库根就是应用目录 / 应用在子目录
 APP = ROOT if os.path.isdir(os.path.join(ROOT, "data")) else os.path.join(ROOT, "ielts-bookshelf")
 OUT_JSON = os.path.join(APP, "data", "reading.json")
+ARCHIVE = os.path.join(APP, "data", "reading-archive.json")
 AUDIO_DIR = os.path.join(APP, "data", "reading", "audio")
 os.makedirs(AUDIO_DIR, exist_ok=True)
 
-# 轻松题材来源（实测可访问）
 FEEDS = [
-    ("BBC Culture", "https://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml"),
-    ("NPR Arts",    "https://feeds.npr.org/1008/rss.xml"),
-    ("NPR Tech",    "https://feeds.npr.org/1019/rss.xml"),
+    ("BBC Culture", "https://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml", "文化"),
+    ("NPR Arts",    "https://feeds.npr.org/1008/rss.xml", "艺术"),
+    ("NPR Tech",    "https://feeds.npr.org/1019/rss.xml", "科技"),
 ]
 MAX_ITEMS = 6
+ARCHIVE_KEEP = 60       # 归档保留篇数
+AUDIO_KEEP_DAYS = 3     # 只保留最近 3 天的音频
 
-# 关键词 → 国家（对齐 30 国 img 字段）
 COUNTRY_HINTS = [
     (r"\b(?:France|Paris|French)\b", "fr", "法国"),
     (r"\b(?:Japan|Tokyo|Japanese)\b", "jp", "日本"),
@@ -38,47 +42,48 @@ COUNTRY_HINTS = [
     (r"\b(?:Thailand|Bangkok|Thai)\b", "th", "泰国"),
     (r"\b(?:Turkey|Istanbul|Turkish)\b", "tr", "土耳其"),
     (r"\b(?:Russia|Moscow|Russian)\b", "ru", "俄罗斯"),
-    (r"\b(?:Egypt|Cairo|Egyptian)\b", "eg", "埃及"),
     (r"\b(?:Greece|Athens|Greek)\b", "gr", "希腊"),
     (r"\b(?:Netherlands|Amsterdam|Dutch)\b", "nl", "荷兰"),
-    (r"\b(?:Swiss|Switzerland|Zurich)\b", "ch", "瑞士"),
-    (r"\bNorway|Oslo|Norwegian\b", "no", "挪威"),
-    (r"\bSweden|Stockholm|Swedish\b", "se", "瑞典"),
-    (r"\bDenmark|Copenhagen|Danish\b", "dk", "丹麦"),
-    (r"\bFinland|Helsinki|Finnish\b", "fi", "芬兰"),
-    (r"\bAustria|Vienna|Austrian\b", "at", "奥地利"),
+    (r"\b(?:Switzerland|Zurich|Swiss)\b", "ch", "瑞士"),
+    (r"\b(?:Norway|Oslo|Norwegian)\b", "no", "挪威"),
+    (r"\b(?:Sweden|Stockholm|Swedish)\b", "se", "瑞典"),
+    (r"\b(?:Denmark|Copenhagen|Danish)\b", "dk", "丹麦"),
+    (r"\b(?:Finland|Helsinki|Finnish)\b", "fi", "芬兰"),
+    (r"\b(?:Austria|Vienna|Austrian)\b", "at", "奥地利"),
     (r"\bSingapore\b", "sg", "新加坡"),
-    (r"\bMalaysia|Kuala Lumpur\b", "my", "马来西亚"),
-    (r"\bIndonesia|Jakarta|Bali\b", "id", "印度尼西亚"),
-    (r"\bPhilippines|Manila\b", "ph", "菲律宾"),
-    (r"\bVietnam|Hanoi|Vietnamese\b", "vn", "越南"),
+    (r"\b(?:Malaysia|Kuala Lumpur)\b", "my", "马来西亚"),
+    (r"\b(?:Indonesia|Jakarta|Bali)\b", "id", "印度尼西亚"),
+    (r"\b(?:Philippines|Manila)\b", "ph", "菲律宾"),
+    (r"\b(?:Vietnam|Hanoi|Vietnamese)\b", "vn", "越南"),
     (r"\bNew Zealand\b", "nz", "新西兰"),
 ]
-FALLBACK = [("us", "美国"), ("gb", "英国"), ("fr", "法国"), ("jp", "日本"), ("de", "德国"), ("it", "意大利")]
 
 
-def fetch(url, timeout=25):
+def http_get(url, timeout=25):
     req = urllib.request.Request(url, headers={
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/131.0 Safari/537.36"
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                      "(KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+        "Accept-Language": "en-US,en;q=0.9",
     })
     with urllib.request.urlopen(req, timeout=timeout) as r:
-        return r.read().decode("utf-8", "replace")
+        raw = r.read()
+        ctype = r.headers.get("Content-Type", "")
+    enc = "utf-8"
+    m = re.search(r"charset=([\w-]+)", ctype, re.I)
+    if m:
+        enc = m.group(1)
+    return raw.decode(enc, "replace")
 
 
-def parse_rss(xml, source):
-    """从 RSS 里抽 title/link/description/pubDate"""
-    items = []
-    for block in re.findall(r"<item>(.*?)</item>", xml, re.S)[:12]:
+def parse_rss(xml, source, topic):
+    out = []
+    for block in re.findall(r"<item>(.*?)</item>", xml, re.S)[:10]:
         def pick(tag):
             m = re.search(rf"<{tag}[^>]*>(?:<!\[CDATA\[)?(.*?)(?:\]\]>)?</{tag}>", block, re.S)
             return re.sub(r"<[^>]+>", "", m.group(1)).strip() if m else ""
-        title = pick("title")
-        desc = pick("description")
-        link = pick("link")
-        date = pick("pubDate")
-        if not title:
+        title, link, desc, date = pick("title"), pick("link"), pick("description"), pick("pubDate")
+        if not title or not link:
             continue
-        # RSS 日期 → YYYY-MM-DD
         m = re.search(r"(\d{1,2}) (\w{3}) (\d{4})", date)
         if m:
             try:
@@ -87,80 +92,117 @@ def parse_rss(xml, source):
                 date = time.strftime("%Y-%m-%d")
         else:
             date = time.strftime("%Y-%m-%d")
-        desc = re.sub(r"\s+", " ", desc)[:400]
-        items.append({"source": source, "title": title, "summary": desc, "link": link, "date": date})
-    return items
+        out.append({"source": source, "topic": topic, "title": title, "link": link,
+                    "summary": re.sub(r"\s+", " ", desc)[:500], "date": date})
+    return out
 
 
-TOPIC = {"BBC Culture": "文化", "NPR Arts": "艺术", "NPR Tech": "科技"}
-
-
-def guess_country(text):
-    """只在明确提到某国时返回国家；否则返回 (None, None)，由 UI 显示题材标签"""
-    for pat, code, name in COUNTRY_HINTS:
-        if re.search(pat, text, re.I):
-            return code, name
-    return None, None
+def fetch_body(url):
+    """从文章页抽正文段落（启发式：取较长的 <p> 集合）"""
+    try:
+        html = http_get(url)
+    except Exception:
+        return ""
+    html = re.sub(r"(?is)<(script|style|noscript)[^>]*>.*?</\1>", " ", html)
+    paras = re.findall(r"(?is)<p[^>]*>(.*?)</p>", html)
+    clean = []
+    for p in paras:
+        t = re.sub(r"<[^>]+>", " ", p)
+        t = re.sub(r"&#\d+;|&\w+;", " ", t)
+        t = re.sub(r"\s+", " ", t).strip()
+        if len(t) < 60:
+            continue
+        if re.search(r"(?i)subscribe|cookie|sign up|newsletter|all rights reserved|follow us", t):
+            continue
+        clean.append(t)
+    return " ".join(clean)[:4000]
 
 
 def get_key():
     p = os.path.expanduser(r"~\.dsh\credentials\siliconflow.key")
     if os.path.exists(p):
-        k = io.open(p, encoding="utf-8").read()
-        k = k.replace("\ufeff", "").strip()
-        k = "".join(ch for ch in k if 32 <= ord(ch) < 127)
+        k = "".join(ch for ch in io.open(p, encoding="utf-8").read()
+                    if 32 <= ord(ch) < 127).strip()
         if k:
             return k
     return os.environ.get("SILICONFLOW_KEY", "").strip()
 
 
-def translate(items):
-    """一次请求批量翻译，返回 [{titleZh, bodyZh, words}]"""
+def _ai_one(it, n):
+    """单篇改写：避免一次请求 6 篇导致超时"""
+    import concurrent.futures  # noqa
     key = get_key()
-    if not key:
-        print("  ! 没有 SILICONFLOW_KEY，跳过翻译")
-        return [{} for _ in items]
-
-    payload = [{"i": n, "title": it["title"], "summary": it["summary"]} for n, it in enumerate(items)]
+    payload = {
+        "i": n,
+        "title": it["title"],
+        "summary": it["summary"],
+        "body": (it.get("fulltext") or "")[:1600],
+    }
     prompt = (
-        "你是英语学习内容编辑。把下面每条新闻改写为适合中级学习者的版本，输出 JSON 数组。\n"
+        "把下面这条英文新闻改写成适合中级学习者的短文，输出 JSON 对象（不要数组、不要解释）：\n"
+        "{\"title_en\":\"\",\"title_zh\":\"\",\"country\":\"\","
+        "\"sentences\":[{\"en\":\"\",\"zh\":\"\"}],\"glossary\":[{\"w\":\"\",\"zh\":\"\"}]}\n"
         "要求：\n"
-        "1. body：把 summary 改写成 2~3 句、不超过 60 词的英文，用词简单，保留关键信息；\n"
-        "2. titleZh：标题的中文翻译（自然、口语化）；\n"
-        "3. bodyZh：body 的中文翻译；\n"
-        "4. words：从 body 里挑 3 个值得学的词或短语，给中文释义；\n"
-        '输出格式：[{"i":0,"body":"...","titleZh":"...","bodyZh":"...","words":[{"w":"...","zh":"..."}]}]\n'
-        "只输出 JSON，不要解释。\n\n输入：\n" + json.dumps(payload, ensure_ascii=False)
+        "1. sentences：8~12 句，总词数 200~300 词；交代清楚背景（谁/何时/为什么）、"
+        "事件经过、影响或后续，让不懂背景的人也能看懂；B1~B2 难度，单句 ≤25 词；每句配中文翻译 sentence_zh；\n"
+        "2. glossary：18~22 个值得学的词或短语 + 中文释义；\n"
+        "3. country：明确属于某国时填英文国名，否则空字符串。\n\n"
+        "输入：\n" + json.dumps(payload, ensure_ascii=False)
     )
-
     body = json.dumps({
         "model": "deepseek-ai/DeepSeek-V4.1-Flash",
         "messages": [{"role": "user", "content": prompt}],
-        "temperature": 0.4,
-        "max_tokens": 2600,
+        "temperature": 0.5,
+        "max_tokens": 3000,
     }).encode()
-
     req = urllib.request.Request(
         "https://api.siliconflow.cn/v1/chat/completions",
         data=body,
         headers={"Authorization": "Bearer " + key, "Content-Type": "application/json"},
     )
-    try:
-        with urllib.request.urlopen(req, timeout=120) as r:
-            data = json.loads(r.read().decode())
-        txt = data["choices"][0]["message"]["content"].strip()
-        txt = re.sub(r"^```(?:json)?|```$", "", txt, flags=re.M).strip()
-        arr = json.loads(txt)
-        out = [{} for _ in items]
-        for o in arr:
-            i = int(o.get("i", -1))
-            if 0 <= i < len(out):
-                out[i] = o
-        print(f"  ✓ 翻译完成 {sum(1 for x in out if x)}/{len(items)}")
-        return out
-    except Exception as e:
-        print(f"  ! 翻译失败: {type(e).__name__} {str(e)[:160]}")
+    for attempt in range(2):
+        try:
+            with urllib.request.urlopen(req, timeout=150) as r:
+                data = json.loads(r.read().decode())
+            txt = data["choices"][0]["message"]["content"].strip()
+            txt = re.sub(r"^```(?:json)?\s*|\s*```$", "", txt)
+            m = re.search(r"\{[\s\S]*\}", txt)
+            return json.loads(m.group(0) if m else txt)
+        except Exception as e:
+            if attempt == 1:
+                print(f"    ! 第{n+1}篇 AI 失败: {type(e).__name__} {str(e)[:120]}")
+                return {}
+    return {}
+
+
+def ai_article(items):
+    key = get_key()
+    if not key:
+        print("  ! 无 SILICONFLOW_KEY，跳过 AI")
         return [{} for _ in items]
+    import concurrent.futures as cf
+    out = [{} for _ in items]
+    with cf.ThreadPoolExecutor(max_workers=3) as pool:
+        futs = {pool.submit(_ai_one, it, n): n for n, it in enumerate(items)}
+        for f in cf.as_completed(futs):
+            n = futs[f]
+            try:
+                out[n] = f.result() or {}
+            except Exception:
+                out[n] = {}
+    print(f"  ✓ AI 改写 {sum(1 for x in out if x)}/{len(items)}")
+    return out
+
+
+def guess_country(text, given):
+    if given:
+        for pat, code, name in COUNTRY_HINTS:
+            if re.search(pat, " " + given + " ", re.I):
+                return code, name
+    for pat, code, name in COUNTRY_HINTS:
+        if re.search(pat, text, re.I):
+            return code, name
+    return "", ""
 
 
 async def make_audio(text, path, voice="en-US-AriaNeural"):
@@ -168,90 +210,146 @@ async def make_audio(text, path, voice="en-US-AriaNeural"):
     await edge_tts.Communicate(text, voice).save(path)
 
 
+def prune_audio():
+    now = time.time()
+    for f in os.listdir(AUDIO_DIR):
+        if not f.endswith(".mp3"):
+            continue
+        p = os.path.join(AUDIO_DIR, f)
+        if now - os.path.getmtime(p) > AUDIO_KEEP_DAYS * 86400:
+            try:
+                os.remove(p)
+            except Exception:
+                pass
+
+
 async def main():
     no_ai = "--no-ai" in sys.argv
-    raw = []
-    for name, url in FEEDS:
+    limit = MAX_ITEMS
+    if "--limit" in sys.argv:
         try:
-            items = parse_rss(fetch(url), name)
+            limit = int(sys.argv[sys.argv.index("--limit") + 1])
+        except Exception:
+            pass
+
+    # 1) 抓列表
+    raw = []
+    for name, url, topic in FEEDS:
+        try:
+            items = parse_rss(http_get(url), name, topic)
             print(f"  {name}: {len(items)} 条")
             raw.extend(items)
         except Exception as e:
             print(f"  {name}: 失败 {type(e).__name__}")
 
-    # 按来源轮询，保证题材混合（文化/艺术/科技都有）
+    # 2) 按来源轮询取稿
     by_src = {}
     for it in raw:
         by_src.setdefault(it["source"], []).append(it)
-    seen, picked = set(), []
-    while len(picked) < MAX_ITEMS and any(by_src.values()):
-        for name, _ in FEEDS:
+    picked, seen = [], set()
+    while len(picked) < limit and any(by_src.values()):
+        for name, _, _ in FEEDS:
             bucket = by_src.get(name) or []
             while bucket:
                 it = bucket.pop(0)
-                k = it["title"].lower()[:60]
+                k = it["title"].lower()[:50]
                 if k in seen:
                     continue
                 seen.add(k)
                 picked.append(it)
                 break
-            if len(picked) >= MAX_ITEMS:
+            if len(picked) >= limit:
                 break
 
     if not picked:
         print("✗ 没有抓到内容")
         return 1
 
-    tr = [{} for _ in picked] if no_ai else translate(picked)
+    # 3) 抓正文
+    for it in picked:
+        it["fulltext"] = fetch_body(it["link"])
+        print(f"    {'正文' if len(it['fulltext']) > 400 else '仅摘要'}: {it['title'][:46]}")
 
-    out = []
+    # 4) AI 改写
+    arts = [{} for _ in picked] if no_ai else ai_article(picked)
+
+    # 5) 组装 + 音频
+    items_out = []
     for n, it in enumerate(picked):
-        t = tr[n] or {}
-        body = (t.get("body") or it["summary"] or it["title"]).strip()
-        code, cname = guess_country(it["title"] + " " + body)
-        topic = TOPIC.get(it["source"], "阅读")
-        aid = f"r{n+1}"
-        mp3 = os.path.join(AUDIO_DIR, aid + ".mp3")
+        a = arts[n] or {}
+        sents = a.get("sentences") or []
+        if not sents:
+            txt = it["summary"] or it["title"]
+            sents = [{"en": s.strip(), "zh": ""}
+                     for s in re.split(r"(?<=[.!?])\s+", txt) if len(s.strip()) > 15]
+
+        full_en = " ".join(s["en"] for s in sents)
+        if not full_en.strip():
+            continue
+
+        rid = time.strftime("%Y%m%d") + f"-{n+1}"
+        mp3 = os.path.join(AUDIO_DIR, rid + ".mp3")
         try:
-            await make_audio((it["title"] + ". " + body)[:600], mp3)
+            await make_audio(full_en[:3000], mp3)
             size = os.path.getsize(mp3)
         except Exception as e:
-            print(f"  ! {aid} 音频失败: {e}")
+            print(f"  ! {rid} 音频失败: {e}")
             size = 0
 
-        out.append({
-            "id": aid,
-            "country": code or "",
-            "countryName": cname or "",
-            "topic": topic,
-            "source": it["source"],
+        code, cname = guess_country(it["title"] + " " + full_en, a.get("country") or "")
+        words = sum(len(s["en"].split()) for s in sents)
+
+        items_out.append({
+            "id": rid,
             "date": it["date"],
-            "title": it["title"],
-            "titleZh": t.get("titleZh", ""),
-            "body": body,
-            "bodyZh": t.get("bodyZh", ""),
-            "words": (t.get("words") or [])[:3],
-            "audio": f"data/reading/audio/{aid}.mp3" if size else "",
+            "source": it["source"],
+            "topic": it["topic"],
+            "country": code,
+            "countryName": cname,
+            "title": a.get("title_en") or it["title"],
+            "titleZh": a.get("title_zh", ""),
+            "sentences": sents,
+            "glossary": a.get("glossary") or [],
+            "words": words,
+            "audio": f"data/reading/audio/{rid}.mp3" if size else "",
             "audioKB": round(size / 1024) if size else 0,
             "link": it["link"],
         })
-        print(f"  ✓ {aid} [{cname}] {it['title'][:44]}  {size/1024:.0f}KB")
+        print(f"  ✓ {rid} [{cname or it['topic']}] {words}词/{len(sents)}句 {size/1024:.0f}KB")
 
-    # 清理多余音频
-    keep = {x["id"] + ".mp3" for x in out}
-    for f in os.listdir(AUDIO_DIR):
-        if f.endswith(".mp3") and f not in keep:
-            os.remove(os.path.join(AUDIO_DIR, f))
+    if not items_out:
+        print("✗ 没有生成任何文章")
+        return 1
 
+    # 6) 写今日 + 归档
     data = {
         "updated": time.strftime("%Y-%m-%d %H:%M"),
         "date": time.strftime("%Y-%m-%d"),
-        "source": " / ".join(sorted({x["source"] for x in out})),
-        "items": out,
+        "source": " / ".join(sorted({x["source"] for x in items_out})),
+        "items": items_out,
     }
     io.open(OUT_JSON, "w", encoding="utf-8").write(json.dumps(data, ensure_ascii=False, indent=1))
-    total = sum(x["audioKB"] for x in out)
-    print(f"\n✓ 写入 {OUT_JSON}：{len(out)} 篇，音频 {total}KB")
+
+    arch = {"items": []}
+    if os.path.exists(ARCHIVE):
+        try:
+            arch = json.load(io.open(ARCHIVE, encoding="utf-8"))
+        except Exception:
+            arch = {"items": []}
+    today = time.strftime("%Y-%m-%d")
+    arch["items"] = [x for x in arch.get("items", []) if x.get("date") != today]
+    for x in items_out:
+        y = dict(x)
+        y.pop("audio", None)
+        y.pop("audioKB", None)
+        arch["items"].append(y)
+    arch["items"].sort(key=lambda x: (x.get("date", ""), x.get("id", "")), reverse=True)
+    arch["items"] = arch["items"][:ARCHIVE_KEEP]
+    arch["updated"] = time.strftime("%Y-%m-%d %H:%M")
+    io.open(ARCHIVE, "w", encoding="utf-8").write(json.dumps(arch, ensure_ascii=False, indent=1))
+
+    prune_audio()
+    print(f"\n✓ 今日 {len(items_out)} 篇；归档共 {len(arch['items'])} 篇")
     return 0
 
 
