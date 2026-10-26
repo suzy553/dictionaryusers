@@ -582,3 +582,69 @@
 }
 .rd-allbtn:active{ background: rgba(255,255,255,.26); }
 .rd-tip{ margin-top: 0; }
+
+
+/* ==========================================================================
+   标题旁操作按钮 + 更亮的底色
+   ========================================================================== */
+.rd-headrow{
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 14px;
+}
+.rd-headmain{ flex: 1 1 auto; min-width: 0; }
+.rd-headrow .rd-title{ margin: 0; }
+.rd-headacts{
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 2px;
+}
+.rd-hbtn{
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.34);
+  background: rgba(255,255,255,.18);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+}
+.rd-hbtn:active{ background: rgba(255,255,255,.3); }
+.rd-hbtn .rd-play-ic{
+  border-left: 12px solid currentColor;
+  border-top: 7.5px solid transparent;
+  border-bottom: 7.5px solid transparent;
+}
+.rd-hbtn.is-playing .rd-play-ic{
+  width: 10px; height: 12px;
+  border: none;
+  background: linear-gradient(90deg, currentColor 0 35%, transparent 35% 65%, currentColor 65% 100%);
+}
+.rd-hbtn-zh{
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+.rd-hbtn-zh.is-on{
+  background: #fff;
+  color: #14201a;
+  border-color: #fff;
+}
+
+/* 底色再亮一档（等用户提供背景图后替换） */
+#readingFeed{ background: #22352c; }
+.rd-bg-plain{
+  background:
+    radial-gradient(120% 80% at 20% 0%, #4a7d61 0%, #2a4034 55%, #22352c 100%) !important;
+}
+.rd-veil{
+  background:
+    linear-gradient(180deg, rgba(20,36,28,.5) 0%, rgba(20,36,28,.12) 34%,
+                    rgba(20,36,28,.42) 72%, rgba(16,28,22,.78) 100%) !important;
+}
+.rd-body{ font-size: 16px; }

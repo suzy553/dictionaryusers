@@ -81,18 +81,22 @@
             '<span class="rd-date">' + esc(it.date) + '</span>' +
             '<span class="rd-src">' + esc(it.source) + '</span>' +
           '</div>' +
-          '<h2 class="rd-title">' + esc(it.title) + '</h2>' +
-          (it.titleZh ? '<p class="rd-title-zh">' + esc(it.titleZh) + '</p>' : '') +
-          '<div class="rd-body">' + sents + '</div>' +
-          '<div class="rd-tools">' +
-            '<button class="rd-allbtn" data-act="allzh">翻译全文</button>' +
-            '<span class="rd-tip">点句子看翻译 · 点单词查释义</span>' +
+          '<div class="rd-headrow">' +
+            '<div class="rd-headmain">' +
+              '<h2 class="rd-title">' + esc(it.title) + '</h2>' +
+              (it.titleZh ? '<p class="rd-title-zh">' + esc(it.titleZh) + '</p>' : '') +
+            '</div>' +
+            '<div class="rd-headacts">' +
+              (it.audio
+                ? '<button class="rd-hbtn" data-act="play" data-id="' + esc(it.id) + '" title="听朗读">' +
+                  '<span class="rd-play-ic"></span></button>'
+                : '') +
+              '<button class="rd-hbtn rd-hbtn-zh" data-act="allzh" title="翻译全文">译</button>' +
+            '</div>' +
           '</div>' +
+          '<div class="rd-body">' + sents + '</div>' +
+          '<div class="rd-tools"><span class="rd-tip">点句子看翻译 · 点单词查释义</span></div>' +
           '<div class="rd-foot">' +
-            (it.audio
-              ? '<button class="rd-play" data-act="play" data-id="' + esc(it.id) + '">' +
-                '<span class="rd-play-ic"></span><b>听朗读</b></button>'
-              : '') +
             (it.link ? '<a class="rd-link" href="' + esc(it.link) + '" target="_blank" rel="noopener">原文</a>' : '') +
             (standalone ? '<button class="rd-link" data-act="back">返回列表</button>'
                         : '<button class="rd-next" data-act="next">下一篇 ›</button>') +
@@ -124,6 +128,16 @@
     bar.innerHTML = html;
   }
 
+
+
+  /* 把卡片的正文滚动区拉回顶部（从标题开始看） */
+  function scrollInnerTop(node) {
+    try {
+      var card = node && node.closest ? node.closest('.rd-card') : null;
+      var inner = card ? card.querySelector('.rd-inner') : null;
+      if (inner) inner.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (e) { }
+  }
 
   /* 全文翻译：一次展开/收起所有句子译文 */
   function toggleAllZh(card, btn) {
@@ -286,10 +300,18 @@
     var act = e.target.closest('[data-act]');
     if (act) {
       var a = act.dataset.act;
-      if (a === 'play') { togglePlay(act.dataset.id, act, scope === 'archive' ? ((ARCH && ARCH.items) || []) : null); return; }
+      if (a === 'play') {
+        togglePlay(act.dataset.id, act, scope === 'archive' ? ((ARCH && ARCH.items) || []) : null);
+        scrollInnerTop(act);
+        return;
+      }
       if (a === 'back') { closeArticle(); return; }
       if (a === 'next') { nextCard(); return; }
-      if (a === 'allzh') { toggleAllZh(act.closest('.rd-card'), act); return; }
+      if (a === 'allzh') {
+        toggleAllZh(act.closest('.rd-card'), act);
+        scrollInnerTop(act);
+        return;
+      }
       return;
     }
     var w = e.target.closest('.rd-w');
@@ -369,6 +391,8 @@
     document.documentElement.classList.remove('overlay-open');
     hideWordPop();
     stopAudio();
+    /* 关掉阅读后回首页，而不是停在已经没用的学习页 */
+    try { if (typeof go === 'function') go('home'); } catch (e) { }
   }
 
   /* ---------------- 文章汇总 ---------------- */
