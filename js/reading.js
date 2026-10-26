@@ -59,18 +59,21 @@
     }
     track.innerHTML = items.map(function (it, i) {
       var flag = it.country ? ('data/flags/' + it.country + '.webp') : '';
+      var badge = it.country
+        ? ('<img class="rd-flag" src="' + flag + '" alt=""><span class="rd-country">' + esc(it.countryName) + '</span>')
+        : ('<span class="rd-topic">' + esc(it.topic || '阅读') + '</span>');
+      var bgUrl = it.country ? ('data/countries/' + esc(it.country) + '.jpg') : '';
       var words = (it.words || []).map(function (w) {
         return '<button class="rd-word" data-w="' + esc(w.w) + '" data-zh="' + esc(w.zh) + '">' +
           esc(w.w) + '<i>' + esc(w.zh) + '</i></button>';
       }).join('');
       return '' +
         '<article class="rd-card" data-i="' + i + '">' +
-          '<div class="rd-bg" style="background-image:url(\'data/countries/' + esc(it.country) + '.jpg\')"></div>' +
+          (bgUrl ? '<div class="rd-bg" style="background-image:url(\'' + bgUrl + '\')"></div>' : '<div class="rd-bg rd-bg-plain"></div>') +
           '<div class="rd-veil"></div>' +
           '<div class="rd-inner">' +
             '<div class="rd-meta">' +
-              (flag ? '<img class="rd-flag" src="' + flag + '" alt="">' : '') +
-              '<span class="rd-country">' + esc(it.countryName) + '</span>' +
+              badge +
               '<span class="rd-dot">·</span>' +
               '<span class="rd-date">' + esc(it.date) + '</span>' +
               '<span class="rd-src">' + esc(it.source) + '</span>' +

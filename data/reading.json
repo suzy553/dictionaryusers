@@ -1,175 +1,181 @@
 {
- "updated": "2026-10-19 15:36",
- "date": "2026-10-19",
- "source": "NPR World",
+ "updated": "2026-10-26 16:18",
+ "date": "2026-10-26",
+ "source": "BBC Culture / NPR Arts / NPR Tech",
  "items": [
   {
    "id": "r1",
-   "country": "us",
-   "countryName": "美国",
-   "source": "NPR World",
-   "date": "2026-10-19",
-   "title": "Trump endorses embattled Israeli Prime Minister Benjamin Netanyahu for reelection",
-   "titleZh": "特朗普公开支持内塔尼亚胡连任以色列总理",
-   "body": "Trump said in a post on social media that Netanyahu \"has been a Great Warrior Prime Minister, and an even greater Partner for Peace in combatting the Islamic Republic of Iran.\"",
-   "bodyZh": "特朗普在社交媒体上发文称，内塔尼亚胡“是一位伟大的战时总理，在对抗伊朗伊斯兰共和国的过程中，更是出色的和平伙伴”。",
+   "country": "",
+   "countryName": "",
+   "topic": "文化",
+   "source": "BBC Culture",
+   "date": "2026-10-26",
+   "title": "Sharon Osbourne: 'I visit Ozzy's grave every day'",
+   "titleZh": "莎伦·奥斯本：“我每天都去看奥兹的墓”",
+   "body": "TV host Sharon Osbourne says she visits Ozzy's grave every day. She can see his burial place from her window and often talks to him.",
+   "bodyZh": "电视主持人莎伦·奥斯本说，她每天都去看奥兹的墓地。她从窗户就能看到他的安葬之处，还经常和他说话。",
    "words": [
     {
-     "w": "embattled",
-     "zh": "四面楚歌的；陷入困境的"
+     "w": "TV host",
+     "zh": "电视主持人"
     },
     {
-     "w": "endorse",
-     "zh": "公开支持；背书"
+     "w": "grave",
+     "zh": "坟墓"
     },
     {
-     "w": "warrior",
-     "zh": "战士"
+     "w": "burial place",
+     "zh": "安葬之处；墓地"
     }
    ],
    "audio": "data/reading/audio/r1.mp3",
-   "audioKB": 94,
-   "link": "https://www.npr.org/2026/10/19/g-s1-148731/trump-endorses-netanyahu"
+   "audioKB": 78,
+   "link": "https://www.bbc.co.uk/news/articles/c6g7xn8p2n0ro?at_medium=RSS&amp;at_campaign=rss"
   },
   {
    "id": "r2",
-   "country": "in",
-   "countryName": "印度",
-   "source": "NPR World",
-   "date": "2026-10-18",
-   "title": "Political rivals implicated under Pakistan's anti-terror law",
-   "titleZh": "巴基斯坦以反恐法起诉多名政治对手",
-   "body": "Pakistan's political showdown continues as more opposition figures are implicated under Pakistan's anti-terror law.",
-   "bodyZh": "巴基斯坦的政治对峙仍在持续，越来越多反对派人士被以该国反恐法立案。",
+   "country": "",
+   "countryName": "",
+   "topic": "艺术",
+   "source": "NPR Arts",
+   "date": "2026-10-25",
+   "title": "Sunday Puzzle: BRB",
+   "titleZh": "周日谜题：BRB（马上回来）",
+   "body": "NPR's Ayesha Rascoe plays the weekly puzzle with puzzle master Will Shortz. This week's player is Jordan Bogdan, a listener from Oak Ridge, Tennessee.",
+   "bodyZh": "NPR 的阿伊莎·拉斯科与谜题大师威尔·肖茨一起玩每周谜题。本周的参与者是来自田纳西州橡树岭的听众乔丹·博格丹。",
    "words": [
     {
-     "w": "rival",
-     "zh": "对手；竞争者"
+     "w": "weekly",
+     "zh": "每周的"
     },
     {
-     "w": "implicate",
-     "zh": "使牵连其中；涉嫌"
+     "w": "puzzle master",
+     "zh": "谜题大师"
     },
     {
-     "w": "showdown",
-     "zh": "摊牌；最后对决"
+     "w": "listener",
+     "zh": "听众"
     }
    ],
    "audio": "data/reading/audio/r2.mp3",
-   "audioKB": 73,
-   "link": "https://www.npr.org/2026/10/18/nx-s1-6004833/political-rivals-implicated-under-pakistans-anti-terror-law"
+   "audioKB": 76,
+   "link": "https://www.npr.org/2026/10/25/g-s1-149108/sunday-puzzle-brb"
   },
   {
    "id": "r3",
-   "country": "ae",
-   "countryName": "阿联酋",
-   "source": "NPR World",
-   "date": "2026-10-18",
-   "title": "'Life is absolutely brutal in Gaza,' says World Food Programme head",
-   "titleZh": "世界粮食计划署：加沙的生活“极其残酷”",
-   "body": "The UN's World Food Programme says 1.4 million people in Gaza are suffering acute food shortages and that funding gaps are forcing cutbacks in critical aid, despite the U.S. broker…",
-   "bodyZh": "联合国世界粮食计划署表示，加沙有 140 万人正遭受严重粮食短缺，资金缺口迫使该机构削减关键援助。",
+   "country": "",
+   "countryName": "",
+   "topic": "科技",
+   "source": "NPR Tech",
+   "date": "2026-10-25",
+   "title": "When a teen posts a selfie, how much filter is &apos;too much&apos; filter?",
+   "titleZh": "青少年发自拍时，滤镜加到什么程度算“太过”？",
+   "body": "A recent Meta settlement includes a rule that bans 'cosmetic procedure filters' for teens. However, it is hard to define when a filter causes an extreme makeover.",
+   "bodyZh": "最近 Meta 的一项和解协议包含一条规定，禁止青少年使用“整容手术滤镜”。但是，很难界定一个滤镜何时会造成过度改头换面。",
    "words": [
     {
-     "w": "brutal",
-     "zh": "残酷的；无情的"
+     "w": "settlement",
+     "zh": "和解协议"
     },
     {
-     "w": "acute",
-     "zh": "严重的；急性的"
+     "w": "bans",
+     "zh": "禁止"
     },
     {
-     "w": "cutback",
-     "zh": "削减；缩减"
+     "w": "extreme makeover",
+     "zh": "彻底改头换面；大改造"
     }
    ],
    "audio": "data/reading/audio/r3.mp3",
-   "audioKB": 98,
-   "link": "https://www.npr.org/2026/10/18/nx-s1-6001709/life-is-absolutely-brutal-in-gaza-says-world-food-programme-head"
+   "audioKB": 101,
+   "link": "https://www.npr.org/2026/10/25/nx-s1-6011190/meta-facebook-settlement-beauty-filters-ai"
   },
   {
    "id": "r4",
-   "country": "de",
-   "countryName": "德国",
-   "source": "NPR World",
-   "date": "2026-10-18",
-   "title": "Ukraine and the U.S. are at odds over Starshield. Here's what to know",
-   "titleZh": "乌克兰与美国就“星盾”服务产生分歧",
-   "body": "Ukrainian President Volodymyr Zelenskyy has said he believes the U.S. government is behind his military's loss of normal access to the key satellite communications service used by…",
-   "bodyZh": "乌克兰总统泽连斯基表示，他认为美国政府在背后导致乌军失去了对一项关键卫星通信服务的正常访问权。",
+   "country": "",
+   "countryName": "",
+   "topic": "文化",
+   "source": "BBC Culture",
+   "date": "2026-10-26",
+   "title": "Eric Bauza, voice of Bugs Bunny and Daffy Duck, dies aged 46",
+   "titleZh": "兔八哥和达菲鸭配音演员埃里克·鲍扎去世，享年46岁",
+   "body": "Eric Bauza, the voice of Bugs Bunny and Daffy Duck, has died at 46. He also voiced several characters in this summer's animated hit Coyote vs. Acme.",
+   "bodyZh": "兔八哥和达菲鸭的配音演员埃里克·鲍扎去世，享年46岁。他还为今年夏天的动画热门片《郊狼大战阿克米》中的多个角色配音。",
    "words": [
     {
-     "w": "at odds",
-     "zh": "意见不合；有分歧"
+     "w": "voice",
+     "zh": "配音；声音"
     },
     {
-     "w": "satellite",
-     "zh": "卫星"
+     "w": "characters",
+     "zh": "角色"
     },
     {
-     "w": "access",
-     "zh": "访问权；使用权"
+     "w": "animated hit",
+     "zh": "热门动画片"
     }
    ],
    "audio": "data/reading/audio/r4.mp3",
-   "audioKB": 96,
-   "link": "https://www.npr.org/2026/10/18/nx-s1-6007382/ukraine-us-starshield-starlink-what-to-know-trump"
+   "audioKB": 98,
+   "link": "https://www.bbc.co.uk/news/articles/cwzd6q630vjeo?at_medium=RSS&amp;at_campaign=rss"
   },
   {
    "id": "r5",
-   "country": "it",
-   "countryName": "意大利",
-   "source": "NPR World",
-   "date": "2026-10-18",
-   "title": "Pope Leo says he will gradually resume duties after cancer surgery",
-   "titleZh": "教皇利奥在癌症手术后表示将逐步恢复工作",
-   "body": "Pope Leo XIV thanked thousands of faithful in St. Peter's Square on Sunday for their prayers while he was hospitalized, and said he plans to gradually return to his usual duties.",
-   "bodyZh": "教皇利奥十四世周日在圣彼得广场感谢数千名信众为他住院期间祈祷，并表示计划逐步恢复日常事务。",
+   "country": "",
+   "countryName": "",
+   "topic": "艺术",
+   "source": "NPR Arts",
+   "date": "2026-10-25",
+   "title": "What makes a good spine-tingler? Stephen Graham Jones says it&apos;s all in the ending",
+   "titleZh": "怎样才算好看的恐怖故事？斯蒂芬·格雷厄姆·琼斯说关键在结局",
+   "body": "Horror writer Stephen Graham Jones says a good scary story depends on its ending. He also believes today's horror boom is driven by more than fear.",
+   "bodyZh": "恐怖作家斯蒂芬·格雷厄姆·琼斯说，一个好的恐怖故事取决于它的结局。他还认为，如今恐怖作品的流行不仅仅是因为恐惧。",
    "words": [
     {
-     "w": "gradually",
-     "zh": "逐渐地"
+     "w": "scary story",
+     "zh": "恐怖故事"
     },
     {
-     "w": "resume",
-     "zh": "恢复；重新开始"
+     "w": "depends on",
+     "zh": "取决于"
     },
     {
-     "w": "faithful",
-     "zh": "信众；虔诚的人"
+     "w": "boom",
+     "zh": "热潮；繁荣"
     }
    ],
    "audio": "data/reading/audio/r5.mp3",
-   "audioKB": 93,
-   "link": "https://www.npr.org/2026/10/18/g-s1-148654/pope-leo-says-he-will-gradually-resume-duties-after-cancer-surgery"
+   "audioKB": 97,
+   "link": "https://www.npr.org/2026/10/25/nx-s1-6007348/what-makes-a-good-spine-tingler-stephen-graham-jones-says-its-all-in-the-ending"
   },
   {
    "id": "r6",
-   "country": "ca",
-   "countryName": "加拿大",
-   "source": "NPR World",
-   "date": "2026-10-18",
-   "title": "Carney says 4 service members killed and dozens injured in fire at Alberta military base",
-   "titleZh": "卡尼：阿尔伯塔军事基地火灾致 4 名军人死亡、数十人受伤",
-   "body": "Canadian Prime Minister Mark Carney described the incident as one of the worst peacetime tragedies for Canada's military on domestic soil.",
-   "bodyZh": "加拿大总理马克·卡尼称，这是加拿大军队在本土和平时期遭遇的最严重悲剧之一。",
+   "country": "",
+   "countryName": "",
+   "topic": "科技",
+   "source": "NPR Tech",
+   "date": "2026-10-24",
+   "title": "AI found the flaw. Hackers found the leak: The race to save &apos;PHP2SHELL&apos;",
+   "titleZh": "AI发现了漏洞，黑客发现了泄露：拯救“PHP2SHELL”的竞赛",
+   "body": "AI found a security flaw in a part of the internet called PHP2SHELL. Researchers hurried to fix it, but news of the problem leaked. Hackers then moved in quickly.",
+   "bodyZh": "AI在互联网架构中一个名为 PHP2SHELL 的部分发现了一个安全漏洞。研究人员赶紧修复它，但问题的消息泄露了。黑客随后迅速介入。",
    "words": [
     {
-     "w": "service member",
-     "zh": "军人；服役人员"
+     "w": "security flaw",
+     "zh": "安全漏洞"
     },
     {
-     "w": "peacetime",
-     "zh": "和平时期"
+     "w": "leaked",
+     "zh": "泄露了"
     },
     {
-     "w": "tragedy",
-     "zh": "悲剧"
+     "w": "moved in",
+     "zh": "介入；趁虚而入"
     }
    ],
    "audio": "data/reading/audio/r6.mp3",
-   "audioKB": 86,
-   "link": "https://www.npr.org/2026/10/18/nx-s1-6007276/fire-alberta-deadly-canada-military-base"
+   "audioKB": 119,
+   "link": "https://www.npr.org/2026/10/24/nx-s1-6012327/ai-found-the-flaw-hackers-found-the-leak-the-race-to-save-php2shell"
   }
  ]
 }
