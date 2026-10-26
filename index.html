@@ -49,6 +49,7 @@
 <link rel="stylesheet" href="css/theme.css">
   <link rel="stylesheet" href="css/design-system.css">
   <link rel="stylesheet" href="css/design-v2.css">
+  <link rel="stylesheet" href="css/reading.css">
 </head>
 <body>
 
@@ -227,7 +228,16 @@
 
     <!-- ============ 学习 ============ -->
     <section class="screen" id="screen-learn">
-      <div class="path-head">
+            <button class="reading-entry" id="btnReading" type="button">
+        <span class="re-ico" data-icon="book"></span>
+        <span class="re-main">
+          <b>每日阅读</b>
+          <em>按国家挑热点新闻，带中文翻译与朗读</em>
+        </span>
+        <span class="re-go">上滑查看 ›</span>
+      </button>
+
+<div class="path-head">
         <h2>学习路径</h2>
         <span>跟着小鸟环游世界</span>
       </div>
@@ -555,6 +565,7 @@
   <script src="js/app.js"></script>
 <script src="js/core.js"></script>
 <script src="js/quiz.js"></script>
+  <script src="js/reading.js"></script>
 
   <!-- 导入确认弹层 -->
   <div class="imp-mask" id="importSheet">
@@ -569,5 +580,14 @@
       <p class="imp-tip">合并会保留两边最完整的记录；覆盖会用备份文件替换当前全部进度。</p>
     </div>
   </div>
+
+<!-- ============ 每日阅读（竖屏翻页） ============ -->
+<div id="readingFeed" aria-hidden="true">
+  <div class="rd-top">
+    <div id="readingProgress"></div>
+    <button id="readingClose" type="button" aria-label="关闭">✕</button>
+  </div>
+  <div id="readingTrack"></div>
+</div>
 </body>
 </html>

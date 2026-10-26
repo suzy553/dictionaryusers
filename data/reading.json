@@ -1,0 +1,175 @@
+{
+ "updated": "2026-10-19 15:36",
+ "date": "2026-10-19",
+ "source": "NPR World",
+ "items": [
+  {
+   "id": "r1",
+   "country": "us",
+   "countryName": "美国",
+   "source": "NPR World",
+   "date": "2026-10-19",
+   "title": "Trump endorses embattled Israeli Prime Minister Benjamin Netanyahu for reelection",
+   "titleZh": "特朗普公开支持内塔尼亚胡连任以色列总理",
+   "body": "Trump said in a post on social media that Netanyahu \"has been a Great Warrior Prime Minister, and an even greater Partner for Peace in combatting the Islamic Republic of Iran.\"",
+   "bodyZh": "特朗普在社交媒体上发文称，内塔尼亚胡“是一位伟大的战时总理，在对抗伊朗伊斯兰共和国的过程中，更是出色的和平伙伴”。",
+   "words": [
+    {
+     "w": "embattled",
+     "zh": "四面楚歌的；陷入困境的"
+    },
+    {
+     "w": "endorse",
+     "zh": "公开支持；背书"
+    },
+    {
+     "w": "warrior",
+     "zh": "战士"
+    }
+   ],
+   "audio": "data/reading/audio/r1.mp3",
+   "audioKB": 94,
+   "link": "https://www.npr.org/2026/10/19/g-s1-148731/trump-endorses-netanyahu"
+  },
+  {
+   "id": "r2",
+   "country": "in",
+   "countryName": "印度",
+   "source": "NPR World",
+   "date": "2026-10-18",
+   "title": "Political rivals implicated under Pakistan's anti-terror law",
+   "titleZh": "巴基斯坦以反恐法起诉多名政治对手",
+   "body": "Pakistan's political showdown continues as more opposition figures are implicated under Pakistan's anti-terror law.",
+   "bodyZh": "巴基斯坦的政治对峙仍在持续，越来越多反对派人士被以该国反恐法立案。",
+   "words": [
+    {
+     "w": "rival",
+     "zh": "对手；竞争者"
+    },
+    {
+     "w": "implicate",
+     "zh": "使牵连其中；涉嫌"
+    },
+    {
+     "w": "showdown",
+     "zh": "摊牌；最后对决"
+    }
+   ],
+   "audio": "data/reading/audio/r2.mp3",
+   "audioKB": 73,
+   "link": "https://www.npr.org/2026/10/18/nx-s1-6004833/political-rivals-implicated-under-pakistans-anti-terror-law"
+  },
+  {
+   "id": "r3",
+   "country": "ae",
+   "countryName": "阿联酋",
+   "source": "NPR World",
+   "date": "2026-10-18",
+   "title": "'Life is absolutely brutal in Gaza,' says World Food Programme head",
+   "titleZh": "世界粮食计划署：加沙的生活“极其残酷”",
+   "body": "The UN's World Food Programme says 1.4 million people in Gaza are suffering acute food shortages and that funding gaps are forcing cutbacks in critical aid, despite the U.S. broker…",
+   "bodyZh": "联合国世界粮食计划署表示，加沙有 140 万人正遭受严重粮食短缺，资金缺口迫使该机构削减关键援助。",
+   "words": [
+    {
+     "w": "brutal",
+     "zh": "残酷的；无情的"
+    },
+    {
+     "w": "acute",
+     "zh": "严重的；急性的"
+    },
+    {
+     "w": "cutback",
+     "zh": "削减；缩减"
+    }
+   ],
+   "audio": "data/reading/audio/r3.mp3",
+   "audioKB": 98,
+   "link": "https://www.npr.org/2026/10/18/nx-s1-6001709/life-is-absolutely-brutal-in-gaza-says-world-food-programme-head"
+  },
+  {
+   "id": "r4",
+   "country": "de",
+   "countryName": "德国",
+   "source": "NPR World",
+   "date": "2026-10-18",
+   "title": "Ukraine and the U.S. are at odds over Starshield. Here's what to know",
+   "titleZh": "乌克兰与美国就“星盾”服务产生分歧",
+   "body": "Ukrainian President Volodymyr Zelenskyy has said he believes the U.S. government is behind his military's loss of normal access to the key satellite communications service used by…",
+   "bodyZh": "乌克兰总统泽连斯基表示，他认为美国政府在背后导致乌军失去了对一项关键卫星通信服务的正常访问权。",
+   "words": [
+    {
+     "w": "at odds",
+     "zh": "意见不合；有分歧"
+    },
+    {
+     "w": "satellite",
+     "zh": "卫星"
+    },
+    {
+     "w": "access",
+     "zh": "访问权；使用权"
+    }
+   ],
+   "audio": "data/reading/audio/r4.mp3",
+   "audioKB": 96,
+   "link": "https://www.npr.org/2026/10/18/nx-s1-6007382/ukraine-us-starshield-starlink-what-to-know-trump"
+  },
+  {
+   "id": "r5",
+   "country": "it",
+   "countryName": "意大利",
+   "source": "NPR World",
+   "date": "2026-10-18",
+   "title": "Pope Leo says he will gradually resume duties after cancer surgery",
+   "titleZh": "教皇利奥在癌症手术后表示将逐步恢复工作",
+   "body": "Pope Leo XIV thanked thousands of faithful in St. Peter's Square on Sunday for their prayers while he was hospitalized, and said he plans to gradually return to his usual duties.",
+   "bodyZh": "教皇利奥十四世周日在圣彼得广场感谢数千名信众为他住院期间祈祷，并表示计划逐步恢复日常事务。",
+   "words": [
+    {
+     "w": "gradually",
+     "zh": "逐渐地"
+    },
+    {
+     "w": "resume",
+     "zh": "恢复；重新开始"
+    },
+    {
+     "w": "faithful",
+     "zh": "信众；虔诚的人"
+    }
+   ],
+   "audio": "data/reading/audio/r5.mp3",
+   "audioKB": 93,
+   "link": "https://www.npr.org/2026/10/18/g-s1-148654/pope-leo-says-he-will-gradually-resume-duties-after-cancer-surgery"
+  },
+  {
+   "id": "r6",
+   "country": "ca",
+   "countryName": "加拿大",
+   "source": "NPR World",
+   "date": "2026-10-18",
+   "title": "Carney says 4 service members killed and dozens injured in fire at Alberta military base",
+   "titleZh": "卡尼：阿尔伯塔军事基地火灾致 4 名军人死亡、数十人受伤",
+   "body": "Canadian Prime Minister Mark Carney described the incident as one of the worst peacetime tragedies for Canada's military on domestic soil.",
+   "bodyZh": "加拿大总理马克·卡尼称，这是加拿大军队在本土和平时期遭遇的最严重悲剧之一。",
+   "words": [
+    {
+     "w": "service member",
+     "zh": "军人；服役人员"
+    },
+    {
+     "w": "peacetime",
+     "zh": "和平时期"
+    },
+    {
+     "w": "tragedy",
+     "zh": "悲剧"
+    }
+   ],
+   "audio": "data/reading/audio/r6.mp3",
+   "audioKB": 86,
+   "link": "https://www.npr.org/2026/10/18/nx-s1-6007276/fire-alberta-deadly-canada-military-base"
+  }
+ ]
+}
