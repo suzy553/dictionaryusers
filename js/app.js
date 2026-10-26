@@ -1002,6 +1002,7 @@ function bookWaterHTML(b) {
   return `<span class="book-water" aria-hidden="true">${bookArtSVG(a.art, a.ink)}</span>`;
 }
 function renderBooks() {
+  try { if (window.XYReading && window.XYReading.renderStrip) window.XYReading.renderStrip(); } catch (e) { }
   const grid = $('#bookGrid');
   grid.innerHTML = '';
   bookIndex.slice().sort((a, b) => a.count - b.count).forEach(b => {

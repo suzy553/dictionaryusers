@@ -219,15 +219,6 @@
         </div>
 
         </div>
-              <button class="reading-entry" id="btnArchive" type="button">
-        <span class="re-ico" data-icon="book"></span>
-        <span class="re-main">
-          <b>往期文章</b>
-          <em>按日期回看之前读过的内容</em>
-        </span>
-        <span class="re-go">查看 ›</span>
-      </button>
-
 <button class="btn btn-primary btn-3d sheet-cta" id="btnStart">
           <span id="ctaLabel">去读今天的文章</span>
         </button>
@@ -266,9 +257,21 @@
     <!-- ============ 书架 ============ -->
     <section class="screen" id="screen-books">
       <h2 class="page-title">书架</h2>
-      <p class="page-sub">选一本正在背的词书，随时切换</p>
+      <p class="page-sub">往日文章与词书，都在这里</p>
       <p class="page-tip">学习进度按<b>单词</b>记录：同一个词在任何词书里学会，换书后也算已学。</p>
+      
+      <div class="bs-sec-head">
+        <b>往期文章</b>
+        <span id="bsArchCount"></span>
+      </div>
+      <div class="bs-arch" id="bsArchiveStrip"></div>
+
+      <div class="bs-sec-head">
+        <b>词书</b>
+        <span>换一本随时切换</span>
+      </div>
       <div id="bookGrid" class="book-grid"></div>
+
     </section>
 
     <!-- ============ 复习 ============ -->

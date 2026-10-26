@@ -400,7 +400,9 @@
     await loadArchive();
     var panel = el('readingArchive');
     if (!panel) return;
-    var items = (ARCH && ARCH.items) || [];
+    var items = ((ARCH && ARCH.items) || []).filter(function (x) {
+      return (x.sentences || []).length >= 4;
+    });
     var byDate = {};
     items.forEach(function (it) {
       (byDate[it.date] = byDate[it.date] || []).push(it);
@@ -440,6 +442,48 @@
     var p = el('readingArchive');
     if (p) p.classList.remove('is-open');
     document.documentElement.classList.remove('overlay-open');
+  }
+
+
+  /* ---------------- 书架页：往期文章横向卡 ---------------- */
+  async function renderStrip() {
+    var box = el('bsArchiveStrip');
+    if (!box) return;
+    await loadArchive();
+    var all = (ARCH && ARCH.items) || [];
+    /* 只显示新版长文（旧的短摘要不进列表） */
+    var items = all.filter(function (x) { return (x.sentences || []).length >= 4; });
+    var cnt = el('bsArchCount');
+    if (cnt) cnt.textContent = items.length ? (items.length + ' 篇 · 每日更新') : '';
+    if (!items.length) {
+      box.innerHTML = '<div class="bs-empty">还没有往期文章</div>';
+      return;
+    }
+    var recent = items.slice(0, 8);
+    box.innerHTML = recent.map(function (it) {
+      var chip = it.countryName
+        ? '<span class="bs-chip">' + esc(it.countryName) + '</span>'
+        : '<span class="bs-chip is-topic">' + esc(it.topic || '阅读') + '</span>';
+      return '<button class="bs-card" data-id="' + esc(it.id) + '">' +
+          '<span class="bs-card-top">' + chip +
+            '<span class="bs-date">' + esc((it.date || '').slice(5)) + '</span></span>' +
+          '<span class="bs-card-zh">' + esc(it.titleZh || it.title) + '</span>' +
+          '<span class="bs-card-en">' + esc(it.title) + '</span>' +
+          '<span class="bs-card-foot"><span>' + (it.words || 0) + ' 词</span>' +
+            '<span class="bs-card-more">阅读 ›</span></span>' +
+        '</button>';
+    }).join('') +
+      '<button class="bs-all" data-all="1"><span>查看全部</span><span>' + items.length + ' 篇 ›</span></button>';
+
+    if (!box.dataset.bound) {
+      box.dataset.bound = '1';
+      box.addEventListener('click', function (e) {
+        var all = e.target.closest('[data-all]');
+        if (all) { openArchive(); return; }
+        var card = e.target.closest('.bs-card');
+        if (card) openArticle(card.dataset.id);
+      });
+    }
   }
 
   /* ---------------- 单篇阅读 ---------------- */
@@ -581,6 +625,7 @@
 
   window.XYReading = {
     prefetch: loadFeed,
+    renderStrip: renderStrip,
     open: open,
     close: close,
     openArchive: openArchive,

@@ -725,3 +725,142 @@
 .rd-inner{
   padding-top: calc(env(safe-area-inset-top, 0px) + 54px) !important;
 }
+
+
+/* ==========================================================================
+   书架页：往期文章区（横向滑动卡）
+   ========================================================================== */
+.bs-sec-head{
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin: 26px 0 12px;
+}
+.bs-sec-head b{
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: .3px;
+}
+.bs-sec-head span{
+  font-size: 12px;
+  color: var(--ink-3);
+}
+
+.bs-arch{
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 2px 2px 14px;
+  margin: 0 -2px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.bs-arch::-webkit-scrollbar{ display: none; }
+
+.bs-card{
+  flex: 0 0 168px;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px 14px 12px;
+  border-radius: 16px;
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  text-align: left;
+  box-shadow: 0 1px 2px rgba(27,42,34,.04);
+}
+.bs-card:active{ transform: scale(.985); }
+
+.bs-card-top{
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.bs-chip{
+  font-size: 10.5px;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 6px;
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+.bs-chip.is-topic{ color: #7a5b1f; background: #f6efe0; }
+.bs-date{
+  font-size: 10.5px;
+  color: var(--ink-3);
+  margin-left: auto;
+}
+
+.bs-card-zh{
+  font-size: 14px;
+  line-height: 1.45;
+  font-weight: 800;
+  color: var(--ink);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.bs-card-en{
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: var(--ink-3);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.bs-card-foot{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2px;
+  font-size: 11px;
+  color: var(--ink-3);
+}
+.bs-card-more{
+  font-weight: 800;
+  color: var(--accent);
+}
+
+/* 末尾「查看全部」 */
+.bs-all{
+  flex: 0 0 132px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border-radius: 16px;
+  border: 1px dashed var(--rule);
+  background: transparent;
+  color: var(--ink-3);
+  font-size: 12.5px;
+  font-weight: 700;
+}
+.bs-empty{
+  padding: 18px 4px;
+  font-size: 12.5px;
+  color: var(--ink-3);
+}
+
+/* 卡片收窄后微调字号 */
+.bs-card{ padding: 12px 12px 10px !important; border-radius: 14px !important; }
+.bs-card-zh{ font-size: 13px !important; line-height: 1.42 !important; }
+.bs-card-en{ font-size: 11px !important; }
+.bs-arch{ padding-right: 4px; }
+
+/* 卡片底部：词数与「阅读」拉开距离 */
+.bs-card-foot{
+  margin-top: 6px !important;
+  gap: 8px;
+}
+.bs-card-foot span:first-child{
+  font-size: 10.5px;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+.bs-card-more{ font-size: 11px; white-space: nowrap; }

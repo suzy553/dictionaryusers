@@ -9,7 +9,7 @@
     python scripts/daily_reading.py --no-ai      # 不调 AI，仅抓取（调试）
     python scripts/daily_reading.py --limit 3    # 只做 3 篇
 """
-import asyncio, io, json, os, re, sys, time, urllib.request
+import asyncio, html, io, json, os, re, sys, time, urllib.request
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 APP = ROOT if os.path.isdir(os.path.join(ROOT, "data")) else os.path.join(ROOT, "ielts-bookshelf")
@@ -58,6 +58,19 @@ COUNTRY_HINTS = [
     (r"\bNew Zealand\b", "nz", "新西兰"),
 ]
 
+
+
+
+def _unescape(v):
+    """RSS 里的 &apos; &amp; 等实体解码"""
+    if not isinstance(v, str):
+        return v
+    for _ in range(3):
+        nv = html.unescape(v)
+        if nv == v:
+            break
+        v = nv
+    return v
 
 def http_get(url, timeout=25):
     req = urllib.request.Request(url, headers={
@@ -299,6 +312,9 @@ async def main():
         code, cname = guess_country(it["title"] + " " + full_en, a.get("country") or "")
         words = sum(len(s["en"].split()) for s in sents)
 
+        def _u(x):
+            return _unescape(x)
+
         items_out.append({
             "id": rid,
             "date": it["date"],
@@ -306,8 +322,8 @@ async def main():
             "topic": it["topic"],
             "country": code,
             "countryName": cname,
-            "title": a.get("title_en") or it["title"],
-            "titleZh": a.get("title_zh", ""),
+            "title": _unescape(a.get("title_en") or it["title"]),
+            "titleZh": _unescape(a.get("title_zh", "")),
             "sentences": sents,
             "glossary": a.get("glossary") or [],
             "words": words,
