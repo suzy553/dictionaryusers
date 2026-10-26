@@ -148,7 +148,7 @@
       for (var i = 0; i < opens.length; i++) opens[i].remove();
       var on = card.querySelectorAll('.rd-s.is-on');
       for (var j = 0; j < on.length; j++) on[j].classList.remove('is-on');
-      if (btn) btn.textContent = '翻译全文';
+      if (btn) { btn.textContent = '译'; btn.classList.remove('is-on'); }
       return;
     }
     var sents = card.querySelectorAll('.rd-s');
@@ -161,7 +161,7 @@
       sents[k].parentNode.insertBefore(d, sents[k].nextSibling);
       sents[k].classList.add('is-on');
     }
-    if (btn) btn.textContent = '收起翻译';
+    if (btn) { btn.textContent = '译'; btn.classList.add('is-on'); }
   }
 
   /* 轻点识别：手机上下滑会被当成滚动，click 常常不触发 */
@@ -492,6 +492,7 @@
     on('btnReading', open);
     on('readingClose', close);
     on('readingArchiveBtn', openArchive);
+    on('btnArchive', openArchive);
     on('raClose', closeArchive);
     on('raArticleClose', closeArticle);
     on('rdPopCloseWrap', function (e) { if (e.target.id === 'rdWordPop') hideWordPop(); });
@@ -545,7 +546,7 @@
   if (new URLSearchParams(location.search).get('dbgallzh') === '1') {
     setTimeout(function () {
       try {
-        var b = document.querySelector('.rd-allbtn');
+        var b = document.querySelector('.rd-hbtn-zh') || document.querySelector('.rd-allbtn');
         if (!b) { document.title = 'NO-BTN'; return; }
         var r = b.getBoundingClientRect();
         var opt = { bubbles: true, clientX: r.left + 4, clientY: r.top + 4 };
@@ -554,10 +555,28 @@
         setTimeout(function () {
           var n = document.querySelectorAll('.rd-card .rd-szh').length;
           var first = document.querySelector('.rd-szh');
-          document.title = 'zh=' + n + ' first=' + (first ? first.textContent.slice(0, 24) : 'none');
+          var btn = document.querySelector('.rd-hbtn-zh');
+          document.title = 'zh=' + n + ' btnOn=' + (btn ? btn.classList.contains('is-on') : '?') + ' first=' + (first ? first.textContent.slice(0, 18) : 'none');
         }, 400);
       } catch (e) { document.title = 'ERR:' + e.message; }
     }, 2400);
+  }
+
+
+  if (new URLSearchParams(location.search).get('dbgscroll') === '1') {
+    setTimeout(function () {
+      try {
+        var t = document.getElementById('readingTrack');
+        var c = document.querySelector('.rd-card');
+        var inner = c ? c.querySelector('.rd-inner') : null;
+        var cs = getComputedStyle(t);
+        document.title = 'trackPos=' + cs.position +
+          ' clientH=' + t.clientHeight + ' scrollH=' + t.scrollHeight +
+          ' canScroll=' + (t.scrollHeight > t.clientHeight + 4) +
+          ' innerScroll=' + (inner ? inner.scrollHeight + '/' + inner.clientHeight : '?') +
+          ' cardH=' + (c ? c.getBoundingClientRect().height : '?');
+      } catch (e) { document.title = 'ERR:' + e.message; }
+    }, 2200);
   }
 
   window.XYReading = {

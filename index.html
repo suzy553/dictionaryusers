@@ -219,7 +219,16 @@
         </div>
 
         </div>
-        <button class="btn btn-primary btn-3d sheet-cta" id="btnStart">
+              <button class="reading-entry" id="btnArchive" type="button">
+        <span class="re-ico" data-icon="book"></span>
+        <span class="re-main">
+          <b>往期文章</b>
+          <em>按日期回看之前读过的内容</em>
+        </span>
+        <span class="re-go">查看 ›</span>
+      </button>
+
+<button class="btn btn-primary btn-3d sheet-cta" id="btnStart">
           <span id="ctaLabel">去读今天的文章</span>
         </button>
       </section>
@@ -585,11 +594,7 @@
 <div id="readingFeed" aria-hidden="true">
   <img id="readingBg" src="data/bg-day.jpg" alt="">
   <div id="readingVeil"></div>
-  <div class="rd-top">
-    <div id="readingProgress"></div>
-    <button id="readingArchiveBtn" type="button" aria-label="文章汇总">目录</button>
-    <button id="readingClose" type="button" aria-label="关闭">✕</button>
-  </div>
+  <button id="readingClose" class="rd-float-close" type="button" aria-label="关闭">✕</button>
   <div id="readingTrack"></div>
 </div>
 
