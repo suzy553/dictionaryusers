@@ -281,21 +281,14 @@
     return audioEl;
   }
 
-  /* 首次交互时静音播放 0.01 秒解锁音频通道（iOS / QQ 浏览器必需） */
+  /* 首次交互解锁音频：用 AudioContext.resume()，不去播放空音频（会触发 error 打断真正播放） */
+  var unlockCtx = null;
   function unlockAudio() {
-    if (unlocked) return;
-    var a = getAudio();
-    if (!a) return;
-    unlocked = true;
     try {
-      a.muted = true;
-      var p = a.play();
-      if (p && p.then) {
-        p.then(function () { a.pause(); a.currentTime = 0; a.muted = false; })
-         .catch(function () { a.muted = false; });
-      } else {
-        a.pause(); a.muted = false;
-      }
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return;
+      if (!unlockCtx) unlockCtx = new AC();
+      if (unlockCtx.state === 'suspended') unlockCtx.resume();
     } catch (e) { }
   }
 
@@ -354,7 +347,6 @@
       return;
     }
 
-    unlockAudio();
     playingId = id;
     if (btn) btn.classList.add('is-loading');
 
@@ -366,16 +358,18 @@
     }
 
     var p = a.play();
-    /* 2.5 秒还没缓冲出数据 → 走系统朗读 */
+    /* 只有「确实无法播放」才降级；慢网继续等，不能把正常播放掐掉 */
     clearTimeout(window.__rdAudioGuard);
     window.__rdAudioGuard = setTimeout(function () {
-      if (playingId === id && a.readyState < 2) {
+      if (playingId !== id) return;
+      var broken = (a.error && a.error.code) || a.networkState === 3; /* 3 = NO_SOURCE */
+      if (broken) {
         try { a.pause(); } catch (e) { }
         playingId = null;
         setBtnsPlaying(id, false);
         ttsFallback(item);
       }
-    }, 2500);
+    }, 8000);
 
     if (p && p.then) {
       p.then(function () {
@@ -389,6 +383,23 @@
         else msg('播放失败：' + (n || '未知错误'));
       });
     }
+  }
+
+
+  /* 预加载第一篇的音频，点播放时能立刻出声 */
+  function preloadFirst() {
+    try {
+      var first = ((FEED && FEED.items) || [])[0];
+      if (!first || !first.audio) return;
+      var a = getAudio();
+      if (!a) return;
+      if (a.dataset.src !== first.audio) {
+        a.dataset.src = first.audio;
+        a.src = first.audio;
+        a.preload = 'auto';
+        try { a.load(); } catch (e) { }
+      }
+    } catch (e) { }
   }
 
   function bindAudioEvents() {
@@ -417,6 +428,108 @@
       var bs = document.querySelectorAll('[data-act="play"]');
       for (var i = 0; i < bs.length; i++) bs[i].classList.remove('is-loading');
     });
+  }
+
+
+  /* ---------------- 音频自检（用户设备上实测） ---------------- */
+  async function runAudioCheck() {
+    var box = el('rdAudioOut');
+    if (!box) return;
+    var lines = [];
+    function log(t) { lines.push(t); box.textContent = lines.join('\n'); }
+
+    box.textContent = '检测中…';
+    lines = [];
+
+    /* 0) 测试音：判断这台设备能不能出声 */
+    try {
+      var ta = el('rdAudio') || new Audio();
+      ta.src = 'data/reading/audio/tone.wav';
+      ta.muted = false;
+      ta.volume = 1;
+      var toneP = ta.play();
+      var toneRes = await Promise.race([
+        (toneP && toneP.then ? toneP.then(function () { return 'ok'; })
+                             : Promise.resolve('ok')),
+        new Promise(function (res) { setTimeout(function () { res('timeout'); }, 2500); })
+      ]);
+      log('0) 测试音: ' + toneRes + ' · readyState=' + ta.readyState +
+          ' · 播放到=' + ta.currentTime.toFixed(2) + 's');
+      setTimeout(function () { try { ta.pause(); } catch (e) { } }, 1200);
+    } catch (e) {
+      log('0) 测试音异常: ' + e.message);
+    }
+
+    /* 1) 网络 */
+    var url = '';
+    try {
+      await loadFeed();
+      url = (((FEED && FEED.items) || [])[0] || {}).audio || '';
+    } catch (e) { }
+    log('1) 音频地址: ' + (url || '(无)'));
+    if (!url) { log('   没有可测的音频'); return; }
+
+    var buf = null;
+    try {
+      var r = await fetch(url, { cache: 'no-store' });
+      buf = await r.arrayBuffer();
+      log('2) 下载: HTTP ' + r.status + ' · ' + (r.headers.get('content-type') || '?') +
+          ' · ' + Math.round(buf.byteLength / 1024) + 'KB');
+    } catch (e) {
+      log('2) 下载失败: ' + e.message);
+      return;
+    }
+
+    /* 2) 解码（带 5 秒超时，避免无音频设备时卡死） */
+    log('3) 解码中…');
+    try {
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) {
+        log('3) 解码: 浏览器不支持 AudioContext');
+      } else {
+        var ctx = new AC();
+        var decoded = await Promise.race([
+          ctx.decodeAudioData(buf.slice(0)).then(function (ab) { return ab; }),
+          new Promise(function (res) { setTimeout(function () { res(null); }, 5000); })
+        ]);
+        if (decoded) {
+          log('3) 解码: 成功 · 时长 ' + decoded.duration.toFixed(1) + 's · ' + decoded.sampleRate + 'Hz');
+        } else {
+          log('3) 解码: 超时或无音频设备（不影响 <audio> 播放尝试）');
+        }
+        ctx.close && ctx.close();
+      }
+    } catch (e) {
+      log('3) 解码失败: ' + (e && e.message ? e.message : e));
+    }
+
+    /* 3) 用 <audio> 播 1 秒 */
+    try {
+      var a = el('rdAudio') || new Audio();
+      a.src = url;
+      a.muted = false;
+      a.volume = 1;
+      var played = false;
+      var p = await Promise.race([
+        a.play().then(function () { played = true; return 'ok'; }).catch(function (e) { return 'err:' + e.name; }),
+        new Promise(function (res) { setTimeout(function () { res('timeout'); }, 3000); })
+      ]);
+      log('4) 播放: ' + (played ? '已开始' : p) + ' · readyState=' + a.readyState +
+          ' · 当前时间=' + a.currentTime.toFixed(2) + 's' +
+          ' · error=' + (a.error ? a.error.code : 0));
+      try { a.pause(); } catch (e) { }
+    } catch (e) {
+      log('4) 播放异常: ' + e.message);
+    }
+
+    /* 4) 系统朗读 */
+    try {
+      log('5) 系统朗读: ' + ('speechSynthesis' in window
+        ? ('可用 · 语音数 ' + (speechSynthesis.getVoices() || []).length)
+        : '不可用'));
+    } catch (e) { log('5) 系统朗读异常'); }
+
+    log('— 把以上内容截图发给开发 —');
   }
 
   /* ---------------- 事件 ---------------- */
@@ -507,6 +620,7 @@
     render();
     var track = el('readingTrack');
     if (track) { bindTrack(track); bindAudioEvents(); track.scrollTop = 0; }
+    preloadFirst();
     idx = 0;
     renderProgress();
   }
@@ -810,9 +924,15 @@
     }, 2400);
   }
 
+
+  if (new URLSearchParams(location.search).get('dbgdiag') === '1') {
+    setTimeout(function () { runAudioCheck(); }, 2000);
+  }
+
   window.XYReading = {
     prefetch: loadFeed,
     renderStrip: renderStrip,
+    audioCheck: runAudioCheck,
     open: open,
     close: close,
     openArchive: openArchive,

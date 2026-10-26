@@ -875,3 +875,19 @@
   0%, 100% { opacity: .55; }
   50% { opacity: 1; }
 }
+
+
+/* 音频自检输出 */
+.audio-out{
+  margin: 8px 0 0;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #14201a;
+  color: #d8e6de;
+  font-size: 11.5px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-break: break-all;
+  max-height: 320px;
+  overflow: auto;
+}

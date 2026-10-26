@@ -2220,6 +2220,10 @@ function bindSettings() {
   };
   $('#inpRemind').onchange = e => { state.settings.reminder = e.target.value || '07:00'; saveState(); renderSettings(); };
 
+  const btnAudioChk = $('#btnAudioCheck');
+  if (btnAudioChk) btnAudioChk.onclick = function () {
+    if (window.XYReading && window.XYReading.audioCheck) window.XYReading.audioCheck();
+  };
   $('#btnIcs').onclick = downloadICS;
   $('#btnNotify').onclick = enableNotify;
 
