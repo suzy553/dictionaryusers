@@ -305,6 +305,7 @@ async function finishOnboard(skipped) {
   saveState();
   const box = document.getElementById('onboard');
   if (box) box.classList.remove('is-open');
+  prefetchReading();
   renderAll();
   /* 设置完成后回到首页，由用户自己点「开始今天的学习」 */
   go('home');
@@ -1408,6 +1409,13 @@ function startNodeSession(info) {
   startSession('node', fresh.length ? fresh : info.ws);
 }
 
+
+function prefetchReading() {
+  try {
+    if (window.XYReading && window.XYReading.prefetch) window.XYReading.prefetch();
+  } catch (e) { }
+}
+
 function renderAll() {
   renderHome();
   requestAnimationFrame(syncScene);
@@ -2364,6 +2372,7 @@ function go(tab) {
   if (tab === 'learn' && window.XYReading && !window.__skipAutoRead) {
     window.__skipAutoRead = true;
     setTimeout(function () { window.__skipAutoRead = false; }, 800);
+    /* 立刻打开，避免先渲染学习页再被盖住造成闪跳 */
     try { window.XYReading.open(); } catch (e) { }
   }
 
@@ -2395,9 +2404,13 @@ function bindEvents() {
     startNodeSession(info);
   };
 
-  $('#btnStart').onclick = () => startSession(remainingNew() > 0 ? 'learn' : 'review');
-  const tN = $('#taskNew'); if (tN) tN.onclick = () => startSession('learn');
-  const tR = $('#taskRev'); if (tR) tR.onclick = () => startSession('review');
+  $('#btnStart').onclick = () => {
+    /* 纯阅读模式：主按钮直接进每日阅读 */
+    if (window.XYReading) { window.XYReading.open(); return; }
+    startSession(remainingNew() > 0 ? 'learn' : 'review');
+  };
+  const tN = $('#taskNew'); if (tN) tN.onclick = () => { if (window.XYReading) window.XYReading.open(); else startSession('learn'); };
+  const tR = $('#taskRev'); if (tR) tR.onclick = () => { if (window.XYReading) window.XYReading.open(); else startSession('review'); };
   const tbBtn = $('#tbBook'); if (tbBtn) tbBtn.onclick = () => go('books');
   // 复习卡片：进入词表页（右上角"开始"再进单词卡）
   const rvW = $('#rvCardWords'); if (rvW) rvW.onclick = () => openReviewDetail('words');

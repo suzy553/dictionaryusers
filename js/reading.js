@@ -84,7 +84,10 @@
           '<h2 class="rd-title">' + esc(it.title) + '</h2>' +
           (it.titleZh ? '<p class="rd-title-zh">' + esc(it.titleZh) + '</p>' : '') +
           '<div class="rd-body">' + sents + '</div>' +
-          '<div class="rd-tip">点句子看翻译 · 点单词查释义</div>' +
+          '<div class="rd-tools">' +
+            '<button class="rd-allbtn" data-act="allzh">翻译全文</button>' +
+            '<span class="rd-tip">点句子看翻译 · 点单词查释义</span>' +
+          '</div>' +
           '<div class="rd-foot">' +
             (it.audio
               ? '<button class="rd-play" data-act="play" data-id="' + esc(it.id) + '">' +
@@ -119,6 +122,51 @@
     var html = '';
     for (var i = 0; i < n; i++) html += '<i class="' + (i <= idx ? 'on' : '') + '"></i>';
     bar.innerHTML = html;
+  }
+
+
+  /* 全文翻译：一次展开/收起所有句子译文 */
+  function toggleAllZh(card, btn) {
+    var item = findItem(card);
+    if (!item) return;
+    var opens = card.querySelectorAll('.rd-szh');
+    if (opens.length) {
+      for (var i = 0; i < opens.length; i++) opens[i].remove();
+      var on = card.querySelectorAll('.rd-s.is-on');
+      for (var j = 0; j < on.length; j++) on[j].classList.remove('is-on');
+      if (btn) btn.textContent = '翻译全文';
+      return;
+    }
+    var sents = card.querySelectorAll('.rd-s');
+    for (var k = 0; k < sents.length; k++) {
+      var si = Number(sents[k].dataset.s);
+      var src = (item.sentences || [])[si] || {};
+      var d = document.createElement('div');
+      d.className = 'rd-szh';
+      d.textContent = src.zh || '（暂无翻译）';
+      sents[k].parentNode.insertBefore(d, sents[k].nextSibling);
+      sents[k].classList.add('is-on');
+    }
+    if (btn) btn.textContent = '收起翻译';
+  }
+
+  /* 轻点识别：手机上下滑会被当成滚动，click 常常不触发 */
+  function bindTap(elTarget, handler) {
+    var sx = 0, sy = 0, moved = false, active = false;
+    elTarget.addEventListener('pointerdown', function (e) {
+      active = true; moved = false; sx = e.clientX; sy = e.clientY;
+    }, { passive: true });
+    elTarget.addEventListener('pointermove', function (e) {
+      if (!active) return;
+      if (Math.abs(e.clientX - sx) > 8 || Math.abs(e.clientY - sy) > 8) moved = true;
+    }, { passive: true });
+    elTarget.addEventListener('pointerup', function (e) {
+      if (!active) return;
+      active = false;
+      if (moved) return;
+      handler(e);
+    });
+    elTarget.addEventListener('pointercancel', function () { active = false; });
   }
 
   /* ---------------- 逐句翻译 ---------------- */
@@ -234,28 +282,35 @@
   }
 
   /* ---------------- 事件 ---------------- */
+  function handleTap(e, scope) {
+    var act = e.target.closest('[data-act]');
+    if (act) {
+      var a = act.dataset.act;
+      if (a === 'play') { togglePlay(act.dataset.id, act, scope === 'archive' ? ((ARCH && ARCH.items) || []) : null); return; }
+      if (a === 'back') { closeArticle(); return; }
+      if (a === 'next') { nextCard(); return; }
+      if (a === 'allzh') { toggleAllZh(act.closest('.rd-card'), act); return; }
+      return;
+    }
+    var w = e.target.closest('.rd-w');
+    if (w) {
+      var card = w.closest('.rd-card');
+      showWordPop(w.textContent, lookup(findItem(card), w.textContent));
+      return;
+    }
+    var sen = e.target.closest('.rd-s');
+    if (sen) { toggleSentence(sen); return; }
+  }
+
   function bindTrack(track) {
     if (track.dataset.bound) return;
     track.dataset.bound = '1';
 
+    bindTap(track, function (e) { handleTap(e, 'feed'); });
+
     track.addEventListener('click', function (e) {
-      var act = e.target.closest('[data-act]');
-      if (act) {
-        if (act.dataset.act === 'play') { togglePlay(act.dataset.id, act); return; }
-        if (act.dataset.act === 'back') { closeArticle(); return; }
-        if (act.dataset.act === 'next') { nextCard(); return; }
-        return;
-      }
-      var w = e.target.closest('.rd-w');
-      if (w) {
-        e.stopPropagation();
-        var card = w.closest('.rd-card');
-        var item = findItem(card);
-        showWordPop(w.textContent, lookup(item, w.textContent));
-        return;
-      }
-      var s = e.target.closest('.rd-s');
-      if (s) { toggleSentence(s); return; }
+      /* 交给 bindTap 统一处理，这里只兜底键盘/辅助点击 */
+      if (e.detail === 0) handleTap(e, 'feed');
     });
 
     var raf = null;
@@ -297,9 +352,10 @@
   async function open() {
     var panel = el('readingFeed');
     if (!panel) return;
-    await loadFeed();
+    /* 先盖住整屏，再加载数据，避免露出下面的学习页造成闪跳 */
     panel.classList.add('is-open');
     document.documentElement.classList.add('overlay-open');
+    await loadFeed();
     render();
     var track = el('readingTrack');
     if (track) { bindTrack(track); track.scrollTop = 0; }
@@ -375,7 +431,9 @@
     var body = el('raArticleBody');
     if (!body.dataset.bound) {
       body.dataset.bound = '1';
+      bindTap(body, function (e) { handleTap(e, 'archive'); });
       body.addEventListener('click', function (e) {
+        if (e.detail !== 0) return;
         var act = e.target.closest('[data-act]');
         if (act) {
           if (act.dataset.act === 'back') { closeArticle(); return; }
@@ -440,7 +498,46 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bindUI);
   else bindUI();
 
+
+  /* 调试：自动点第一个单词，检查弹层 */
+  if (new URLSearchParams(location.search).get('dbgword') === '1') {
+    setTimeout(function () {
+      try {
+        var w = document.querySelector('.rd-w');
+        if (!w) { document.title = 'NO-WORD'; return; }
+        var r = w.getBoundingClientRect();
+        var opt = { bubbles: true, clientX: r.left + 4, clientY: r.top + 4 };
+        w.dispatchEvent(new PointerEvent('pointerdown', opt));
+        w.dispatchEvent(new PointerEvent('pointerup', opt));
+        var pop = document.getElementById('rdWordPop');
+        document.title = 'word=' + w.textContent +
+          ' pop=' + (pop ? (pop.classList.contains('is-open') ? 'open' : 'closed') : 'null') +
+          ' html=' + (pop ? pop.innerHTML.slice(0, 40) : '');
+      } catch (e) { document.title = 'ERR:' + e.message; }
+    }, 2400);
+  }
+
+
+  if (new URLSearchParams(location.search).get('dbgallzh') === '1') {
+    setTimeout(function () {
+      try {
+        var b = document.querySelector('.rd-allbtn');
+        if (!b) { document.title = 'NO-BTN'; return; }
+        var r = b.getBoundingClientRect();
+        var opt = { bubbles: true, clientX: r.left + 4, clientY: r.top + 4 };
+        b.dispatchEvent(new PointerEvent('pointerdown', opt));
+        b.dispatchEvent(new PointerEvent('pointerup', opt));
+        setTimeout(function () {
+          var n = document.querySelectorAll('.rd-card .rd-szh').length;
+          var first = document.querySelector('.rd-szh');
+          document.title = 'zh=' + n + ' first=' + (first ? first.textContent.slice(0, 24) : 'none');
+        }, 400);
+      } catch (e) { document.title = 'ERR:' + e.message; }
+    }, 2400);
+  }
+
   window.XYReading = {
+    prefetch: loadFeed,
     open: open,
     close: close,
     openArchive: openArchive,
