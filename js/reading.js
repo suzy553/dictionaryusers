@@ -13,6 +13,7 @@
   var idx = 0;
   var audio = null;
   var playingId = null;
+  var lastTapAt = 0;
 
   function el(id) { return document.getElementById(id); }
   function esc(s) {
@@ -534,6 +535,7 @@
 
   /* ---------------- 事件 ---------------- */
   function handleTap(e, scope) {
+    lastTapAt = Date.now();
     var act = e.target.closest('[data-act]');
     if (act) {
       var a = act.dataset.act;
@@ -570,8 +572,8 @@
     bindTap(track, function (e) { handleTap(e, 'feed'); });
 
     track.addEventListener('click', function (e) {
-      /* 交给 bindTap 统一处理，这里只兜底键盘/辅助点击 */
-      if (e.detail === 0) handleTap(e, 'feed');
+      /* pointerup 已处理则跳过；没处理（某些浏览器只发 click）就兜底 */
+      if (e.detail === 0 || Date.now() - lastTapAt > 500) handleTap(e, 'feed');
     });
 
     var raf = null;
@@ -741,7 +743,7 @@
       body.dataset.bound = '1';
       bindTap(body, function (e) { handleTap(e, 'archive'); });
       body.addEventListener('click', function (e) {
-        if (e.detail !== 0) return;
+        if (e.detail !== 0 && Date.now() - lastTapAt < 500) return;
         var act = e.target.closest('[data-act]');
         if (act) {
           if (act.dataset.act === 'back') { closeArticle(); return; }
@@ -927,6 +929,30 @@
 
   if (new URLSearchParams(location.search).get('dbgdiag') === '1') {
     setTimeout(function () { runAudioCheck(); }, 2000);
+  }
+
+
+  if (new URLSearchParams(location.search).get('dbgplay2') === '1') {
+    setTimeout(function () {
+      try {
+        var b = document.querySelector('[data-act="play"]');
+        var a = document.getElementById('rdAudio');
+        var r = b.getBoundingClientRect();
+        var opt = { bubbles: true, clientX: r.left + 4, clientY: r.top + 4 };
+        function tap() {
+          b.dispatchEvent(new PointerEvent('pointerdown', opt));
+          b.dispatchEvent(new PointerEvent('pointerup', opt));
+        }
+        tap();
+        setTimeout(function () {
+          var t1 = 'after1 paused=' + a.paused + ' rs=' + a.readyState + ' btn=' + b.classList.contains('is-playing');
+          tap();
+          setTimeout(function () {
+            document.title = t1 + ' || after2 paused=' + a.paused + ' btn=' + b.classList.contains('is-playing');
+          }, 700);
+        }, 1800);
+      } catch (e) { document.title = 'ERR:' + e.message; }
+    }, 2400);
   }
 
   window.XYReading = {
