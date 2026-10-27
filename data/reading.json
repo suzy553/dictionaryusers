@@ -1,923 +1,141 @@
 {
- "updated": "2026-10-27 14:11",
+ "updated": "2026-10-27 22:47",
  "date": "2026-10-27",
- "source": "NPR Arts / NPR Tech",
+ "source": "BBC Culture / NPR Arts / NPR Tech",
  "items": [
   {
    "id": "20261027-1",
    "date": "2026-10-27",
-   "source": "NPR Arts",
-   "topic": "艺术",
-   "country": "fr",
-   "countryName": "法国",
-   "title": "Jay-Z to Headline Super Bowl Halftime Show in California",
-   "titleZh": "Jay-Z 将在加州领衔超级碗中场秀",
+   "source": "BBC Culture",
+   "topic": "文化",
+   "country": "au",
+   "countryName": "澳洲",
+   "title": "Meghan to co-host Junior MasterChef Australia",
+   "titleZh": "",
    "sentences": [
     {
-     "en": "Jay-Z will headline the Super Bowl halftime show on February 14 at SoFi Stadium in Inglewood, California.",
-     "zh": "Jay-Z 将于2月14日在加利福尼亚州英格尔伍德的 SoFi 体育场领衔超级碗中场秀。"
-    },
-    {
-     "en": "The NFL, Apple Music and Roc Nation announced the news on Monday night.",
-     "zh": "美国职业橄榄球大联盟（NFL）、Apple Music 和 Roc Nation 于周一晚间宣布了这一消息。"
-    },
-    {
-     "en": "Jay-Z is a famous rapper and businessman, and his company Roc Nation has worked with the NFL since 2019.",
-     "zh": "Jay-Z 是著名说唱歌手和商人，他的公司 Roc Nation 自2019年以来一直与 NFL 合作。"
-    },
-    {
-     "en": "Roc Nation helps advise on and produce the league's entertainment events, including the halftime show.",
-     "zh": "Roc Nation 帮助为联盟的娱乐活动提供建议和制作支持，包括中场秀。"
-    },
-    {
-     "en": "NFL Commissioner Roger Goodell said he asked Jay-Z to perform himself when the time felt right.",
-     "zh": "NFL 总裁罗杰·古德尔表示，他请求 Jay-Z 在时机合适时亲自登台表演。"
-    },
-    {
-     "en": "Jay-Z said this moment marks 30 years of music, work and culture on the world's biggest stage.",
-     "zh": "Jay-Z 说，这一刻标志着他在世界最大舞台上30年的音乐、工作和文化历程。"
-    },
-    {
-     "en": "He called the run a dream come true, from his first album Reasonable Doubt to the Super Bowl stage.",
-     "zh": "他把这段历程称为梦想成真，从首张专辑《Reasonable Doubt》一路走到超级碗舞台。"
-    },
-    {
-     "en": "The performance will return him to SoFi Stadium, where he recently ended his 30th anniversary celebration of that album.",
-     "zh": "这次演出将让他回到 SoFi 体育场；他最近在那里结束了那张专辑的30周年庆祝活动。"
-    },
-    {
-     "en": "That celebration included sold-out concerts at Yankee Stadium and in London and Paris before the SoFi Stadium shows.",
-     "zh": "该庆祝活动包括在洋基体育场以及伦敦和巴黎的售罄演唱会，之后在 SoFi 体育场演出。"
-    },
-    {
-     "en": "Jay-Z, born Shawn Carter, has won 25 Grammy Awards and is one of music's most powerful figures.",
-     "zh": "Jay-Z 本名肖恩·卡特，曾获得25项格莱美奖，是音乐界最有影响力的人物之一。"
-    },
-    {
-     "en": "The announcement is important because Jay-Z usually helps produce the halftime show rather than perform in it.",
-     "zh": "这一宣布很重要，因为 Jay-Z 通常帮助制作中场秀，而不是亲自在其中表演。"
-    },
-    {
-     "en": "Fans now wait to see how the famous producer and rapper will use the Super Bowl's huge stage.",
-     "zh": "粉丝们现在期待看到这位著名制作人和说唱歌手将如何使用超级碗的巨大舞台。"
+     "en": "The Duchess of Sussex says she \"can't wait\" to take part in the programme, which will air next year.",
+     "zh": ""
     }
    ],
-   "glossary": [
-    {
-     "w": "headline",
-     "zh": "领衔；担任主角"
-    },
-    {
-     "w": "halftime show",
-     "zh": "中场秀"
-    },
-    {
-     "w": "announce",
-     "zh": "宣布"
-    },
-    {
-     "w": "rapper",
-     "zh": "说唱歌手"
-    },
-    {
-     "w": "businessman",
-     "zh": "商人"
-    },
-    {
-     "w": "advise on",
-     "zh": "就……提供建议"
-    },
-    {
-     "w": "produce",
-     "zh": "制作"
-    },
-    {
-     "w": "league",
-     "zh": "联盟"
-    },
-    {
-     "w": "commissioner",
-     "zh": "总裁；专员"
-    },
-    {
-     "w": "perform",
-     "zh": "表演"
-    },
-    {
-     "w": "mark",
-     "zh": "标志着"
-    },
-    {
-     "w": "culture",
-     "zh": "文化"
-    },
-    {
-     "w": "stage",
-     "zh": "舞台"
-    },
-    {
-     "w": "dream come true",
-     "zh": "梦想成真"
-    },
-    {
-     "w": "album",
-     "zh": "专辑"
-    },
-    {
-     "w": "anniversary",
-     "zh": "周年纪念"
-    },
-    {
-     "w": "celebration",
-     "zh": "庆祝活动"
-    },
-    {
-     "w": "sold-out",
-     "zh": "售罄的"
-    },
-    {
-     "w": "Grammy Award",
-     "zh": "格莱美奖"
-    },
-    {
-     "w": "powerful figure",
-     "zh": "有影响力的人物"
-    },
-    {
-     "w": "producer",
-     "zh": "制作人"
-    },
-    {
-     "w": "return",
-     "zh": "返回；使回到"
-    }
-   ],
-   "words": 205,
+   "glossary": [],
+   "words": 19,
    "audio": "data/reading/audio/20261027-1.mp3",
-   "audioKB": 482,
-   "link": "https://www.npr.org/2026/10/27/g-s1-150043/super-bowl-halftime-jay-z"
+   "audioKB": 34,
+   "link": "https://www.bbc.co.uk/news/articles/crgqwg3ll1v1o?at_medium=RSS&amp;at_campaign=rss"
   },
   {
    "id": "20261027-2",
-   "date": "2026-10-26",
-   "source": "NPR Tech",
-   "topic": "科技",
+   "date": "2026-10-27",
+   "source": "NPR Arts",
+   "topic": "艺术",
    "country": "",
    "countryName": "",
-   "title": "Anthropic Files for a Huge IPO That Could Break Records",
-   "titleZh": "AI巨头Anthropic申请可能破纪录的IPO",
+   "title": "Romantasy fans turn out for 'Midnight Maas' release event",
+   "titleZh": "",
    "sentences": [
     {
-     "en": "Anthropic, an American artificial intelligence company, has taken a major step toward a public stock listing.",
-     "zh": "Anthropic是一家美国人工智能公司，它已朝着公开股票上市迈出了一大步。"
+     "en": "The highly anticipated, latest installment of Sarah J.",
+     "zh": ""
     },
     {
-     "en": "It is the maker of Claude, a popular AI chatbot used by many people and businesses around the world.",
-     "zh": "它是Claude的开发商。Claude是一款受欢迎的人工智能聊天机器人，被世界各地许多人和企业使用。"
+     "en": "Maas&apos; romantasy series has hit the shelves.",
+     "zh": ""
     },
     {
-     "en": "On Monday, the company filed final paperwork with regulators for an initial public offering, or IPO.",
-     "zh": "周一，该公司向监管机构提交了最终文件，申请进行首次公开募股（IPO）。"
-    },
-    {
-     "en": "It plans to use the ticker symbol ANT when its shares begin trading on the stock market.",
-     "zh": "它计划在股票开始上市交易时使用股票代码ANT。"
-    },
-    {
-     "en": "Reports say the listing could value Anthropic at between $1.5 trillion and $2 trillion.",
-     "zh": "报道称，此次上市可能使Anthropic的估值达到1.5万亿至2万亿美元之间。"
-    },
-    {
-     "en": "That would put it close to SpaceX, which was valued at about $1.8 trillion when it listed in June.",
-     "zh": "这将使其接近SpaceX；SpaceX在6月上市时的估值约为1.8万亿美元。"
-    },
-    {
-     "en": "However, Anthropic's prospectus did not say how many shares it will sell or what the price range will be.",
-     "zh": "不过，Anthropic的招股说明书没有说明它将出售多少股份，也没有说明价格区间是多少。"
-    },
-    {
-     "en": "The company was started five years ago by former OpenAI researchers led by Dario Amodei.",
-     "zh": "该公司由Dario Amodei领导的一批前OpenAI研究人员在五年前创立。"
-    },
-    {
-     "en": "They left because they worried that OpenAI, led by Sam Altman, was not developing AI safely enough.",
-     "zh": "他们离开是因为担心由Sam Altman领导的OpenAI没有足够安全地开发人工智能。"
-    },
-    {
-     "en": "Since then, Anthropic has become a major AI company and one of OpenAI's strongest competitors.",
-     "zh": "从那以后，Anthropic已成为一家重要的人工智能公司，并成为OpenAI最强的竞争对手之一。"
-    },
-    {
-     "en": "It has also faced controversy, including a dispute with the Pentagon about how its models can be used.",
-     "zh": "它还面临过争议，包括与美国国防部就其模型如何使用产生的争端。"
-    },
-    {
-     "en": "This IPO is a big moment for Anthropic and may attract strong interest from investors around the world.",
-     "zh": "这次IPO对Anthropic来说是一个重要时刻，可能会吸引世界各地投资者的强烈兴趣。"
+     "en": "Hardcore fans were lined up (in their faerie ears) at the stroke of midnight.",
+     "zh": ""
     }
    ],
-   "glossary": [
-    {
-     "w": "artificial intelligence",
-     "zh": "人工智能"
-    },
-    {
-     "w": "major step",
-     "zh": "重大步骤"
-    },
-    {
-     "w": "public stock listing",
-     "zh": "公开股票上市"
-    },
-    {
-     "w": "maker",
-     "zh": "开发商；制造者"
-    },
-    {
-     "w": "chatbot",
-     "zh": "聊天机器人"
-    },
-    {
-     "w": "file paperwork",
-     "zh": "提交文件"
-    },
-    {
-     "w": "regulator",
-     "zh": "监管机构"
-    },
-    {
-     "w": "initial public offering (IPO)",
-     "zh": "首次公开募股"
-    },
-    {
-     "w": "ticker symbol",
-     "zh": "股票代码"
-    },
-    {
-     "w": "shares",
-     "zh": "股份；股票"
-    },
-    {
-     "w": "value",
-     "zh": "估值；给……估值"
-    },
-    {
-     "w": "trillion",
-     "zh": "万亿"
-    },
-    {
-     "w": "prospectus",
-     "zh": "招股说明书"
-    },
-    {
-     "w": "price range",
-     "zh": "价格区间"
-    },
-    {
-     "w": "former",
-     "zh": "以前的"
-    },
-    {
-     "w": "researcher",
-     "zh": "研究人员"
-    },
-    {
-     "w": "safely",
-     "zh": "安全地"
-    },
-    {
-     "w": "competitor",
-     "zh": "竞争对手"
-    },
-    {
-     "w": "controversy",
-     "zh": "争议"
-    },
-    {
-     "w": "dispute",
-     "zh": "争端"
-    },
-    {
-     "w": "attract interest",
-     "zh": "吸引兴趣"
-    },
-    {
-     "w": "investor",
-     "zh": "投资者"
-    }
-   ],
-   "words": 203,
+   "glossary": [],
+   "words": 29,
    "audio": "data/reading/audio/20261027-2.mp3",
-   "audioKB": 474,
-   "link": "https://www.npr.org/2026/10/26/nx-s1-6014772/anthropic-ai-ipo-could-break-records"
+   "audioKB": 79,
+   "link": "https://www.npr.org/2026/10/27/nx-s1-6011109/acotar-a-court-of-splintered-harmony-sarah-j-maas"
   },
   {
    "id": "20261027-3",
-   "date": "2026-10-26",
-   "source": "NPR Arts",
-   "topic": "艺术",
+   "date": "2026-10-27",
+   "source": "NPR Tech",
+   "topic": "科技",
    "country": "",
    "countryName": "",
-   "title": "These 'Seven Stories About Tammy' Add Up to One Brilliant Piece of Writing",
-   "titleZh": "这些《关于塔米的七个故事》汇成一部出色的作品",
+   "title": "Polymarket has investigated 'dozens' of election-related cases",
+   "titleZh": "",
    "sentences": [
     {
-     "en": "Elizabeth McCracken is an American writer whose clever and emotional fiction often explores family life and close relationships.",
-     "zh": "伊丽莎白·麦卡肯是一位美国作家，她巧妙而富有情感的小说常常探讨家庭生活和亲密关系。"
-    },
-    {
-     "en": "Her book, Seven Stories About Tammy, is a slim collection made up of seven connected short stories.",
-     "zh": "她的书《关于塔米的七个故事》是一本薄薄的短篇集，由七个相互关联的短篇故事组成。"
-    },
-    {
-     "en": "The stories follow one family as they meet and slowly get to know their oldest son's girlfriend, Tammy.",
-     "zh": "这些故事讲述一个家庭如何认识并逐渐了解他们长子的女友塔米。"
-    },
-    {
-     "en": "Tammy is an older woman who later becomes the son's wife and an important part of family events.",
-     "zh": "塔米是一位较年长的女性，后来成为这个儿子的妻子，也成为家庭事务中的重要一员。"
-    },
-    {
-     "en": "Each story shows a different moment in the family's long, sometimes difficult relationship with her.",
-     "zh": "每个故事都展现这个家庭与她长久而有时艰难的关系中的一个不同时刻。"
-    },
-    {
-     "en": "McCracken first published these linked stories in a literary magazine before they appeared in book form.",
-     "zh": "麦卡肯最初在一本文学杂志上发表这些相关联的故事，后来它们才以书的形式出现。"
-    },
-    {
-     "en": "They were also included in the 2025 edition of The Best American Short Stories, a well-known anthology.",
-     "zh": "这些故事还被收录进著名选集《美国最佳短篇小说选》2025年版。"
-    },
-    {
-     "en": "Now readers can enjoy them together in a small standalone book from the publisher Biblioasis.",
-     "zh": "现在，读者可以在出版商 Biblioasis 出版的一本独立小书中一起欣赏这些故事。"
-    },
-    {
-     "en": "The collection is only about 70 pages long, so most readers can finish it in a short time.",
-     "zh": "这本短篇集只有大约70页，因此大多数读者可以在很短时间内读完。"
-    },
-    {
-     "en": "Like the famous opening of Pixar's film Up, it tells a family's emotional history quickly but with real depth.",
-     "zh": "就像皮克斯电影《飞屋环游记》著名的开场一样，它迅速但颇有深度地讲述了一个家庭的情感历史。"
-    },
-    {
-     "en": "The stories are engaging and rich, and many readers may want to read the whole book twice.",
-     "zh": "这些故事引人入胜且内容丰富，许多读者可能想把整本书读两遍。"
-    },
-    {
-     "en": "Its tiny size made one reviewer misplace it at home, but finding it again felt like a gift.",
-     "zh": "它极小的开本让一位书评人曾在家中把它放丢，但再次找到它时感觉像收到一份礼物。"
+     "en": "The prediction market has hired a former FBI official to make sure political insiders don&apos;t use the platform for profit from confidential election information.&lt;strong&gt; &lt;/strong&gt;",
+     "zh": ""
     }
    ],
-   "glossary": [
-    {
-     "w": "known for",
-     "zh": "以……闻名"
-    },
-    {
-     "w": "clever",
-     "zh": "聪明的；巧妙的"
-    },
-    {
-     "w": "emotional",
-     "zh": "情感的"
-    },
-    {
-     "w": "fiction",
-     "zh": "小说；虚构作品"
-    },
-    {
-     "w": "slim",
-     "zh": "薄的；苗条的"
-    },
-    {
-     "w": "connected",
-     "zh": "相互关联的"
-    },
-    {
-     "w": "follow",
-     "zh": "讲述；跟随"
-    },
-    {
-     "w": "get to know",
-     "zh": "逐渐了解"
-    },
-    {
-     "w": "oldest son",
-     "zh": "长子"
-    },
-    {
-     "w": "girlfriend",
-     "zh": "女朋友"
-    },
-    {
-     "w": "relationship",
-     "zh": "关系"
-    },
-    {
-     "w": "publish",
-     "zh": "出版；发表"
-    },
-    {
-     "w": "linked",
-     "zh": "有关联的"
-    },
-    {
-     "w": "literary magazine",
-     "zh": "文学杂志"
-    },
-    {
-     "w": "edition",
-     "zh": "版本；版次"
-    },
-    {
-     "w": "anthology",
-     "zh": "文集；选集"
-    },
-    {
-     "w": "standalone",
-     "zh": "独立的"
-    },
-    {
-     "w": "publisher",
-     "zh": "出版商"
-    },
-    {
-     "w": "finish",
-     "zh": "读完；完成"
-    },
-    {
-     "w": "depth",
-     "zh": "深度"
-    },
-    {
-     "w": "engaging",
-     "zh": "吸引人的"
-    },
-    {
-     "w": "misplace",
-     "zh": "放错地方；遗失"
-    }
-   ],
-   "words": 206,
+   "glossary": [],
+   "words": 25,
    "audio": "data/reading/audio/20261027-3.mp3",
-   "audioKB": 458,
-   "link": "https://www.npr.org/2026/10/26/nx-s1-6017155/seven-stories-about-tammy-elizabeth-mccracken-review"
+   "audioKB": 91,
+   "link": "https://www.npr.org/2026/10/27/nx-s1-6012304/polymarket-election-betting-surveillance"
   },
   {
    "id": "20261027-4",
-   "date": "2026-10-25",
-   "source": "NPR Tech",
-   "topic": "科技",
-   "country": "",
-   "countryName": "",
-   "title": "How Much Filter Is Too Much for Teenagers?",
-   "titleZh": "青少年自拍滤镜：多少才算过度？",
+   "date": "2026-10-27",
+   "source": "BBC Culture",
+   "topic": "文化",
+   "country": "nl",
+   "countryName": "荷兰",
+   "title": "Netherlands pulls out of Eurovision again over Israel participation",
+   "titleZh": "",
    "sentences": [
     {
-     "en": "This summer, after a long legal case, the social media company Meta reached a major settlement with state attorneys general in the United States.",
-     "zh": "今年夏天，在一起漫长的法律案件之后，社交媒体公司Meta与美国各州总检察长达成了一项重大和解。"
-    },
-    {
-     "en": "The agreement includes a clause that blocks some beauty filters for teenage users on its social media platforms.",
-     "zh": "该协议包含一项条款，禁止在其社交媒体平台上为青少年用户提供某些美颜滤镜。"
-    },
-    {
-     "en": "These filters imitate extreme changes, such as cosmetic procedures or heavy makeup, and may harm young people's self-image.",
-     "zh": "这些滤镜模仿极端的变化，例如美容手术或浓妆，并可能损害年轻人的自我形象。"
-    },
-    {
-     "en": "State officials must now decide exactly which filters are too extreme and where to draw the line.",
-     "zh": "州官员现在必须决定哪些滤镜过于极端，以及界限应该划在哪里。"
-    },
-    {
-     "en": "They also need to separate harmless fun from harmful manipulation of how young people look online.",
-     "zh": "他们还需要把无害的娱乐与对年轻人网络外貌的有害操控区分开来。"
-    },
-    {
-     "en": "Many teenagers face daily pressure to look perfect online, partly because of popular beauty trends like 'Instagram face'.",
-     "zh": "许多青少年每天面临在网上看起来完美的压力，部分原因是像“Instagram脸”这样流行的审美潮流。"
-    },
-    {
-     "en": "This term describes a look with a small nose, high cheekbones, and full lips.",
-     "zh": "这个词描述的是一种小鼻子、高颧骨和丰满嘴唇的外貌。"
-    },
-    {
-     "en": "In real life, people may need plastic surgery or heavy makeup to achieve this fashionable look.",
-     "zh": "在现实生活中，人们可能需要整形手术或浓妆才能获得这种时髦的外貌。"
-    },
-    {
-     "en": "Online, however, beauty filters can create the same appearance in seconds.",
-     "zh": "然而在网上，美颜滤镜可以在几秒钟内创造出同样的外貌。"
-    },
-    {
-     "en": "Mia Lerner, a 17-year-old high school senior in California, is a youth body image activist.",
-     "zh": "米娅·勒纳是加利福尼亚州一名17岁的高三学生，也是一名青少年身体形象活动人士。"
-    },
-    {
-     "en": "She told NPR that experimenting with beauty filters contributed to her serious eating disorder and hurt her self-image.",
-     "zh": "她告诉美国国家公共电台（NPR），尝试美颜滤镜导致了她严重的饮食失调，并损害了她的自我形象。"
-    },
-    {
-     "en": "She even said she tried to fix her nose with AI, showing how strongly these digital tools can affect teenagers' daily lives.",
-     "zh": "她甚至说她尝试用人工智能来修正自己的鼻子，这表明这些数字工具能多么强烈地影响青少年的日常生活。"
+     "en": "A Dutch broadcaster reverses a decision to take part, citing \"sensitivities\" over Israel's participation.",
+     "zh": ""
     }
    ],
-   "glossary": [
-    {
-     "w": "settlement",
-     "zh": "和解；协议"
-    },
-    {
-     "w": "attorneys general",
-     "zh": "总检察长（复数）"
-    },
-    {
-     "w": "clause",
-     "zh": "条款"
-    },
-    {
-     "w": "blocks",
-     "zh": "阻止；屏蔽"
-    },
-    {
-     "w": "beauty filters",
-     "zh": "美颜滤镜"
-    },
-    {
-     "w": "teenage users",
-     "zh": "青少年用户"
-    },
-    {
-     "w": "platforms",
-     "zh": "平台"
-    },
-    {
-     "w": "imitate",
-     "zh": "模仿"
-    },
-    {
-     "w": "extreme",
-     "zh": "极端的"
-    },
-    {
-     "w": "cosmetic procedures",
-     "zh": "美容手术"
-    },
-    {
-     "w": "heavy makeup",
-     "zh": "浓妆"
-    },
-    {
-     "w": "self-image",
-     "zh": "自我形象"
-    },
-    {
-     "w": "state officials",
-     "zh": "州官员"
-    },
-    {
-     "w": "draw the line",
-     "zh": "划定界限"
-    },
-    {
-     "w": "harmless fun",
-     "zh": "无害的娱乐"
-    },
-    {
-     "w": "harmful manipulation",
-     "zh": "有害的操控"
-    },
-    {
-     "w": "pressure",
-     "zh": "压力"
-    },
-    {
-     "w": "beauty trends",
-     "zh": "美容/审美潮流"
-    },
-    {
-     "w": "Instagram face",
-     "zh": "“Instagram脸”（一种网络审美外貌）"
-    },
-    {
-     "w": "high cheekbones",
-     "zh": "高颧骨"
-    },
-    {
-     "w": "plastic surgery",
-     "zh": "整形手术"
-    },
-    {
-     "w": "eating disorder",
-     "zh": "饮食失调；进食障碍"
-    }
-   ],
-   "words": 207,
+   "glossary": [],
+   "words": 14,
    "audio": "data/reading/audio/20261027-4.mp3",
-   "audioKB": 491,
-   "link": "https://www.npr.org/2026/10/25/nx-s1-6011190/meta-facebook-settlement-beauty-filters-ai"
+   "audioKB": 42,
+   "link": "https://www.bbc.co.uk/news/articles/cmr4y5dvlzneo?at_medium=RSS&amp;at_campaign=rss"
   },
   {
    "id": "20261027-5",
-   "date": "2026-10-26",
+   "date": "2026-10-27",
    "source": "NPR Arts",
    "topic": "艺术",
-   "country": "",
-   "countryName": "",
-   "title": "New Yorker Cartoonists Reveal the Problems in Their Kitchens",
-   "titleZh": "《纽约客》漫画家坦承自家厨房的烦恼",
+   "country": "es",
+   "countryName": "西班牙",
+   "title": "Filmmaking is 'our weapon against intolerance,' say 'La Bola Negra' directors",
+   "titleZh": "",
    "sentences": [
     {
-     "en": "Roz Chast and Jason Adam Katzenstein are two American cartoonists who regularly create funny drawings and stories for The New Yorker magazine.",
-     "zh": "罗兹·查斯特和杰森·亚当·卡岑斯坦是两位美国漫画家，经常为《纽约客》杂志创作有趣的绘画和故事。"
-    },
-    {
-     "en": "They have now written a graphic memoir together called The Two Saddest Kitchens, which uses both words and drawings to tell its story.",
-     "zh": "他们现在一起写了一本图像回忆录，名为《最悲伤的两个厨房》，用文字和图画来讲述故事。"
-    },
-    {
-     "en": "In a recent interview on the radio program Fresh Air, they spoke with host Terry Gross about the problems in their kitchens.",
-     "zh": "在最近一次接受广播节目《新鲜空气》采访时，他们与主持人特里·格罗斯谈了自己厨房里的问题。"
-    },
-    {
-     "en": "The interview showed that both kitchens have had moldy food, broken appliances, and serious cockroach problems over the years.",
-     "zh": "采访显示，两人的厨房多年来都曾出现过发霉的食物、坏掉的电器以及严重的蟑螂问题。"
-    },
-    {
-     "en": "They also keep many plastic storage containers, but they cannot find lids that fit them properly or stay on.",
-     "zh": "他们还保留着许多塑料储物盒，却找不到能合适盖上或固定住的盖子。"
-    },
-    {
-     "en": "Some chapter titles are funny and dramatic, such as 'The Under-Sink Cabinet of Doom' and 'Our Kitchens Are Trying to Kill Us.'",
-     "zh": "有些章节标题既有趣又夸张，比如《水槽下的厄运橱柜》和《我们的厨房想害死我们》。"
-    },
-    {
-     "en": "The book is often very funny, but it also shows the shame that many people feel about messy or unhealthy homes.",
-     "zh": "这本书常常很搞笑，但也展现了很多人对凌乱或不健康家居环境感到的羞耻。"
-    },
-    {
-     "en": "Chast and Katzenstein openly admit that they do not really enjoy cooking or keeping their kitchens clean and organized.",
-     "zh": "查斯特和卡岑斯坦公开承认，他们并不真正喜欢做饭，也不喜欢把厨房收拾得干净整洁。"
-    },
-    {
-     "en": "This may seem surprising in a time when cooking shows and expensive kitchenware are so popular and widely admired.",
-     "zh": "在烹饪节目和昂贵厨具如此流行、广受赞赏的时代，这似乎令人意外。"
-    },
-    {
-     "en": "Readers may laugh at the details, but they may also recognize some of their own kitchen problems and feel less alone.",
-     "zh": "读者可能会被这些细节逗笑，但也可能从中认出自己厨房里的某些问题，并感到不那么孤单。"
+     "en": "Javier Calvo and Javier Ambrossi have turned four pages of an unfinished play by Federico García Lorca into a sweeping epic that spans 90 years of Spanish history, focusing on the stories of gay men.",
+     "zh": ""
     }
    ],
-   "glossary": [
-    {
-     "w": "cartoonist",
-     "zh": "漫画家"
-    },
-    {
-     "w": "regularly",
-     "zh": "定期地；经常"
-    },
-    {
-     "w": "graphic memoir",
-     "zh": "图像回忆录"
-    },
-    {
-     "w": "reveal",
-     "zh": "揭示；透露"
-    },
-    {
-     "w": "moldy",
-     "zh": "发霉的"
-    },
-    {
-     "w": "appliance",
-     "zh": "家用电器"
-    },
-    {
-     "w": "cockroach",
-     "zh": "蟑螂"
-    },
-    {
-     "w": "pest",
-     "zh": "害虫"
-    },
-    {
-     "w": "plastic storage container",
-     "zh": "塑料储物盒"
-    },
-    {
-     "w": "lid",
-     "zh": "盖子"
-    },
-    {
-     "w": "properly",
-     "zh": "正确地；合适地"
-    },
-    {
-     "w": "chapter",
-     "zh": "章节"
-    },
-    {
-     "w": "dramatic",
-     "zh": "戏剧性的；引人注目的"
-    },
-    {
-     "w": "shame",
-     "zh": "羞耻；羞愧"
-    },
-    {
-     "w": "messy",
-     "zh": "凌乱的"
-    },
-    {
-     "w": "unhealthy",
-     "zh": "不健康的"
-    },
-    {
-     "w": "openly",
-     "zh": "公开地"
-    },
-    {
-     "w": "admit",
-     "zh": "承认"
-    },
-    {
-     "w": "organized",
-     "zh": "井然有序的"
-    },
-    {
-     "w": "kitchenware",
-     "zh": "厨房用具"
-    },
-    {
-     "w": "widely admired",
-     "zh": "广受赞赏"
-    },
-    {
-     "w": "recognize",
-     "zh": "认出；意识到"
-    }
-   ],
-   "words": 207,
+   "glossary": [],
+   "words": 35,
    "audio": "data/reading/audio/20261027-5.mp3",
-   "audioKB": 443,
-   "link": "https://www.npr.org/2026/10/26/nx-s1-6017750/roz-chast-jason-adam-katzenstein"
+   "audioKB": 77,
+   "link": "https://www.npr.org/2026/10/27/nx-s1-6017755/la-bola-negra-los-javis-calvo-ambrossi"
   },
   {
    "id": "20261027-6",
-   "date": "2026-10-24",
+   "date": "2026-10-26",
    "source": "NPR Tech",
    "topic": "科技",
    "country": "",
    "countryName": "",
-   "title": "The Race to Fix a Major Internet Flaw After News Leaks",
-   "titleZh": "重大网络漏洞消息泄露后的修复竞赛",
+   "title": "AI giant Anthropic files for an IPO that could break records",
+   "titleZh": "",
    "sentences": [
     {
-     "en": "A few months ago, internet security researchers made a surprising discovery: a serious flaw in PHP, software used by many websites.",
-     "zh": "几个月前，互联网安全研究人员有了一个令人惊讶的发现：许多网站使用的 PHP 软件存在严重漏洞。"
-    },
-    {
-     "en": "Experts say PHP runs on about 70 percent of websites, so the problem could affect a huge part of the internet.",
-     "zh": "专家表示，PHP 运行在约 70% 的网站上，因此这个问题可能影响互联网的很大一部分。"
-    },
-    {
-     "en": "Researchers used artificial intelligence to help find two dangerous weaknesses in the system.",
-     "zh": "研究人员使用人工智能帮助发现了系统中的两个危险弱点。"
-    },
-    {
-     "en": "Reports linked the case to a vulnerability called PHP2SHELL, and the news quickly worried security experts.",
-     "zh": "有报道将该事件与一个名为 PHP2SHELL 的漏洞联系起来，这一消息很快让安全专家感到担忧。"
-    },
-    {
-     "en": "The flaws could let attackers take over a computer running a website without a password or clear traces.",
-     "zh": "这些漏洞可能让攻击者接管运行网站的电脑，而无需密码，也不会留下明显痕迹。"
-    },
-    {
-     "en": "The security team tried to keep the discovery secret and worked quickly to fix the software.",
-     "zh": "安全团队试图对这项发现保密，并迅速修复软件。"
-    },
-    {
-     "en": "However, news about the flaw leaked before all systems could be protected.",
-     "zh": "然而，关于该漏洞的消息在所有系统得到保护之前就泄露了。"
-    },
-    {
-     "en": "When hackers learned about it, they rushed to use the weakness for their own attacks.",
-     "zh": "当黑客得知此事后，他们急于利用这个弱点发动自己的攻击。"
-    },
-    {
-     "en": "Experts compared the situation to 70 percent of the world's doors using the same lock.",
-     "zh": "专家把这种情况比作世界上 70% 的门都使用同一把锁。"
-    },
-    {
-     "en": "They said the internet now needs many new \"locks\" and fast updates to close the hole.",
-     "zh": "他们说，互联网现在需要许多新“锁”和快速更新来堵住漏洞。"
-    },
-    {
-     "en": "Now many website owners must patch their systems, especially older versions of PHP that are still in use.",
-     "zh": "现在许多网站所有者必须修补自己的系统，尤其是仍在使用中的旧版 PHP。"
-    },
-    {
-     "en": "The story shows both the power of AI in finding problems and the risk when security news spreads too fast.",
-     "zh": "这个故事既展示了 AI 在发现问题方面的能力，也显示了安全消息传播过快时的风险。"
+     "en": "The AI company, which makes the popular Claude chatbot, has filed for an initial public offering that could be one of the biggest ever.",
+     "zh": ""
     }
    ],
-   "glossary": [
-    {
-     "w": "serious flaw",
-     "zh": "严重漏洞"
-    },
-    {
-     "w": "software",
-     "zh": "软件"
-    },
-    {
-     "w": "internet security researchers",
-     "zh": "互联网安全研究人员"
-    },
-    {
-     "w": "artificial intelligence",
-     "zh": "人工智能"
-    },
-    {
-     "w": "vulnerability",
-     "zh": "漏洞；脆弱性"
-    },
-    {
-     "w": "dangerous weakness",
-     "zh": "危险弱点"
-    },
-    {
-     "w": "system",
-     "zh": "系统"
-    },
-    {
-     "w": "attacker",
-     "zh": "攻击者"
-    },
-    {
-     "w": "take over",
-     "zh": "接管；控制"
-    },
-    {
-     "w": "password",
-     "zh": "密码"
-    },
-    {
-     "w": "clear traces",
-     "zh": "明显痕迹"
-    },
-    {
-     "w": "security team",
-     "zh": "安全团队"
-    },
-    {
-     "w": "keep ... secret",
-     "zh": "保守秘密"
-    },
-    {
-     "w": "fix",
-     "zh": "修复"
-    },
-    {
-     "w": "leak",
-     "zh": "泄露"
-    },
-    {
-     "w": "hacker",
-     "zh": "黑客"
-    },
-    {
-     "w": "attack",
-     "zh": "攻击"
-    },
-    {
-     "w": "compare ... to",
-     "zh": "把……比作"
-    },
-    {
-     "w": "patch",
-     "zh": "给……打补丁；修补"
-    },
-    {
-     "w": "older version",
-     "zh": "旧版本"
-    },
-    {
-     "w": "in use",
-     "zh": "在使用中"
-    },
-    {
-     "w": "close the hole",
-     "zh": "堵住漏洞"
-    }
-   ],
-   "words": 201,
+   "glossary": [],
+   "words": 24,
    "audio": "data/reading/audio/20261027-6.mp3",
-   "audioKB": 465,
-   "link": "https://www.npr.org/2026/10/24/nx-s1-6012327/ai-found-the-flaw-hackers-found-the-leak-the-race-to-save-php2shell"
+   "audioKB": 49,
+   "link": "https://www.npr.org/2026/10/26/nx-s1-6014772/anthropic-ai-ipo-could-break-records"
   }
  ]
 }
