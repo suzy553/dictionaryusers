@@ -50,6 +50,7 @@
   <link rel="stylesheet" href="css/design-system.css">
   <link rel="stylesheet" href="css/design-v2.css">
   <link rel="stylesheet" href="css/reading.css">
+  <link rel="stylesheet" href="css/shadowing.css">
 </head>
 <body>
 
@@ -584,6 +585,7 @@
 <script src="js/core.js"></script>
 <script src="js/quiz.js"></script>
   <script src="js/reading.js"></script>
+  <script src="js/shadowing.js"></script>
 
   <!-- 导入确认弹层 -->
   <div class="imp-mask" id="importSheet">
@@ -628,5 +630,15 @@
 <!-- ============ 点词释义 ============ -->
 <div id="rdWordPop"></div>
 <audio id="rdAudio" preload="auto" playsinline webkit-playsinline></audio>
+
+<!-- ============ 跟读练习 ============ -->
+<div id="shadowing">
+  <div class="sh-head">
+    <b>跟读练习</b>
+    <em id="shTitle"></em>
+    <button id="shClose" type="button" data-act="close">关闭</button>
+  </div>
+  <div id="shList"></div>
+</div>
 </body>
 </html>

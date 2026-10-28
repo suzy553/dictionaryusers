@@ -93,6 +93,7 @@
                   '<span class="rd-play-ic"></span></button>'
                 : '') +
               '<button class="rd-hbtn rd-hbtn-zh" data-act="allzh" title="翻译全文">译</button>' +
+              '<button class="rd-hbtn rd-hbtn-rec" data-act="shadow" title="跟读练习">读</button>' +
             '</div>' +
           '</div>' +
           '<div class="rd-body">' + sents + '</div>' +
@@ -546,6 +547,13 @@
       }
       if (a === 'back') { closeArticle(); return; }
       if (a === 'next') { nextCard(); return; }
+      if (a === 'shadow') {
+        var card = act.closest('.rd-card');
+        var it = findItem(card);
+        if (it && window.XYShadowing) window.XYShadowing.open(it);
+        else msg('暂时无法打开跟读');
+        return;
+      }
       if (a === 'allzh') {
         toggleAllZh(act.closest('.rd-card'), act);
         scrollInnerTop(act);
