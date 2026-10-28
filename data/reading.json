@@ -1,141 +1,141 @@
 {
- "updated": "2026-10-27 22:47",
- "date": "2026-10-27",
+ "updated": "2026-10-28 22:50",
+ "date": "2026-10-28",
  "source": "BBC Culture / NPR Arts / NPR Tech",
  "items": [
   {
-   "id": "20261027-1",
-   "date": "2026-10-27",
+   "id": "20261028-1",
+   "date": "2026-10-28",
    "source": "BBC Culture",
    "topic": "文化",
-   "country": "au",
-   "countryName": "澳洲",
-   "title": "Meghan to co-host Junior MasterChef Australia",
+   "country": "",
+   "countryName": "",
+   "title": "Russell Brand tells trial sexual consent is 'fundamental'",
    "titleZh": "",
    "sentences": [
     {
-     "en": "The Duchess of Sussex says she \"can't wait\" to take part in the programme, which will air next year.",
+     "en": "The entertainer gives evidence at his trial on charges including rape and assault, which he denies.",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 19,
-   "audio": "data/reading/audio/20261027-1.mp3",
-   "audioKB": 34,
-   "link": "https://www.bbc.co.uk/news/articles/crgqwg3ll1v1o?at_medium=RSS&amp;at_campaign=rss"
+   "words": 16,
+   "audio": "data/reading/audio/20261028-1.mp3",
+   "audioKB": 38,
+   "link": "https://www.bbc.co.uk/news/articles/cmvgxl5kdgrzo?at_medium=RSS&amp;at_campaign=rss"
   },
   {
-   "id": "20261027-2",
-   "date": "2026-10-27",
+   "id": "20261028-2",
+   "date": "2026-10-28",
    "source": "NPR Arts",
    "topic": "艺术",
    "country": "",
    "countryName": "",
-   "title": "Romantasy fans turn out for 'Midnight Maas' release event",
+   "title": "Despite her own hard times, a Maryland woman became a leading data center activist",
    "titleZh": "",
    "sentences": [
     {
-     "en": "The highly anticipated, latest installment of Sarah J.",
-     "zh": ""
-    },
-    {
-     "en": "Maas&apos; romantasy series has hit the shelves.",
-     "zh": ""
-    },
-    {
-     "en": "Hardcore fans were lined up (in their faerie ears) at the stroke of midnight.",
+     "en": "Despite her hard financial times, a Maryland woman became a leading local data center activist — an example of the way the issue has prompted people to get involved.",
      "zh": ""
     }
    ],
    "glossary": [],
    "words": 29,
-   "audio": "data/reading/audio/20261027-2.mp3",
-   "audioKB": 79,
-   "link": "https://www.npr.org/2026/10/27/nx-s1-6011109/acotar-a-court-of-splintered-harmony-sarah-j-maas"
+   "audio": "data/reading/audio/20261028-2.mp3",
+   "audioKB": 60,
+   "link": "https://www.npr.org/2026/10/28/nx-s1-6000625/despite-her-own-hard-times-a-maryland-woman-became-a-leading-data-center-activist"
   },
   {
-   "id": "20261027-3",
-   "date": "2026-10-27",
+   "id": "20261028-3",
+   "date": "2026-10-28",
    "source": "NPR Tech",
    "topic": "科技",
    "country": "",
    "countryName": "",
-   "title": "Polymarket has investigated 'dozens' of election-related cases",
+   "title": "How a lifelong Republican came to lead the data center battle in Ohio",
    "titleZh": "",
    "sentences": [
     {
-     "en": "The prediction market has hired a former FBI official to make sure political insiders don&apos;t use the platform for profit from confidential election information.&lt;strong&gt; &lt;/strong&gt;",
+     "en": "In Ohio, many people are displeased with the state&apos;s rapid buildout of data centers.",
+     "zh": ""
+    },
+    {
+     "en": "It&apos;s a hot issue in the midterms, as political candidates from both parties try to ease voter concerns.",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 25,
-   "audio": "data/reading/audio/20261027-3.mp3",
-   "audioKB": 91,
-   "link": "https://www.npr.org/2026/10/27/nx-s1-6012304/polymarket-election-betting-surveillance"
+   "words": 32,
+   "audio": "data/reading/audio/20261028-3.mp3",
+   "audioKB": 85,
+   "link": "https://www.npr.org/2026/10/28/nx-s1-6019276/data-centers-ai-midterms-ohio"
   },
   {
-   "id": "20261027-4",
-   "date": "2026-10-27",
+   "id": "20261028-4",
+   "date": "2026-10-28",
    "source": "BBC Culture",
    "topic": "文化",
-   "country": "nl",
-   "countryName": "荷兰",
-   "title": "Netherlands pulls out of Eurovision again over Israel participation",
+   "country": "",
+   "countryName": "",
+   "title": "Death of US actress Hayden Panettiere ruled accidental, ending local police probe",
    "titleZh": "",
    "sentences": [
     {
-     "en": "A Dutch broadcaster reverses a decision to take part, citing \"sensitivities\" over Israel's participation.",
+     "en": "The Heroes and Nashville star died in August from the toxic effects of fentanyl, Xanax and several other drugs.",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 14,
-   "audio": "data/reading/audio/20261027-4.mp3",
-   "audioKB": 42,
-   "link": "https://www.bbc.co.uk/news/articles/cmr4y5dvlzneo?at_medium=RSS&amp;at_campaign=rss"
+   "words": 19,
+   "audio": "data/reading/audio/20261028-4.mp3",
+   "audioKB": 45,
+   "link": "https://www.bbc.co.uk/news/articles/c6lylxjkkp0vo?at_medium=RSS&amp;at_campaign=rss"
   },
   {
-   "id": "20261027-5",
-   "date": "2026-10-27",
+   "id": "20261028-5",
+   "date": "2026-10-28",
    "source": "NPR Arts",
    "topic": "艺术",
-   "country": "es",
-   "countryName": "西班牙",
-   "title": "Filmmaking is 'our weapon against intolerance,' say 'La Bola Negra' directors",
+   "country": "de",
+   "countryName": "德国",
+   "title": "Thomas Mann returns to his 'Fatherland' in this practically flawless film",
    "titleZh": "",
    "sentences": [
     {
-     "en": "Javier Calvo and Javier Ambrossi have turned four pages of an unfinished play by Federico García Lorca into a sweeping epic that spans 90 years of Spanish history, focusing on the stories of gay men.",
+     "en": "&lt;em&gt;Fatherland&lt;/em&gt; imagines the Nobel Prize-winning author&apos;s 1949 return to Germany after years of exile.",
+     "zh": ""
+    },
+    {
+     "en": "Just 82 minutes long, this gorgeous film is meticulously staged and shot in black and white.",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 35,
-   "audio": "data/reading/audio/20261027-5.mp3",
-   "audioKB": 77,
-   "link": "https://www.npr.org/2026/10/27/nx-s1-6017755/la-bola-negra-los-javis-calvo-ambrossi"
+   "words": 30,
+   "audio": "data/reading/audio/20261028-5.mp3",
+   "audioKB": 110,
+   "link": "https://www.npr.org/2026/10/28/nx-s1-6020549/fatherland-review-thomas-mann"
   },
   {
-   "id": "20261027-6",
-   "date": "2026-10-26",
+   "id": "20261028-6",
+   "date": "2026-10-28",
    "source": "NPR Tech",
    "topic": "科技",
    "country": "",
    "countryName": "",
-   "title": "AI giant Anthropic files for an IPO that could break records",
+   "title": "Anthropic is preparing to go public. A look at the company's plan",
    "titleZh": "",
    "sentences": [
     {
-     "en": "The AI company, which makes the popular Claude chatbot, has filed for an initial public offering that could be one of the biggest ever.",
+     "en": "NPR&apos;s Steve Inskeep asks Machine Gods host Casey Newton about the reaction to Anthropic&apos;s preparations to become a publicly traded company.",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 24,
-   "audio": "data/reading/audio/20261027-6.mp3",
-   "audioKB": 49,
-   "link": "https://www.npr.org/2026/10/26/nx-s1-6014772/anthropic-ai-ipo-could-break-records"
+   "words": 21,
+   "audio": "data/reading/audio/20261028-6.mp3",
+   "audioKB": 65,
+   "link": "https://www.npr.org/2026/10/28/nx-s1-6019534/anthropic-is-preparing-to-go-public-a-look-at-their-plan"
   }
  ]
 }
