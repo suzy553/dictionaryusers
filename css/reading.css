@@ -929,3 +929,50 @@
   font-size: 11.5px;
   color: rgba(255,255,255,.5);
 }
+
+
+/* 来源与许可标注 */
+.rd-legal{
+  margin-top: 18px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255,255,255,.12);
+  font-size: 11px;
+  line-height: 1.6;
+  color: rgba(255,255,255,.52);
+}
+.rd-legal b{ color: rgba(255,255,255,.72); font-weight: 700; }
+.rdp-src{
+  margin-top: 10px;
+  font-size: 10.5px;
+  color: rgba(255,255,255,.42);
+  line-height: 1.5;
+}
+
+
+/* 设置页：隐私与来源说明 */
+.legal-block{
+  margin: 6px 0 18px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid var(--rule, rgba(0,0,0,.08));
+  background: var(--surface, #fff);
+}
+.legal-block b{
+  display: block;
+  font-size: 13.5px;
+  color: var(--ink, #1b2a22);
+  margin-bottom: 8px;
+}
+.legal-block p{
+  margin: 0 0 8px;
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--ink-3, #6b7a72);
+}
+.legal-block p:last-child{ margin-bottom: 0; }
+.legal-block em{
+  font-style: normal;
+  font-weight: 800;
+  color: var(--ink, #1b2a22);
+  margin-right: 4px;
+}

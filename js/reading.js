@@ -98,8 +98,13 @@
           '</div>' +
           '<div class="rd-body">' + sents + '</div>' +
           '<div class="rd-tools"><span class="rd-tip">点句子看翻译 · 点单词查释义</span></div>' +
+          '<div class="rd-legal">' +
+            '来源：' + esc(it.attribution || it.source || '') +
+            (it.license ? ' · ' + esc(it.license) : '') +
+            (it.aiAssisted ? ' · <b>AI 改写</b>' : '') +
+          '</div>' +
           '<div class="rd-foot">' +
-            (it.link ? '<a class="rd-link" href="' + esc(it.link) + '" target="_blank" rel="noopener">原文</a>' : '') +
+            (it.link ? '<a class="rd-link" href="' + esc(it.link) + '" target="_blank" rel="noopener">查看原文</a>' : '') +
             (standalone ? '<button class="rd-link" data-act="back">返回列表</button>'
                         : '<button class="rd-next" data-act="next">下一篇 ›</button>') +
           '</div>' +
@@ -318,6 +323,7 @@
         '<button class="rdp-say" data-act="say">🔊</button></div>' +
       '<div class="rdp-zh">' + (gloss ? esc(gloss.zh) : '查询中…') + '</div>' +
       '<div class="rdp-def"></div>' +
+      '<div class="rdp-src">释义来自 Wiktionary（CC BY-SA 3.0）· 发音来自同一来源</div>' +
       '<div class="rdp-acts">' +
         (inBook
           ? '<button class="rdp-btn is-done" disabled>已在生词本</button>'

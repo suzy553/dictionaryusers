@@ -1,141 +1,832 @@
 {
- "updated": "2026-10-28 22:50",
- "date": "2026-10-28",
- "source": "BBC Culture / NPR Arts / NPR Tech",
+ "updated": "2026-10-29 19:14",
+ "date": "2026-10-29",
+ "source": "Project Gutenberg",
  "items": [
   {
-   "id": "20261028-1",
-   "date": "2026-10-28",
-   "source": "BBC Culture",
-   "topic": "文化",
+   "id": "20261029-1",
+   "date": "2026-10-29",
+   "source": "Project Gutenberg",
+   "license": "公有领域",
+   "attribution": "Mary Shelley · Frankenstein · Project Gutenberg",
+   "topic": "文学",
    "country": "",
    "countryName": "",
-   "title": "Russell Brand tells trial sexual consent is 'fundamental'",
-   "titleZh": "",
+   "title": "A Lonely Creature Dreams of Friendship",
+   "titleZh": "孤独怪物渴望友谊",
    "sentences": [
     {
-     "en": "The entertainer gives evidence at his trial on charges including rape and assault, which he denies.",
-     "zh": ""
+     "en": "The speaker is the creature created by Victor Frankenstein, and he is telling his own story in this passage.",
+     "zh": "这段话的讲述者是由维克多·弗兰肯斯坦创造的生物，他正在讲述自己的故事。"
+    },
+    {
+     "en": "He lives secretly near a small cottage, where he watches a poor family every day.",
+     "zh": "他偷偷住在一间小屋附近，每天观察一个贫穷的家庭。"
+    },
+    {
+     "en": "The family includes an old blind father, a gentle young woman named Agatha, and her brother Felix.",
+     "zh": "这个家庭有一位年迈的盲人父亲、一位温柔的年轻女子阿加莎，以及她的兄弟费利克斯。"
+    },
+    {
+     "en": "The creature notices that Felix looks miserable and that Agatha often seems sad for reasons he does not know.",
+     "zh": "这个生物注意到费利克斯看起来很痛苦，而阿加莎也常常显得悲伤，但他不知道原因。"
+    },
+    {
+     "en": "He becomes very curious about their lives and wants to understand why they suffer so much.",
+     "zh": "他对他们的生活产生强烈好奇，想要理解他们为什么如此受苦。"
+    },
+    {
+     "en": "Because he has learned to care about them, he dreams of restoring happiness to these deserving people.",
+     "zh": "因为他已经学会关心他们，他梦想着让这些值得幸福的人重获快乐。"
+    },
+    {
+     "en": "He imagines that the blind father, Agatha, and Felix could become the judges of his future destiny.",
+     "zh": "他想象那位盲人父亲、阿加莎和费利克斯可能成为决定他未来命运的人。"
+    },
+    {
+     "en": "In his mind, he pictures many different scenes of introducing himself to the family and waiting for their reaction.",
+     "zh": "在他的脑海中，他设想许多不同的场景：向这家人介绍自己，并等待他们的反应。"
+    },
+    {
+     "en": "At first, he fears that they will be disgusted by his strange appearance and will reject him completely.",
+     "zh": "起初，他害怕他们会厌恶他奇怪的外表，并彻底拒绝他。"
+    },
+    {
+     "en": "He hopes that gentle behavior and kind, calming words will first win their trust and later their love.",
+     "zh": "他希望温和的举止和友善、安抚的话语能先赢得他们的信任，之后赢得他们的爱。"
+    },
+    {
+     "en": "However, he has not yet met them, so these hopeful scenes remain only inside his imagination.",
+     "zh": "然而，他还没有与他们见面，所以这些充满希望的情景只存在于他的想象中。"
+    },
+    {
+     "en": "The passage shows his deep loneliness and his strong wish to belong somewhere and be accepted.",
+     "zh": "这段文字展现了他深深的孤独，以及他渴望在某处有所归属并被接纳的强烈愿望。"
     }
    ],
-   "glossary": [],
-   "words": 16,
-   "audio": "data/reading/audio/20261028-1.mp3",
-   "audioKB": 38,
-   "link": "https://www.bbc.co.uk/news/articles/cmvgxl5kdgrzo?at_medium=RSS&amp;at_campaign=rss"
-  },
-  {
-   "id": "20261028-2",
-   "date": "2026-10-28",
-   "source": "NPR Arts",
-   "topic": "艺术",
-   "country": "",
-   "countryName": "",
-   "title": "Despite her own hard times, a Maryland woman became a leading data center activist",
-   "titleZh": "",
-   "sentences": [
+   "glossary": [
     {
-     "en": "Despite her hard financial times, a Maryland woman became a leading local data center activist — an example of the way the issue has prompted people to get involved.",
-     "zh": ""
+     "w": "creature",
+     "zh": "生物；被创造的生命"
+    },
+    {
+     "w": "cottage",
+     "zh": "小屋"
+    },
+    {
+     "w": "miserable",
+     "zh": "痛苦的；悲惨的"
+    },
+    {
+     "w": "curious",
+     "zh": "好奇的"
+    },
+    {
+     "w": "suffer",
+     "zh": "受苦；遭受痛苦"
+    },
+    {
+     "w": "care about",
+     "zh": "关心；在乎"
+    },
+    {
+     "w": "restore",
+     "zh": "恢复；使重获"
+    },
+    {
+     "w": "deserving",
+     "zh": "值得的；应得的"
+    },
+    {
+     "w": "destiny",
+     "zh": "命运"
+    },
+    {
+     "w": "imagination",
+     "zh": "想象；想象力"
+    },
+    {
+     "w": "introduce oneself",
+     "zh": "自我介绍"
+    },
+    {
+     "w": "reaction",
+     "zh": "反应"
+    },
+    {
+     "w": "disgusted",
+     "zh": "厌恶的；反感的"
+    },
+    {
+     "w": "appearance",
+     "zh": "外貌；外表"
+    },
+    {
+     "w": "reject",
+     "zh": "拒绝"
+    },
+    {
+     "w": "gentle",
+     "zh": "温和的；温柔的"
+    },
+    {
+     "w": "behavior",
+     "zh": "行为；举止"
+    },
+    {
+     "w": "win someone's trust",
+     "zh": "赢得某人的信任"
+    },
+    {
+     "w": "loneliness",
+     "zh": "孤独"
+    },
+    {
+     "w": "belong",
+     "zh": "属于；有归属感"
+    },
+    {
+     "w": "be accepted",
+     "zh": "被接纳"
+    },
+    {
+     "w": "at first",
+     "zh": "起初"
     }
    ],
-   "glossary": [],
-   "words": 29,
-   "audio": "data/reading/audio/20261028-2.mp3",
-   "audioKB": 60,
-   "link": "https://www.npr.org/2026/10/28/nx-s1-6000625/despite-her-own-hard-times-a-maryland-woman-became-a-leading-data-center-activist"
+   "words": 207,
+   "audio": "data/reading/audio/20261029-1.mp3",
+   "audioKB": 446,
+   "link": "https://www.gutenberg.org/ebooks/84",
+   "aiAssisted": true
   },
   {
-   "id": "20261028-3",
-   "date": "2026-10-28",
-   "source": "NPR Tech",
-   "topic": "科技",
+   "id": "20261029-2",
+   "date": "2026-10-29",
+   "source": "Project Gutenberg",
+   "license": "公有领域",
+   "attribution": "Lewis Carroll · Alice's Adventures in Wonderland · Project Gutenberg",
+   "topic": "文学",
    "country": "",
    "countryName": "",
-   "title": "How a lifelong Republican came to lead the data center battle in Ohio",
+   "title": "Alice and the Round Mushroom in Wonderland",
+   "titleZh": "爱丽丝与仙境中的圆蘑菇",
+   "sentences": [
+    {
+     "en": "Alice is a curious young girl who falls down a rabbit hole and enters a strange magical world called Wonderland.",
+     "zh": "爱丽丝是一个好奇的小女孩，她掉进兔子洞，进入了一个叫仙境的奇特魔法世界。"
+    },
+    {
+     "en": "In Wonderland, she meets unusual creatures and faces many puzzling situations that test her courage and quick thinking.",
+     "zh": "在仙境里，她遇到不寻常的生物，面对许多考验她勇气和快速思考的困惑处境。"
+    },
+    {
+     "en": "At one point in the story, she finds a special round mushroom that can make her grow taller or become smaller.",
+     "zh": "故事中的某个时刻，她发现一朵特别的圆蘑菇，能让她长高或变小。"
+    },
+    {
+     "en": "She has learned that one side of the mushroom makes her grow, while the other side has the opposite effect.",
+     "zh": "她得知蘑菇的一边会让她长大，而另一边则有相反的效果。"
+    },
+    {
+     "en": "However, the mushroom is perfectly round, so it is not clear which side is which.",
+     "zh": "然而，蘑菇完全是圆的，所以很难看清哪一边是哪一边。"
+    },
+    {
+     "en": "Alice looks at the mushroom thoughtfully for a minute and tries to understand its two different sides.",
+     "zh": "爱丽丝若有所思地看了蘑菇一分钟，试图弄清它两个不同的边。"
+    },
+    {
+     "en": "This is a difficult question for her because the mushroom has no obvious marks or edges to guide her.",
+     "zh": "这对她来说是个难题，因为蘑菇上没有明显的标记或边缘可以指引她。"
+    },
+    {
+     "en": "She needs two pieces, one from each side, so that she can test their different powers later.",
+     "zh": "她需要两块，每边一块，以便之后测试它们不同的功效。"
+    },
+    {
+     "en": "At last, Alice stretches her arms around the mushroom as far as they will go.",
+     "zh": "最后，爱丽丝尽可能把双臂环抱在蘑菇周围。"
+    },
+    {
+     "en": "Then she breaks off a small piece from the edge with each hand.",
+     "zh": "然后，她用每只手从边缘掰下一小块。"
+    },
+    {
+     "en": "She succeeds in getting two pieces, even though she cannot decide which side is which.",
+     "zh": "她成功得到了两块，尽管她无法判断哪一边是哪一边。"
+    },
+    {
+     "en": "With these two pieces, she can later test the mushroom's effects and continue her journey through Wonderland.",
+     "zh": "有了这两块，她之后可以测试蘑菇的效果，并继续她在仙境的旅程。"
+    }
+   ],
+   "glossary": [
+    {
+     "w": "curious",
+     "zh": "好奇的"
+    },
+    {
+     "w": "fall down",
+     "zh": "掉下；跌倒"
+    },
+    {
+     "w": "rabbit hole",
+     "zh": "兔子洞"
+    },
+    {
+     "w": "magical",
+     "zh": "有魔力的；神奇的"
+    },
+    {
+     "w": "unusual",
+     "zh": "不寻常的"
+    },
+    {
+     "w": "creature",
+     "zh": "生物；动物"
+    },
+    {
+     "w": "puzzling",
+     "zh": "令人困惑的"
+    },
+    {
+     "w": "situation",
+     "zh": "情况；处境"
+    },
+    {
+     "w": "courage",
+     "zh": "勇气"
+    },
+    {
+     "w": "quick thinking",
+     "zh": "快速思考；敏捷的思维"
+    },
+    {
+     "w": "at one point",
+     "zh": "在某一时刻"
+    },
+    {
+     "w": "special",
+     "zh": "特别的"
+    },
+    {
+     "w": "mushroom",
+     "zh": "蘑菇"
+    },
+    {
+     "w": "grow taller",
+     "zh": "长高"
+    },
+    {
+     "w": "opposite effect",
+     "zh": "相反的效果"
+    },
+    {
+     "w": "perfectly round",
+     "zh": "完全圆的"
+    },
+    {
+     "w": "thoughtfully",
+     "zh": "若有所思地"
+    },
+    {
+     "w": "obvious",
+     "zh": "明显的"
+    },
+    {
+     "w": "edge",
+     "zh": "边缘"
+    },
+    {
+     "w": "stretch one's arms",
+     "zh": "伸展双臂"
+    },
+    {
+     "w": "break off",
+     "zh": "掰下；折断"
+    },
+    {
+     "w": "succeed in",
+     "zh": "成功做（某事）"
+    }
+   ],
+   "words": 207,
+   "audio": "data/reading/audio/20261029-2.mp3",
+   "audioKB": 430,
+   "link": "https://www.gutenberg.org/ebooks/11",
+   "aiAssisted": true
+  },
+  {
+   "id": "20261029-3",
+   "date": "2026-10-29",
+   "source": "Project Gutenberg",
+   "license": "公有领域",
+   "attribution": "Jane Austen · Pride and Prejudice · Project Gutenberg",
+   "topic": "文学",
+   "country": "",
+   "countryName": "",
+   "title": "Frequent Visits and a Controlling Lady",
+   "titleZh": "频繁的拜访与一位控制欲强的贵妇",
+   "sentences": [
+    {
+     "en": "This passage comes from Pride and Prejudice, a famous novel by Jane Austen about love, class, and social manners.",
+     "zh": "这段选文出自《傲慢与偏见》，这是简·奥斯汀的一部名著，探讨爱情、阶级和社会礼仪。"
+    },
+    {
+     "en": "Mr. Collins is a clergyman who lives near Rosings, the large and impressive home of Lady Catherine de Bourgh.",
+     "zh": "柯林斯先生是一位牧师，住在罗新斯附近；罗新斯是凯瑟琳·德·包尔夫人宏伟气派的宅邸。"
+    },
+    {
+     "en": "Lady Catherine is a rich and powerful noblewoman, so Mr. Collins respects her greatly and tries hard to please her.",
+     "zh": "凯瑟琳夫人是一位有钱有势的贵妇，因此柯林斯先生非常尊敬她，并努力取悦她。"
+    },
+    {
+     "en": "His wife, Charlotte, is Elizabeth Bennet's close friend, and Elizabeth is currently staying at their home.",
+     "zh": "他的妻子夏洛特是伊丽莎白·班纳特的密友，伊丽莎白目前住在他们家里。"
+    },
+    {
+     "en": "Mr. Collins walks to Rosings almost every day, and Charlotte often goes with him because she thinks these visits are necessary.",
+     "zh": "柯林斯先生几乎每天都步行去罗新斯，夏洛特也常和他一起去，因为她认为这些拜访很有必要。"
+    },
+    {
+     "en": "At first, Elizabeth cannot understand why they are willing to spend so many hours on these repeated visits.",
+     "zh": "起初，伊丽莎白不明白他们为什么愿意在这些反复的拜访上花这么多时间。"
+    },
+    {
+     "en": "Sometimes Lady Catherine calls at their home, and during these visits she carefully observes everything happening in the room.",
+     "zh": "有时凯瑟琳夫人会到他们家拜访；在这些拜访中，她仔细地观察房间里发生的一切。"
+    },
+    {
+     "en": "She asks about their daily work, examines their sewing, and often advises them to do things in a different way.",
+     "zh": "她询问他们的日常工作，查看他们的缝纫活，还常常建议他们换一种方式做事。"
+    },
+    {
+     "en": "She also finds fault with the arrangement of the furniture and looks for signs of carelessness in the housemaid.",
+     "zh": "她还挑剔家具的摆放，并寻找女佣粗心大意的迹象。"
+    },
+    {
+     "en": "If she accepts any food or drink, she seems to do so mainly to find something to criticize.",
+     "zh": "如果她接受食物或饮料，她似乎主要是为了找点东西来批评。"
+    },
+    {
+     "en": "For example, she notices that Mrs. Collins's joints of meat are too large for such a small family.",
+     "zh": "例如，她注意到柯林斯太太家的大块肉对于这么小的家庭来说太大了。"
+    },
+    {
+     "en": "Through these details, Elizabeth sees Lady Catherine's pride and controlling manner, and she begins to understand life at Rosings.",
+     "zh": "通过这些细节，伊丽莎白看到了凯瑟琳夫人的傲慢和控制欲，也开始理解罗新斯的生活。"
+    }
+   ],
+   "glossary": [
+    {
+     "w": "passage",
+     "zh": "段落；选段"
+    },
+    {
+     "w": "novel",
+     "zh": "小说"
+    },
+    {
+     "w": "clergyman",
+     "zh": "牧师；神职人员"
+    },
+    {
+     "w": "impressive",
+     "zh": "宏伟的；令人印象深刻的"
+    },
+    {
+     "w": "noblewoman",
+     "zh": "贵妇；女贵族"
+    },
+    {
+     "w": "respect",
+     "zh": "尊敬"
+    },
+    {
+     "w": "please",
+     "zh": "取悦；使满意"
+    },
+    {
+     "w": "necessary",
+     "zh": "必要的"
+    },
+    {
+     "w": "repeated",
+     "zh": "反复的；一再的"
+    },
+    {
+     "w": "observe",
+     "zh": "观察"
+    },
+    {
+     "w": "examine",
+     "zh": "检查；查看"
+    },
+    {
+     "w": "sewing",
+     "zh": "缝纫；缝纫活"
+    },
+    {
+     "w": "advise",
+     "zh": "建议"
+    },
+    {
+     "w": "find fault with",
+     "zh": "挑剔；找茬"
+    },
+    {
+     "w": "arrangement",
+     "zh": "布置；安排"
+    },
+    {
+     "w": "carelessness",
+     "zh": "粗心大意"
+    },
+    {
+     "w": "housemaid",
+     "zh": "女佣"
+    },
+    {
+     "w": "criticize",
+     "zh": "批评"
+    },
+    {
+     "w": "joints of meat",
+     "zh": "大块肉"
+    },
+    {
+     "w": "controlling",
+     "zh": "控制欲强的"
+    },
+    {
+     "w": "manner",
+     "zh": "举止；方式"
+    }
+   ],
+   "words": 226,
+   "audio": "data/reading/audio/20261029-3.mp3",
+   "audioKB": 500,
+   "link": "https://www.gutenberg.org/ebooks/1342",
+   "aiAssisted": true
+  },
+  {
+   "id": "20261029-4",
+   "date": "2026-10-29",
+   "source": "Project Gutenberg",
+   "license": "公有领域",
+   "attribution": "Robert Louis Stevenson · Treasure Island · Project Gutenberg",
+   "topic": "文学",
+   "country": "",
+   "countryName": "",
+   "title": "Adrift Beside the Hispaniola",
+   "titleZh": "在伊斯帕尼奥拉号旁漂流",
+   "sentences": [
+    {
+     "en": "Jim Hawkins is a young sailor travelling on the Hispaniola during a dangerous search for hidden treasure.",
+     "zh": "吉姆·霍金斯是一名年轻水手，正乘着“伊斯帕尼奥拉号”进行一次危险的寻宝航行。"
+    },
+    {
+     "en": "One dark night, he suddenly finds himself alone in the cold sea beside the moving ship.",
+     "zh": "一个漆黑的夜晚，他突然发现自己独自一人在冰冷的海水中，旁边是正在移动的船。"
+    },
+    {
+     "en": "When he opens his eyes, small waves are moving all around him and breaking softly.",
+     "zh": "他睁开眼睛时，小小的波浪在他四周涌动，轻轻破碎。"
+    },
+    {
+     "en": "They make a sharp, hissing sound and shine faintly in the darkness as they rise and fall.",
+     "zh": "波浪起伏时发出尖锐的嘶嘶声，并在黑暗中微微发亮。"
+    },
+    {
+     "en": "The Hispaniola is only a few yards away, and the large ship is still moving through the night water.",
+     "zh": "“伊斯帕尼奥拉号”就在几码之外，这艘大船仍在夜色中的水面上前行。"
+    },
+    {
+     "en": "Jim is caught in the ship's wake, so he is being pulled along behind it by the moving water.",
+     "zh": "吉姆被困在船的尾流中，因此被流动的海水拖在船后前行。"
+    },
+    {
+     "en": "He watches the ship's long poles move slightly against the black night sky above him.",
+     "zh": "他望着船上的长杆在头顶漆黑的夜空背景下微微晃动。"
+    },
+    {
+     "en": "After looking for a while, he becomes sure that the ship is slowly turning toward the south.",
+     "zh": "看了一会儿后，他确信船正在慢慢转向南方。"
+    },
+    {
+     "en": "This turn is important because the ship may soon move farther away and leave him behind.",
+     "zh": "这个转向很重要，因为船可能很快就会驶得更远，把他抛在后面。"
+    },
+    {
+     "en": "Although he is frightened, Jim knows that he must stay calm and keep himself above the water.",
+     "zh": "尽管很害怕，吉姆知道自己必须保持冷静，并让自己保持在水面之上。"
+    },
+    {
+     "en": "He looks around carefully and tries to think of a practical way to survive and return to safety.",
+     "zh": "他仔细环顾四周，努力想出一个可行的办法来活下来并回到安全之处。"
+    },
+    {
+     "en": "The dark sea, the cold water, and the moving ship make this a night he will never forget.",
+     "zh": "黑暗的大海、冰冷的海水和移动的船，使这一夜成为他永远难忘的夜晚。"
+    }
+   ],
+   "glossary": [
+    {
+     "w": "voyage",
+     "zh": "航行；航海"
+    },
+    {
+     "w": "treasure",
+     "zh": "宝藏"
+    },
+    {
+     "w": "sailor",
+     "zh": "水手"
+    },
+    {
+     "w": "alone",
+     "zh": "独自一人"
+    },
+    {
+     "w": "wave",
+     "zh": "波浪"
+    },
+    {
+     "w": "sharp",
+     "zh": "尖锐的；刺耳的"
+    },
+    {
+     "w": "hissing",
+     "zh": "嘶嘶声"
+    },
+    {
+     "w": "faintly",
+     "zh": "微弱地"
+    },
+    {
+     "w": "rise and fall",
+     "zh": "起伏"
+    },
+    {
+     "w": "yard",
+     "zh": "码（长度单位）"
+    },
+    {
+     "w": "wake",
+     "zh": "尾流；船后流出的水"
+    },
+    {
+     "w": "pull along",
+     "zh": "拖着前行"
+    },
+    {
+     "w": "pole",
+     "zh": "杆；长杆"
+    },
+    {
+     "w": "slightly",
+     "zh": "轻微地"
+    },
+    {
+     "w": "turn south",
+     "zh": "转向南边"
+    },
+    {
+     "w": "farther",
+     "zh": "更远地"
+    },
+    {
+     "w": "frightened",
+     "zh": "害怕的"
+    },
+    {
+     "w": "stay calm",
+     "zh": "保持冷静"
+    },
+    {
+     "w": "keep above the water",
+     "zh": "保持在水面之上"
+    },
+    {
+     "w": "survive",
+     "zh": "生存；活下来"
+    },
+    {
+     "w": "practical",
+     "zh": "实际的；可行的"
+    },
+    {
+     "w": "safety",
+     "zh": "安全"
+    }
+   ],
+   "words": 204,
+   "audio": "data/reading/audio/20261029-4.mp3",
+   "audioKB": 402,
+   "link": "https://www.gutenberg.org/ebooks/120",
+   "aiAssisted": true
+  },
+  {
+   "id": "20261029-5",
+   "date": "2026-10-29",
+   "source": "Project Gutenberg",
+   "license": "公有领域",
+   "attribution": "H. G. Wells · The Time Machine · Project Gutenberg",
+   "topic": "文学",
+   "country": "",
+   "countryName": "",
+   "title": "The Time Machine（选段）",
    "titleZh": "",
    "sentences": [
     {
-     "en": "In Ohio, many people are displeased with the state&apos;s rapid buildout of data centers.",
+     "en": "“This adjustment, I say, must have been done, and done well; done indeed for all Time, in the space of Time across which my machine had leapt.",
      "zh": ""
     },
     {
-     "en": "It&apos;s a hot issue in the midterms, as political candidates from both parties try to ease voter concerns.",
-     "zh": ""
-    }
-   ],
-   "glossary": [],
-   "words": 32,
-   "audio": "data/reading/audio/20261028-3.mp3",
-   "audioKB": 85,
-   "link": "https://www.npr.org/2026/10/28/nx-s1-6019276/data-centers-ai-midterms-ohio"
-  },
-  {
-   "id": "20261028-4",
-   "date": "2026-10-28",
-   "source": "BBC Culture",
-   "topic": "文化",
-   "country": "",
-   "countryName": "",
-   "title": "Death of US actress Hayden Panettiere ruled accidental, ending local police probe",
-   "titleZh": "",
-   "sentences": [
-    {
-     "en": "The Heroes and Nashville star died in August from the toxic effects of fentanyl, Xanax and several other drugs.",
-     "zh": ""
-    }
-   ],
-   "glossary": [],
-   "words": 19,
-   "audio": "data/reading/audio/20261028-4.mp3",
-   "audioKB": 45,
-   "link": "https://www.bbc.co.uk/news/articles/c6lylxjkkp0vo?at_medium=RSS&amp;at_campaign=rss"
-  },
-  {
-   "id": "20261028-5",
-   "date": "2026-10-28",
-   "source": "NPR Arts",
-   "topic": "艺术",
-   "country": "de",
-   "countryName": "德国",
-   "title": "Thomas Mann returns to his 'Fatherland' in this practically flawless film",
-   "titleZh": "",
-   "sentences": [
-    {
-     "en": "&lt;em&gt;Fatherland&lt;/em&gt; imagines the Nobel Prize-winning author&apos;s 1949 return to Germany after years of exile.",
+     "en": "The air was free from gnats, the earth from weeds or fungi; everywhere were fruits and sweet and delightful flowers; brilliant butterflies flew hither and thither.",
      "zh": ""
     },
     {
-     "en": "Just 82 minutes long, this gorgeous film is meticulously staged and shot in black and white.",
+     "en": "The ideal of preventive medicine was attained.",
+     "zh": ""
+    },
+    {
+     "en": "Diseases had been stamped out.",
+     "zh": ""
+    },
+    {
+     "en": "I saw no evidence of any contagious diseases during all my stay.",
+     "zh": ""
+    },
+    {
+     "en": "And I shall have to tell you later that even the processes of putrefaction and decay had been profoundly affected by these changes.",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 30,
-   "audio": "data/reading/audio/20261028-5.mp3",
-   "audioKB": 110,
-   "link": "https://www.npr.org/2026/10/28/nx-s1-6020549/fatherland-review-thomas-mann"
+   "words": 100,
+   "audio": "data/reading/audio/20261029-5.mp3",
+   "audioKB": 219,
+   "link": "https://www.gutenberg.org/ebooks/35",
+   "aiAssisted": true
   },
   {
-   "id": "20261028-6",
-   "date": "2026-10-28",
-   "source": "NPR Tech",
-   "topic": "科技",
+   "id": "20261029-6",
+   "date": "2026-10-29",
+   "source": "Project Gutenberg",
+   "license": "公有领域",
+   "attribution": "Bram Stoker · Dracula · Project Gutenberg",
+   "topic": "文学",
    "country": "",
    "countryName": "",
-   "title": "Anthropic is preparing to go public. A look at the company's plan",
-   "titleZh": "",
+   "title": "Trust Before Understanding",
+   "titleZh": "理解之前的信任",
    "sentences": [
     {
-     "en": "NPR&apos;s Steve Inskeep asks Machine Gods host Casey Newton about the reaction to Anthropic&apos;s preparations to become a publicly traded company.",
-     "zh": ""
+     "en": "During a dangerous and confusing period, a wise man asked a close friend to put complete trust in him.",
+     "zh": "在一个危险而令人困惑的时期，一位智者请一位密友完全信任他。"
+    },
+    {
+     "en": "His recent actions had seemed violent and strange, so the friend struggled to understand why he had acted that way.",
+     "zh": "他最近的行为看似暴烈而古怪，因此这位朋友很难理解他为何那样做。"
+    },
+    {
+     "en": "The man knew that trusting such strong actions is very hard when the reasons are still hidden.",
+     "zh": "这个人明白，当原因仍被隐藏时，信任如此激烈的行为非常困难。"
+    },
+    {
+     "en": "He openly accepted that his friend did not trust him fully yet, because true understanding had not arrived.",
+     "zh": "他坦率地承认，朋友还没有完全信任他，因为真正的理解尚未到来。"
+    },
+    {
+     "en": "He then warned that more difficult moments might come in the future, perhaps sooner than either of them expected.",
+     "zh": "随后他警告说，未来可能会有更多艰难时刻，也许比两人预料的更早到来。"
+    },
+    {
+     "en": "In those moments, he might again ask for trust while he could not, or must not, explain his plan.",
+     "zh": "在那些时刻，他可能再次请求信任，却无法或不被允许解释自己的计划。"
+    },
+    {
+     "en": "His friend might feel unable or even unwilling to give that trust at the time.",
+     "zh": "他的朋友当时可能感到无法，甚至不愿意给予那种信任。"
+    },
+    {
+     "en": "Even so, he gave a serious promise that complete trust would one day replace doubt and fear.",
+     "zh": "即便如此，他郑重承诺，完全的信任终有一天会取代怀疑与恐惧。"
+    },
+    {
+     "en": "When that day finally came, his friend would understand everything as clearly as sunlight.",
+     "zh": "当那一天终于到来时，他的朋友会像阳光照耀般清楚地理解一切。"
+    },
+    {
+     "en": "Then his friend would bless him for his own sake, for other people, and for a dear lady.",
+     "zh": "那时，他的朋友会为了他自己、为了他人、也为了那位亲爱的女士而感激他。"
+    },
+    {
+     "en": "He had sworn to protect that lady, and this promise stood behind all his strange actions.",
+     "zh": "他曾发誓保护那位女士，而这个承诺支撑着他所有古怪的行为。"
+    },
+    {
+     "en": "In the end, the message was simple: trust may come before understanding, but understanding will come.",
+     "zh": "最终，信息很简单：信任可能先于理解到来，但理解终会到来。"
     }
    ],
-   "glossary": [],
-   "words": 21,
-   "audio": "data/reading/audio/20261028-6.mp3",
-   "audioKB": 65,
-   "link": "https://www.npr.org/2026/10/28/nx-s1-6019534/anthropic-is-preparing-to-go-public-a-look-at-their-plan"
+   "glossary": [
+    {
+     "w": "dangerous",
+     "zh": "危险的"
+    },
+    {
+     "w": "confusing",
+     "zh": "令人困惑的"
+    },
+    {
+     "w": "wise",
+     "zh": "明智的；有智慧的"
+    },
+    {
+     "w": "close friend",
+     "zh": "密友"
+    },
+    {
+     "w": "complete trust",
+     "zh": "完全的信任"
+    },
+    {
+     "w": "violent",
+     "zh": "暴力的；激烈的"
+    },
+    {
+     "w": "struggle to understand",
+     "zh": "难以理解；努力理解"
+    },
+    {
+     "w": "hidden",
+     "zh": "隐藏的"
+    },
+    {
+     "w": "openly accept",
+     "zh": "坦率承认"
+    },
+    {
+     "w": "fully",
+     "zh": "完全地"
+    },
+    {
+     "w": "true understanding",
+     "zh": "真正的理解"
+    },
+    {
+     "w": "warn",
+     "zh": "警告"
+    },
+    {
+     "w": "in the future",
+     "zh": "将来"
+    },
+    {
+     "w": "unable",
+     "zh": "不能的；无法的"
+    },
+    {
+     "w": "unwilling",
+     "zh": "不愿意的"
+    },
+    {
+     "w": "serious promise",
+     "zh": "郑重承诺"
+    },
+    {
+     "w": "replace",
+     "zh": "取代"
+    },
+    {
+     "w": "doubt",
+     "zh": "怀疑"
+    },
+    {
+     "w": "sunlight",
+     "zh": "阳光"
+    },
+    {
+     "w": "bless",
+     "zh": "感激；祝福"
+    },
+    {
+     "w": "swear to protect",
+     "zh": "发誓保护"
+    },
+    {
+     "w": "stand behind",
+     "zh": "支撑；作为……的背后原因"
+    }
+   ],
+   "words": 208,
+   "audio": "data/reading/audio/20261029-6.mp3",
+   "audioKB": 435,
+   "link": "https://www.gutenberg.org/ebooks/345",
+   "aiAssisted": true
   }
  ]
 }
