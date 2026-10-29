@@ -212,7 +212,10 @@
     return null;
   }
 
-  /* ---------------- 点词查义 ---------------- */
+  /* ---------------- 点词查义（在线词典 + 本地缓存） ---------------- */
+  var DICT_TTL = 30 * 24 * 3600 * 1000;
+
+  /* 先查本篇文章预生成的词表（含中文） */
   function lookup(item, word) {
     var g = (item && item.glossary) || [];
     var k = word.toLowerCase().replace(/[^a-z'’-]/g, '');
@@ -223,13 +226,98 @@
     return null;
   }
 
-  function showWordPop(word, entry) {
+  /* 本地缓存读写 */
+  function cacheGet(key) {
+    try {
+      var raw = localStorage.getItem('dict.' + key);
+      if (!raw) return null;
+      var o = JSON.parse(raw);
+      if (!o || !o.at || Date.now() - o.at > DICT_TTL) return null;
+      return o.v;
+    } catch (e) { return null; }
+  }
+  function cacheSet(key, val) {
+    try {
+      localStorage.setItem('dict.' + key, JSON.stringify({ at: Date.now(), v: val }));
+    } catch (e) { }
+  }
+
+  /* 在线词典：dictionaryapi.dev，免费、无需密钥、支持 CORS */
+  async function fetchDict(word) {
+    var key = word.toLowerCase().replace(/[^a-z'’-]/g, '');
+    if (!key) return null;
+    var hit = cacheGet(key);
+    if (hit) return hit;
+    try {
+      var r = await fetch('https://api.dictionaryapi.dev/api/v2/entries/en/' +
+        encodeURIComponent(key));
+      if (!r.ok) return null;
+      var data = await r.json();
+      var first = (data && data[0]) || null;
+      if (!first) return null;
+
+      var phonetic = first.phonetic || '';
+      var audio = '';
+      (first.phonetics || []).forEach(function (p) {
+        if (!phonetic && p.text) phonetic = p.text;
+        if (!audio && p.audio) audio = p.audio;
+      });
+
+      var defs = [];
+      (first.meanings || []).slice(0, 3).forEach(function (m) {
+        (m.definitions || []).slice(0, 1).forEach(function (d) {
+          if (d.definition && defs.length < 3) {
+            defs.push({ pos: m.partOfSpeech || '', text: d.definition });
+          }
+        });
+      });
+
+      var out = { phonetic: phonetic, audio: audio, defs: defs };
+      cacheSet(key, out);
+      return out;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function speakNative(url) {
+    try {
+      if (url) {
+        var a = el('rdAudio');
+        if (a) {
+          a.src = url;
+          a.play().catch(function () { msg('发音播放失败'); });
+          return;
+        }
+      }
+      speakWord(word);
+    } catch (e) { }
+  }
+
+  /* 兜底：用有道单词发音 */
+  function speakWord(word) {
+    try {
+      var lg = (typeof bookAudioLang === 'function') ? bookAudioLang() : '';
+      var url = lg
+        ? ('https://dict.youdao.com/dictvoice?audio=' + encodeURIComponent(word) + '&le=' + lg)
+        : ('https://dict.youdao.com/dictvoice?audio=' + encodeURIComponent(word) + '&type=2');
+      var a = el('rdAudio');
+      if (a) { a.src = url; a.play().catch(function () { msg('播放失败'); }); }
+    } catch (e) { }
+  }
+
+  async function showWordPop(word, item) {
     var pop = el('rdWordPop');
     if (!pop) return;
+    var gloss = lookup(item, word);
     var inBook = hasWord(word);
+
+    /* 先渲染出来，避免感觉没反应 */
     pop.innerHTML =
-      '<div class="rdp-word">' + esc(word) + '</div>' +
-      '<div class="rdp-zh">' + (entry ? esc(entry.zh) : '这个词暂未收录释义，可先收藏到生词本') + '</div>' +
+      '<div class="rdp-word">' + esc(word) +
+        '<button class="rdp-say" data-act="say">🔊</button></div>' +
+      '<div class="rdp-zh">' + (gloss ? esc(gloss.zh) : '查询中…') + '</div>' +
+      '<div class="rdp-def"></div>' +
       '<div class="rdp-acts">' +
         (inBook
           ? '<button class="rdp-btn is-done" disabled>已在生词本</button>'
@@ -237,8 +325,35 @@
         '<button class="rdp-btn rdp-ghost" data-act="close">关闭</button>' +
       '</div>';
     pop.dataset.w = word;
-    pop.dataset.zh = entry ? entry.zh : '';
+    pop.dataset.zh = gloss ? gloss.zh : '';
     pop.classList.add('is-open');
+
+    var d = await fetchDict(word);
+    if (!pop.classList.contains('is-open') || pop.dataset.w !== word) return;
+
+    if (!d) {
+      var defEl = pop.querySelector('.rdp-def');
+      if (defEl) {
+        defEl.innerHTML = gloss
+          ? '<span class="rdp-miss">未查到更多释义（可能离线或词形特殊）</span>'
+          : '<span class="rdp-miss">未查到释义，可先收藏</span>';
+      }
+      return;
+    }
+
+    pop.dataset.audio = d.audio || '';
+    var zhEl = pop.querySelector('.rdp-zh');
+    var head = [];
+    if (d.phonetic) head.push('<span class="rdp-ph">' + esc(d.phonetic) + '</span>');
+    if (!gloss) head.push('<span class="rdp-miss">暂无中文，见下方英文释义</span>');
+    if (head.length && zhEl) zhEl.insertAdjacentHTML('afterbegin', head.join(' '));
+
+    var defEl2 = pop.querySelector('.rdp-def');
+    if (defEl2) {
+      defEl2.innerHTML = (d.defs || []).map(function (x) {
+        return '<div class="rdp-line"><i>' + esc(x.pos) + '</i>' + esc(x.text) + '</div>';
+      }).join('') || '';
+    }
   }
 
   function hideWordPop() {
@@ -564,7 +679,7 @@
     var w = e.target.closest('.rd-w');
     if (w) {
       var card = w.closest('.rd-card');
-      showWordPop(w.textContent, lookup(findItem(card), w.textContent));
+      showWordPop(w.textContent, findItem(card));
       return;
     }
     var sen = e.target.closest('.rd-s');
@@ -761,7 +876,7 @@
         var w = e.target.closest('.rd-w');
         if (w) {
           var card = w.closest('.rd-card');
-          showWordPop(w.textContent, lookup(findItem(card), w.textContent));
+          showWordPop(w.textContent, findItem(card));
           return;
         }
         var s = e.target.closest('.rd-s');
@@ -798,8 +913,18 @@
         var act = e.target.closest('[data-act]');
         if (!act) return;
         if (act.dataset.act === 'close') { hideWordPop(); return; }
+        if (act.dataset.act === 'say') {
+          if (pop.dataset.audio) speakNative(pop.dataset.audio);
+          else speakWord(pop.dataset.w);
+          return;
+        }
         if (act.dataset.act === 'collect') {
-          collectWord(pop.dataset.w, pop.dataset.zh);
+          var zh = pop.dataset.zh;
+          if (!zh) {
+            var line = pop.querySelector('.rdp-line');
+            zh = line ? line.textContent.trim().slice(0, 40) : '';
+          }
+          collectWord(pop.dataset.w, zh);
           hideWordPop();
         }
       });
@@ -959,6 +1084,28 @@
             document.title = t1 + ' || after2 paused=' + a.paused + ' btn=' + b.classList.contains('is-playing');
           }, 700);
         }, 1800);
+      } catch (e) { document.title = 'ERR:' + e.message; }
+    }, 2400);
+  }
+
+
+  if (new URLSearchParams(location.search).get('dbgdict') === '1') {
+    setTimeout(function () {
+      try {
+        var w = document.querySelector('.rd-w');
+        if (!w) { document.title = 'NO-WORD'; return; }
+        var r = w.getBoundingClientRect();
+        var opt = { bubbles: true, clientX: r.left + 4, clientY: r.top + 4 };
+        w.dispatchEvent(new PointerEvent('pointerdown', opt));
+        w.dispatchEvent(new PointerEvent('pointerup', opt));
+        setTimeout(function () {
+          var pop = document.getElementById('rdWordPop');
+          var word = pop.querySelector('.rdp-word') ? pop.querySelector('.rdp-word').textContent : '';
+          var ph = pop.querySelector('.rdp-ph') ? pop.querySelector('.rdp-ph').textContent : '-';
+          var defs = pop.querySelectorAll('.rdp-line').length;
+          var hasAudio = !!(pop.dataset.audio);
+          document.title = 'word=' + word.trim() + ' ph=' + ph + ' defs=' + defs + ' audio=' + hasAudio;
+        }, 2500);
       } catch (e) { document.title = 'ERR:' + e.message; }
     }, 2400);
   }

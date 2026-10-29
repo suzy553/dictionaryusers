@@ -891,3 +891,41 @@
   max-height: 320px;
   overflow: auto;
 }
+
+
+/* 词典弹层：音标 / 发音 / 英文释义 */
+.rdp-word{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.rdp-say{
+  width: 32px; height: 32px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.28);
+  background: rgba(255,255,255,.14);
+  color: #fff;
+  font-size: 14px;
+  line-height: 1;
+}
+.rdp-ph{
+  font-size: 12.5px;
+  color: rgba(255,255,255,.62);
+  margin-right: 8px;
+}
+.rdp-def{ margin-top: 8px; }
+.rdp-line{
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: rgba(255,255,255,.8);
+  margin-top: 6px;
+}
+.rdp-line i{
+  font-style: normal;
+  color: rgba(255,255,255,.5);
+  margin-right: 6px;
+}
+.rdp-miss{
+  font-size: 11.5px;
+  color: rgba(255,255,255,.5);
+}
