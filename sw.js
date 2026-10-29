@@ -1,5 +1,5 @@
 ﻿/* Service Worker：小越背单词 App 离线缓存 */
-const VER = 'xiaoyue-v300';
+const VER = 'xiaoyue-v301';
 const SHELL = [
   './css/shadowing.css', './js/shadowing.js',
   './css/reading.css', './js/reading.js', './data/reading.json', './data/reading-archive.json',

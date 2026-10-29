@@ -10,6 +10,7 @@
 每条内容都会写入 license / attribution 字段，界面上展示来源与许可。
 """
 import asyncio, html, io, json, os, random, re, sys, time, urllib.request
+from html import escape
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 APP = ROOT if os.path.isdir(os.path.join(ROOT, "data")) else os.path.join(ROOT, "ielts-bookshelf")
@@ -230,6 +231,60 @@ def ai_all(items):
     return out
 
 
+
+
+# ---------------- 朗读合成（Azure 官方 / edge-tts 兜底） ----------------
+AZURE_VOICE = "en-US-AriaNeural"
+
+
+def _azure_cfg():
+    key = os.environ.get("AZURE_TTS_KEY", "").strip()
+    region = os.environ.get("AZURE_TTS_REGION", "").strip()
+    return key, region
+
+
+def azure_tts(text, path, key, region, voice=AZURE_VOICE):
+    """Azure 语音合成 REST 接口，输出 mp3"""
+    ssml = (
+        '<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" '
+        'xml:lang="en-US">'
+        '<voice name="' + voice + '">'
+        '<prosody rate="-4%">'
+        + escape(text) +
+        '</prosody></voice></speak>'
+    )
+    req = urllib.request.Request(
+        f"https://{region}.tts.speech.microsoft.com/cognitiveservices/v1",
+        data=ssml.encode("utf-8"),
+        headers={
+            "Ocp-Apim-Subscription-Key": key,
+            "Content-Type": "application/ssml+xml",
+            "X-Microsoft-OutputFormat": "audio-24khz-48kbitrate-mono-mp3",
+            "User-Agent": "XiaoYueReading/1.0",
+        },
+    )
+    with urllib.request.urlopen(req, timeout=90) as r:
+        data = r.read()
+    if not data or len(data) < 2048:
+        raise RuntimeError("Azure TTS 返回内容过短")
+    with open(path, "wb") as f:
+        f.write(data)
+
+
+async def synth(text, path):
+    """优先 Azure 官方接口；没配 key 或失败时回退 edge-tts"""
+    key, region = _azure_cfg()
+    if key and region:
+        try:
+            azure_tts(text, path, key, region)
+            if os.path.getsize(path) > 2048:
+                return "azure"
+        except Exception as e:
+            print(f"    ! Azure TTS 失败（{type(e).__name__}），回退 edge-tts")
+    import edge_tts
+    await edge_tts.Communicate(text, AZURE_VOICE).save(path)
+    return "edge"
+
 async def make_audio(text, path):
     import edge_tts
     await edge_tts.Communicate(text, "en-US-AriaNeural").save(path)
@@ -255,6 +310,12 @@ async def main():
             limit = int(sys.argv[sys.argv.index("--limit") + 1])
         except Exception:
             pass
+
+    key0, region0 = _azure_cfg()
+    if key0 and region0:
+        print(f"  TTS: Azure 官方接口（{region0}）")
+    else:
+        print("  TTS: edge-tts（未配置 AZURE_TTS_KEY / AZURE_TTS_REGION）")
 
     pool = []
     for name, fn in (("VOA Learning English", from_voa),
@@ -292,6 +353,7 @@ async def main():
     arts = ai_all(picked)
 
     items_out = []
+    engines = set()
     for n, it in enumerate(picked):
         a = arts[n] or {}
         sents = a.get("sentences") or []
@@ -306,9 +368,11 @@ async def main():
         rid = time.strftime("%Y%m%d") + f"-{n+1}"
         mp3 = os.path.join(AUDIO_DIR, rid + ".mp3")
         try:
-            await make_audio(full_en[:3000], mp3)
+            engine = await synth(full_en[:3000], mp3)
             size = os.path.getsize(mp3)
-        except Exception:
+            engines.add(engine)
+        except Exception as e:
+            print(f"    ! 音频失败: {type(e).__name__}")
             size = 0
 
         words = sum(len(s["en"].split()) for s in sents)
@@ -368,7 +432,7 @@ async def main():
     io.open(ARCHIVE, "w", encoding="utf-8").write(json.dumps(arch, ensure_ascii=False, indent=1))
 
     prune_audio()
-    print(f"\n✓ 今日 {len(items_out)} 篇；归档 {len(arch['items'])} 篇")
+    print(f"\n✓ 今日 {len(items_out)} 篇；归档 {len(arch['items'])} 篇；TTS: {', '.join(sorted(engines)) or '无'}")
     return 0
 
 

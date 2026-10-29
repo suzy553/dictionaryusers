@@ -24,6 +24,8 @@ jobs:
       - name: 抓取 + 翻译 + 生成音频
         env:
           SILICONFLOW_KEY: ${{ secrets.SILICONFLOW_KEY }}
+          AZURE_TTS_KEY: ${{ secrets.AZURE_TTS_KEY }}
+          AZURE_TTS_REGION: ${{ secrets.AZURE_TTS_REGION }}
         run: python scripts/daily_reading.py
 
       - name: 提交更新
