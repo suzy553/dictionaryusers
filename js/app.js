@@ -312,6 +312,53 @@ async function finishOnboard(skipped) {
   toast(skipped ? '设置完成，随时可以在书架里调整' : '设置完成，点「开始今天的学习」就可以开始啦', 2800);
 }
 
+
+/* ---------------- 阅读生词本 ---------------- */
+function readingWords() {
+  try {
+    state.readingWords = state.readingWords || {};
+    return state.readingWords;
+  } catch (e) { return {}; }
+}
+
+function renderReadingBook() {
+  var n = Object.keys(readingWords()).length;
+  var c = document.getElementById('rvReadingCount');
+  if (c) c.textContent = String(n);
+  var cc = document.getElementById('rbCount');
+  if (cc) cc.textContent = n ? n + ' 个词' : '';
+}
+
+function openReadingBook() {
+  var box = document.getElementById('readingBook');
+  if (!box) return;
+  var map = readingWords();
+  var keys = Object.keys(map).sort(function (x, y) {
+    return (map[y].at || 0) - (map[x].at || 0);
+  });
+  var list = document.getElementById('rbList');
+  if (list) {
+    list.innerHTML = keys.length ? keys.map(function (k) {
+      var it = map[k] || {};
+      return '<div class="rb-row" data-w="' + String(k).replace(/"/g, '&quot;') + '">' +
+        '<div class="rb-main"><b>' + (it.w || k) + '</b>' +
+          '<em>' + (it.zh || '（无释义）') + '</em></div>' +
+        '<button class="rb-say" data-act="say" aria-label="发音">发音</button>' +
+        '<button class="rb-del" data-act="del" aria-label="删除">删除</button>' +
+      '</div>';
+    }).join('') : '<div class="rb-empty">还没有收藏生词。阅读时点单词即可收藏。</div>';
+  }
+  renderReadingBook();
+  box.classList.add('is-open');
+  document.documentElement.classList.add('overlay-open');
+}
+
+function closeReadingBook() {
+  var box = document.getElementById('readingBook');
+  if (box) box.classList.remove('is-open');
+  document.documentElement.classList.remove('overlay-open');
+}
+
 /* ---------------- 爱心 & 经验 ---------------- */
 function ensureHearts() {
   const today = dateKey();
@@ -1426,6 +1473,7 @@ function renderAll() {
   renderBooks();
   renderReview();
   renderSettings();
+  try { renderReadingBook(); } catch (e) { }
   renderPath();
   if (typeof renderPet === 'function') renderPet();
 }
@@ -2224,6 +2272,33 @@ function bindSettings() {
   if (btnAudioChk) btnAudioChk.onclick = function () {
     if (window.XYReading && window.XYReading.audioCheck) window.XYReading.audioCheck();
   };
+  const _rvCardReading = document.getElementById('rvCardReading');
+  if (_rvCardReading) _rvCardReading.onclick = openReadingBook;
+  const _rbClose = document.getElementById('rbClose');
+  if (_rbClose) _rbClose.onclick = closeReadingBook;
+  const _rbList = document.getElementById('rbList');
+  if (_rbList && !_rbList.dataset.b) {
+    _rbList.dataset.b = '1';
+    _rbList.addEventListener('click', function (e) {
+      var act = e.target.closest('[data-act]');
+      var row = e.target.closest('.rb-row');
+      if (!row) return;
+      var k = row.dataset.w;
+      if (act && act.dataset.act === 'say') {
+        try { playWord((readingWords()[k] || {}).w || k); } catch (err) { }
+        return;
+      }
+      if (act && act.dataset.act === 'del') {
+        var m = readingWords();
+        delete m[k];
+        saveState();
+        row.remove();
+        renderReadingBook();
+        if (typeof toast === 'function') toast('已删除', 1600);
+        return;
+      }
+    });
+  }
   $('#btnIcs').onclick = downloadICS;
   $('#btnNotify').onclick = enableNotify;
 
@@ -2642,6 +2717,26 @@ async function boot() {
         }, 900);
       } catch (e) { document.title = 'ERR:' + e.message; }
     }, 2200);
+  }
+
+  
+  if (new URLSearchParams(location.search).get('dbgbook') === '1') {
+    setTimeout(function () {
+      try {
+        state.readingWords = state.readingWords || {};
+        state.readingWords['wander'] = { w: 'wander', zh: '漫步；游荡', at: Date.now(), date: '2026-10-29' };
+        state.readingWords['creature'] = { w: 'creature', zh: '生物；怪物', at: Date.now() - 1000, date: '2026-10-29' };
+        saveState();
+        renderReadingBook();
+        openReadingBook();
+        setTimeout(function () {
+          var rows = document.querySelectorAll('#rbList .rb-row').length;
+          var cnt = document.getElementById('rvReadingCount').textContent;
+          var open = document.getElementById('readingBook').classList.contains('is-open');
+          document.title = 'count=' + cnt + ' rows=' + rows + ' open=' + open;
+        }, 500);
+      } catch (e) { document.title = 'ERR:' + e.message; }
+    }, 2400);
   }
 
   bindEvents();

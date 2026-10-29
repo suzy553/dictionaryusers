@@ -80,7 +80,7 @@
     var sents = cur.sentences || [];
     var body = sents.map(function (s, i) {
       return '<div class="sh-row" data-i="' + i + '">' +
-        '<div class="sh-en">' + esc(s.en) + '</div>' +
+        '<div class="sh-en" data-raw="' + esc(s.en) + '">' + esc(s.en) + '</div>' +
         '<div class="sh-zh">' + esc(s.zh || '') + '</div>' +
         '<div class="sh-acts">' +
           '<button class="sh-btn" data-act="listen" data-i="' + i + '">▶ 听原句</button>' +
@@ -177,6 +177,41 @@
     } catch (e) { }
   }
 
+
+  /* 在原文句子里标注读错/漏读的词 */
+  function markSentence(row, sent, diff) {
+    var en = row && row.querySelector('.sh-en');
+    if (!en) return;
+    /* 每个待标记词按出现顺序排队 */
+    var queue = {};
+    diff.forEach(function (d) {
+      if (d.type === 'extra') return;
+      var k = String(d.word || '').toLowerCase();
+      if (!k) return;
+      (queue[k] = queue[k] || []).push(d.type);
+    });
+
+    var out = '';
+    var re = /[A-Za-z][A-Za-z'’-]*/g;
+    var last = 0;
+    var m;
+    while ((m = re.exec(sent)) !== null) {
+      out += esc(sent.slice(last, m.index));
+      var w = m[0];
+      var k = w.toLowerCase().replace(/[^a-z'’-]/g, '');
+      var kinds = queue[k];
+      if (kinds && kinds.length) {
+        var type = kinds.shift();
+        out += '<mark class="sh-mk ' + type + '">' + esc(w) + '</mark>';
+      } else {
+        out += esc(w);
+      }
+      last = m.index + w.length;
+    }
+    out += esc(sent.slice(last));
+    en.innerHTML = out;
+  }
+
   /* ---------- 评分 ---------- */
   function evaluate(i, url) {
     var row = panel.querySelector('.sh-row[data-i="' + i + '"]');
@@ -200,6 +235,7 @@
       }
 
       var r = compare(sent, heard);
+      markSentence(row, sent, r.diff);
       var color = r.score >= 85 ? 'good' : (r.score >= 60 ? 'mid' : 'bad');
       var detail = r.diff.length
         ? '<div class="sh-diff">' + r.diff.map(function (d) {

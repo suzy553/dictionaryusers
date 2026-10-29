@@ -322,7 +322,16 @@
           <div class="ch-bar"><i id="chBar"></i></div>
         </div>
 
-        <div class="box-legend" id="boxLegend"></div>
+                <button class="rv-card" id="rvCardReading">
+          <span class="rv-ico"><span class="ic" data-icon="book"></span></span>
+          <span class="rv-main">
+            <b>阅读生词</b>
+            <em>阅读时收藏了 <b id="rvReadingCount">0</b> 个词</em>
+          </span>
+          <span class="rv-go">查看 ›</span>
+        </button>
+
+<div class="box-legend" id="boxLegend"></div>
       </div>
 
       <div class="rv-view" id="rvDetail" hidden>
@@ -647,6 +656,16 @@
     <button id="shClose" type="button" data-act="close">关闭</button>
   </div>
   <div id="shList"></div>
+</div>
+
+<!-- ============ 阅读生词本 ============ -->
+<div id="readingBook">
+  <div class="rb-head">
+    <b>阅读生词</b>
+    <em id="rbCount"></em>
+    <button id="rbClose" type="button">关闭</button>
+  </div>
+  <div class="rb-list" id="rbList"></div>
 </div>
 </body>
 </html>
