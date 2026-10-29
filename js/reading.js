@@ -385,14 +385,27 @@
     var m = bookMap();
     var k = String(w).toLowerCase();
     if (m[k]) { msg('已经在生词本里了'); return; }
+    var today = (typeof dateKey === 'function') ? dateKey() : '';
     m[k] = {
       w: w,
       zh: zh || '',
       at: Date.now(),
-      date: (typeof dateKey === 'function') ? dateKey() : ''
+      date: today
     };
+    /* 同时写入「阅读生词」这本虚拟词书的 SRS 进度，进复习队列 */
+    try {
+      if (typeof state === 'object' && state) {
+        state.progress = state.progress || {};
+        state.progress.__reading__ = state.progress.__reading__ || {};
+        if (!state.progress.__reading__[k]) {
+          state.progress.__reading__[k] = {
+            b: 0, d: today, r: 0, w: 0, last: '', dt: today, src: 'reading'
+          };
+        }
+      }
+    } catch (e) { }
     try { if (typeof saveState === 'function') saveState(); } catch (e) { }
-    msg('已收藏：' + w + '，可在「复习」里回顾');
+    msg('已收藏：' + w + '，进复习队列');
   }
 
   /* ---------------- 音频 ---------------- */

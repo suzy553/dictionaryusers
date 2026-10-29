@@ -329,6 +329,18 @@ function renderReadingBook() {
   if (cc) cc.textContent = n ? n + ' 个词' : '';
 }
 
+function startReadingReview() {
+  var n = Object.keys((state && state.readingWords) || {}).length;
+  if (!n) { toast('还没有收藏生词'); return; }
+  closeReadingBook();
+  state.activeBook = '__reading__';
+  saveState();
+  loadBook('__reading__').then(function () {
+    renderAll();
+    startSession('review');
+  });
+}
+
 function openReadingBook() {
   var box = document.getElementById('readingBook');
   if (!box) return;
@@ -340,9 +352,18 @@ function openReadingBook() {
   if (list) {
     list.innerHTML = keys.length ? keys.map(function (k) {
       var it = map[k] || {};
+      var pr = (state.progress.__reading__ || {})[k] || {};
+      var today = (typeof dateKey === 'function') ? dateKey() : '';
+      var srs = '';
+      if (pr.b !== undefined) {
+        if (!pr.d || pr.d <= today) srs = '今天该复习';
+        else srs = '下次 ' + pr.d.slice(5);
+        srs = '第 ' + ((pr.b || 0) + 1) + ' 级 · ' + srs;
+      }
       return '<div class="rb-row" data-w="' + String(k).replace(/"/g, '&quot;') + '">' +
         '<div class="rb-main"><b>' + (it.w || k) + '</b>' +
-          '<em>' + (it.zh || '（无释义）') + '</em></div>' +
+          '<em>' + (it.zh || '（无释义）') + '</em>' +
+          (srs ? '<i class="rb-srs">' + srs + '</i>' : '') + '</div>' +
         '<button class="rb-say" data-act="say" aria-label="发音">发音</button>' +
         '<button class="rb-del" data-act="del" aria-label="删除">删除</button>' +
       '</div>';
@@ -684,8 +705,25 @@ async function initBooks() {
 
 let wordIndexMap = new Map();
 
+/* 阅读生词虚拟词书：从采集到的生词现拼 */
+function buildReadingBook() {
+  const rw = (state && state.readingWords) || {};
+  const words = Object.keys(rw).map(k => {
+    const it = rw[k] || {};
+    return { w: it.w || k, t: [it.zh || '（阅读生词）'], s: '', sz: '', us: '', uk: '' };
+  });
+  return { id: '__reading__', title: '阅读生词', words: words, __virtual: true };
+}
+
 async function loadBook(id) {
   if (!id) return null;
+  if (id === '__reading__') {
+    /* 虚拟词书每次都现拼，不缓存（收藏会变） */
+    curBook = buildReadingBook();
+    delete bookCache[id];
+    wordIndexMap = new Map(curBook.words.map((w, i) => [wordKey(w.w), i]));
+    return curBook;
+  }
   if (!bookCache[id]) bookCache[id] = await fetchJSON(`data/books/${id}.json`);
   curBook = bookCache[id];
   wordIndexMap = new Map(curBook.words.map((w, i) => [wordKey(w.w), i]));
@@ -1052,6 +1090,39 @@ function renderBooks() {
   try { if (window.XYReading && window.XYReading.renderStrip) window.XYReading.renderStrip(); } catch (e) { }
   const grid = $('#bookGrid');
   grid.innerHTML = '';
+
+  /* 阅读生词（虚拟词书，只有收藏过才出现） */
+  const _rwCount = Object.keys((state && state.readingWords) || {}).length;
+  if (_rwCount > 0) {
+    const _rp = state.progress.__reading__ || {};
+    const _learned = Object.keys(_rp).length;
+    const _card = document.createElement('button');
+    _card.className = 'book-card' + (state.activeBook === '__reading__' ? ' is-active' : '');
+    _card.style.setProperty('--tint', '#E8F3EC');
+    _card.innerHTML =
+      '<div class="book-cover" style="background:linear-gradient(160deg,#EAF4EE,#D6E9DD)">' +
+        '<span class="ic" data-icon="book"></span></div>' +
+      '<div class="book-title">阅读生词</div>' +
+      '<div class="book-sub">' + _learned + ' / ' + _rwCount + ' 个词</div>' +
+      '<div class="book-tag">阅读</div>';
+    _card.onclick = async () => {
+      const switched = state.activeBook !== '__reading__';
+      if (switched) {
+        state.activeBook = '__reading__';
+        saveState();
+        await loadBook('__reading__');
+        renderAll();
+        toast('已切换到《阅读生词》');
+      }
+      setTimeout(() => {
+        const due = dueWords(state.settings.dailyReview);
+        if (due.length) startSession('review');
+        else toast('阅读生词暂时没有到期的，明天再来');
+      }, 260);
+    };
+    grid.appendChild(_card);
+  }
+
   bookIndex.slice().sort((a, b) => a.count - b.count).forEach(b => {
     const p = state.progress[b.id] || {};
     const learned = Object.keys(p).length;
@@ -1684,11 +1755,22 @@ function initVideoBg() {
     return;
   }
 
-  /* ② 省流 / 2G-3G / 低内存设备 → 不加载视频 */
+  /* ② 省流 / 移动流量 / 2G-3G / 低内存设备 → 不加载视频 */
   if (typeof prefersLiteAssets === 'function' && prefersLiteAssets()) {
     v.style.display = 'none';
     return;
   }
+
+  /* ②b 蜂窝网络下不自动播放视频（1.5MB 流量），只显示静态图 */
+  try {
+    const c = navigator.connection || {};
+    const t = String(c.type || '').toLowerCase();
+    const eff = String(c.effectiveType || '').toLowerCase();
+    if (t === 'cellular' || (t === '' && eff && eff !== '4g' && eff !== 'wifi')) {
+      v.style.display = 'none';
+      return;
+    }
+  } catch (e) { }
 
   /* ③ 系统开启「减少动效」→ 尊重无障碍设置，不自动播放 */
   try {
@@ -2276,6 +2358,8 @@ function bindSettings() {
   if (_rvCardReading) _rvCardReading.onclick = openReadingBook;
   const _rbClose = document.getElementById('rbClose');
   if (_rbClose) _rbClose.onclick = closeReadingBook;
+  const _rbStart = document.getElementById('rbStart');
+  if (_rbStart) _rbStart.onclick = startReadingReview;
   const _rbList = document.getElementById('rbList');
   if (_rbList && !_rbList.dataset.b) {
     _rbList.dataset.b = '1';
@@ -2735,6 +2819,34 @@ async function boot() {
           var open = document.getElementById('readingBook').classList.contains('is-open');
           document.title = 'count=' + cnt + ' rows=' + rows + ' open=' + open;
         }, 500);
+      } catch (e) { document.title = 'ERR:' + e.message; }
+    }, 2400);
+  }
+
+  
+  if (new URLSearchParams(location.search).get('dbgsrs') === '1') {
+    setTimeout(function () {
+      try {
+        var today = dateKey();
+        state.readingWords = state.readingWords || {};
+        state.progress = state.progress || {};
+        state.progress.__reading__ = state.progress.__reading__ || {};
+        ['wander','creature','quarrel'].forEach(function (w, i) {
+          state.readingWords[w] = { w: w, zh: '测试释义' + i, at: Date.now() - i * 1000, date: today };
+          state.progress.__reading__[w] = { b: i, d: today, r: 0, w: 0, last: '', dt: today, src: 'reading' };
+        });
+        saveState();
+        renderAll();
+        var cards = document.querySelectorAll('#bookGrid .book-card').length;
+        var first = document.querySelector('#bookGrid .book-card .book-title');
+        openReadingBook();
+        setTimeout(function () {
+          var rows = document.querySelectorAll('#rbList .rb-row').length;
+          var srs = document.querySelectorAll('#rbList .rb-srs').length;
+          var startBtn = !!document.getElementById('rbStart');
+          document.title = 'cards=' + cards + ' first=' + (first ? first.textContent : '-') +
+            ' rows=' + rows + ' srsTags=' + srs + ' startBtn=' + startBtn;
+        }, 600);
       } catch (e) { document.title = 'ERR:' + e.message; }
     }, 2400);
   }

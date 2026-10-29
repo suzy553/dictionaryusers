@@ -1067,3 +1067,19 @@
   font-size: 13px;
   color: var(--ink-3, #8b9891);
 }
+
+
+/* 生词本：SRS 状态与主按钮 */
+.rb-srs{
+  display: block;
+  font-style: normal;
+  font-size: 10.5px;
+  color: var(--accent, #1f6b45);
+  margin-top: 3px;
+}
+.rb-primary{
+  background: var(--accent, #1f6b45) !important;
+  color: #fff !important;
+  border-color: var(--accent, #1f6b45) !important;
+  font-weight: 800;
+}

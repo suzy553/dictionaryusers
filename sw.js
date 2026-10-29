@@ -1,9 +1,9 @@
 ﻿/* Service Worker：小越背单词 App 离线缓存 */
-const VER = 'xiaoyue-v303';
+const VER = 'xiaoyue-v304';
 const SHELL = [
   './css/shadowing.css', './js/shadowing.js',
   './css/reading.css', './js/reading.js', './data/reading.json', './data/reading-archive.json',
-  './', './index.html', './css/app.css', './css/cute.css', './css/path.css', './css/theme.css', './css/design-system.css', './css/design-v2.css', './js/app.js', './js/icons.js', './js/core.js', './js/quiz.js', './js/reading.js',
+  './', './index.html', './css/app.css', './css/cute.css', './css/path.css', './css/theme.css', './css/design-system.css', './css/design-v2.css', './js/app.js', './js/icons.js', './js/core.js', './js/reading.js',
   './manifest.webmanifest', './data/books/index.json', './data/books/es.json', './icons/icon-192.png', './icons/icon-512.png', './fonts/xiaoyue-hand.woff2', './fonts/xiaoyue-title.woff2'
 ];
 

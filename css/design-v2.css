@@ -952,3 +952,24 @@ html body #screen-home .sheet > #btnStart.sheet-cta{
   html body #screen-home .tc-task{ height: 40px !important; }
   html body #screen-home .sheet > #btnStart.sheet-cta{ height: 46px !important; margin-top: 6px !important; }
 }
+
+
+/* ==========================================================================
+   夜间主视觉终版压暗（覆盖前面 brightness(.62) 的旧规则）
+   ========================================================================== */
+html[data-theme="night"] .bg-photo,
+html[data-theme="night"] #bgPhoto,
+html[data-theme="night"] .bg-video,
+html[data-theme="night"] #bgVideo,
+html[data-theme="night"] #heroView{
+  filter: brightness(.36) saturate(.72) !important;
+}
+html[data-theme="night"] .daily-quote,
+html[data-theme="night"] .quote-zh,
+html[data-theme="night"] #heroQuote{
+  text-shadow: 0 2px 12px rgba(0,0,0,.9), 0 0 2px rgba(0,0,0,.65) !important;
+}
+html[data-theme="night"] #btnStart.sheet-cta{
+  background: #1f6b45 !important;
+  box-shadow: 0 4px 14px rgba(0,0,0,.45) !important;
+}
