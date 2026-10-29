@@ -271,16 +271,41 @@ def azure_tts(text, path, key, region, voice=AZURE_VOICE):
         f.write(data)
 
 
+def _engine_pref():
+    """TTS_ENGINE: auto（默认，有 Azure key 就用 Azure）/ azure / edge / piper"""
+    return (os.environ.get("TTS_ENGINE", "auto") or "auto").strip().lower()
+
+
 async def synth(text, path):
-    """优先 Azure 官方接口；没配 key 或失败时回退 edge-tts"""
+    """按 TTS_ENGINE 选择引擎，失败逐级回退，保证一定有音频"""
+    pref = _engine_pref()
     key, region = _azure_cfg()
-    if key and region:
+
+    # 1) Azure 官方（合规，需注册）
+    if pref in ("auto", "azure") and key and region:
         try:
             azure_tts(text, path, key, region)
             if os.path.getsize(path) > 2048:
                 return "azure"
         except Exception as e:
-            print(f"    ! Azure TTS 失败（{type(e).__name__}），回退 edge-tts")
+            print(f"    ! Azure TTS 失败（{type(e).__name__}），尝试下一个引擎")
+
+    # 2) Piper 开源（MIT，完全免费，不联网）
+    if pref in ("piper",):
+        try:
+            import piper  # noqa: F401
+            from piper.voice import PiperVoice
+            model = os.environ.get("PIPER_MODEL", "").strip()
+            if model and os.path.exists(model):
+                voice = PiperVoice.load(model)
+                with open(path, "wb") as f:
+                    voice.synthesize(text, f)
+                if os.path.getsize(path) > 2048:
+                    return "piper"
+        except Exception as e:
+            print(f"    ! Piper 失败（{type(e).__name__}），回退 edge-tts")
+
+    # 3) edge-tts（个人自用默认）
     import edge_tts
     await edge_tts.Communicate(text, AZURE_VOICE).save(path)
     return "edge"
@@ -312,10 +337,13 @@ async def main():
             pass
 
     key0, region0 = _azure_cfg()
-    if key0 and region0:
+    pref0 = _engine_pref()
+    if pref0 == "piper":
+        print("  TTS: Piper 开源（MIT）")
+    elif key0 and region0 and pref0 in ("auto", "azure"):
         print(f"  TTS: Azure 官方接口（{region0}）")
     else:
-        print("  TTS: edge-tts（未配置 AZURE_TTS_KEY / AZURE_TTS_REGION）")
+        print("  TTS: edge-tts（个人自用默认，无需注册）")
 
     pool = []
     for name, fn in (("VOA Learning English", from_voa),
