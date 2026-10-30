@@ -1,0 +1,11 @@
+{
+  "name": "ise-sign-relay",
+  "version": "1.0.0",
+  "private": true,
+  "description": "讯飞语音评测（ISE）签名服务，供浏览器直连讯飞使用",
+  "main": "sign.js",
+  "scripts": {
+    "start": "node sign.js",
+    "test": "node test/sign.test.js"
+  }
+}

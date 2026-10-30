@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
@@ -424,9 +424,9 @@
       <div class="set-row set-col">
         <span class="set-main">
           <b>语音评测服务地址</b>
-          <em>填 Cloudflare Worker 的 wss 地址，填了才启用讯飞自动评分</em>
+          <em>填国内签名服务的 https 地址（推荐）；旧版 wss 代理地址也兼容。填了才启用讯飞自动评分</em>
         </span>
-        <input id="iseProxy" type="text" placeholder="wss://xxx.workers.dev/ise" autocomplete="off">
+        <input id="iseProxy" type="text" placeholder="https://xxx.apigw.tencentcs.com/release/sign" autocomplete="off">
         <button id="iseSave" class="set-mini" type="button">保存</button>
       </div>
         <button class="set-row" id="btnMicCheck" type="button">
