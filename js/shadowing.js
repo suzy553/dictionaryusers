@@ -137,6 +137,27 @@
     else { btn.classList.remove('is-rec'); btn.textContent = label || '● 录音'; }
   }
 
+
+  /* 模式开关：识别（自动评分） / 录音（只回放对比） */
+  function syncModeBtn() {
+    var b = el('shMode');
+    if (!b) return;
+    b.textContent = asrBroken ? '模式：录音' : '模式：识别';
+    b.classList.toggle('is-rec-mode', !!asrBroken);
+  }
+
+  function toggleMode() {
+    asrBroken = !asrBroken;
+    try {
+      if (asrBroken) localStorage.setItem('shadow.asrBroken', '1');
+      else localStorage.removeItem('shadow.asrBroken');
+    } catch (e) { }
+    syncModeBtn();
+    toastMsg(asrBroken
+      ? '已切到录音模式：录完点「回放」自己对比'
+      : '已切到识别模式：读一句自动打分');
+  }
+
   function outBox(i) { return el('shOut' + i); }
 
   function showStatus(i, text, kind) {
@@ -353,6 +374,7 @@
     if (!panel) return;
     cur = item;
     render();
+    syncModeBtn();
     panel.classList.add('is-open');
     document.documentElement.classList.add('overlay-open');
   }
@@ -372,6 +394,12 @@
   /* ---------- 事件 ---------- */
   function bind() {
     panel = el('shadowing');
+    var modeBtn = el('shMode');
+    if (modeBtn && !modeBtn.dataset.b) {
+      modeBtn.dataset.b = '1';
+      modeBtn.addEventListener('click', toggleMode);
+      syncModeBtn();
+    }
     if (panel && !panel.dataset.b) {
       panel.dataset.b = '1';
       panel.addEventListener('click', function (e) {
@@ -380,6 +408,7 @@
         var a = act.dataset.act;
         var i = Number(act.dataset.i);
         if (a === 'close') { close(); return; }
+        if (a === 'mode') { toggleMode(); return; }
         if (a === 'listen') { speak(((cur.sentences || [])[i] || {}).en || ''); return; }
         if (a === 'rec') { startRec(i); return; }
         if (a === 'retryAsr') {

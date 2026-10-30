@@ -202,3 +202,21 @@
   font-size: 12px;
   font-weight: 700;
 }
+
+
+/* 模式开关 */
+#shMode{
+  height: 30px;
+  padding: 0 12px;
+  border: 1px solid var(--rule, rgba(0,0,0,.12));
+  border-radius: 999px;
+  background: #eaf4ee;
+  color: #1f6b45;
+  font-size: 12px;
+  font-weight: 800;
+}
+#shMode.is-rec-mode{
+  background: #fff4e5;
+  color: #b7791f;
+  border-color: rgba(183,121,31,.35);
+}
