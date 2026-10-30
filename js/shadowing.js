@@ -115,6 +115,7 @@
   var recogTimer = null;
   var recogHeard = '';
   var recogErr = '';
+  var asrBroken = false;   /* 识别服务不可用（多半是网络到不了 Google）*/
 
   function errText(code) {
     var m = {
@@ -156,7 +157,7 @@
     recogHeard = '';
     recogErr = '';
 
-    if (Recognition()) {
+    if (Recognition() && !asrBroken) {
       startRecogOnly(i, row);
     } else {
       startRecorderOnly(i, row);
@@ -227,7 +228,18 @@
     var out = outBox(i);
     if (!out) return;
     if (!recogHeard) {
-      showStatus(i, errText(recogErr || 'no-speech'), 'warn');
+      var code = recogErr || 'no-speech';
+      /* 服务不可用类错误：权限没问题，是国内网络到不了识别服务 */
+      if (code === 'network' || code === 'not-allowed' || code === 'service-not-allowed') {
+        asrBroken = true;
+        try { localStorage.setItem('shadow.asrBroken', '1'); } catch (e) { }
+        showStatus(i,
+          '语音识别服务连不上（浏览器识别要走境外服务器，国内网络常被拦）。' +
+          '已自动改为「录音回放」模式：点下面「● 录音」录下来，再点「↺ 回放」自己对比原句。<br>' +
+          '<button class="sh-retry" data-act="retryAsr" data-i="' + i + '">再试一次识别</button>', 'warn');
+        return;
+      }
+      showStatus(i, errText(code), 'warn');
       return;
     }
     evaluateWith(i, row, recogHeard);
@@ -336,6 +348,7 @@
 
   /* ---------- 打开 / 关闭 ---------- */
   function open(item) {
+    try { asrBroken = localStorage.getItem('shadow.asrBroken') === '1'; } catch (e) { }
     panel = el('shadowing');
     if (!panel) return;
     cur = item;
@@ -369,6 +382,15 @@
         if (a === 'close') { close(); return; }
         if (a === 'listen') { speak(((cur.sentences || [])[i] || {}).en || ''); return; }
         if (a === 'rec') { startRec(i); return; }
+        if (a === 'retryAsr') {
+          asrBroken = false;
+          try { localStorage.removeItem('shadow.asrBroken'); } catch (e) { }
+          var rRow = panel.querySelector('.sh-row[data-i="' + i + '"]');
+          var rBtn = rRow && rRow.querySelector('[data-act="rec"]');
+          if (rBtn && rBtn.dataset.url) { rBtn.dataset.url = ''; }
+          startRecogOnly(i, rRow);
+          return;
+        }
         if (a === 'playback') {
           var u = act.dataset.url;
           if (!u) return;

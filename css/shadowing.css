@@ -188,3 +188,17 @@
   0%, 100% { opacity: 1; }
   50% { opacity: .55; }
 }
+
+/* 再试一次识别 */
+.sh-retry{
+  display: inline-block;
+  margin-top: 8px;
+  height: 30px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(122,91,31,.35);
+  background: #fff;
+  color: #7a5b1f;
+  font-size: 12px;
+  font-weight: 700;
+}
