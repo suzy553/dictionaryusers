@@ -107,36 +107,149 @@
     } catch (e) { toastMsg('朗读失败'); }
   }
 
-  /* ---------- 录音 ---------- */
-  async function startRec(i) {
-    var row = panel.querySelector('.sh-row[data-i="' + i + '"]');
+  /* ---------- 录音 / 识别 ---------- */
+  /* 关键：麦克风通常只能被一个组件占用。
+     MediaRecorder 先启动会导致 SpeechRecognition 拿不到音频（audio-capture）。
+     所以：有识别器 → 只跑识别器；没有识别器 → 只录音回放。 */
+  var activeRecog = null;
+  var recogTimer = null;
+  var recogHeard = '';
+  var recogErr = '';
+
+  function errText(code) {
+    var m = {
+      'not-allowed': '麦克风权限被拒绝：请在浏览器设置里允许本网站使用麦克风',
+      'service-not-allowed': '系统禁止了语音识别服务',
+      'audio-capture': '麦克风被其他程序占用（比如正在录音的另一个页面）',
+      'no-speech': '没有听到声音：请靠近麦克风、大声一点再读一次',
+      'network': '识别服务需要联网，当前网络不可用',
+      'aborted': '识别被中断',
+      'language-not-supported': '这台设备不支持英语识别'
+    };
+    return m[code] || ('识别失败：' + code);
+  }
+
+  function setRecUI(row, on, label) {
     var btn = row && row.querySelector('[data-act="rec"]');
     if (!btn) return;
+    if (on) { btn.classList.add('is-rec'); btn.textContent = label || '■ 停止'; }
+    else { btn.classList.remove('is-rec'); btn.textContent = label || '● 录音'; }
+  }
 
-    /* 正在录 → 停止 */
-    if (recorder && recorder.state === 'recording') {
-      recorder.stop();
-      return;
-    }
+  function outBox(i) { return el('shOut' + i); }
 
-    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-      toastMsg('这台设备不支持录音');
-      return;
-    }
+  function showStatus(i, text, kind) {
+    var out = outBox(i);
+    if (!out) return;
+    out.innerHTML = '<div class="sh-' + (kind || 'warn') + '">' + text + '</div>';
+  }
+
+  async function startRec(i) {
+    var row = panel.querySelector('.sh-row[data-i="' + i + '"]');
+    if (!row) return;
+
+    /* 已在识别/录音中 → 停止 */
+    if (activeRecog) { stopRecog(); return; }
+    if (recorder && recorder.state === 'recording') { recorder.stop(); return; }
 
     activeIdx = i;
+    recogHeard = '';
+    recogErr = '';
+
+    if (Recognition()) {
+      startRecogOnly(i, row);
+    } else {
+      startRecorderOnly(i, row);
+    }
+  }
+
+  /* --- A. 有语音识别：只用识别器（评分）--- */
+  function startRecogOnly(i, row) {
+    var Rec = Recognition();
+    try {
+      activeRecog = new Rec();
+    } catch (e) {
+      showStatus(i, '无法启动语音识别：' + e.message, 'warn');
+      return;
+    }
+    activeRecog.lang = 'en-US';
+    activeRecog.interimResults = false;
+    activeRecog.maxAlternatives = 1;
+    activeRecog.continuous = false;
+
+    showStatus(i, '正在听…请把这句话读一遍', 'listening');
+    setRecUI(row, true);
+
+    activeRecog.onresult = function (e) {
+      var heard = '';
+      for (var k = 0; k < e.results.length; k++) heard += e.results[k][0].transcript + ' ';
+      recogHeard = heard.trim();
+    };
+    activeRecog.onerror = function (e) {
+      recogErr = e.error || 'error';
+    };
+    activeRecog.onend = function () {
+      clearTimeout(recogTimer);
+      activeRecog = null;
+      setRecUI(row, false);
+      finishRecog(i, row);
+    };
+
+    try {
+      activeRecog.start();
+    } catch (e) {
+      activeRecog = null;
+      setRecUI(row, false);
+      showStatus(i, '识别启动失败：' + e.message + '（如果是重复点击，请稍等一秒）', 'warn');
+      return;
+    }
+
+    /* 最长 10 秒自动停止；再等 2 秒仍无回调就强制收尾，避免卡在「正在听」 */
+    clearTimeout(recogTimer);
+    recogTimer = setTimeout(function () {
+      if (activeRecog) { try { activeRecog.stop(); } catch (e) { } }
+      setTimeout(function () {
+        if (activeRecog) {
+          activeRecog = null;
+          setRecUI(row, false);
+          showStatus(i, '识别超时：没有收到结果。请确认麦克风权限已开、网络正常，然后重试', 'warn');
+        }
+      }, 2000);
+    }, 10000);
+  }
+
+  function stopRecog() {
+    if (!activeRecog) return;
+    try { activeRecog.stop(); } catch (e) { }
+  }
+
+  function finishRecog(i, row) {
+    var out = outBox(i);
+    if (!out) return;
+    if (!recogHeard) {
+      showStatus(i, errText(recogErr || 'no-speech'), 'warn');
+      return;
+    }
+    evaluateWith(i, row, recogHeard);
+  }
+
+  /* --- B. 没有识别器：只录音，供回放对比 --- */
+  async function startRecorderOnly(i, row) {
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      showStatus(i, '这台设备既不支持语音识别，也不支持录音', 'warn');
+      return;
+    }
     try {
       stream = await navigator.mediaDevices.getUserMedia({ audio: true });
     } catch (e) {
-      toastMsg('麦克风权限被拒绝');
+      showStatus(i, '麦克风权限被拒绝，无法录音', 'warn');
       return;
     }
-
     chunks = [];
     try {
       recorder = new MediaRecorder(stream);
     } catch (e) {
-      toastMsg('录音功能不可用');
+      showStatus(i, '录音功能不可用', 'warn');
       return;
     }
     recorder.ondataavailable = function (ev) { if (ev.data.size) chunks.push(ev.data); };
@@ -146,37 +259,13 @@
       lastUrl = URL.createObjectURL(new Blob(chunks, { type: 'audio/webm' }));
       var pb = row.querySelector('[data-act="playback"]');
       if (pb) { pb.disabled = false; pb.dataset.url = lastUrl; }
-      evaluate(i, lastUrl);
+      setRecUI(row, false);
+      showStatus(i, '已录音。这台浏览器不支持语音识别，请点「回放」自己对比原句。', 'warn');
     };
     recorder.start();
-    btn.classList.add('is-rec');
-    btn.textContent = '■ 停止';
-    sentenceRecog(i);
+    setRecUI(row, true);
+    showStatus(i, '正在录音…点「停止」结束', 'listening');
   }
-
-  /* ---------- 语音识别 ---------- */
-  function sentenceRecog(i) {
-    var Rec = Recognition();
-    if (!Rec) { return; }
-    try {
-      recog = new Rec();
-      recog.lang = 'en-US';
-      recog.interimResults = false;
-      recog.maxAlternatives = 1;
-      recog.onresult = function (e) {
-        var heard = '';
-        for (var k = 0; k < e.results.length; k++) heard += e.results[k][0].transcript + ' ';
-        var out = el('shOut' + i);
-        if (out) out.dataset.heard = heard.trim();
-      };
-      recog.onerror = function (e) {
-        var out = el('shOut' + i);
-        if (out) out.dataset.err = e.error || 'error';
-      };
-      recog.start();
-    } catch (e) { }
-  }
-
 
   /* 在原文句子里标注读错/漏读的词 */
   function markSentence(row, sent, diff) {
@@ -213,24 +302,15 @@
   }
 
   /* ---------- 评分 ---------- */
-  function evaluate(i, url) {
-    var row = panel.querySelector('.sh-row[data-i="' + i + '"]');
+  function evaluateWith(i, row, heard) {
     var out = el('shOut' + i);
-    var btn = row && row.querySelector('[data-act="rec"]');
-    if (btn) { btn.classList.remove('is-rec'); btn.textContent = '● 录音'; }
     if (!out) return;
+    setRecUI(row, false);
 
-    setTimeout(function () {
-      var heard = (out.dataset.heard || '').trim();
-      var err = out.dataset.err || '';
+    (function () {
       var sent = ((cur.sentences || [])[i] || {}).en || '';
-
       if (!heard) {
-        out.innerHTML = '<div class="sh-warn">' +
-          (Recognition()
-            ? '没有识别到内容（可能太轻、环境吵，或浏览器不支持识别）：已保留录音，可先回放对比'
-            : '这台浏览器不支持语音识别，无法自动评分：已保留录音，可先回放对比') +
-          '</div>';
+        showStatus(i, '没有识别到内容，请再读一次', 'warn');
         return;
       }
 
@@ -251,7 +331,7 @@
         detail +
         '<div class="sh-heard">识别为：' + esc(heard) + '</div>' +
         '<div class="sh-note">按识别文本比对，非专业音素评测</div>';
-    }, 600);
+    })();
   }
 
   /* ---------- 打开 / 关闭 ---------- */
@@ -269,7 +349,9 @@
     if (panel) panel.classList.remove('is-open');
     document.documentElement.classList.remove('overlay-open');
     try { if (recorder && recorder.state === 'recording') recorder.stop(); } catch (e) { }
-    try { if (recog) recog.abort(); } catch (e) { }
+    try { if (activeRecog) activeRecog.abort(); } catch (e) { }
+    clearTimeout(recogTimer);
+    activeRecog = null;
     try { if (stream) stream.getTracks().forEach(function (t) { t.stop(); }); } catch (e) { }
     try { if ('speechSynthesis' in window) speechSynthesis.cancel(); } catch (e) { }
   }
@@ -342,6 +424,28 @@
     });
     document.title = out.join(' | ');
    }, 2600);
+  }
+
+
+  if (new URLSearchParams(location.search).get('dbgrec') === '1') {
+    setTimeout(function () {
+      try {
+        var btn = document.querySelector('[data-act="shadow"]');
+        if (!btn) { document.title = 'NO-SHADOW'; return; }
+        btn.click();
+        setTimeout(function () {
+          var rec = document.querySelector('#shadowing [data-act="rec"]');
+          if (!rec) { document.title = 'NO-REC-BTN'; return; }
+          rec.click();
+          setTimeout(function () {
+            var out = document.getElementById('shOut0');
+            var hasRecog = !!(window.SpeechRecognition || window.webkitSpeechRecognition);
+            var html = out ? out.innerHTML : '';
+            document.title = 'recog=' + hasRecog + ' len=' + html.length + ' html=' + html.slice(0, 60).replace(/</g, '(') + ' btn=' + (rec.textContent || '').slice(0, 6);
+          }, 13000);
+        }, 900);
+      } catch (e) { document.title = 'ERR:' + e.message; }
+    }, 2600);
   }
 
   window.XYShadowing = {
