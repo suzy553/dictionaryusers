@@ -2350,8 +2350,16 @@ function bindSettings() {
   };
   $('#inpRemind').onchange = e => { state.settings.reminder = e.target.value || '07:00'; saveState(); renderSettings(); };
 
+  const btnMicChk = document.getElementById('btnMicCheck');
+  if (btnMicChk) btnMicChk.onclick = function () {
+    var out = document.getElementById('rdMicOut');
+    if (out) out.hidden = false;
+    if (window.XYReading && window.XYReading.micCheck) window.XYReading.micCheck();
+  };
   const btnAudioChk = $('#btnAudioCheck');
   if (btnAudioChk) btnAudioChk.onclick = function () {
+    var out = document.getElementById('rdAudioOut');
+    if (out) out.hidden = false;
     if (window.XYReading && window.XYReading.audioCheck) window.XYReading.audioCheck();
   };
   const _rvCardReading = document.getElementById('rvCardReading');

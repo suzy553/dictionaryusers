@@ -668,6 +668,59 @@
     log('— 把以上内容截图发给开发 —');
   }
 
+
+  /* ---------------- 麦克风自检 ---------------- */
+  async function runMicCheck() {
+    var box = el('rdMicOut');
+    if (!box) return;
+    var lines = [];
+    function log(t) { lines.push(t); box.textContent = lines.join('\n'); }
+    box.textContent = '检测中…';
+    lines = [];
+
+    /* 1) 安全上下文 */
+    log('1) 页面协议: ' + location.protocol + (location.protocol === 'https:' ? '（安全，可用麦克风）' : '（非 HTTPS，浏览器禁止麦克风）'));
+
+    /* 2) API 是否存在 */
+    var hasGUM = !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
+    var hasMR = typeof MediaRecorder !== 'undefined';
+    var hasRec = !!(window.SpeechRecognition || window.webkitSpeechRecognition);
+    log('2) 录音接口: ' + (hasGUM ? '有' : '无') + ' · MediaRecorder: ' + (hasMR ? '有' : '无'));
+    log('   语音识别: ' + (hasRec ? '支持' : '不支持（换 Chrome）'));
+
+    /* 3) 权限状态 */
+    try {
+      if (navigator.permissions && navigator.permissions.query) {
+        var p = await navigator.permissions.query({ name: 'microphone' });
+        log('3) 权限状态: ' + p.state + (p.state === 'denied' ? '（已被拒绝，需去设置里改）' : ''));
+      } else {
+        log('3) 权限状态: 浏览器不支持查询');
+      }
+    } catch (e) {
+      log('3) 权限状态: 无法查询（' + e.name + '）');
+    }
+
+    /* 4) 实际申请 */
+    if (!hasGUM) { log('4) 结论: 这个浏览器不支持网页录音'); log('— 把以上内容截图发给开发 —'); return; }
+    log('4) 正在向系统申请麦克风…（请在弹出的提示里点「允许」）');
+    try {
+      var stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      var track = stream.getAudioTracks()[0] || {};
+      log('   申请结果: 成功');
+      log('   设备: ' + (track.label || '未命名麦克风'));
+      try { stream.getTracks().forEach(function (t) { t.stop(); }); } catch (e) { }
+      log('5) 结论: 麦克风可用，可以去跟读练习了');
+    } catch (e) {
+      var msg = e && e.name === 'NotAllowedError' ? '被拒绝（权限问题）'
+              : e && e.name === 'NotFoundError' ? '没找到麦克风设备'
+              : e && e.name === 'NotReadableError' ? '设备被其他程序占用'
+              : (e && e.name) || '未知错误';
+      log('   申请结果: ' + msg);
+      log('5) 结论: 需要在浏览器/系统设置里允许麦克风');
+    }
+    log('— 把以上内容截图发给开发 —');
+  }
+
   /* ---------------- 事件 ---------------- */
   function handleTap(e, scope) {
     lastTapAt = Date.now();
@@ -1129,10 +1182,20 @@
     }, 2400);
   }
 
+
+  if (new URLSearchParams(location.search).get('dbgmic') === '1') {
+    setTimeout(function () {
+      var out = document.getElementById('rdMicOut');
+      if (out) out.hidden = false;
+      runMicCheck();
+    }, 2200);
+  }
+
   window.XYReading = {
     prefetch: loadFeed,
     renderStrip: renderStrip,
     audioCheck: runAudioCheck,
+    micCheck: runMicCheck,
     isReady: function () { return !!el('readingTrack'); },
     open: open,
     close: close,
