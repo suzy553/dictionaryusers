@@ -2350,6 +2350,17 @@ function bindSettings() {
   };
   $('#inpRemind').onchange = e => { state.settings.reminder = e.target.value || '07:00'; saveState(); renderSettings(); };
 
+  const _iseSave = document.getElementById('iseSave');
+  if (_iseSave) _iseSave.onclick = function () {
+    var inp = document.getElementById('iseProxy');
+    var v = inp ? inp.value.trim() : '';
+    if (window.XYISE) {
+      window.XYISE.setProxyUrl(v);
+      toast(v ? '已保存评测地址' : '已清空评测地址', 2000);
+    }
+  };
+  const _iseInp = document.getElementById('iseProxy');
+  if (_iseInp && window.XYISE) _iseInp.value = window.XYISE.proxyUrl() || '';
   const btnMicChk = document.getElementById('btnMicCheck');
   if (btnMicChk) btnMicChk.onclick = function () {
     var out = document.getElementById('rdMicOut');

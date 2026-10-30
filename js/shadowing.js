@@ -171,6 +171,7 @@
     if (!row) return;
 
     /* 已在识别/录音中 → 停止 */
+    if (activeStop) { var f = activeStop; activeStop = null; try { f(); } catch (e) { } return; }
     if (activeRecog) { stopRecog(); return; }
     if (recorder && recorder.state === 'recording') { recorder.stop(); return; }
 
@@ -178,7 +179,9 @@
     recogHeard = '';
     recogErr = '';
 
-    if (Recognition() && !asrBroken) {
+    if (window.XYISE && window.XYISE.available()) {
+      startISE(i, row);
+    } else if (Recognition() && !asrBroken) {
       startRecogOnly(i, row);
     } else {
       startRecorderOnly(i, row);
@@ -265,6 +268,70 @@
     }
     evaluateWith(i, row, recogHeard);
   }
+
+
+  /* --- C. 讯飞评测（最准，需要配置 Worker 地址）--- */
+  async function startISE(i, row) {
+    var sent = ((cur.sentences || [])[i] || {}).en || '';
+    if (!sent) { showStatus(i, '这句没有原文', 'warn'); return; }
+    setRecUI(row, true, '■ 停止');
+    showStatus(i, '正在听…读完点「停止」出分', 'listening');
+
+    var stopped = false;
+    var done = false;
+
+    /* 停止按钮：结束录音并让服务端收尾 */
+    activeStop = function () {
+      stopped = true;
+      if (window.XYISE && window.XYISE._stop) window.XYISE._stop();
+    };
+
+    try {
+      var r = await window.XYISE.evaluate(sent, function (partial) {
+        /* 中途结果先展示分数 */
+        if (partial && partial.total) {
+          showStatus(i, '已听 ' + (partial.words || []).length + ' 个词…', 'listening');
+        }
+      });
+      done = true;
+      setRecUI(row, false);
+      renderISEResult(i, row, sent, r);
+    } catch (e) {
+      setRecUI(row, false);
+      showStatus(i, '评测失败：' + (e && e.message ? e.message : e) +
+        '<br>可切换顶部「模式：录音」先练录音回放', 'warn');
+    }
+  }
+
+  function renderISEResult(i, row, sent, r) {
+    var out = el('shOut' + i);
+    if (!out) return;
+    var color = r.total >= 85 ? 'good' : (r.total >= 60 ? 'mid' : 'bad');
+
+    /* 原文按词标注 */
+    markSentence(row, sent, (r.words || []).map(function (w) {
+      return { type: w.error === 'miss' ? 'miss' : (w.error === 'wrong' ? 'wrong' : 'extra'), word: w.word };
+    }));
+
+    var bad = (r.words || []).filter(function (w) { return w.error; });
+    var detail = bad.length
+      ? '<div class="sh-diff">' + bad.map(function (w) {
+          var k = w.error === 'miss' ? 'miss' : (w.error === 'wrong' ? 'wrong' : 'extra');
+          var label = w.error === 'miss' ? '漏读 ' : (w.error === 'wrong' ? '读错 ' : '多读 ');
+          return '<span class="sh-tag ' + k + '">' + label + esc(w.word) +
+            (w.score ? ' · ' + Math.round(w.score) + '分' : '') + '</span>';
+        }).join('') + '</div>'
+      : '<div class="sh-ok">每个词都读对了</div>';
+
+    out.innerHTML =
+      '<div class="sh-score ' + color + '">' + Math.round(r.total) + '<i>分</i>' +
+        '<span>准确 ' + Math.round(r.accuracy) + ' · 流畅 ' + Math.round(r.fluency) +
+        ' · 完整 ' + Math.round(r.integrity) + '</span></div>' +
+      detail +
+      '<div class="sh-note">讯飞语音评测（单词级）</div>';
+  }
+
+  var activeStop = null;
 
   /* --- B. 没有识别器：只录音，供回放对比 --- */
   async function startRecorderOnly(i, row) {
