@@ -1,87 +1,55 @@
 {
- "updated": "2026-10-29 22:52",
- "date": "2026-10-29",
+ "updated": "2026-10-30 22:49",
+ "date": "2026-10-30",
  "source": "Project Gutenberg / Simple Wikipedia",
  "items": [
   {
-   "id": "20261029-1",
-   "date": "2026-10-29",
+   "id": "20261030-1",
+   "date": "2026-10-30",
    "source": "Simple Wikipedia",
    "license": "CC BY-SA 4.0",
    "attribution": "Simple English Wikipedia",
    "topic": "百科",
    "country": "",
    "countryName": "",
-   "title": "Hope, British Columbia",
+   "title": "Alex Azar",
    "titleZh": "",
    "sentences": [
     {
-     "en": "Hope is a district municipality in British Columbia, Canada.",
+     "en": "Alex Michael Azar II is an American politician and businessman.",
      "zh": ""
     },
     {
-     "en": "Hope is in the confluence of both of the Fraser and Coquihalla rivers.",
+     "en": "He was the 24th United States Secretary of Health and Human Services from January 29, 2018 to January 20, 2021.",
      "zh": ""
     },
     {
-     "en": "As of 2021, 6,686 people lived there.",
+     "en": "He was the United States Deputy Secretary of Health and Human Services under George W.",
      "zh": ""
     },
     {
-     "en": "The current mayor of Hope is Victor Smith.",
+     "en": "Bush from 2005 to 2007.",
      "zh": ""
     },
     {
-     "en": "During World War II there was a internment camp in Hope for the Canadians of Japanese extraction.",
+     "en": "From 2012 to 2017, Azar was President of Eli Lilly and Company.",
+     "zh": ""
+    },
+    {
+     "en": "He was a member of the board of directors of the Biotechnology Innovation Organization, a pharmaceutical lobby.",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 54,
-   "audio": "data/reading/audio/20261029-1.mp3",
-   "audioKB": 141,
-   "link": "https://simple.wikipedia.org/wiki/Hope%2C_British_Columbia",
+   "words": 79,
+   "audio": "data/reading/audio/20261030-1.mp3",
+   "audioKB": 215,
+   "link": "https://simple.wikipedia.org/wiki/Alex_Azar",
    "aiAssisted": true
   },
   {
-   "id": "20261029-2",
-   "date": "2026-10-29",
-   "source": "Project Gutenberg",
-   "license": "公有领域",
-   "attribution": "Bram Stoker · Dracula · Project Gutenberg",
-   "topic": "文学",
-   "country": "",
-   "countryName": "",
-   "title": "Dracula（选段）",
-   "titleZh": "",
-   "sentences": [
-    {
-     "en": "“Do not trouble about it now.",
-     "zh": ""
-    },
-    {
-     "en": "Forget it for the present.",
-     "zh": ""
-    },
-    {
-     "en": "You shall know and understand it all in good time; but it will be later.",
-     "zh": ""
-    },
-    {
-     "en": "And now what is it that you came to me to say?” This brought me back to fact, and I was all myself again.",
-     "zh": ""
-    }
-   ],
-   "glossary": [],
-   "words": 50,
-   "audio": "data/reading/audio/20261029-2.mp3",
-   "audioKB": 96,
-   "link": "https://www.gutenberg.org/ebooks/345",
-   "aiAssisted": true
-  },
-  {
-   "id": "20261029-3",
-   "date": "2026-10-29",
+   "id": "20261030-2",
+   "date": "2026-10-30",
    "source": "Project Gutenberg",
    "license": "公有领域",
    "attribution": "Lewis Carroll · Alice's Adventures in Wonderland · Project Gutenberg",
@@ -92,68 +60,64 @@
    "titleZh": "",
    "sentences": [
     {
-     "en": "Alice thought she might as well go back, and see how the game was going on, as she heard the Queen’s voice in the distance, screaming with passion.",
+     "en": "Alice began to feel very uneasy: to be sure, she had not as yet had any dispute with the Queen, but she knew that it might happen any minute, “and then,” thought she, “what would become of me?",
      "zh": ""
     },
     {
-     "en": "She had already heard her sentence three of the players to be executed for having missed their turns, and she did not like the look of things at all, as the game was in such confusion that she never knew whether it was her turn or not.",
-     "zh": ""
-    },
-    {
-     "en": "So she went in search of her hedgehog.",
+     "en": "They’re dreadfully fond of beheading people here; the great wonder is, that there’s any one left alive!”",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 83,
-   "audio": "data/reading/audio/20261029-3.mp3",
-   "audioKB": 141,
+   "words": 55,
+   "audio": "data/reading/audio/20261030-2.mp3",
+   "audioKB": 104,
    "link": "https://www.gutenberg.org/ebooks/11",
    "aiAssisted": true
   },
   {
-   "id": "20261029-4",
-   "date": "2026-10-29",
+   "id": "20261030-3",
+   "date": "2026-10-30",
    "source": "Project Gutenberg",
    "license": "公有领域",
-   "attribution": "H. G. Wells · The Time Machine · Project Gutenberg",
+   "attribution": "Bram Stoker · Dracula · Project Gutenberg",
    "topic": "文学",
    "country": "",
    "countryName": "",
-   "title": "The Time Machine（选段）",
+   "title": "Dracula（选段）",
    "titleZh": "",
    "sentences": [
     {
-     "en": "“The big doorway opened into a proportionately great hall hung with brown.",
+     "en": "I think we were all staggered.",
      "zh": ""
     },
     {
-     "en": "The roof was in shadow, and the windows, partially glazed with coloured glass and partially unglazed, admitted a tempered light.",
+     "en": "For my own part, I was under the conviction, despite my knowledge of the man’s character and history, that his reason had been restored; and I felt under a strong impulse to tell him that I was satisfied as to his sanity, and would see about the necessary formalities for his release in the morning.",
      "zh": ""
     },
     {
-     "en": "The floor was made up of huge blocks of some very hard white metal, not plates nor slabs—blocks, and it was so much worn, as I judged by the going to and fro of past generations, as to be deeply channelled along the more frequented ways.",
+     "en": "I thought it better to wait, however, before making so grave a statement, for of old I knew the sudden changes to which this particular patient was liable.",
      "zh": ""
     },
     {
-     "en": "Transverse to the length were innumerable tables made of slabs of polished stone, raised, perhaps, a foot from the floor, and upon these were heaps of fruits.",
+     "en": "So I contented myself with making a general statement that he appeared to be improving very rapidly; that I would have a longer chat with him in the morning, and would then see what I could do in the direction of meeting his wishes.",
      "zh": ""
     },
     {
-     "en": "Some I recognised as a kind of hypertrophied raspberry and orange, but for the most part they were strange.",
+     "en": "This did not at all satisfy him, for he said quickly:--",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 124,
-   "audio": "data/reading/audio/20261029-4.mp3",
-   "audioKB": 257,
-   "link": "https://www.gutenberg.org/ebooks/35",
+   "words": 144,
+   "audio": "data/reading/audio/20261030-3.mp3",
+   "audioKB": 262,
+   "link": "https://www.gutenberg.org/ebooks/345",
    "aiAssisted": true
   },
   {
-   "id": "20261029-5",
-   "date": "2026-10-29",
+   "id": "20261030-4",
+   "date": "2026-10-30",
    "source": "Project Gutenberg",
    "license": "公有领域",
    "attribution": "Arthur Conan Doyle · The Adventures of Sherlock Holmes · Project Gutenberg",
@@ -164,24 +128,80 @@
    "titleZh": "",
    "sentences": [
     {
-     "en": "“Oh, I have heard of that fellow,” answered my visitor, “and I should be very glad if he would take the matter up, though of course I must use the official police as well.",
+     "en": "“I have said that though the floor and ceiling were of iron, the walls were of wood.",
      "zh": ""
     },
     {
-     "en": "Would you give me an introduction to him?”",
+     "en": "As I gave a last hurried glance around, I saw a thin line of yellow light between two of the boards, which broadened and broadened as a small panel was pushed backward.",
+     "zh": ""
+    },
+    {
+     "en": "For an instant I could hardly believe that here was indeed a door which led away from death.",
+     "zh": ""
+    },
+    {
+     "en": "The next instant I threw myself through, and lay half-fainting upon the other side.",
+     "zh": ""
+    },
+    {
+     "en": "The panel had closed again behind me, but the crash of the lamp, and a few moments afterwards the clang of the two slabs of metal, told me how narrow had been my escape.",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 42,
-   "audio": "data/reading/audio/20261029-5.mp3",
-   "audioKB": 73,
+   "words": 115,
+   "audio": "data/reading/audio/20261030-4.mp3",
+   "audioKB": 208,
    "link": "https://www.gutenberg.org/ebooks/1661",
    "aiAssisted": true
   },
   {
-   "id": "20261029-6",
-   "date": "2026-10-29",
+   "id": "20261030-5",
+   "date": "2026-10-30",
+   "source": "Project Gutenberg",
+   "license": "公有领域",
+   "attribution": "H. G. Wells · The Time Machine · Project Gutenberg",
+   "topic": "文学",
+   "country": "",
+   "countryName": "",
+   "title": "The Time Machine（选段）",
+   "titleZh": "",
+   "sentences": [
+    {
+     "en": "“And perhaps the thing that struck me most was its dilapidated look.",
+     "zh": ""
+    },
+    {
+     "en": "The stained-glass windows, which displayed only a geometrical pattern, were broken in many places, and the curtains that hung across the lower end were thick with dust.",
+     "zh": ""
+    },
+    {
+     "en": "And it caught my eye that the corner of the marble table near me was fractured.",
+     "zh": ""
+    },
+    {
+     "en": "Nevertheless, the general effect was extremely rich and picturesque.",
+     "zh": ""
+    },
+    {
+     "en": "There were, perhaps, a couple of hundred people dining in the hall, and most of them, seated as near to me as they could come, were watching me with interest, their little eyes shining over the fruit they were eating.",
+     "zh": ""
+    },
+    {
+     "en": "All were clad in the same soft, and yet strong, silky material.",
+     "zh": ""
+    }
+   ],
+   "glossary": [],
+   "words": 116,
+   "audio": "data/reading/audio/20261030-5.mp3",
+   "audioKB": 238,
+   "link": "https://www.gutenberg.org/ebooks/35",
+   "aiAssisted": true
+  },
+  {
+   "id": "20261030-6",
+   "date": "2026-10-30",
    "source": "Project Gutenberg",
    "license": "公有领域",
    "attribution": "Mary Shelley · Frankenstein · Project Gutenberg",
@@ -192,34 +212,14 @@
    "titleZh": "",
    "sentences": [
     {
-     "en": "We passed a few sad hours until eleven o’clock, when the trial was to commence.",
-     "zh": ""
-    },
-    {
-     "en": "My father and the rest of the family being obliged to attend as witnesses, I accompanied them to the court.",
-     "zh": ""
-    },
-    {
-     "en": "During the whole of this wretched mockery of justice I suffered living torture.",
-     "zh": ""
-    },
-    {
-     "en": "It was to be decided whether the result of my curiosity and lawless devices would cause the death of two of my fellow beings: one a smiling babe full of innocence and joy, the other far more dreadfully murdered, with every aggravation of infamy that could make the murder memorable in horror.",
-     "zh": ""
-    },
-    {
-     "en": "Justine also was a girl of merit and possessed qualities which promised to render her life happy; now all was to be obliterated in an ignominious grave, and I the cause!",
-     "zh": ""
-    },
-    {
-     "en": "A thousand times rather would I have confessed myself guilty of the crime ascribed to Justine, but I was absent when it was committed, and such a declaration would have been considered as the ravings of a madman and would not have exculpated her who suffered through me.",
+     "en": "——The sounding cataract Haunted him like a passion: the tall rock, The mountain, and the deep and gloomy wood, Their colours and their forms, were then to him An appetite; a feeling, and a love, That had no need of a remoter charm, By thought supplied, or any interest Unborrow’d from the eye.",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 179,
-   "audio": "data/reading/audio/20261029-6.mp3",
-   "audioKB": 340,
+   "words": 53,
+   "audio": "data/reading/audio/20261030-6.mp3",
+   "audioKB": 101,
    "link": "https://www.gutenberg.org/ebooks/84",
    "aiAssisted": true
   }
