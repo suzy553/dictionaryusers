@@ -1,0 +1,9 @@
+﻿{
+  "name": "ise-proxy",
+  "private": true,
+  "version": "1.0.0",
+  "description": "讯飞语音评测 Worker 代理",
+  "devDependencies": {
+    "wrangler": "^3.90.0"
+  }
+}

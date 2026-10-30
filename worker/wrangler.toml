@@ -1,0 +1,8 @@
+name = "ise-proxy"
+main = "ise.js"
+compatibility_date = "2024-09-23"
+
+# 说明：
+#   - 密钥不写在这里，用 `wrangler secret put` 存进 Cloudflare
+#   - 部署后地址形如 https://ise-proxy.<你的子域>.workers.dev
+#   - 前端把它改成 wss:// 填进「设置 → 语音评测服务地址」
