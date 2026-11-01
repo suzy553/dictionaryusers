@@ -1,211 +1,51 @@
 {
- "updated": "2026-10-31 22:45",
- "date": "2026-10-31",
+ "updated": "2026-11-01 22:47",
+ "date": "2026-11-01",
  "source": "Project Gutenberg / Simple Wikipedia",
  "items": [
   {
-   "id": "20261031-1",
-   "date": "2026-10-31",
+   "id": "20261101-1",
+   "date": "2026-11-01",
    "source": "Simple Wikipedia",
    "license": "CC BY-SA 4.0",
    "attribution": "Simple English Wikipedia",
    "topic": "百科",
    "country": "",
    "countryName": "",
-   "title": "Chimney",
+   "title": "Soumaïla Cissé",
    "titleZh": "",
    "sentences": [
     {
-     "en": "A chimney is a structure used to ventilate hot flue gases or smoke from a boiler, stove, furnace or fireplace to the outside atmosphere.",
+     "en": "Soumaïla Cissé was a Malian politician.",
      "zh": ""
     },
     {
-     "en": "Most chimneys are vertical, or almost vertical, to make sure that the gases flow easily, drawing air into the combustion in what is known as the stack, or chimney, effect.",
+     "en": "He served as the nation's Minister of Finance from 1993 to 2000.",
      "zh": ""
     },
     {
-     "en": "The space inside a chimney is called a flue.",
+     "en": "He stood three times as a presidential candidate, in 2002, 2013 and 2018.",
      "zh": ""
     },
     {
-     "en": "Chimneys may be found in buildings, steam locomotives and ships.",
+     "en": "He was defeated in a second round of voting each time.",
      "zh": ""
     },
     {
-     "en": "In the United States, the term smokestack is also used when talking about locomotive chimneys or ship chimneys, the word funnel can be used too.",
+     "en": "He became president of the Union for the Republic and Democracy, a political party, in 2014.",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 98,
-   "audio": "data/reading/audio/20261031-1.mp3",
-   "audioKB": 216,
-   "link": "https://simple.wikipedia.org/wiki/Chimney",
+   "words": 58,
+   "audio": "data/reading/audio/20261101-1.mp3",
+   "audioKB": 157,
+   "link": "https://simple.wikipedia.org/wiki/Souma%C3%AFla_Ciss%C3%A9",
    "aiAssisted": true
   },
   {
-   "id": "20261031-2",
-   "date": "2026-10-31",
-   "source": "Project Gutenberg",
-   "license": "公有领域",
-   "attribution": "H. G. Wells · The Time Machine · Project Gutenberg",
-   "topic": "文学",
-   "country": "",
-   "countryName": "",
-   "title": "The Time Machine（选段）",
-   "titleZh": "",
-   "sentences": [
-    {
-     "en": "“Within the big valves of the door—which were open and broken—we found, instead of the customary hall, a long gallery lit by many side windows.",
-     "zh": ""
-    },
-    {
-     "en": "At the first glance I was reminded of a museum.",
-     "zh": ""
-    },
-    {
-     "en": "The tiled floor was thick with dust, and a remarkable array of miscellaneous objects was shrouded in the same grey covering.",
-     "zh": ""
-    },
-    {
-     "en": "Then I perceived, standing strange and gaunt in the centre of the hall, what was clearly the lower part of a huge skeleton.",
-     "zh": ""
-    },
-    {
-     "en": "I recognised by the oblique feet that it was some extinct creature after the fashion of the Megatherium.",
-     "zh": ""
-    },
-    {
-     "en": "The skull and the upper bones lay beside it in the thick dust, and in one place, where rain-water had dropped through a leak in the roof, the thing itself had been worn away.",
-     "zh": ""
-    },
-    {
-     "en": "Further in the gallery was the huge skeleton barrel of a Brontosaurus.",
-     "zh": ""
-    },
-    {
-     "en": "My museum hypothesis was confirmed.",
-     "zh": ""
-    },
-    {
-     "en": "Going towards the side I found what appeared to be sloping shelves, and clearing away the thick dust, I found the old familiar glass cases of our own time.",
-     "zh": ""
-    },
-    {
-     "en": "But they must have been air-tight to judge from the fair preservation of some of their contents.",
-     "zh": ""
-    }
-   ],
-   "glossary": [],
-   "words": 194,
-   "audio": "data/reading/audio/20261031-2.mp3",
-   "audioKB": 389,
-   "link": "https://www.gutenberg.org/ebooks/35",
-   "aiAssisted": true
-  },
-  {
-   "id": "20261031-3",
-   "date": "2026-10-31",
-   "source": "Simple Wikipedia",
-   "license": "CC BY-SA 4.0",
-   "attribution": "Simple English Wikipedia",
-   "topic": "百科",
-   "country": "",
-   "countryName": "",
-   "title": "99 B-Line",
-   "titleZh": "",
-   "sentences": [
-    {
-     "en": "The 99 B-Line is a Coast Mountain Bus Company bus route in Vancouver, British Columbia.",
-     "zh": ""
-    },
-    {
-     "en": "It is ran with funds by TransLink.",
-     "zh": ""
-    },
-    {
-     "en": "It runs between UBC Exchange and the Commercial–Broadway SkyTrain station with 13 stops along the route.",
-     "zh": ""
-    },
-    {
-     "en": "The route is 14.3 km long.",
-     "zh": ""
-    },
-    {
-     "en": "With an average of 35,900 weekday passengers in 2023, it is the busiest bus route in the entire Metro Vancouver region.",
-     "zh": ""
-    },
-    {
-     "en": "It sunk to 34,200 the next year but remained as the busiest route.",
-     "zh": ""
-    }
-   ],
-   "glossary": [],
-   "words": 78,
-   "audio": "data/reading/audio/20261031-3.mp3",
-   "audioKB": 209,
-   "link": "https://simple.wikipedia.org/wiki/99_B-Line",
-   "aiAssisted": true
-  },
-  {
-   "id": "20261031-4",
-   "date": "2026-10-31",
-   "source": "Project Gutenberg",
-   "license": "公有领域",
-   "attribution": "Arthur Conan Doyle · The Adventures of Sherlock Holmes · Project Gutenberg",
-   "topic": "文学",
-   "country": "",
-   "countryName": "",
-   "title": "The Adventures of Sherlock Holmes（选段）",
-   "titleZh": "",
-   "sentences": [
-    {
-     "en": "“In this sinister way I came into my inheritance.",
-     "zh": ""
-    },
-    {
-     "en": "You will ask me why I did not dispose of it?",
-     "zh": ""
-    },
-    {
-     "en": "I answer, because I was well convinced that our troubles were in some way dependent upon an incident in my uncle’s life, and that the danger would be as pressing in one house as in another.",
-     "zh": ""
-    }
-   ],
-   "glossary": [],
-   "words": 56,
-   "audio": "data/reading/audio/20261031-4.mp3",
-   "audioKB": 102,
-   "link": "https://www.gutenberg.org/ebooks/1661",
-   "aiAssisted": true
-  },
-  {
-   "id": "20261031-5",
-   "date": "2026-10-31",
-   "source": "Project Gutenberg",
-   "license": "公有领域",
-   "attribution": "Robert Louis Stevenson · Treasure Island · Project Gutenberg",
-   "topic": "文学",
-   "country": "",
-   "countryName": "",
-   "title": "Treasure Island（选段）",
-   "titleZh": "",
-   "sentences": [
-    {
-     "en": "Gray and I were sitting together at the far end of the block house, to be out of earshot of our officers consulting; and Gray took his pipe out of his mouth and fairly forgot to put it back again, so thunder-struck he was at this occurrence.",
-     "zh": ""
-    }
-   ],
-   "glossary": [],
-   "words": 47,
-   "audio": "data/reading/audio/20261031-5.mp3",
-   "audioKB": 79,
-   "link": "https://www.gutenberg.org/ebooks/120",
-   "aiAssisted": true
-  },
-  {
-   "id": "20261031-6",
-   "date": "2026-10-31",
+   "id": "20261101-2",
+   "date": "2026-11-01",
    "source": "Project Gutenberg",
    "license": "公有领域",
    "attribution": "Louisa May Alcott · Little Women · Project Gutenberg",
@@ -216,23 +56,207 @@
    "titleZh": "",
    "sentences": [
     {
-     "en": "What those two creatures did in her absence, she never knew, but Mr.",
+     "en": "“That depends upon how and where he takes it.",
      "zh": ""
     },
     {
-     "en": "Scott was not taken ‘up to Mother’s’, and when Meg descended, after they had strolled away together, she found traces of a promiscuous lunch which filled her with horror.",
+     "en": "I don’t like Ned and his set, and wish you’d keep out of it.",
      "zh": ""
     },
     {
-     "en": "Lotty reported that they had eaten “a much, and greatly laughed, and the master bid her throw away all the sweet stuff, and hide the pots.”",
+     "en": "Mother won’t let us have him at our house, though he wants to come.",
+     "zh": ""
+    },
+    {
+     "en": "And if you grow like him she won’t be willing to have us frolic together as we do now.”",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 68,
-   "audio": "data/reading/audio/20261031-6.mp3",
-   "audioKB": 128,
+   "words": 56,
+   "audio": "data/reading/audio/20261101-2.mp3",
+   "audioKB": 97,
    "link": "https://www.gutenberg.org/ebooks/514",
+   "aiAssisted": true
+  },
+  {
+   "id": "20261101-3",
+   "date": "2026-11-01",
+   "source": "Simple Wikipedia",
+   "license": "CC BY-SA 4.0",
+   "attribution": "Simple English Wikipedia",
+   "topic": "百科",
+   "country": "",
+   "countryName": "",
+   "title": "Hamburger SV",
+   "titleZh": "",
+   "sentences": [
+    {
+     "en": "The Hamburger Sport-Verein is German Sportsclub from Hamburg and became known particularly by its football crews.",
+     "zh": ""
+    },
+    {
+     "en": "The man crew of the HSV created it thereby as an only soccer association, 43 years long continuously in the Bundesliga to play and was always first-class since the establishment union in the year 1919 as only German association.",
+     "zh": ""
+    },
+    {
+     "en": "The woman football crew Hamburg sports association plays likewise in the 1.",
+     "zh": ""
+    },
+    {
+     "en": "The football team is playing their homegames in the HSH Nordbank Arena.",
+     "zh": ""
+    }
+   ],
+   "glossary": [],
+   "words": 79,
+   "audio": "data/reading/audio/20261101-3.mp3",
+   "audioKB": 191,
+   "link": "https://simple.wikipedia.org/wiki/Hamburger_SV",
+   "aiAssisted": true
+  },
+  {
+   "id": "20261101-4",
+   "date": "2026-11-01",
+   "source": "Project Gutenberg",
+   "license": "公有领域",
+   "attribution": "Bram Stoker · Dracula · Project Gutenberg",
+   "topic": "文学",
+   "country": "",
+   "countryName": "",
+   "title": "Dracula（选段）",
+   "titleZh": "",
+   "sentences": [
+    {
+     "en": "_12 September._--How good they all are to me.",
+     "zh": ""
+    },
+    {
+     "en": "I quite love that dear Dr.",
+     "zh": ""
+    },
+    {
+     "en": "I wonder why he was so anxious about these flowers.",
+     "zh": ""
+    },
+    {
+     "en": "He positively frightened me, he was so fierce.",
+     "zh": ""
+    },
+    {
+     "en": "And yet he must have been right, for I feel comfort from them already.",
+     "zh": ""
+    },
+    {
+     "en": "Somehow, I do not dread being alone to-night, and I can go to sleep without fear.",
+     "zh": ""
+    },
+    {
+     "en": "I shall not mind any flapping outside the window.",
+     "zh": ""
+    },
+    {
+     "en": "Oh, the terrible struggle that I have had against sleep so often of late; the pain of the sleeplessness, or the pain of the fear of sleep, with such unknown horrors as it has for me!",
+     "zh": ""
+    },
+    {
+     "en": "How blessed are some people, whose lives have no fears, no dreads; to whom sleep is a blessing that comes nightly, and brings nothing but sweet dreams.",
+     "zh": ""
+    },
+    {
+     "en": "Well, here I am to-night, hoping for sleep, and lying like Ophelia in the play, with “virgin crants and maiden strewments.” I never liked garlic before, but to-night it is delightful!",
+     "zh": ""
+    },
+    {
+     "en": "There is peace in its smell; I feel sleep coming already.",
+     "zh": ""
+    },
+    {
+     "en": "Good-night, everybody.",
+     "zh": ""
+    }
+   ],
+   "glossary": [],
+   "words": 178,
+   "audio": "data/reading/audio/20261101-4.mp3",
+   "audioKB": 381,
+   "link": "https://www.gutenberg.org/ebooks/345",
+   "aiAssisted": true
+  },
+  {
+   "id": "20261101-5",
+   "date": "2026-11-01",
+   "source": "Simple Wikipedia",
+   "license": "CC BY-SA 4.0",
+   "attribution": "Simple English Wikipedia",
+   "topic": "百科",
+   "country": "",
+   "countryName": "",
+   "title": "Apollo Creed",
+   "titleZh": "",
+   "sentences": [
+    {
+     "en": "Apollo Creed is a fictional character from the Rocky movie series.",
+     "zh": ""
+    },
+    {
+     "en": "Portrayed by Carl Weathers, Apollo is a charismatic and talented heavyweight boxing champion known for his confidence, showmanship, and competitive spirit.",
+     "zh": ""
+    },
+    {
+     "en": "He plays a significant role in the series as both a rival and a friend to Rocky Balboa, inspiring him to become a better fighter.",
+     "zh": ""
+    },
+    {
+     "en": "Apollo's character is celebrated for his iconic fights, especially his bouts with Rocky, and his legacy continues to influence the series' storylines.",
+     "zh": ""
+    }
+   ],
+   "glossary": [],
+   "words": 79,
+   "audio": "data/reading/audio/20261101-5.mp3",
+   "audioKB": 188,
+   "link": "https://simple.wikipedia.org/wiki/Apollo_Creed",
+   "aiAssisted": true
+  },
+  {
+   "id": "20261101-6",
+   "date": "2026-11-01",
+   "source": "Project Gutenberg",
+   "license": "公有领域",
+   "attribution": "Robert Louis Stevenson · Treasure Island · Project Gutenberg",
+   "topic": "文学",
+   "country": "",
+   "countryName": "",
+   "title": "Treasure Island（选段）",
+   "titleZh": "",
+   "sentences": [
+    {
+     "en": "It was still quite early, and the coldest morning that I think I ever was abroad in--a chill that pierced into the marrow.",
+     "zh": ""
+    },
+    {
+     "en": "The sky was bright and cloudless overhead, and the tops of the trees shone rosily in the sun.",
+     "zh": ""
+    },
+    {
+     "en": "But where Silver stood with his lieutenant, all was still in shadow, and they waded knee-deep in a low white vapour that had crawled during the night out of the morass.",
+     "zh": ""
+    },
+    {
+     "en": "The chill and the vapour taken together told a poor tale of the island.",
+     "zh": ""
+    },
+    {
+     "en": "It was plainly a damp, feverish, unhealthy spot.",
+     "zh": ""
+    }
+   ],
+   "glossary": [],
+   "words": 94,
+   "audio": "data/reading/audio/20261101-6.mp3",
+   "audioKB": 179,
+   "link": "https://www.gutenberg.org/ebooks/120",
    "aiAssisted": true
   }
  ]
