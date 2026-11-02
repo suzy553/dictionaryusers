@@ -1,51 +1,43 @@
 {
- "updated": "2026-11-01 22:47",
- "date": "2026-11-01",
+ "updated": "2026-11-02 22:52",
+ "date": "2026-11-02",
  "source": "Project Gutenberg / Simple Wikipedia",
  "items": [
   {
-   "id": "20261101-1",
-   "date": "2026-11-01",
+   "id": "20261102-1",
+   "date": "2026-11-02",
    "source": "Simple Wikipedia",
    "license": "CC BY-SA 4.0",
    "attribution": "Simple English Wikipedia",
    "topic": "百科",
    "country": "",
    "countryName": "",
-   "title": "Soumaïla Cissé",
+   "title": "Lea DeLaria",
    "titleZh": "",
    "sentences": [
     {
-     "en": "Soumaïla Cissé was a Malian politician.",
+     "en": "Lea DeLaria is an American comedian, actress, and jazz musician.",
      "zh": ""
     },
     {
-     "en": "He served as the nation's Minister of Finance from 1993 to 2000.",
+     "en": "DeLaria was \"the first openly gay comic to break the late-night talk-show barrier\" with her 1993 appearance on The Arsenio Hall Show.",
      "zh": ""
     },
     {
-     "en": "He stood three times as a presidential candidate, in 2002, 2013 and 2018.",
-     "zh": ""
-    },
-    {
-     "en": "He was defeated in a second round of voting each time.",
-     "zh": ""
-    },
-    {
-     "en": "He became president of the Union for the Republic and Democracy, a political party, in 2014.",
+     "en": "She is best known for her portrayal of inmate Big Boo on Netflix original series Orange Is the New Black.",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 58,
-   "audio": "data/reading/audio/20261101-1.mp3",
-   "audioKB": 157,
-   "link": "https://simple.wikipedia.org/wiki/Souma%C3%AFla_Ciss%C3%A9",
+   "words": 52,
+   "audio": "data/reading/audio/20261102-1.mp3",
+   "audioKB": 121,
+   "link": "https://simple.wikipedia.org/wiki/Lea_DeLaria",
    "aiAssisted": true
   },
   {
-   "id": "20261101-2",
-   "date": "2026-11-01",
+   "id": "20261102-2",
+   "date": "2026-11-02",
    "source": "Project Gutenberg",
    "license": "公有领域",
    "attribution": "Louisa May Alcott · Little Women · Project Gutenberg",
@@ -56,172 +48,136 @@
    "titleZh": "",
    "sentences": [
     {
-     "en": "“That depends upon how and where he takes it.",
+     "en": "“Such a man!” laughed good-natured Mrs.",
      "zh": ""
     },
     {
-     "en": "I don’t like Ned and his set, and wish you’d keep out of it.",
+     "en": "K., as she put the relics in the rag bag.",
      "zh": ""
     },
     {
-     "en": "Mother won’t let us have him at our house, though he wants to come.",
+     "en": "“I suppose the others are torn up to rig ships, bandage cut fingers, or make kite tails.",
      "zh": ""
     },
     {
-     "en": "And if you grow like him she won’t be willing to have us frolic together as we do now.”",
+     "en": "It’s dreadful, but I can’t scold him.",
+     "zh": ""
+    },
+    {
+     "en": "He’s so absent-minded and goodnatured, he lets those boys ride over him roughshod.",
+     "zh": ""
+    },
+    {
+     "en": "I agreed to do his washing and mending, but he forgets to give out his things and I forget to look them over, so he comes to a sad pass sometimes.”",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 56,
-   "audio": "data/reading/audio/20261101-2.mp3",
-   "audioKB": 97,
+   "words": 84,
+   "audio": "data/reading/audio/20261102-2.mp3",
+   "audioKB": 170,
    "link": "https://www.gutenberg.org/ebooks/514",
    "aiAssisted": true
   },
   {
-   "id": "20261101-3",
-   "date": "2026-11-01",
+   "id": "20261102-3",
+   "date": "2026-11-02",
    "source": "Simple Wikipedia",
    "license": "CC BY-SA 4.0",
    "attribution": "Simple English Wikipedia",
    "topic": "百科",
    "country": "",
    "countryName": "",
-   "title": "Hamburger SV",
+   "title": "Hyundai Casper",
    "titleZh": "",
    "sentences": [
     {
-     "en": "The Hamburger Sport-Verein is German Sportsclub from Hamburg and became known particularly by its football crews.",
+     "en": "The Hyundai Casper is a small City car produced by Hyundai.",
      "zh": ""
     },
     {
-     "en": "The man crew of the HSV created it thereby as an only soccer association, 43 years long continuously in the Bundesliga to play and was always first-class since the establishment union in the year 1919 as only German association.",
-     "zh": ""
-    },
-    {
-     "en": "The woman football crew Hamburg sports association plays likewise in the 1.",
-     "zh": ""
-    },
-    {
-     "en": "The football team is playing their homegames in the HSH Nordbank Arena.",
+     "en": "It was introduced in 2021 and is sold mainly in South Korea its the Smallest ever SUV and sold by the brand and also the smallest car made by Hyundai an electric version named the Casper Electric also know as the Hyundai Inster in Europe was launched in June 2024.",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 79,
-   "audio": "data/reading/audio/20261101-3.mp3",
-   "audioKB": 191,
-   "link": "https://simple.wikipedia.org/wiki/Hamburger_SV",
+   "words": 61,
+   "audio": "data/reading/audio/20261102-3.mp3",
+   "audioKB": 127,
+   "link": "https://simple.wikipedia.org/wiki/Hyundai_Casper",
    "aiAssisted": true
   },
   {
-   "id": "20261101-4",
-   "date": "2026-11-01",
+   "id": "20261102-4",
+   "date": "2026-11-02",
    "source": "Project Gutenberg",
    "license": "公有领域",
-   "attribution": "Bram Stoker · Dracula · Project Gutenberg",
+   "attribution": "Arthur Conan Doyle · The Adventures of Sherlock Holmes · Project Gutenberg",
    "topic": "文学",
    "country": "",
    "countryName": "",
-   "title": "Dracula（选段）",
+   "title": "The Adventures of Sherlock Holmes（选段）",
    "titleZh": "",
    "sentences": [
     {
-     "en": "_12 September._--How good they all are to me.",
+     "en": "“I had come to these conclusions before ever I had entered his room.",
      "zh": ""
     },
     {
-     "en": "I quite love that dear Dr.",
+     "en": "An inspection of his chair showed me that he had been in the habit of standing on it, which of course would be necessary in order that he should reach the ventilator.",
      "zh": ""
     },
     {
-     "en": "I wonder why he was so anxious about these flowers.",
+     "en": "The sight of the safe, the saucer of milk, and the loop of whipcord were enough to finally dispel any doubts which may have remained.",
      "zh": ""
     },
     {
-     "en": "He positively frightened me, he was so fierce.",
+     "en": "The metallic clang heard by Miss Stoner was obviously caused by her stepfather hastily closing the door of his safe upon its terrible occupant.",
      "zh": ""
     },
     {
-     "en": "And yet he must have been right, for I feel comfort from them already.",
+     "en": "Having once made up my mind, you know the steps which I took in order to put the matter to the proof.",
      "zh": ""
     },
     {
-     "en": "Somehow, I do not dread being alone to-night, and I can go to sleep without fear.",
-     "zh": ""
-    },
-    {
-     "en": "I shall not mind any flapping outside the window.",
-     "zh": ""
-    },
-    {
-     "en": "Oh, the terrible struggle that I have had against sleep so often of late; the pain of the sleeplessness, or the pain of the fear of sleep, with such unknown horrors as it has for me!",
-     "zh": ""
-    },
-    {
-     "en": "How blessed are some people, whose lives have no fears, no dreads; to whom sleep is a blessing that comes nightly, and brings nothing but sweet dreams.",
-     "zh": ""
-    },
-    {
-     "en": "Well, here I am to-night, hoping for sleep, and lying like Ophelia in the play, with “virgin crants and maiden strewments.” I never liked garlic before, but to-night it is delightful!",
-     "zh": ""
-    },
-    {
-     "en": "There is peace in its smell; I feel sleep coming already.",
-     "zh": ""
-    },
-    {
-     "en": "Good-night, everybody.",
+     "en": "I heard the creature hiss as I have no doubt that you did also, and I instantly lit the light and attacked it.”",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 178,
-   "audio": "data/reading/audio/20261101-4.mp3",
-   "audioKB": 381,
-   "link": "https://www.gutenberg.org/ebooks/345",
+   "words": 139,
+   "audio": "data/reading/audio/20261102-4.mp3",
+   "audioKB": 246,
+   "link": "https://www.gutenberg.org/ebooks/1661",
    "aiAssisted": true
   },
   {
-   "id": "20261101-5",
-   "date": "2026-11-01",
-   "source": "Simple Wikipedia",
-   "license": "CC BY-SA 4.0",
-   "attribution": "Simple English Wikipedia",
-   "topic": "百科",
+   "id": "20261102-5",
+   "date": "2026-11-02",
+   "source": "Project Gutenberg",
+   "license": "公有领域",
+   "attribution": "Lewis Carroll · Alice's Adventures in Wonderland · Project Gutenberg",
+   "topic": "文学",
    "country": "",
    "countryName": "",
-   "title": "Apollo Creed",
+   "title": "Alice's Adventures in Wonderland（选段）",
    "titleZh": "",
    "sentences": [
     {
-     "en": "Apollo Creed is a fictional character from the Rocky movie series.",
-     "zh": ""
-    },
-    {
-     "en": "Portrayed by Carl Weathers, Apollo is a charismatic and talented heavyweight boxing champion known for his confidence, showmanship, and competitive spirit.",
-     "zh": ""
-    },
-    {
-     "en": "He plays a significant role in the series as both a rival and a friend to Rocky Balboa, inspiring him to become a better fighter.",
-     "zh": ""
-    },
-    {
-     "en": "Apollo's character is celebrated for his iconic fights, especially his bouts with Rocky, and his legacy continues to influence the series' storylines.",
+     "en": "This piece of rudeness was more than Alice could bear: she got up in great disgust, and walked off; the Dormouse fell asleep instantly, and neither of the others took the least notice of her going, though she looked back once or twice, half hoping that they would call after her: the last time she saw them, they were trying to put the Dormouse into the teapot.",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 79,
-   "audio": "data/reading/audio/20261101-5.mp3",
-   "audioKB": 188,
-   "link": "https://simple.wikipedia.org/wiki/Apollo_Creed",
+   "words": 67,
+   "audio": "data/reading/audio/20261102-5.mp3",
+   "audioKB": 117,
+   "link": "https://www.gutenberg.org/ebooks/11",
    "aiAssisted": true
   },
   {
-   "id": "20261101-6",
-   "date": "2026-11-01",
+   "id": "20261102-6",
+   "date": "2026-11-02",
    "source": "Project Gutenberg",
    "license": "公有领域",
    "attribution": "Robert Louis Stevenson · Treasure Island · Project Gutenberg",
@@ -232,30 +188,14 @@
    "titleZh": "",
    "sentences": [
     {
-     "en": "It was still quite early, and the coldest morning that I think I ever was abroad in--a chill that pierced into the marrow.",
-     "zh": ""
-    },
-    {
-     "en": "The sky was bright and cloudless overhead, and the tops of the trees shone rosily in the sun.",
-     "zh": ""
-    },
-    {
-     "en": "But where Silver stood with his lieutenant, all was still in shadow, and they waded knee-deep in a low white vapour that had crawled during the night out of the morass.",
-     "zh": ""
-    },
-    {
-     "en": "The chill and the vapour taken together told a poor tale of the island.",
-     "zh": ""
-    },
-    {
-     "en": "It was plainly a damp, feverish, unhealthy spot.",
+     "en": "Nor was that all, for crawling together on flat tables of rock or letting themselves drop into the sea with loud reports I beheld huge slimy monsters--soft snails, as it were, of incredible bigness--two or three score of them together, making the rocks to echo with their barkings.",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 94,
-   "audio": "data/reading/audio/20261101-6.mp3",
-   "audioKB": 179,
+   "words": 48,
+   "audio": "data/reading/audio/20261102-6.mp3",
+   "audioKB": 99,
    "link": "https://www.gutenberg.org/ebooks/120",
    "aiAssisted": true
   }
