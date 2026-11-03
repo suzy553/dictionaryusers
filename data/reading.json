@@ -1,115 +1,63 @@
 {
- "updated": "2026-11-02 22:52",
- "date": "2026-11-02",
+ "updated": "2026-11-03 22:56",
+ "date": "2026-11-03",
  "source": "Project Gutenberg / Simple Wikipedia",
  "items": [
   {
-   "id": "20261102-1",
-   "date": "2026-11-02",
+   "id": "20261103-1",
+   "date": "2026-11-03",
    "source": "Simple Wikipedia",
    "license": "CC BY-SA 4.0",
    "attribution": "Simple English Wikipedia",
    "topic": "百科",
    "country": "",
    "countryName": "",
-   "title": "Lea DeLaria",
+   "title": "Typhoon Krosa (2013)",
    "titleZh": "",
    "sentences": [
     {
-     "en": "Lea DeLaria is an American comedian, actress, and jazz musician.",
-     "zh": ""
-    },
-    {
-     "en": "DeLaria was \"the first openly gay comic to break the late-night talk-show barrier\" with her 1993 appearance on The Arsenio Hall Show.",
-     "zh": ""
-    },
-    {
-     "en": "She is best known for her portrayal of inmate Big Boo on Netflix original series Orange Is the New Black.",
+     "en": "Typhoon Krosa, known in the Philippines as Typhoon Vinta was a Category 3 equivalent tropical cyclone that lashes the northern Philippines in Cagayan Valley region in October 2013 after the Typhoon Nari hits Central Luzon, Typhoon Krosa leaving atleast 4 deaths, and damaging houses nearby the coastal areas particularly in the town of Lal-lo, Cagayan.",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 52,
-   "audio": "data/reading/audio/20261102-1.mp3",
-   "audioKB": 121,
-   "link": "https://simple.wikipedia.org/wiki/Lea_DeLaria",
+   "words": 55,
+   "audio": "data/reading/audio/20261103-1.mp3",
+   "audioKB": 136,
+   "link": "https://simple.wikipedia.org/wiki/Typhoon_Krosa_(2013)",
    "aiAssisted": true
   },
   {
-   "id": "20261102-2",
-   "date": "2026-11-02",
+   "id": "20261103-2",
+   "date": "2026-11-03",
    "source": "Project Gutenberg",
    "license": "公有领域",
-   "attribution": "Louisa May Alcott · Little Women · Project Gutenberg",
+   "attribution": "Jane Austen · Pride and Prejudice · Project Gutenberg",
    "topic": "文学",
    "country": "",
    "countryName": "",
-   "title": "Little Women（选段）",
+   "title": "Pride and Prejudice（选段）",
    "titleZh": "",
    "sentences": [
     {
-     "en": "“Such a man!” laughed good-natured Mrs.",
+     "en": "Elizabeth, feeling it incumbent on her to relieve him from so unpleasant a situation, now put herself forward to confirm his account, by mentioning her prior knowledge of it from Charlotte herself; and endeavoured to put a stop to the exclamations of her mother and sisters, by the earnestness of her congratulations to Sir William, in which she was readily joined by Jane, and by making a variety of remarks on the happiness that might be expected from the match, the excellent character of Mr.",
      "zh": ""
     },
     {
-     "en": "K., as she put the relics in the rag bag.",
-     "zh": ""
-    },
-    {
-     "en": "“I suppose the others are torn up to rig ships, bandage cut fingers, or make kite tails.",
-     "zh": ""
-    },
-    {
-     "en": "It’s dreadful, but I can’t scold him.",
-     "zh": ""
-    },
-    {
-     "en": "He’s so absent-minded and goodnatured, he lets those boys ride over him roughshod.",
-     "zh": ""
-    },
-    {
-     "en": "I agreed to do his washing and mending, but he forgets to give out his things and I forget to look them over, so he comes to a sad pass sometimes.”",
+     "en": "Collins, and the convenient distance of Hunsford from London.",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 84,
-   "audio": "data/reading/audio/20261102-2.mp3",
-   "audioKB": 170,
-   "link": "https://www.gutenberg.org/ebooks/514",
+   "words": 94,
+   "audio": "data/reading/audio/20261103-2.mp3",
+   "audioKB": 185,
+   "link": "https://www.gutenberg.org/ebooks/1342",
    "aiAssisted": true
   },
   {
-   "id": "20261102-3",
-   "date": "2026-11-02",
-   "source": "Simple Wikipedia",
-   "license": "CC BY-SA 4.0",
-   "attribution": "Simple English Wikipedia",
-   "topic": "百科",
-   "country": "",
-   "countryName": "",
-   "title": "Hyundai Casper",
-   "titleZh": "",
-   "sentences": [
-    {
-     "en": "The Hyundai Casper is a small City car produced by Hyundai.",
-     "zh": ""
-    },
-    {
-     "en": "It was introduced in 2021 and is sold mainly in South Korea its the Smallest ever SUV and sold by the brand and also the smallest car made by Hyundai an electric version named the Casper Electric also know as the Hyundai Inster in Europe was launched in June 2024.",
-     "zh": ""
-    }
-   ],
-   "glossary": [],
-   "words": 61,
-   "audio": "data/reading/audio/20261102-3.mp3",
-   "audioKB": 127,
-   "link": "https://simple.wikipedia.org/wiki/Hyundai_Casper",
-   "aiAssisted": true
-  },
-  {
-   "id": "20261102-4",
-   "date": "2026-11-02",
+   "id": "20261103-3",
+   "date": "2026-11-03",
    "source": "Project Gutenberg",
    "license": "公有领域",
    "attribution": "Arthur Conan Doyle · The Adventures of Sherlock Holmes · Project Gutenberg",
@@ -120,40 +68,56 @@
    "titleZh": "",
    "sentences": [
     {
-     "en": "“I had come to these conclusions before ever I had entered his room.",
+     "en": "Sherlock Holmes looked deeply chagrined.",
      "zh": ""
     },
     {
-     "en": "An inspection of his chair showed me that he had been in the habit of standing on it, which of course would be necessary in order that he should reach the ventilator.",
+     "en": "He drew a sovereign from his pocket and threw it down upon the slab, turning away with the air of a man whose disgust is too deep for words.",
      "zh": ""
     },
     {
-     "en": "The sight of the safe, the saucer of milk, and the loop of whipcord were enough to finally dispel any doubts which may have remained.",
-     "zh": ""
-    },
-    {
-     "en": "The metallic clang heard by Miss Stoner was obviously caused by her stepfather hastily closing the door of his safe upon its terrible occupant.",
-     "zh": ""
-    },
-    {
-     "en": "Having once made up my mind, you know the steps which I took in order to put the matter to the proof.",
-     "zh": ""
-    },
-    {
-     "en": "I heard the creature hiss as I have no doubt that you did also, and I instantly lit the light and attacked it.”",
+     "en": "A few yards off he stopped under a lamp-post and laughed in the hearty, noiseless fashion which was peculiar to him.",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 139,
-   "audio": "data/reading/audio/20261102-4.mp3",
-   "audioKB": 246,
+   "words": 55,
+   "audio": "data/reading/audio/20261103-3.mp3",
+   "audioKB": 108,
    "link": "https://www.gutenberg.org/ebooks/1661",
    "aiAssisted": true
   },
   {
-   "id": "20261102-5",
-   "date": "2026-11-02",
+   "id": "20261103-4",
+   "date": "2026-11-03",
+   "source": "Project Gutenberg",
+   "license": "公有领域",
+   "attribution": "Mary Shelley · Frankenstein · Project Gutenberg",
+   "topic": "文学",
+   "country": "",
+   "countryName": "",
+   "title": "Frankenstein（选段）",
+   "titleZh": "",
+   "sentences": [
+    {
+     "en": "The being finished speaking and fixed his looks upon me in the expectation of a reply.",
+     "zh": ""
+    },
+    {
+     "en": "But I was bewildered, perplexed, and unable to arrange my ideas sufficiently to understand the full extent of his proposition.",
+     "zh": ""
+    }
+   ],
+   "glossary": [],
+   "words": 36,
+   "audio": "data/reading/audio/20261103-4.mp3",
+   "audioKB": 80,
+   "link": "https://www.gutenberg.org/ebooks/84",
+   "aiAssisted": true
+  },
+  {
+   "id": "20261103-5",
+   "date": "2026-11-03",
    "source": "Project Gutenberg",
    "license": "公有领域",
    "attribution": "Lewis Carroll · Alice's Adventures in Wonderland · Project Gutenberg",
@@ -164,39 +128,47 @@
    "titleZh": "",
    "sentences": [
     {
-     "en": "This piece of rudeness was more than Alice could bear: she got up in great disgust, and walked off; the Dormouse fell asleep instantly, and neither of the others took the least notice of her going, though she looked back once or twice, half hoping that they would call after her: the last time she saw them, they were trying to put the Dormouse into the teapot.",
+     "en": "The Cat’s head began fading away the moment he was gone, and, by the time he had come back with the Duchess, it had entirely disappeared; so the King and the executioner ran wildly up and down looking for it, while the rest of the party went back to the game.",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 67,
-   "audio": "data/reading/audio/20261102-5.mp3",
-   "audioKB": 117,
+   "words": 51,
+   "audio": "data/reading/audio/20261103-5.mp3",
+   "audioKB": 89,
    "link": "https://www.gutenberg.org/ebooks/11",
    "aiAssisted": true
   },
   {
-   "id": "20261102-6",
-   "date": "2026-11-02",
+   "id": "20261103-6",
+   "date": "2026-11-03",
    "source": "Project Gutenberg",
    "license": "公有领域",
-   "attribution": "Robert Louis Stevenson · Treasure Island · Project Gutenberg",
+   "attribution": "Louisa May Alcott · Little Women · Project Gutenberg",
    "topic": "文学",
    "country": "",
    "countryName": "",
-   "title": "Treasure Island（选段）",
+   "title": "Little Women（选段）",
    "titleZh": "",
    "sentences": [
     {
-     "en": "Nor was that all, for crawling together on flat tables of rock or letting themselves drop into the sea with loud reports I beheld huge slimy monsters--soft snails, as it were, of incredible bigness--two or three score of them together, making the rocks to echo with their barkings.",
+     "en": "Jo was determined to have it out now, and tried to look quite placid, though she quaked a little after her bold speech.",
+     "zh": ""
+    },
+    {
+     "en": "To her great relief and surprise, the old gentleman only threw his spectacles onto the table with a rattle and exclaimed frankly, “You’re right, girl, I am!",
+     "zh": ""
+    },
+    {
+     "en": "I love the boy, but he tries my patience past bearing, and I know how it will end, if we go on so.”",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 48,
-   "audio": "data/reading/audio/20261102-6.mp3",
-   "audioKB": 99,
-   "link": "https://www.gutenberg.org/ebooks/120",
+   "words": 73,
+   "audio": "data/reading/audio/20261103-6.mp3",
+   "audioKB": 136,
+   "link": "https://www.gutenberg.org/ebooks/514",
    "aiAssisted": true
   }
  ]
