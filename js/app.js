@@ -1792,10 +1792,11 @@ function initVideoBg() {
     const p = v.play();
     if (p && p.catch) p.catch(function () { v.style.display = 'none'; });
   };
+  /* 首屏先让静态封面顶着；视频晚一点再拉，避免和点击、SW 缓存抢带宽 */
   if (document.readyState === 'complete') {
-    setTimeout(loadVideo, 300);
+    setTimeout(loadVideo, 1500);
   } else {
-    window.addEventListener('load', function () { setTimeout(loadVideo, 300); }, { once: true });
+    window.addEventListener('load', function () { setTimeout(loadVideo, 1500); }, { once: true });
   }
 }
 function offerPlayButton() {
@@ -2555,9 +2556,12 @@ function bindSettings() {
 }
 
 /* ---------------- 导航 ---------------- */
-function go(tab) {
-  /* 点「学习」直接进入每日阅读 */
-  if (tab === 'learn' && window.XYReading && window.XYReading.isReady && window.XYReading.isReady() && !window.__skipAutoRead) {
+function go(tab, opts) {
+  opts = opts || {};
+
+  /* 点「学习」直接进入每日阅读（关闭阅读返回时用 noAutoRead 跳过，避免又弹开） */
+  if (tab === 'learn' && !opts.noAutoRead && window.XYReading && window.XYReading.isReady &&
+      window.XYReading.isReady() && !window.__skipAutoRead) {
     window.__skipAutoRead = true;
     setTimeout(function () { window.__skipAutoRead = false; }, 800);
     /* 立刻打开，避免先渲染学习页再被盖住造成闪跳 */
@@ -2566,14 +2570,17 @@ function go(tab) {
 
   /* 目标页面不存在时回退首页，避免整屏空白 */
   if (!document.getElementById('screen-' + tab)) tab = 'home';
+  window.__curTab = tab;
   document.documentElement.classList.toggle('on-home', tab === 'home');
   $$('.tab').forEach(t => t.classList.toggle('is-active', t.dataset.tab === tab));
   $$('.screen').forEach(s => s.classList.toggle('is-active', s.id === 'screen-' + tab));
   try { if (tab === 'pet' && !document.getElementById('screen-pet')) { /* 爱宠已下架 */ } else if (tab === 'pet') onPetTabEnter(); else onPetTabLeave(); } catch (e) { }
-  if (tab === 'learn') { openChapters.clear(); renderPath(); }
-  if (tab === 'review') renderReview();
-  if (tab === 'books') renderBooks();
-  if (tab === 'settings') renderSettings();
+  try { if (tab === 'learn') { openChapters.clear(); renderPath(); } } catch (e) { }
+  try { if (tab === 'review') renderReview(); } catch (e) { }
+  try { if (tab === 'books') renderBooks(); } catch (e) { }
+  try { if (tab === 'settings') renderSettings(); } catch (e) { }
+  /* 把当前页写进 hash：刷新 / 被 Service Worker 刷新时能回到原页，而不是跳首页 */
+  try { history.replaceState(null, '', '#' + tab); } catch (e) { }
   scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -2975,9 +2982,9 @@ async function boot() {
   if (q.get('start') === '1') setTimeout(() => startSession('learn'), 300);
   if (q.get('reveal') === '1') setTimeout(revealCard, 900);
 
-  if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+  function registerSW() {
+    if (!('serviceWorker' in navigator) || !location.protocol.startsWith('http')) return;
     window.__SW_VER = 'v286';
-    /* SW 自动更新：发现新版本 → 直接接管 → 刷新一次页面 */
     navigator.serviceWorker.register('sw.js').then(function (reg) {
       try { reg.update(); } catch (e) { }
 
@@ -2995,14 +3002,17 @@ async function boot() {
         });
       });
 
-      /* 新 SW 接管后刷新一次（避免用户看到旧页面） */
-      var reloaded = false;
-      navigator.serviceWorker.addEventListener('controllerchange', function () {
-        if (reloaded) return;
-        reloaded = true;
-        try { location.reload(); } catch (e) { }
-      });
+      /* 注意：新 SW 接管后【不要】location.reload()。
+         以前这里会刷新一次，用户正在点「学习」时正好赶上更新，就会“卡一下跳回首页”。
+         现在交给下次导航自然拿新代码；当前页继续用旧代码也不影响。 */
     }).catch(function (err) { console.warn('SW 注册失败', err); });
+  }
+
+  /* 等页面 load 完再装 SW，避免和首屏抢带宽（首次访问要缓存几十个文件） */
+  if (document.readyState === 'complete') {
+    setTimeout(registerSW, 1500);
+  } else {
+    window.addEventListener('load', function () { setTimeout(registerSW, 1500); }, { once: true });
   }
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'visible') {

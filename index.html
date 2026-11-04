@@ -466,6 +466,27 @@
     <button class="tab" data-tab="review"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20.2 4.2v4.6h-4.6"/></svg></span>复习</button>
   </nav>
 </div>
+<script>
+/* 早期导航：外部脚本还没下载/执行完时也能切页，避免“点了没反应” */
+(function () {
+  var bar = document.getElementById('tabbar');
+  if (!bar) return;
+  bar.addEventListener('click', function (e) {
+    var t = e.target && e.target.closest ? e.target.closest('.tab') : null;
+    if (!t) return;
+    var tab = t.getAttribute('data-tab');
+    var scr = document.getElementById('screen-' + tab);
+    if (!scr) return;
+    window.__curTab = tab;
+    var tabs = bar.querySelectorAll('.tab');
+    for (var i = 0; i < tabs.length; i++) tabs[i].classList.toggle('is-active', tabs[i] === t);
+    var screens = document.querySelectorAll('.screen');
+    for (var j = 0; j < screens.length; j++) screens[j].classList.toggle('is-active', screens[j] === scr);
+    document.documentElement.classList.toggle('on-home', tab === 'home');
+    try { history.replaceState(null, '', '#' + tab); } catch (err) { }
+  }, true);
+})();
+</script>
 
 <!-- ============ 学习会话 ============ -->
 <div id="session" class="overlay">

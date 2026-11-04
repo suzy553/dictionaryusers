@@ -1,5 +1,5 @@
-/* Service Worker：小越背单词 App 离线缓存 */
-const VER = 'xiaoyue-v314';
+﻿/* Service Worker锛氬皬瓒婅儗鍗曡瘝 App 绂荤嚎缂撳瓨 */
+const VER = 'xiaoyue-v315';
 const SHELL = [
   './js/ise.js',
   './js/pronlab.js',
@@ -25,12 +25,12 @@ self.addEventListener('activate', e => {
   );
 });
 
-/* 代码类资源：网络优先 —— 改完刷新就生效 */
+/* 浠ｇ爜绫昏祫婧愶細缃戠粶浼樺厛 鈥斺€?鏀瑰畬鍒锋柊灏辩敓鏁?*/
 function isCode(url) {
   return /\.(css|js)$/i.test(url.pathname) || /\/index\.html$/.test(url.pathname) || url.pathname === '/';
 }
 
-/* 收到主线程指令：立刻接管，不再等旧页面关闭 */
+/* 鏀跺埌涓荤嚎绋嬫寚浠わ細绔嬪埢鎺ョ锛屼笉鍐嶇瓑鏃ч〉闈㈠叧闂?*/
 self.addEventListener('message', e => {
   if (e.data && e.data.type === 'SKIP_WAITING') self.skipWaiting();
 });
@@ -41,7 +41,7 @@ self.addEventListener('fetch', e => {
   const url = new URL(req.url);
   if (url.origin !== location.origin) return;
 
-  // ① 页面 / CSS / JS：网络优先，失败才用缓存
+  // 鈶?椤甸潰 / CSS / JS锛氱綉缁滀紭鍏堬紝澶辫触鎵嶇敤缂撳瓨
   if (isCode(url)) {
     e.respondWith(
       fetch(new Request(req, { cache: 'no-store' }))
@@ -57,7 +57,7 @@ self.addEventListener('fetch', e => {
     return;
   }
 
-  // ② data 资源：网络优先，失败回退缓存
+  // 鈶?data 璧勬簮锛氱綉缁滀紭鍏堬紝澶辫触鍥為€€缂撳瓨
   if (url.pathname.includes('/data/')) {
     e.respondWith(
       fetch(req).then(res => {
@@ -69,7 +69,7 @@ self.addEventListener('fetch', e => {
     return;
   }
 
-  // ③ 其他静态资源：缓存优先
+  // 鈶?鍏朵粬闈欐€佽祫婧愶細缂撳瓨浼樺厛
   e.respondWith(
     caches.match(req).then(hit => {
       if (hit) return hit;

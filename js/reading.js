@@ -828,8 +828,12 @@
     document.documentElement.classList.remove('overlay-open');
     hideWordPop();
     stopAudio();
-    /* 关掉阅读后回首页，而不是停在已经没用的学习页 */
-    try { if (typeof go === 'function') go('home'); } catch (e) { }
+    /* 关掉阅读后回到进来时的那一栏（通常是「学习」），而不是硬跳首页。
+       noAutoRead 防止 go('learn') 又立刻把阅读弹开。 */
+    var back = window.__curTab || 'learn';
+    try {
+      if (typeof go === 'function') go(back === 'home' ? 'home' : back, { noAutoRead: true });
+    } catch (e) { }
   }
 
   /* ---------------- 文章汇总 ---------------- */
