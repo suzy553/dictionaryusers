@@ -1,5 +1,5 @@
 ﻿/* Service Worker锛氬皬瓒婅儗鍗曡瘝 App 绂荤嚎缂撳瓨 */
-const VER = 'xiaoyue-v315';
+const VER = 'xiaoyue-v316';
 const SHELL = [
   './js/ise.js',
   './js/pronlab.js',

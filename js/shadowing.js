@@ -405,32 +405,47 @@
     var color = r.total >= 85 ? 'good' : (r.total >= 60 ? 'mid' : 'bad');
     var dimNames = { accuracy: '准确', fluency: '流畅', integrity: '完整' };
     var dimKeys = ['accuracy', 'fluency', 'integrity'];
+    var words = (r.words || []).length;
 
-    var html = '<div class="sh-score ' + color + '">' + Math.round(r.total) + '<i>分</i></div>';
-    html += r.total >= 85
-      ? '<span class="sh-pass">✓ 达标</span>'
-      : '<span class="sh-goal">目标 85</span>';
-    if (typeof delta === 'number' && delta !== 0) {
-      html += '<span class="sh-delta ' + (delta > 0 ? 'up' : 'down') + '">' +
-        (delta > 0 ? '↑ +' + delta : '↓ ' + Math.abs(delta)) + ' 分</span>';
-    }
-    html += '<div class="sh-dims">' + dimKeys.map(function (k) {
-      return '<button type="button" class="sh-dim" data-dim="' + k + '">' +
-        dimNames[k] + ' ' + Math.round(r[k] || 0) + '</button>';
-    }).join('') +
-      '<button type="button" class="sh-again" data-act="rhythm">节奏</button>' +
-      '<button type="button" class="sh-again" data-act="again">↻ 再读一次</button>' +
+    /* 整句几乎全漏读时，不把每个词涂成红块，改用弱化样式 + 一句总提示 */
+    if (enBox) enBox.classList.remove('is-allmiss');
+    var missCount = (r.words || []).filter(function (w) { return w.error === 'miss'; }).length;
+    if (enBox && words && missCount / words > 0.6) enBox.classList.add('is-allmiss');
+
+    var html = '<div class="sh-score-row">' +
+      '<div class="sh-score ' + color + '">' + Math.round(r.total) + '<i>分</i></div>' +
+      (r.total >= 85 ? '<span class="sh-pass">✓ 达标</span>' : '<span class="sh-goal">目标 85</span>') +
+      (typeof delta === 'number' && delta !== 0
+        ? '<span class="sh-delta ' + (delta > 0 ? 'up' : 'down') + '">' +
+            (delta > 0 ? '↑ +' + delta : '↓ ' + Math.abs(delta)) + '</span>'
+        : '') +
       '</div>';
 
+    html += '<div class="sh-dims">' + dimKeys.map(function (k) {
+      return '<button type="button" class="sh-dim" data-dim="' + k + '">' +
+        '<span>' + dimNames[k] + '</span><b>' + Math.round(r[k] || 0) + '</b></button>';
+    }).join('') +
+      '<button type="button" class="sh-dim ghost" data-act="rhythm">' +
+        '<span>节奏</span><b>›</b></button>' +
+      '</div>';
+
+    /* 录音太短 / 没声音：给具体建议，而不是笼统一句“先确认麦克风” */
+    var need = Math.max(1.2, words * 0.35);
     if (r.audioSeconds !== undefined && r.audioSeconds < 0.3) {
-      html += '<div class="sh-warn">这次几乎没有录到声音（约 ' + (r.audioSeconds || 0).toFixed(1) +
+      html += '<div class="sh-warn">几乎没有录到声音（' + (r.audioSeconds || 0).toFixed(1) +
         ' 秒）。检查麦克风权限，读完再点「停止」。</div>';
+    } else if (r.audioSeconds && r.audioSeconds < need * 0.6) {
+      html += '<div class="sh-warn short">只录到 ' + r.audioSeconds.toFixed(1) +
+        ' 秒，这句话大约要 ' + Math.round(need) + ' 秒。读完再点「停止」。</div>';
     }
 
-    html += '<div class="sh-verdict">' + esc(a.verdict) + '</div>';
+    html += '<div class="sh-verdict">' +
+      esc((r.audioSeconds && r.audioSeconds < need * 0.6 && r.total === 0)
+        ? '录音太短，引擎没听完整句'
+        : a.verdict) + '</div>';
 
     var chunks = chunkSentence(sent);
-    if (chunks.length > 1 && (r.words || []).length > 12) {
+    if (chunks.length > 1 && words > 12) {
       html += '<div class="sh-chunks">' + chunks.map(function (c) {
         return '<button type="button" class="sh-chunk" data-act="chunk" data-chunk="' +
           esc(c) + '">' + esc(c) + '</button>';
@@ -446,6 +461,8 @@
     } else {
       html += '<div class="sh-ok">整句发音很稳，没有明显问题</div>';
     }
+
+    html += '<button type="button" class="sh-again" data-act="again">↻ 再读一次</button>';
 
     html += '<div class="sh-note">讯飞语音评测' +
       (r.audioSeconds ? ' · 已录 ' + r.audioSeconds.toFixed(1) + ' 秒' : '') +
