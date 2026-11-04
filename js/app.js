@@ -1,4 +1,4 @@
-﻿/* __E2__ */
+/* __E2__ */
 window.addEventListener('unhandledrejection',function(e){try{document.title='REJ: '+((e.reason&&(e.reason.message||e.reason))||'')}catch(_){}});
 window.addEventListener('error',function(e){try{document.title='ERR: '+e.message+' @'+e.lineno}catch(_){}});
 /* __E__ */
@@ -2354,10 +2354,15 @@ function bindSettings() {
   if (_iseSave) _iseSave.onclick = function () {
     var inp = document.getElementById('iseProxy');
     var v = inp ? inp.value.trim() : '';
-    if (window.XYISE) {
-      window.XYISE.setProxyUrl(v);
-      toast(v ? '已保存评测地址' : '已清空评测地址', 2000);
-    }
+    if (!window.XYISE) return;
+    window.XYISE.setProxyUrl(v);
+    if (!v) { toast('已清空评测地址', 2000); return; }
+    toast('正在检查地址…', 1200);
+    window.XYISE.check(v).then(function (msg) {
+      toast(msg, 3000);
+    }).catch(function (e) {
+      toast('地址不可用：' + (e && e.message ? e.message : e), 4200);
+    });
   };
   const _iseInp = document.getElementById('iseProxy');
   if (_iseInp && window.XYISE) _iseInp.value = window.XYISE.proxyUrl() || '';

@@ -169,9 +169,19 @@
     if (!res.ok) {
       throw new Error('签名服务 ' + res.status + (data && data.error ? '：' + data.error : ''));
     }
-    if (!data || !data.url) throw new Error('签名服务返回格式不对');
+    if (!data || !data.url) {
+      /* 常见原因：把网页地址、GitHub Pages 地址填进来了 */
+      throw new Error('这个地址返回的不是签名服务，检查是否填成了网页地址');
+    }
     if (!data.app_id) throw new Error('签名服务没有返回 app_id');
     return data;
+  }
+
+  /* ---------- 保存地址时自检 ---------- */
+  async function check(base) {
+    if (!isDirect(base)) return '已保存（wss 代理地址，部署后才能验证）';
+    var info = await requestSign(base, 'hello');
+    return '连接正常，app_id ' + info.app_id;
   }
 
   /* ---------- 会话管理（供「停止」按钮调用） ---------- */
@@ -330,6 +340,7 @@
     setProxyUrl: setProxyUrl,
     evaluate: evaluate,
     parseResult: parseResult,
+    check: check,
     _stop: stopCurrent
   };
 })();
