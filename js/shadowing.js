@@ -303,32 +303,245 @@
     }
   }
 
+  var reports = {};
+
   function renderISEResult(i, row, sent, r) {
     var out = el('shOut' + i);
     if (!out) return;
-    var color = r.total >= 85 ? 'good' : (r.total >= 60 ? 'mid' : 'bad');
+    var a = window.XYISE.analyze(r);
+    reports[i] = { r: r, a: a, sent: sent };
 
     /* 原文按词标注 */
     markSentence(row, sent, (r.words || []).map(function (w) {
       return { type: w.error === 'miss' ? 'miss' : (w.error === 'wrong' ? 'wrong' : 'extra'), word: w.word };
     }));
 
-    var bad = (r.words || []).filter(function (w) { return w.error; });
-    var detail = bad.length
-      ? '<div class="sh-diff">' + bad.map(function (w) {
-          var k = w.error === 'miss' ? 'miss' : (w.error === 'wrong' ? 'wrong' : 'extra');
-          var label = w.error === 'miss' ? '漏读 ' : (w.error === 'wrong' ? '读错 ' : '多读 ');
-          return '<span class="sh-tag ' + k + '">' + label + esc(w.word) +
-            (w.score ? ' · ' + Math.round(w.score) + '分' : '') + '</span>';
-        }).join('') + '</div>'
-      : '<div class="sh-ok">每个词都读对了</div>';
+    var enBox = row && row.querySelector('.sh-en');
+    if (enBox) {
+      enBox.onclick = function (e) {
+        var mk = e.target && e.target.closest ? e.target.closest('mark[data-w]') : null;
+        if (mk) openWordByName(i, mk.getAttribute('data-w'));
+      };
+    }
 
-    out.innerHTML =
-      '<div class="sh-score ' + color + '">' + Math.round(r.total) + '<i>分</i>' +
-        '<span>准确 ' + Math.round(r.accuracy) + ' · 流畅 ' + Math.round(r.fluency) +
-        ' · 完整 ' + Math.round(r.integrity) + '</span></div>' +
-      detail +
-      '<div class="sh-note">讯飞语音评测（单词级）</div>';
+    var color = r.total >= 85 ? 'good' : (r.total >= 60 ? 'mid' : 'bad');
+    var dimNames = { accuracy: '准确', fluency: '流畅', integrity: '完整' };
+    var dimKeys = ['accuracy', 'fluency', 'integrity'];
+
+    var html = '<div class="sh-score ' + color + '">' + Math.round(r.total) + '<i>分</i></div>';
+    html += '<div class="sh-dims">' + dimKeys.map(function (k) {
+      return '<button type="button" class="sh-dim" data-dim="' + k + '">' +
+        dimNames[k] + ' ' + Math.round(r[k] || 0) + '</button>';
+    }).join('') + '</div>';
+
+    if (r.audioSeconds !== undefined && r.audioSeconds < 0.3) {
+      html += '<div class="sh-warn">这次几乎没有录到声音（约 ' + (r.audioSeconds || 0).toFixed(1) +
+        ' 秒）。检查麦克风权限，读完再点「停止」。</div>';
+    }
+
+    html += '<div class="sh-verdict">' + esc(a.verdict) + '</div>';
+
+    if (a.issues.length) {
+      html += '<div class="sh-issues">' + a.issues.map(function (x, idx) {
+        return '<button type="button" class="sh-issue ' + x.type + '" data-issue="' + idx + '">' +
+          '<b>' + esc(x.word) + '</b><em>' + esc(x.title) +
+          (x.score ? ' · ' + Math.round(x.score) + ' 分' : '') + '</em></button>';
+      }).join('') + '</div>';
+    } else {
+      html += '<div class="sh-ok">整句发音很稳，没有明显问题</div>';
+    }
+
+    html += '<div class="sh-note">讯飞语音评测' +
+      (r.audioSeconds ? ' · 已录 ' + r.audioSeconds.toFixed(1) + ' 秒' : '') +
+      ' · 点分数看失分分析，点单词看怎么读</div>';
+    out.innerHTML = html;
+
+    out.onclick = function (e) {
+      var btn = e.target && e.target.closest ? e.target.closest('button') : null;
+      if (!btn) return;
+      if (btn.dataset.dim) openDimSheet(i, btn.dataset.dim);
+      else if (btn.dataset.issue != null) openWordSheet(i, Number(btn.dataset.issue));
+    };
+
+    noteMistakes(i, r, sent);
+  }
+
+  /* ---------- 分析弹层 ---------- */
+  var sheetEl = null;
+
+  function closeSheet() {
+    if (sheetEl && sheetEl.parentNode) sheetEl.parentNode.removeChild(sheetEl);
+    sheetEl = null;
+  }
+
+  function openSheet(html) {
+    closeSheet();
+    sheetEl = document.createElement('div');
+    sheetEl.className = 'sh-sheet';
+    sheetEl.innerHTML = '<div class="sh-sheet-card" role="dialog" aria-modal="true">' +
+      '<button class="sh-sheet-x" type="button" aria-label="关闭">×</button>' + html + '</div>';
+    document.body.appendChild(sheetEl);
+    sheetEl.addEventListener('click', function (e) {
+      if (e.target === sheetEl || (e.target.classList && e.target.classList.contains('sh-sheet-x'))) closeSheet();
+    });
+    return sheetEl;
+  }
+
+  function openDimSheet(i, dim) {
+    var rep = reports[i];
+    if (!rep) return;
+    var d = rep.a.dims[dim];
+    if (!d) return;
+    var title = { accuracy: '准确度', fluency: '流畅度', integrity: '完整度' }[dim] || dim;
+
+    var chips = '';
+    if (dim === 'integrity' && rep.a.misses.length) {
+      chips = '<div class="shm-chips">' + rep.a.misses.map(function (w) {
+        return '<span class="shm-chip miss">' + esc(w.word) + '</span>';
+      }).join('') + '</div>';
+    }
+
+    openSheet(
+      '<div class="shm-title">' + title + '<span class="shm-score">' + Math.round(d.score) + ' 分</span></div>' +
+      '<p class="shm-p">' + esc(d.text) + '</p>' +
+      chips +
+      '<div class="shm-tip">' + esc(d.tip) + '</div>'
+    );
+  }
+
+  function openWordSheet(i, idx) {
+    var rep = reports[i];
+    if (!rep) return;
+    var x = rep.a.issues[idx];
+    if (!x) return;
+    showWordIssue(x);
+  }
+
+  /* 点原文里标红的词，也能看发音建议 */
+  function openWordByName(i, name) {
+    var rep = reports[i];
+    if (!rep) return;
+    var k = String(name || '').toLowerCase();
+    var list = rep.r.words || [];
+    var w = null;
+    for (var j = 0; j < list.length; j++) {
+      if (String(list[j].word).toLowerCase() === k) { w = list[j]; break; }
+    }
+    if (!w) return;
+
+    var info = window.XYISE.wordInfo(w);
+    var miss = w.dp === 16;
+    showWordIssue({
+      word: w.word,
+      type: miss ? 'miss' : 'pron',
+      score: w.score,
+      ipa: info.ipa,
+      text: miss ? '这个词没读出来，或者声音太小被吞掉了。'
+        : (w.dp === 128 ? '引擎听到的是另一个词，通常是漏掉或读错了某个音节。'
+          : '这个词 ' + Math.round(w.score) + ' 分。'),
+      tip: info.tip
+    });
+  }
+
+  function showWordIssue(x) {
+    var sheet = openSheet(
+      '<div class="shm-title">' + esc(x.word) +
+        '<span class="shm-score">' + (x.type === 'miss' ? '漏读' : Math.round(x.score) + ' 分') + '</span></div>' +
+      (x.ipa ? '<div class="shm-ipa">' + esc(x.ipa) + '</div>' : '') +
+      '<p class="shm-p">' + esc(x.text) + '</p>' +
+      '<div class="shm-tip">怎么读：' + esc(x.tip) + '</div>' +
+      '<div class="shm-acts">' +
+        '<button type="button" class="shm-btn" data-act="say">🔊 听标准读音</button>' +
+        '<button type="button" class="shm-btn ghost" data-act="collect">＋ 加入生词本</button>' +
+      '</div>'
+    );
+
+    sheet.addEventListener('click', function (e) {
+      var b = e.target && e.target.closest ? e.target.closest('button') : null;
+      if (!b || !b.dataset.act) return;
+      if (b.dataset.act === 'say') speak(x.word);
+      else if (b.dataset.act === 'collect') {
+        var ok = collectPronWord(x.word, { ipa: x.ipa, tip: x.tip });
+        if (ok) { b.textContent = '已在生词本'; b.disabled = true; toastMsg('已加入生词本：' + x.word); }
+        else toastMsg('已经在生词本里了');
+      }
+    });
+  }
+
+  /* ---------- 发音错词本 ---------- */
+  var MISTAKE_KEY = 'ise.mistakes.v1';
+
+  function loadMistakes() {
+    try { return JSON.parse(localStorage.getItem(MISTAKE_KEY) || '{}') || {}; } catch (e) { return {}; }
+  }
+  function saveMistakes(m) {
+    try { localStorage.setItem(MISTAKE_KEY, JSON.stringify(m)); } catch (e) { }
+  }
+
+  function todayKey() {
+    try { if (typeof dateKey === 'function') return dateKey(); } catch (e) { }
+    var d = new Date();
+    return d.getFullYear() + '-' +
+      String(d.getMonth() + 1).padStart(2, '0') + '-' +
+      String(d.getDate()).padStart(2, '0');
+  }
+
+  function collectPronWord(word, info) {
+    if (typeof state !== 'object' || !state) return false;
+    var k = String(word || '').toLowerCase();
+    if (!k) return false;
+    state.readingWords = state.readingWords || {};
+    var rec = state.readingWords[k];
+    if (!rec) {
+      state.readingWords[k] = { w: word, zh: '', at: Date.now(), date: todayKey(), pron: info || {} };
+    } else {
+      rec.pron = info || {};
+    }
+    state.progress = state.progress || {};
+    state.progress.__reading__ = state.progress.__reading__ || {};
+    if (!state.progress.__reading__[k]) {
+      state.progress.__reading__[k] = {
+        b: 0, d: todayKey(), r: 0, w: 0, last: '', dt: todayKey(), src: 'pron'
+      };
+    }
+    try { if (typeof saveState === 'function') saveState(); } catch (e) { }
+    return true;
+  }
+
+  function noteMistakes(i, r, sent) {
+    var m = loadMistakes();
+    var touched = [];
+
+    (r.words || []).forEach(function (w) {
+      var bad = w.dp === 16 || w.dp === 128 || (w.dp === 0 && w.score > 0 && w.score < 60);
+      if (!bad) return;
+      var k = String(w.word || '').toLowerCase();
+      if (!k || k === 'sil' || k === 'fil') return;
+      var rec = m[k] || { count: 0, added: false };
+      rec.count += 1;
+      rec.score = Math.round(w.score || 0);
+      rec.ts = Date.now();
+      rec.sent = sent;
+      var info = window.XYISE.wordInfo(w);
+      rec.ipa = info.ipa;
+      rec.tip = info.tip;
+      m[k] = rec;
+      touched.push(k);
+    });
+
+    var added = [];
+    touched.forEach(function (k) {
+      var rec = m[k];
+      if (!rec || rec.added || rec.count < 2) return;
+      if (collectPronWord(k, { ipa: rec.ipa, tip: rec.tip })) {
+        rec.added = true;
+        added.push(k);
+      }
+    });
+
+    saveMistakes(m);
+
+    if (added.length) toastMsg('已加入生词本（发音）：' + added.join('、'));
   }
 
   var activeStop = null;
@@ -391,7 +604,7 @@
       var kinds = queue[k];
       if (kinds && kinds.length) {
         var type = kinds.shift();
-        out += '<mark class="sh-mk ' + type + '">' + esc(w) + '</mark>';
+        out += '<mark class="sh-mk ' + type + '" data-w="' + esc(w) + '">' + esc(w) + '</mark>';
       } else {
         out += esc(w);
       }
