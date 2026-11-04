@@ -298,3 +298,71 @@
 }
 .shm-btn.ghost{ background: #f2f4f3; color: #4a5c52; }
 .shm-btn:disabled{ opacity: .7; cursor: default; }
+
+/* ================= 发音实验室 ================= */
+.sh-lab{ display: flex; gap: 8px; flex-wrap: wrap; padding: 10px 16px 0; }
+.sh-lab button{
+  flex: 1 1 auto; min-width: 70px; height: 32px; border-radius: 999px;
+  border: 1px solid #e3ebe5; background: #fff; color: #4a5c52;
+  font-size: 12px; font-weight: 700; cursor: pointer;
+}
+.sh-lab button:active{ background: #f2f7f3; }
+
+.sh-level{ height: 5px; margin-top: 8px; border-radius: 3px; background: #edf2ee; overflow: hidden; }
+.sh-level i{ display: block; height: 100%; width: 0; background: #58cc02; transition: width .08s linear; }
+
+.sh-chunks{ display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.sh-chunk{
+  border: 1px dashed #d5e6da; background: #f7fbf8; color: #2f6b3b;
+  border-radius: 8px; padding: 4px 8px; font-size: 11.5px; line-height: 1.4;
+  cursor: pointer; text-align: left;
+}
+
+.pl-list{ margin-top: 10px; display: flex; flex-direction: column; gap: 10px; }
+.pl-word{ border: 1px solid #eef2ef; border-radius: 12px; padding: 10px 12px; background: #fff; }
+.pl-word-top{ display: flex; align-items: baseline; gap: 8px; }
+.pl-word-top b{ font-size: 16px; color: #1c2a24; }
+.pl-ipa{ font-size: 12.5px; color: #6b7a72; font-family: ui-monospace, Menlo, Consolas, monospace; }
+.pl-count{ margin-left: auto; font-size: 11px; color: #b3261e; font-weight: 700; }
+.pl-tip{ margin-top: 4px; font-size: 12px; color: #6b7a72; line-height: 1.5; }
+.pl-word-bot{ display: flex; align-items: center; gap: 10px; margin-top: 8px; }
+.pl-word-bot .shm-btn{ flex: 0 0 auto; width: auto; padding: 0 14px; height: 34px; }
+.pl-score{ font-size: 13px; font-weight: 800; color: #8b98a6; }
+.pl-score.good{ color: #2f6b3b; }
+.pl-score.mid{ color: #b7791f; }
+.pl-score.bad{ color: #b3261e; }
+
+.pl-sound{ border: 1px solid #eef2ef; border-radius: 12px; padding: 10px 12px; margin-top: 10px; }
+.pl-sound-h{ display: flex; align-items: baseline; gap: 8px; }
+.pl-sound-h b{ font-size: 16px; }
+.pl-sound-h span{ margin-left: auto; font-size: 11px; color: #b3261e; font-weight: 700; }
+.pl-chips{ display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+.pl-chip{ font-size: 11.5px; padding: 2px 8px; border-radius: 999px; background: #f2f4f3; color: #4a5c52; }
+.pl-sound .shm-btn{ margin-top: 8px; width: 100%; height: 34px; }
+
+.pl-pair{
+  display: flex; align-items: center; gap: 8px;
+  border: 1px solid #eef2ef; border-radius: 12px; padding: 8px 10px; margin-top: 8px;
+}
+.pl-pair-w{ display: flex; flex-direction: column; min-width: 64px; }
+.pl-pair-w b{ font-size: 14px; }
+.pl-pair-w span{ font-size: 11px; color: #6b7a72; }
+.pl-pair-vs{ font-size: 11px; color: #a8b3ad; }
+.pl-pair .shm-btn{ margin-left: auto; width: auto; height: 30px; padding: 0 12px; flex: 0 0 auto; }
+
+.pl-chart{ width: 100%; height: 90px; margin-top: 8px; background: #f7fbf8; border-radius: 10px; }
+.pl-stats{ display: flex; gap: 8px; margin-top: 10px; }
+.pl-stats > div{ flex: 1; text-align: center; background: #f7fbf8; border-radius: 10px; padding: 8px 4px; }
+.pl-stats b{ display: block; font-size: 18px; color: #1c2a24; }
+.pl-stats span{ font-size: 11px; color: #8b98a6; }
+
+.pl-rhythm{ margin-top: 10px; display: flex; flex-direction: column; gap: 6px; }
+.pl-rh{ display: flex; align-items: center; gap: 8px; }
+.pl-rh-w{
+  width: 88px; flex: 0 0 88px; font-size: 12px; color: #1c2a24;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.pl-rh-bar{ height: 10px; border-radius: 5px; background: #58cc02; min-width: 6px; }
+.pl-rh-bar.mid{ background: #ffc800; }
+.pl-rh-bar.bad{ background: #ff4b4b; }
+.pl-rh-d{ font-size: 11px; color: #8b98a6; }

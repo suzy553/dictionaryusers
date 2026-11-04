@@ -63,6 +63,10 @@
       try { await this.ctx.resume(); } catch (e) { }
     }
     var src = this.ctx.createMediaStreamSource(this.stream);
+    this.analyser = this.ctx.createAnalyser();
+    this.analyser.fftSize = 1024;
+    this._buf = new Uint8Array(this.analyser.fftSize);
+    src.connect(this.analyser);
 
     /* 用 ScriptProcessor，兼容性最好（AudioWorklet 需要额外文件） */
     var bufSize = 4096;
@@ -89,6 +93,19 @@
     }
     try { if (this.stream) this.stream.getTracks().forEach(function (t) { t.stop(); }); } catch (e) { }
     this.node = null; this.ctx = null; this.stream = null;
+    this.analyser = null;
+  };
+
+  /* 实时音量 0~1，用来画电平条 */
+  Recorder.prototype.level = function () {
+    if (!this.analyser || !this._buf) return 0;
+    this.analyser.getByteTimeDomainData(this._buf);
+    var sum = 0;
+    for (var i = 0; i < this._buf.length; i++) {
+      var v = (this._buf[i] - 128) / 128;
+      sum += v * v;
+    }
+    return Math.min(1, Math.sqrt(sum / this._buf.length) * 4);
   };
 
   /* Float32 → 16k Int16 PCM */
@@ -205,6 +222,9 @@
         item.syls.push(syl);
       }
 
+      item.beg = num(el, 'beg_pos');
+      item.end = num(el, 'end_pos');
+
       /* 0 正常 / 16 漏读 / 32 增读 / 128 替换 */
       item.error = item.dp === 16 ? 'miss' : (item.dp === 128 ? 'wrong' : (item.dp === 32 ? 'extra' : ''));
       out.words.push(item);
@@ -292,9 +312,11 @@
   }
 
   function wordInfo(w) {
-    var info = w && w.worst ? phonemeInfo(w.worst.sym) : null;
+    var sym = w && w.worst ? w.worst.sym : '';
+    var info = sym ? phonemeInfo(sym) : null;
     return {
       ipa: ipaOfWord(w),
+      sym: sym,
       tip: info ? info[1] : '跟读标准音频，注意重音位置和词尾收尾。'
     };
   }
@@ -421,13 +443,13 @@
   }
 
   /* ---------- 讯飞协议帧 ---------- */
-  function ssbFrame(appId, text) {
+  function ssbFrame(appId, text, category) {
     return {
       common: { app_id: appId },
       business: {
         sub: 'ise',
         ent: 'en_vip',
-        category: 'read_sentence',
+        category: category || 'read_sentence',
         cmd: 'ssb',
         text: '\uFEFF' + text,
         tte: 'utf-8',
@@ -480,6 +502,7 @@
 
   /* ---------- 会话管理（供「停止」按钮调用） ---------- */
   var current = null;
+  var currentRec = null;
 
   function stopCurrent() {
     var s = current;
@@ -496,6 +519,7 @@
 
     var base = proxyUrl();
     var direct = isDirect(base);
+    var category = (opts && opts.category) || 'read_sentence';
     var wsUrl = '';
     var appId = '';
 
@@ -505,7 +529,7 @@
       appId = sign.app_id;
     } else {
       wsUrl = base + (base.indexOf('?') >= 0 ? '&' : '?') +
-        'text=' + encodeURIComponent(sentence) + '&category=read_sentence';
+        'text=' + encodeURIComponent(sentence) + '&category=' + encodeURIComponent(category);
     }
 
     return new Promise(function (resolve, reject) {
@@ -536,6 +560,7 @@
       function cleanup() {
         stopCapture();
         try { rec.stop(); } catch (e) { }
+        currentRec = null;
         try {
           if (ws.readyState === 0 || ws.readyState === 1) ws.close();
         } catch (e) { }
@@ -574,7 +599,7 @@
 
       ws.onopen = async function () {
         try {
-          if (direct) ws.send(JSON.stringify(ssbFrame(appId, sentence)));
+          if (direct) ws.send(JSON.stringify(ssbFrame(appId, sentence, category)));
           if (session.stopped) { sendFinal(); return; }
 
           await rec.start(function (pcm) {
@@ -592,6 +617,7 @@
           if (opts && typeof opts.onStream === 'function' && rec.stream) {
             try { opts.onStream(rec.stream); } catch (e) { }
           }
+          currentRec = rec;
         } catch (e) {
           fail('麦克风打开失败：' + (e && e.message ? e.message : e));
         }
@@ -655,6 +681,7 @@
     analyze: analyze,
     wordInfo: wordInfo,
     phonemeInfo: phonemeInfo,
+    level: function () { return currentRec && currentRec.level ? currentRec.level() : 0; },
     check: check,
     _stop: stopCurrent
   };

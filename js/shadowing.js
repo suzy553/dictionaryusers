@@ -84,6 +84,7 @@
         '<div class="sh-zh">' + esc(s.zh || '') + '</div>' +
         '<div class="sh-acts">' +
           '<button class="sh-btn" data-act="listen" data-i="' + i + '">▶ 听原句</button>' +
+          '<button class="sh-btn" data-act="slow" data-i="' + i + '">🐢 慢速</button>' +
           '<button class="sh-btn sh-rec" data-act="rec" data-i="' + i + '">● 录音</button>' +
           '<button class="sh-btn" data-act="playback" data-i="' + i + '" disabled>↺ 回放</button>' +
         '</div>' +
@@ -289,6 +290,21 @@
     setRecUI(row, true, '■ 停止');
     showStatus(i, '正在听…读完点「停止」出分', 'listening');
 
+    /* 实时电平条，避免“没录到声音”却不知道 */
+    var meter = document.createElement('div');
+    meter.className = 'sh-level';
+    meter.innerHTML = '<i></i>';
+    row.appendChild(meter);
+    var lvTimer = setInterval(function () {
+      var lv = (window.XYISE && window.XYISE.level) ? window.XYISE.level() : 0;
+      var bar = meter.firstChild;
+      if (bar) bar.style.width = Math.round(lv * 100) + '%';
+    }, 100);
+    function stopMeter() {
+      clearInterval(lvTimer);
+      if (meter.parentNode) meter.parentNode.removeChild(meter);
+    }
+
     var last = cur.__last || (cur.__last = {});
     var passed = cur.__passed || (cur.__passed = {});
     var prev = last[i];
@@ -336,6 +352,7 @@
       });
 
       setRecUI(row, false);
+      stopMeter();
 
       var delta = (typeof prev === 'number' && isFinite(prev))
         ? Math.round(r.total - prev) : null;
@@ -345,6 +362,7 @@
       renderISEResult(i, row, sent, r, delta);
       updateProgress();
     } catch (e) {
+      stopMeter();
       setRecUI(row, false);
       showStatus(i, '评测失败：' + (e && e.message ? e.message : e) +
         '<br>可切换顶部「模式：录音」先练录音回放', 'warn');
@@ -400,6 +418,7 @@
       return '<button type="button" class="sh-dim" data-dim="' + k + '">' +
         dimNames[k] + ' ' + Math.round(r[k] || 0) + '</button>';
     }).join('') +
+      '<button type="button" class="sh-again" data-act="rhythm">节奏</button>' +
       '<button type="button" class="sh-again" data-act="again">↻ 再读一次</button>' +
       '</div>';
 
@@ -409,6 +428,14 @@
     }
 
     html += '<div class="sh-verdict">' + esc(a.verdict) + '</div>';
+
+    var chunks = chunkSentence(sent);
+    if (chunks.length > 1 && (r.words || []).length > 12) {
+      html += '<div class="sh-chunks">' + chunks.map(function (c) {
+        return '<button type="button" class="sh-chunk" data-act="chunk" data-chunk="' +
+          esc(c) + '">' + esc(c) + '</button>';
+      }).join('') + '</div>';
+    }
 
     if (a.issues.length) {
       html += '<div class="sh-issues">' + a.issues.map(function (x, idx) {
@@ -429,6 +456,11 @@
       var btn = e.target && e.target.closest ? e.target.closest('button') : null;
       if (!btn) return;
       if (btn.dataset.act === 'again') { startISE(i, row); return; }
+      if (btn.dataset.act === 'rhythm') {
+        if (window.XYPronLab && reports[i]) window.XYPronLab.openRhythm(reports[i].r, sent);
+        return;
+      }
+      if (btn.dataset.act === 'chunk') { speakSlow(btn.getAttribute('data-chunk')); return; }
       if (btn.dataset.dim) openDimSheet(i, btn.dataset.dim);
       else if (btn.dataset.issue != null) openWordSheet(i, Number(btn.dataset.issue));
     };
@@ -590,6 +622,7 @@
       var k = String(w.word || '').toLowerCase();
       if (!k || k === 'sil' || k === 'fil') return;
       var rec = m[k] || { count: 0, added: false };
+      rec.w = w.word;
       rec.count += 1;
       rec.score = Math.round(w.score || 0);
       rec.ts = Date.now();
@@ -614,6 +647,7 @@
     saveMistakes(m);
 
     if (added.length) toastMsg('已加入生词本（发音）：' + added.join('、'));
+    if (window.XYPronLab && window.XYPronLab.note) window.XYPronLab.note(r, sent);
   }
 
   var activeStop = null;
@@ -653,6 +687,18 @@
   }
 
   /* 在原文句子里标注读错/漏读的词 */
+  /* 长句按标点切成意群 */
+  function chunkSentence(sent) {
+    var out = [], buf = '';
+    for (var i = 0; i < sent.length; i++) {
+      var ch = sent.charAt(i);
+      buf += ch;
+      if (/[,;:.!?]/.test(ch)) { out.push(buf.trim()); buf = ''; }
+    }
+    if (buf.trim()) out.push(buf.trim());
+    return out.filter(function (x) { return x.length > 0; });
+  }
+
   function markSentence(row, sent, diff) {
     var en = row && row.querySelector('.sh-en');
     if (!en) return;
@@ -746,6 +792,15 @@
   /* ---------- 事件 ---------- */
   function bind() {
     panel = el('shadowing');
+    var lab = el('shLab');
+    if (lab && !lab.dataset.b) {
+      lab.dataset.b = '1';
+      lab.addEventListener('click', function (e) {
+        var b = e.target.closest('[data-lab]');
+        if (!b || !window.XYPronLab) return;
+        window.XYPronLab.open(b.dataset.lab);
+      });
+    }
     var modeBtn = el('shMode');
     if (modeBtn && !modeBtn.dataset.b) {
       modeBtn.dataset.b = '1';
@@ -762,6 +817,7 @@
         if (a === 'close') { close(); return; }
         if (a === 'mode') { toggleMode(); return; }
         if (a === 'listen') { speak(((cur.sentences || [])[i] || {}).en || ''); return; }
+        if (a === 'slow') { speakSlow(((cur.sentences || [])[i] || {}).en || ''); return; }
         if (a === 'rec') { startRec(i); return; }
         if (a === 'retryAsr') {
           asrBroken = false;
