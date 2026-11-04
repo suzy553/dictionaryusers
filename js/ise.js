@@ -488,7 +488,7 @@
   }
 
   /* ---------- 主流程：读一句 → 返回评分 ---------- */
-  async function evaluate(sentence, progress) {
+  async function evaluate(sentence, progress, opts) {
     if (!available()) throw new Error('未配置评测服务地址，请到设置里填写');
 
     /* 必须在点击的同步调用里唤醒音频上下文（iOS 限制） */
@@ -534,11 +534,18 @@
       }
 
       function cleanup() {
+        stopCapture();
         try { rec.stop(); } catch (e) { }
         try {
           if (ws.readyState === 0 || ws.readyState === 1) ws.close();
         } catch (e) { }
         if (current === session) current = null;
+      }
+
+      function stopCapture() {
+        if (opts && typeof opts.onStop === 'function') {
+          try { opts.onStop(); } catch (e) { }
+        }
       }
 
       function fail(msg) {
@@ -560,8 +567,9 @@
       session.stop = function () {
         if (settled) return;
         session.stopped = true;
-        try { rec.stop(); } catch (e) { }
         sendFinal();
+        stopCapture();
+        try { rec.stop(); } catch (e) { }
       };
 
       ws.onopen = async function () {
@@ -580,6 +588,10 @@
               data: { status: 1, data: b64(pcm) }
             }));
           });
+
+          if (opts && typeof opts.onStream === 'function' && rec.stream) {
+            try { opts.onStream(rec.stream); } catch (e) { }
+          }
         } catch (e) {
           fail('麦克风打开失败：' + (e && e.message ? e.message : e));
         }

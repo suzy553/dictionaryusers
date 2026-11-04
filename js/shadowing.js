@@ -93,6 +93,7 @@
 
     el('shList').innerHTML = body || '<div class="sh-empty">这篇文章没有可练习的句子</div>';
     el('shTitle').textContent = cur.titleZh || cur.title || '';
+    updateProgress();
   }
 
   /* ---------- 句子朗读（系统 TTS） ---------- */
@@ -103,6 +104,17 @@
       var u = new SpeechSynthesisUtterance(text);
       u.lang = 'en-US';
       u.rate = 0.9;
+      speechSynthesis.speak(u);
+    } catch (e) { toastMsg('朗读失败'); }
+  }
+
+  function speakSlow(text) {
+    try {
+      if (!('speechSynthesis' in window)) { toastMsg('这台设备不支持朗读'); return; }
+      speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(text);
+      u.lang = 'en-US';
+      u.rate = 0.55;
       speechSynthesis.speak(u);
     } catch (e) { toastMsg('朗读失败'); }
   }
@@ -277,12 +289,16 @@
     setRecUI(row, true, '■ 停止');
     showStatus(i, '正在听…读完点「停止」出分', 'listening');
 
-    var stopped = false;
-    var done = false;
+    var last = cur.__last || (cur.__last = {});
+    var passed = cur.__passed || (cur.__passed = {});
+    var prev = last[i];
+
+    var mr = null;
+    var mrChunks = [];
+    var mrClosed = false;
 
     /* 停止按钮：结束录音并让服务端收尾 */
     activeStop = function () {
-      stopped = true;
       if (window.XYISE && window.XYISE._stop) window.XYISE._stop();
     };
 
@@ -292,10 +308,42 @@
         if (partial && partial.total) {
           showStatus(i, '已听 ' + (partial.words || []).length + ' 个词…', 'listening');
         }
+      }, {
+        /* 同一路麦克风再录一份，用于回放对比 */
+        onStream: function (stream) {
+          try {
+            mr = new MediaRecorder(stream);
+            mr.ondataavailable = function (ev) {
+              if (ev.data && ev.data.size) mrChunks.push(ev.data);
+            };
+            mr.onstop = function () {
+              mrClosed = true;
+              if (!mrChunks.length) return;
+              try {
+                var url = URL.createObjectURL(new Blob(mrChunks, { type: mr.mimeType || 'audio/webm' }));
+                var pb = row.querySelector('[data-act="playback"]');
+                if (pb) { pb.disabled = false; pb.dataset.url = url; pb.textContent = '↺ 回放'; }
+              } catch (e) { }
+            };
+            mr.start();
+          } catch (e) { }
+        },
+        onStop: function () {
+          if (mr && !mrClosed && mr.state !== 'inactive') {
+            try { mr.stop(); } catch (e) { }
+          }
+        }
       });
-      done = true;
+
       setRecUI(row, false);
-      renderISEResult(i, row, sent, r);
+
+      var delta = (typeof prev === 'number' && isFinite(prev))
+        ? Math.round(r.total - prev) : null;
+      last[i] = Math.round(r.total);
+      if (r.total >= 85) passed[i] = true;
+
+      renderISEResult(i, row, sent, r, delta);
+      updateProgress();
     } catch (e) {
       setRecUI(row, false);
       showStatus(i, '评测失败：' + (e && e.message ? e.message : e) +
@@ -303,9 +351,21 @@
     }
   }
 
+  /* 整篇达标进度 */
+  function updateProgress() {
+    var sents = (cur && cur.sentences) || [];
+    if (!sents.length) return;
+    var p = cur.__passed || {};
+    var n = 0;
+    for (var k = 0; k < sents.length; k++) if (p[k]) n++;
+    var t = cur.titleZh || cur.title || '';
+    var box = el('shTitle');
+    if (box) box.textContent = t + ' · 达标 ' + n + '/' + sents.length;
+  }
+
   var reports = {};
 
-  function renderISEResult(i, row, sent, r) {
+  function renderISEResult(i, row, sent, r, delta) {
     var out = el('shOut' + i);
     if (!out) return;
     var a = window.XYISE.analyze(r);
@@ -329,10 +389,19 @@
     var dimKeys = ['accuracy', 'fluency', 'integrity'];
 
     var html = '<div class="sh-score ' + color + '">' + Math.round(r.total) + '<i>分</i></div>';
+    html += r.total >= 85
+      ? '<span class="sh-pass">✓ 达标</span>'
+      : '<span class="sh-goal">目标 85</span>';
+    if (typeof delta === 'number' && delta !== 0) {
+      html += '<span class="sh-delta ' + (delta > 0 ? 'up' : 'down') + '">' +
+        (delta > 0 ? '↑ +' + delta : '↓ ' + Math.abs(delta)) + ' 分</span>';
+    }
     html += '<div class="sh-dims">' + dimKeys.map(function (k) {
       return '<button type="button" class="sh-dim" data-dim="' + k + '">' +
         dimNames[k] + ' ' + Math.round(r[k] || 0) + '</button>';
-    }).join('') + '</div>';
+    }).join('') +
+      '<button type="button" class="sh-again" data-act="again">↻ 再读一次</button>' +
+      '</div>';
 
     if (r.audioSeconds !== undefined && r.audioSeconds < 0.3) {
       html += '<div class="sh-warn">这次几乎没有录到声音（约 ' + (r.audioSeconds || 0).toFixed(1) +
@@ -359,6 +428,7 @@
     out.onclick = function (e) {
       var btn = e.target && e.target.closest ? e.target.closest('button') : null;
       if (!btn) return;
+      if (btn.dataset.act === 'again') { startISE(i, row); return; }
       if (btn.dataset.dim) openDimSheet(i, btn.dataset.dim);
       else if (btn.dataset.issue != null) openWordSheet(i, Number(btn.dataset.issue));
     };
@@ -451,8 +521,9 @@
       '<p class="shm-p">' + esc(x.text) + '</p>' +
       '<div class="shm-tip">怎么读：' + esc(x.tip) + '</div>' +
       '<div class="shm-acts">' +
-        '<button type="button" class="shm-btn" data-act="say">🔊 听标准读音</button>' +
-        '<button type="button" class="shm-btn ghost" data-act="collect">＋ 加入生词本</button>' +
+        '<button type="button" class="shm-btn" data-act="say">🔊 标准</button>' +
+        '<button type="button" class="shm-btn ghost" data-act="slow">🐢 慢速</button>' +
+        '<button type="button" class="shm-btn ghost" data-act="collect">＋ 生词本</button>' +
       '</div>'
     );
 
@@ -460,6 +531,7 @@
       var b = e.target && e.target.closest ? e.target.closest('button') : null;
       if (!b || !b.dataset.act) return;
       if (b.dataset.act === 'say') speak(x.word);
+      else if (b.dataset.act === 'slow') speakSlow(x.word);
       else if (b.dataset.act === 'collect') {
         var ok = collectPronWord(x.word, { ipa: x.ipa, tip: x.tip });
         if (ok) { b.textContent = '已在生词本'; b.disabled = true; toastMsg('已加入生词本：' + x.word); }
