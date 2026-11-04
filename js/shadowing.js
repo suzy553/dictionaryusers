@@ -97,27 +97,32 @@
     updateProgress();
   }
 
-  /* ---------- 句子朗读（系统 TTS） ---------- */
-  function speak(text) {
+  /* ---------- 句子朗读（优先讯飞 TTS，失败退回系统 TTS） ---------- */
+  function systemSpeak(text, rate) {
     try {
       if (!('speechSynthesis' in window)) { toastMsg('这台设备不支持朗读'); return; }
       speechSynthesis.cancel();
       var u = new SpeechSynthesisUtterance(text);
       u.lang = 'en-US';
-      u.rate = 0.9;
+      u.rate = rate;
       speechSynthesis.speak(u);
     } catch (e) { toastMsg('朗读失败'); }
   }
 
+  function speak(text) {
+    if (window.XYVoice && window.XYVoice.canUse()) {
+      window.XYVoice.play(text, { speed: 1 }).catch(function () { systemSpeak(text, 0.9); });
+      return;
+    }
+    systemSpeak(text, 0.9);
+  }
+
   function speakSlow(text) {
-    try {
-      if (!('speechSynthesis' in window)) { toastMsg('这台设备不支持朗读'); return; }
-      speechSynthesis.cancel();
-      var u = new SpeechSynthesisUtterance(text);
-      u.lang = 'en-US';
-      u.rate = 0.55;
-      speechSynthesis.speak(u);
-    } catch (e) { toastMsg('朗读失败'); }
+    if (window.XYVoice && window.XYVoice.canUse()) {
+      window.XYVoice.play(text, { speed: 0.7 }).catch(function () { systemSpeak(text, 0.55); });
+      return;
+    }
+    systemSpeak(text, 0.55);
   }
 
   /* ---------- 录音 / 识别 ---------- */
@@ -194,11 +199,46 @@
 
     if (window.XYISE && window.XYISE.available()) {
       startISE(i, row);
+    } else if (window.XYVoice && window.XYVoice.canUse()) {
+      startIAT(i, row);
     } else if (Recognition() && !asrBroken) {
       startRecogOnly(i, row);
     } else {
       startRecorderOnly(i, row);
     }
+  }
+
+  /* --- A0. 讯飞听写（国内可用，替代浏览器识别） --- */
+  var iatState = null;
+
+  function startIAT(i, row) {
+    showStatus(i, '正在听…说完点「停止」', 'listening');
+    setRecUI(row, true);
+
+    iatState = window.XYVoice.listen({
+      maxMs: 55000,
+      onPartial: function (t) {
+        showStatus(i, '听到：' + esc(t), 'listening');
+      }
+    });
+
+    activeStop = function () {
+      if (iatState) iatState.stop();
+    };
+
+    iatState.done.then(function (text) {
+      iatState = null;
+      activeStop = null;
+      setRecUI(row, false);
+      if (!text) { showStatus(i, '没有听清，请再说一次', 'warn'); return; }
+      evaluateWith(i, row, text);
+    }, function (e) {
+      iatState = null;
+      activeStop = null;
+      setRecUI(row, false);
+      showStatus(i, '听写失败：' + (e && e.message ? e.message : e) +
+        '<br>可以切到「录音」模式先录下来回放', 'warn');
+    });
   }
 
   /* --- A. 有语音识别：只用识别器（评分）--- */

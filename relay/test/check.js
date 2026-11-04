@@ -26,7 +26,7 @@ function req(over) {
 }
 
 test('签名与独立实现（.NET HMAC）结果一致', () => {
-  const url = buildSignedUrl('test-key', 'test-secret', new Date('2026-10-30T08:00:00Z'));
+  const url = buildSignedUrl('test-key', 'test-secret', 'ise', new Date('2026-10-30T08:00:00Z'));
   const u = new URL(url);
 
   assert.equal(u.protocol, 'wss:');
@@ -42,6 +42,17 @@ test('签名与独立实现（.NET HMAC）结果一致', () => {
   assert.match(auth, /signature="pVlv3KKM2QgEYjD5Uu8jvolr0wuCFzfEbWMpuaCOyMI="/);
 });
 
+test('TTS / IAT 服务签名地址正确', () => {
+  const tts = new URL(buildSignedUrl('k', 's', 'tts', new Date('2026-10-30T08:00:00Z')));
+  assert.equal(tts.host, 'tts-api.xfyun.cn');
+  assert.equal(tts.pathname, '/v2/tts');
+  assert.equal(tts.searchParams.get('host'), 'tts-api.xfyun.cn');
+
+  const iat = new URL(buildSignedUrl('k', 's', 'iat', new Date('2026-10-30T08:00:00Z')));
+  assert.equal(iat.host, 'iat-api.xfyun.cn');
+  assert.equal(iat.pathname, '/v2/iat');
+});
+
 test('GET /sign 返回可用的 wss 地址', () => {
   const r = handleRequest(req(), ENV);
   assert.equal(r.statusCode, 200);
@@ -50,10 +61,24 @@ test('GET /sign 返回可用的 wss 地址', () => {
 
   const body = JSON.parse(r.body);
   assert.equal(body.app_id, 'test-appid');
+  assert.equal(body.svc, 'ise');
   assert.equal(body.expires_in, 300);
   const u = new URL(body.url);
   assert.equal(u.protocol, 'wss:');
   assert.equal(u.host, 'ise-api.xfyun.cn');
+});
+
+test('svc=tts / svc=iat 可用，未知服务返回 400', () => {
+  const tts = JSON.parse(handleRequest(req({ query: { svc: 'tts' } }), ENV).body);
+  assert.equal(tts.svc, 'tts');
+  assert.equal(new URL(tts.url).host, 'tts-api.xfyun.cn');
+
+  const iat = JSON.parse(handleRequest(req({ query: { svc: 'iat' } }), ENV).body);
+  assert.equal(iat.svc, 'iat');
+  assert.equal(new URL(iat.url).host, 'iat-api.xfyun.cn');
+
+  const bad = handleRequest(req({ query: { svc: 'xxx' } }), ENV);
+  assert.equal(bad.statusCode, 400);
 });
 
 test('CORS 预检返回 204 且允许 GET', () => {

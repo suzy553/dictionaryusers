@@ -26,6 +26,13 @@ const XF_HOST = 'ise-api.xfyun.cn';
 const XF_PATH = '/v2/open-ise';
 const SIGN_TTL = 300; // 秒
 
+/* 允许签名的讯飞服务：只签白名单里的主机 + 路径，避免变成万能签名机 */
+const SERVICES = {
+  ise: { host: 'ise-api.xfyun.cn', path: '/v2/open-ise' },
+  tts: { host: 'tts-api.xfyun.cn', path: '/v2/tts' },
+  iat: { host: 'iat-api.xfyun.cn', path: '/v2/iat' },
+};
+
 /* ------------------------------------------------------------------ */
 /* 签名                                                                */
 /* ------------------------------------------------------------------ */
@@ -34,18 +41,20 @@ const SIGN_TTL = 300; // 秒
  * 生成讯飞 WSS 鉴权地址（HMAC-SHA256，参数放在 URL 上，浏览器可直接连）
  * @param {string} apiKey
  * @param {string} apiSecret
+ * @param {string} [svc] ise | tts | iat
  * @param {Date}   [date] 便于测试固定时间
- * @returns {string} wss://ise-api.xfyun.cn/v2/open-ise?authorization=...
+ * @returns {string} wss://...
  */
-function buildSignedUrl(apiKey, apiSecret, date) {
+function buildSignedUrl(apiKey, apiSecret, svc, date) {
+  const s = SERVICES[svc] || SERVICES.ise;
   const d = (date || new Date()).toUTCString();
-  const origin = `host: ${XF_HOST}\ndate: ${d}\nGET ${XF_PATH} HTTP/1.1`;
+  const origin = `host: ${s.host}\ndate: ${d}\nGET ${s.path} HTTP/1.1`;
   const signature = crypto.createHmac('sha256', apiSecret).update(origin).digest('base64');
   const authOrigin =
     `api_key="${apiKey}", algorithm="hmac-sha256", headers="host date request-line", signature="${signature}"`;
   const authorization = Buffer.from(authOrigin).toString('base64');
-  const qs = new URLSearchParams({ authorization, date: d, host: XF_HOST });
-  return `wss://${XF_HOST}${XF_PATH}?${qs}`;
+  const qs = new URLSearchParams({ authorization, date: d, host: s.host });
+  return `wss://${s.host}${s.path}?${qs}`;
 }
 
 /* ------------------------------------------------------------------ */
@@ -165,9 +174,16 @@ function handleRequest(req, env) {
     return json(429, cors, { error: '请求太频繁，请稍后再试' });
   }
 
+  const q = req.query || {};
+  const svc = String(q.svc || q.service || 'ise').toLowerCase();
+  if (!SERVICES[svc]) {
+    return json(400, cors, { error: '不支持的服务：' + svc + '（可选 ise / tts / iat）' });
+  }
+
   return json(200, cors, {
-    url: buildSignedUrl(cfg.apikey, cfg.apisecret),
+    url: buildSignedUrl(cfg.apikey, cfg.apisecret, svc),
     app_id: cfg.appid,
+    svc: svc,
     expires_in: SIGN_TTL,
   });
 }

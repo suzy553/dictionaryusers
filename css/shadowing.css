@@ -427,3 +427,29 @@
 
 .sh-dim, .sh-again, .sh-issue{ font-family: inherit; }
 
+
+/* ================= 听写 / 口语日记 ================= */
+.sh-lab{ display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 8px; }
+.sh-lab button{ min-width: 0; }
+
+.pl-acts{ display: flex; gap: 8px; margin: 8px 0; }
+.pl-acts .shm-btn{ flex: 1; height: 38px; }
+.pl-input{
+  width: 100%; min-height: 84px; margin-top: 8px; padding: 10px 12px;
+  border: 1.5px solid #e3ebe5; border-radius: 10px;
+  font: inherit; font-size: 14px; line-height: 1.6;
+  resize: vertical; box-sizing: border-box; background: #fff; color: #1c2a24;
+}
+.pl-input:focus{ outline: none; border-color: #58cc02; box-shadow: 0 0 0 3px #eef9e5; }
+.pl-result{ margin-top: 10px; }
+.pl-diffscore{ font-size: 14px; font-weight: 800; color: #1c2a24; margin-bottom: 6px; }
+.pl-diffscore.good{ color: #2f6b3b; }
+.pl-diffscore.mid{ color: #b7791f; }
+.pl-diffscore.bad{ color: #b3261e; }
+.pl-diffline{ margin-top: 6px; font-size: 13px; line-height: 1.7; color: #4a5c52; word-break: break-word; }
+.pl-diffline mark.miss{ background: rgba(179,38,30,.12); color: #b3261e; border-radius: 3px; padding: 0 2px; }
+.pl-diffline mark.extra{ background: #fff4e5; color: #8a5a12; border-radius: 3px; padding: 0 2px; }
+.pl-sub{ margin-top: 14px; font-size: 12px; font-weight: 700; color: #8b98a6; }
+.pl-jlist{ margin-top: 6px; }
+.pl-jrow{ display: flex; justify-content: space-between; font-size: 12px; color: #6b7a72; padding: 6px 0; border-bottom: 1px dashed #eef2ef; }
+.pl-live{ margin-top: 8px; font-size: 13px; line-height: 1.6; color: #2f6b3b; min-height: 20px; }

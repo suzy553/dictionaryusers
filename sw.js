@@ -1,7 +1,8 @@
-﻿/* Service Worker锛氬皬瓒婅儗鍗曡瘝 App 绂荤嚎缂撳瓨 */
-const VER = 'xiaoyue-v316';
+/* Service Worker：小越背单词 App 离线缓存 */
+const VER = 'xiaoyue-v317';
 const SHELL = [
   './js/ise.js',
+  './js/voice.js',
   './js/pronlab.js',
   './css/shadowing.css', './js/shadowing.js',
   './css/reading.css', './js/reading.js', './data/reading.json', './data/reading-archive.json',

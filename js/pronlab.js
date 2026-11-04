@@ -355,6 +355,242 @@
     open(html);
   }
 
+  /* ---------------- 听写训练 ---------------- */
+  function sysSay(text, speed) {
+    try {
+      if (!('speechSynthesis' in window)) return;
+      speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(text);
+      u.lang = 'en-US';
+      u.rate = speed === 0.7 ? 0.6 : 0.95;
+      speechSynthesis.speak(u);
+    } catch (e) { }
+  }
+
+  function playTTS(text, speed) {
+    if (window.XYVoice && window.XYVoice.canUse()) {
+      window.XYVoice.play(text, { speed: speed }).catch(function () { sysSay(text, speed); });
+    } else {
+      sysSay(text, speed);
+    }
+  }
+
+  function currentSentences() {
+    var nodes = document.querySelectorAll('#shList .sh-en');
+    var out = [];
+    for (var i = 0; i < nodes.length; i++) {
+      var raw = nodes[i].getAttribute('data-raw') || nodes[i].textContent || '';
+      if (raw.trim()) out.push(raw.trim());
+    }
+    return out;
+  }
+
+  function normW(s) {
+    return String(s || '').toLowerCase()
+      .replace(/[’']/g, "'")
+      .replace(/[^a-z0-9'\s]/g, ' ')
+      .split(/\s+/)
+      .filter(Boolean);
+  }
+
+  function diffWords(target, typed) {
+    var a = normW(target);
+    var b = normW(typed);
+    var n = a.length, m = b.length;
+    var dp = [];
+    for (var i = 0; i <= n; i++) dp[i] = [i];
+    for (var j = 0; j <= m; j++) dp[0][j] = j;
+    for (i = 1; i <= n; i++) {
+      for (j = 1; j <= m; j++) {
+        var cost = a[i - 1] === b[j - 1] ? 0 : 1;
+        dp[i][j] = Math.min(dp[i - 1][j] + 1, dp[i][j - 1] + 1, dp[i - 1][j - 1] + cost);
+      }
+    }
+    var markA = new Array(n), markB = new Array(m);
+    i = n; j = m;
+    while (i > 0 || j > 0) {
+      if (i > 0 && j > 0 && a[i - 1] === b[j - 1] && dp[i][j] === dp[i - 1][j - 1]) {
+        markA[i - 1] = 'ok'; markB[j - 1] = 'ok'; i--; j--;
+      } else if (i > 0 && dp[i][j] === dp[i - 1][j] + 1) {
+        markA[i - 1] = 'miss'; i--;
+      } else if (j > 0 && dp[i][j] === dp[i][j - 1] + 1) {
+        markB[j - 1] = 'extra'; j--;
+      } else {
+        markA[i - 1] = 'miss'; markB[j - 1] = 'extra'; i--; j--;
+      }
+    }
+    var matched = 0;
+    for (i = 0; i < n; i++) if (markA[i] === 'ok') matched++;
+    return {
+      score: n ? Math.round(matched / n * 100) : 0,
+      a: a, b: b, markA: markA, markB: markB,
+      miss: markA.filter(function (x) { return x === 'miss'; }).length,
+      extra: markB.filter(function (x) { return x === 'extra'; }).length
+    };
+  }
+
+  function openDictation() {
+    var sents = currentSentences();
+    if (!sents.length) {
+      open('<div class="shm-title">听写训练</div>' +
+        '<p class="shm-p">先在跟读页打开一篇文章，再回来听写。</p>');
+      return;
+    }
+
+    var idx = 0;
+    var sh = open('<div class="shm-title">听写训练</div><div class="pl-body"></div>');
+    var body = sh.querySelector('.pl-body');
+
+    function draw() {
+      var target = sents[idx];
+      body.innerHTML =
+        '<p class="shm-p">第 ' + (idx + 1) + ' / ' + sents.length + ' 句：先听，再把听到的写下来</p>' +
+        '<div class="pl-acts">' +
+          '<button type="button" class="shm-btn" data-act="play">▶ 播放</button>' +
+          '<button type="button" class="shm-btn ghost" data-act="slow">🐢 慢速</button>' +
+        '</div>' +
+        '<textarea class="pl-input" placeholder="听到什么就写什么…"></textarea>' +
+        '<button type="button" class="shm-btn" data-act="check">提交检查</button>' +
+        '<div class="pl-result"></div>';
+
+      var ta = body.querySelector('.pl-input');
+      var res = body.querySelector('.pl-result');
+
+      body.querySelector('[data-act="play"]').onclick = function () { playTTS(target, 1); };
+      body.querySelector('[data-act="slow"]').onclick = function () { playTTS(target, 0.7); };
+
+      body.querySelector('[data-act="check"]').onclick = function () {
+        var d = diffWords(target, ta.value);
+        if (!normW(ta.value).length) {
+          res.innerHTML = '<div class="pl-diffline">还没写内容</div>';
+          return;
+        }
+        res.innerHTML =
+          '<div class="pl-diffscore ' + (d.score >= 85 ? 'good' : (d.score >= 60 ? 'mid' : 'bad')) + '">' +
+            '听写准确率 ' + d.score + '% · 漏 ' + d.miss + ' 个词 · 多 ' + d.extra + ' 个词</div>' +
+          '<div class="pl-diffline">原文：' + d.a.map(function (w, i) {
+            return d.markA[i] === 'miss'
+              ? '<mark class="miss">' + esc(w) + '</mark>'
+              : esc(w);
+          }).join(' ') + '</div>' +
+          (d.extra ? '<div class="pl-diffline">多写：' + d.b.map(function (w, i) {
+            return d.markB[i] === 'extra' ? '<mark class="extra">' + esc(w) + '</mark>' : '';
+          }).filter(Boolean).join(' ') + '</div>' : '');
+
+        var next = document.createElement('button');
+        next.type = 'button';
+        next.className = 'shm-btn';
+        next.textContent = idx < sents.length - 1 ? '下一句' : '重新开始';
+        next.onclick = function () {
+          idx = (idx + 1) % sents.length;
+          draw();
+        };
+        res.appendChild(next);
+      };
+    }
+
+    draw();
+  }
+
+  /* ---------------- 口语日记 ---------------- */
+  var JOURNAL_KEY = 'ise.journal.v1';
+
+  function openJournal() {
+    var hist = loadJSON(JOURNAL_KEY, []);
+    var sh = open('<div class="shm-title">口语日记</div><div class="pl-body"></div>');
+    var body = sh.querySelector('.pl-body');
+    var state = { stop: null, t0: 0 };
+
+    function stats(text, seconds) {
+      var words = normW(text).length;
+      var fillers = (String(text).toLowerCase().match(/\b(um|uh|er|ah|like|you know)\b/g) || []);
+      var uniq = {};
+      fillers.forEach(function (f) { uniq[f] = (uniq[f] || 0) + 1; });
+      var fillerText = Object.keys(uniq).map(function (k) { return k + '×' + uniq[k]; }).join('，');
+      return {
+        words: words,
+        seconds: Math.max(1, Math.round(seconds)),
+        wpm: Math.round(words / Math.max(1, seconds) * 60),
+        fillers: fillers.length,
+        fillerText: fillerText
+      };
+    }
+
+    function drawHistory() {
+      if (!hist.length) return '<div class="pl-diffline">还没有记录</div>';
+      return hist.slice(-5).reverse().map(function (h) {
+        var d = new Date(h.ts);
+        var t = (d.getMonth() + 1) + '/' + d.getDate() + ' ' + d.getHours() + ':' + String(d.getMinutes()).padStart(2, '0');
+        return '<div class="pl-jrow"><span>' + t + '</span><span>' + h.words + ' 词 · ' + h.wpm + ' 词/分</span></div>';
+      }).join('');
+    }
+
+    function draw() {
+      body.innerHTML =
+        '<p class="shm-p">说 1 分钟，自动转成文字，统计语速和口头禅。</p>' +
+        '<button type="button" class="shm-btn" data-act="start">● 开始说</button>' +
+        '<div class="pl-live" hidden></div>' +
+        '<div class="pl-result"></div>' +
+        '<div class="pl-sub">最近的记录</div>' +
+        '<div class="pl-jlist">' + drawHistory() + '</div>';
+
+      body.querySelector('[data-act="start"]').onclick = function () {
+        if (!window.XYVoice || !window.XYVoice.canUse()) {
+          body.querySelector('.pl-result').innerHTML = '<div class="pl-diffline">语音服务不可用，先检查评测地址</div>';
+          return;
+        }
+        var btn = this;
+        btn.disabled = true;
+        btn.textContent = '正在听…（说完点停止）';
+        var live = body.querySelector('.pl-live');
+        live.hidden = false;
+        live.textContent = '';
+        state.t0 = Date.now();
+
+        state.stop = window.XYVoice.listen({
+          maxMs: 60000,
+          onPartial: function (t) { live.textContent = t; }
+        });
+
+        btn.onclick = function () { if (state.stop) state.stop(); };
+
+        state.stop.done.then(function (text) {
+          var seconds = (Date.now() - state.t0) / 1000;
+          state.stop = null;
+          live.hidden = true;
+          btn.disabled = false;
+          btn.textContent = '● 再说一次';
+          var s = stats(text, seconds);
+          var res = body.querySelector('.pl-result');
+
+          if (!normW(text).length) {
+            res.innerHTML = '<div class="pl-diffline">没有听到内容，检查麦克风再试</div>';
+            return;
+          }
+
+          res.innerHTML =
+            '<div class="pl-diffscore good">' + s.words + ' 词 · ' + s.seconds + ' 秒 · ' + s.wpm + ' 词/分</div>' +
+            '<div class="pl-diffline">' + esc(text) + '</div>' +
+            (s.fillers ? '<div class="pl-diffline">口头禅 ' + s.fillers + ' 次：' + esc(s.fillerText) + '</div>' : '');
+
+          hist.push({ ts: Date.now(), text: text, words: s.words, seconds: s.seconds, wpm: s.wpm });
+          if (hist.length > 30) hist = hist.slice(hist.length - 30);
+          saveJSON(JOURNAL_KEY, hist);
+          var list = body.querySelector('.pl-jlist');
+          if (list) list.innerHTML = drawHistory();
+        }, function (e) {
+          state.stop = null;
+          btn.disabled = false;
+          btn.textContent = '● 重试';
+          body.querySelector('.pl-result').innerHTML =
+            '<div class="pl-diffline">听写失败：' + esc(e && e.message ? e.message : e) + '</div>';
+        });
+      };
+    }
+
+    draw();
+  }
+
   window.XYPronLab = {
     note: note,
     open: function (kind) {
@@ -362,6 +598,8 @@
       if (kind === 'pairs') return openPairs();
       if (kind === 'mistakes') return openMistakes();
       if (kind === 'progress') return openProgress();
+      if (kind === 'dictation') return openDictation();
+      if (kind === 'journal') return openJournal();
     },
     openRhythm: openRhythm
   };
