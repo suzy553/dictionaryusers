@@ -8,5 +8,7 @@ export default defineConfig({
     // 串行执行，避免多核竞争导致的偶发超时
     pool: 'forks',
     poolOptions: { forks: { singleFork: true } },
+    // relay/ 里的脚本用 node:test 自测，不是 vitest 用例，别让 vitest 收走
+    exclude: ['**/node_modules/**', 'relay/**', 'worker/**'],
   },
 });

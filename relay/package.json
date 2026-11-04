@@ -6,6 +6,6 @@
   "main": "sign.js",
   "scripts": {
     "start": "node sign.js",
-    "test": "node test/sign.test.js"
+    "test": "node test/check.js"
   }
 }
