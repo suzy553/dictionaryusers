@@ -20,6 +20,17 @@
     return !!b && /^https?:\/\//i.test(b);
   }
 
+  /* iOS 要求在点击的同步调用链里创建/恢复 AudioContext */
+  var sharedCtx = null;
+  function kickAudio() {
+    try {
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return;
+      if (!sharedCtx || sharedCtx.state === 'closed') sharedCtx = new AC();
+      if (sharedCtx.state === 'suspended') sharedCtx.resume();
+    } catch (e) { }
+  }
+
   function b64bytes(bytes) {
     var s = '';
     var CHUNK = 0x8000;
@@ -186,10 +197,15 @@
 
     state.done = new Promise(function (res, rej) { cap.res = res; cap.rej = rej; });
 
+    /* 必须在点击的同步调用里唤醒音频上下文（iOS） */
+    kickAudio();
+
     function teardown() {
       try { if (state.node) state.node.disconnect(); } catch (e) { }
       try { if (state.stream) state.stream.getTracks().forEach(function (t) { t.stop(); }); } catch (e) { }
-      try { if (state.ctx && state.ctx.state !== 'closed') state.ctx.close(); } catch (e) { }
+      try {
+        if (state.ctx && state.ctx !== sharedCtx && state.ctx.state !== 'closed') state.ctx.close();
+      } catch (e) { }
       state.node = null; state.stream = null; state.ctx = null;
     }
     function finish(err) {
@@ -224,7 +240,7 @@
       });
       state.stream = stream;
       var AC = window.AudioContext || window.webkitAudioContext;
-      var ctx = new AC();
+      var ctx = (sharedCtx && sharedCtx.state !== 'closed') ? sharedCtx : new AC();
       state.ctx = ctx;
       if (ctx.state === 'suspended') { try { await ctx.resume(); } catch (e) { } }
 
