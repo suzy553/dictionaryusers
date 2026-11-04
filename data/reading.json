@@ -1,123 +1,111 @@
 {
- "updated": "2026-11-03 22:56",
- "date": "2026-11-03",
+ "updated": "2026-11-04 22:57",
+ "date": "2026-11-04",
  "source": "Project Gutenberg / Simple Wikipedia",
  "items": [
   {
-   "id": "20261103-1",
-   "date": "2026-11-03",
+   "id": "20261104-1",
+   "date": "2026-11-04",
    "source": "Simple Wikipedia",
    "license": "CC BY-SA 4.0",
    "attribution": "Simple English Wikipedia",
    "topic": "百科",
    "country": "",
    "countryName": "",
-   "title": "Typhoon Krosa (2013)",
+   "title": "Warwick Davis",
    "titleZh": "",
    "sentences": [
     {
-     "en": "Typhoon Krosa, known in the Philippines as Typhoon Vinta was a Category 3 equivalent tropical cyclone that lashes the northern Philippines in Cagayan Valley region in October 2013 after the Typhoon Nari hits Central Luzon, Typhoon Krosa leaving atleast 4 deaths, and damaging houses nearby the coastal areas particularly in the town of Lal-lo, Cagayan.",
+     "en": "Warwick Ashley Davis is an English actor and television presenter.",
+     "zh": ""
+    },
+    {
+     "en": "He is known for his roles including the title character of Willow (1989), the main villain in the Leprechaun movie series (1993–2003), many characters in the Star Wars movie series (1983–2019) and Professor Filius Flitwick and Griphook in the Harry Potter film series (2001–2011).",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 55,
-   "audio": "data/reading/audio/20261103-1.mp3",
-   "audioKB": 136,
-   "link": "https://simple.wikipedia.org/wiki/Typhoon_Krosa_(2013)",
+   "words": 54,
+   "audio": "data/reading/audio/20261104-1.mp3",
+   "audioKB": 158,
+   "link": "https://simple.wikipedia.org/wiki/Warwick_Davis",
    "aiAssisted": true
   },
   {
-   "id": "20261103-2",
-   "date": "2026-11-03",
+   "id": "20261104-2",
+   "date": "2026-11-04",
    "source": "Project Gutenberg",
    "license": "公有领域",
-   "attribution": "Jane Austen · Pride and Prejudice · Project Gutenberg",
+   "attribution": "Robert Louis Stevenson · Treasure Island · Project Gutenberg",
    "topic": "文学",
    "country": "",
    "countryName": "",
-   "title": "Pride and Prejudice（选段）",
+   "title": "Treasure Island（选段）",
    "titleZh": "",
    "sentences": [
     {
-     "en": "Elizabeth, feeling it incumbent on her to relieve him from so unpleasant a situation, now put herself forward to confirm his account, by mentioning her prior knowledge of it from Charlotte herself; and endeavoured to put a stop to the exclamations of her mother and sisters, by the earnestness of her congratulations to Sir William, in which she was readily joined by Jane, and by making a variety of remarks on the happiness that might be expected from the match, the excellent character of Mr.",
+     "en": "As the captain had said, the chill was past.",
      "zh": ""
     },
     {
-     "en": "Collins, and the convenient distance of Hunsford from London.",
+     "en": "As soon as the sun had climbed above our girdle of trees, it fell with all its force upon the clearing and drank up the vapours at a draught.",
+     "zh": ""
+    },
+    {
+     "en": "Soon the sand was baking and the resin melting in the logs of the block house.",
+     "zh": ""
+    },
+    {
+     "en": "Jackets and coats were flung aside, shirts thrown open at the neck and rolled up to the shoulders; and we stood there, each at his post, in a fever of heat and anxiety.",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 94,
-   "audio": "data/reading/audio/20261103-2.mp3",
-   "audioKB": 185,
-   "link": "https://www.gutenberg.org/ebooks/1342",
+   "words": 87,
+   "audio": "data/reading/audio/20261104-2.mp3",
+   "audioKB": 156,
+   "link": "https://www.gutenberg.org/ebooks/120",
    "aiAssisted": true
   },
   {
-   "id": "20261103-3",
-   "date": "2026-11-03",
-   "source": "Project Gutenberg",
-   "license": "公有领域",
-   "attribution": "Arthur Conan Doyle · The Adventures of Sherlock Holmes · Project Gutenberg",
-   "topic": "文学",
+   "id": "20261104-3",
+   "date": "2026-11-04",
+   "source": "Simple Wikipedia",
+   "license": "CC BY-SA 4.0",
+   "attribution": "Simple English Wikipedia",
+   "topic": "百科",
    "country": "",
    "countryName": "",
-   "title": "The Adventures of Sherlock Holmes（选段）",
+   "title": "Selma Reis",
    "titleZh": "",
    "sentences": [
     {
-     "en": "Sherlock Holmes looked deeply chagrined.",
+     "en": "Selma Reis was a Brazilian actress and singer.",
      "zh": ""
     },
     {
-     "en": "He drew a sovereign from his pocket and threw it down upon the slab, turning away with the air of a man whose disgust is too deep for words.",
+     "en": "She was born in São Gonçalo, Rio de Janeiro.",
      "zh": ""
     },
     {
-     "en": "A few yards off he stopped under a lamp-post and laughed in the hearty, noiseless fashion which was peculiar to him.",
+     "en": "She acted in many telenovelas and miniseries for Rede Globo, including Caminho das Índias, Páginas da Vida, Presença de Anita and Chiquinha Gonzaga.",
+     "zh": ""
+    },
+    {
+     "en": "After 1987, she released a debut album, the first of eleven releases.",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 55,
-   "audio": "data/reading/audio/20261103-3.mp3",
-   "audioKB": 108,
-   "link": "https://www.gutenberg.org/ebooks/1661",
+   "words": 52,
+   "audio": "data/reading/audio/20261104-3.mp3",
+   "audioKB": 141,
+   "link": "https://simple.wikipedia.org/wiki/Selma_Reis",
    "aiAssisted": true
   },
   {
-   "id": "20261103-4",
-   "date": "2026-11-03",
-   "source": "Project Gutenberg",
-   "license": "公有领域",
-   "attribution": "Mary Shelley · Frankenstein · Project Gutenberg",
-   "topic": "文学",
-   "country": "",
-   "countryName": "",
-   "title": "Frankenstein（选段）",
-   "titleZh": "",
-   "sentences": [
-    {
-     "en": "The being finished speaking and fixed his looks upon me in the expectation of a reply.",
-     "zh": ""
-    },
-    {
-     "en": "But I was bewildered, perplexed, and unable to arrange my ideas sufficiently to understand the full extent of his proposition.",
-     "zh": ""
-    }
-   ],
-   "glossary": [],
-   "words": 36,
-   "audio": "data/reading/audio/20261103-4.mp3",
-   "audioKB": 80,
-   "link": "https://www.gutenberg.org/ebooks/84",
-   "aiAssisted": true
-  },
-  {
-   "id": "20261103-5",
-   "date": "2026-11-03",
+   "id": "20261104-4",
+   "date": "2026-11-04",
    "source": "Project Gutenberg",
    "license": "公有领域",
    "attribution": "Lewis Carroll · Alice's Adventures in Wonderland · Project Gutenberg",
@@ -128,47 +116,107 @@
    "titleZh": "",
    "sentences": [
     {
-     "en": "The Cat’s head began fading away the moment he was gone, and, by the time he had come back with the Duchess, it had entirely disappeared; so the King and the executioner ran wildly up and down looking for it, while the rest of the party went back to the game.",
+     "en": "Alice waited till the eyes appeared, and then nodded.",
+     "zh": ""
+    },
+    {
+     "en": "“It’s no use speaking to it,” she thought, “till its ears have come, or at least one of them.” In another minute the whole head appeared, and then Alice put down her flamingo, and began an account of the game, feeling very glad she had someone to listen to her.",
+     "zh": ""
+    },
+    {
+     "en": "The Cat seemed to think that there was enough of it now in sight, and no more of it appeared.",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 51,
-   "audio": "data/reading/audio/20261103-5.mp3",
-   "audioKB": 89,
+   "words": 79,
+   "audio": "data/reading/audio/20261104-4.mp3",
+   "audioKB": 144,
    "link": "https://www.gutenberg.org/ebooks/11",
    "aiAssisted": true
   },
   {
-   "id": "20261103-6",
-   "date": "2026-11-03",
-   "source": "Project Gutenberg",
-   "license": "公有领域",
-   "attribution": "Louisa May Alcott · Little Women · Project Gutenberg",
-   "topic": "文学",
+   "id": "20261104-5",
+   "date": "2026-11-04",
+   "source": "Simple Wikipedia",
+   "license": "CC BY-SA 4.0",
+   "attribution": "Simple English Wikipedia",
+   "topic": "百科",
    "country": "",
    "countryName": "",
-   "title": "Little Women（选段）",
+   "title": "Dan Coats",
    "titleZh": "",
    "sentences": [
     {
-     "en": "Jo was determined to have it out now, and tried to look quite placid, though she quaked a little after her bold speech.",
+     "en": "Daniel Ray \"Dan\" Coats is an American politician.",
      "zh": ""
     },
     {
-     "en": "To her great relief and surprise, the old gentleman only threw his spectacles onto the table with a rattle and exclaimed frankly, “You’re right, girl, I am!",
+     "en": "Coats is the 5th and current Director of National Intelligence serving since March 15, 2017.",
      "zh": ""
     },
     {
-     "en": "I love the boy, but he tries my patience past bearing, and I know how it will end, if we go on so.”",
+     "en": "He served as United States Senator from Indiana from 1989 to 1999 and 2011 to 2017.",
+     "zh": ""
+    },
+    {
+     "en": "He is a member of the U.S.",
+     "zh": ""
+    },
+    {
+     "en": "Republican Party.",
+     "zh": ""
+    },
+    {
+     "en": "He was in the United States House of Representatives from 1981 to 1989.",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 73,
-   "audio": "data/reading/audio/20261103-6.mp3",
-   "audioKB": 136,
-   "link": "https://www.gutenberg.org/ebooks/514",
+   "words": 61,
+   "audio": "data/reading/audio/20261104-5.mp3",
+   "audioKB": 170,
+   "link": "https://simple.wikipedia.org/wiki/Dan_Coats",
+   "aiAssisted": true
+  },
+  {
+   "id": "20261104-6",
+   "date": "2026-11-04",
+   "source": "Project Gutenberg",
+   "license": "公有领域",
+   "attribution": "Jane Austen · Pride and Prejudice · Project Gutenberg",
+   "topic": "文学",
+   "country": "",
+   "countryName": "",
+   "title": "Pride and Prejudice（选段）",
+   "titleZh": "",
+   "sentences": [
+    {
+     "en": "“I have been thinking it over again, Elizabeth,” said her uncle, as they drove from the town; “and really, upon serious consideration, I am much more inclined than I was to judge as your eldest sister does of the matter.",
+     "zh": ""
+    },
+    {
+     "en": "It appears to me so very unlikely that any young man should form such a design against a girl who is by no means unprotected or friendless, and who was actually staying in his Colonel’s family, that I am strongly inclined to hope the best.",
+     "zh": ""
+    },
+    {
+     "en": "Could he expect that her friends would not step forward?",
+     "zh": ""
+    },
+    {
+     "en": "Could he expect to be noticed again by the regiment, after such an affront to Colonel Forster?",
+     "zh": ""
+    },
+    {
+     "en": "His temptation is not adequate to the risk.”",
+     "zh": ""
+    }
+   ],
+   "glossary": [],
+   "words": 120,
+   "audio": "data/reading/audio/20261104-6.mp3",
+   "audioKB": 227,
+   "link": "https://www.gutenberg.org/ebooks/1342",
    "aiAssisted": true
   }
  ]
