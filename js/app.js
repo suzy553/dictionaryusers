@@ -2559,14 +2559,13 @@ function bindSettings() {
 function go(tab, opts) {
   opts = opts || {};
 
-  /* 点「学习」直接进入每日阅读（关闭阅读返回时用 noAutoRead 跳过，避免又弹开） */
-  if (tab === 'learn' && !opts.noAutoRead && window.XYReading && window.XYReading.isReady &&
-      window.XYReading.isReady() && !window.__skipAutoRead) {
-    window.__skipAutoRead = true;
-    setTimeout(function () { window.__skipAutoRead = false; }, 800);
-    /* 立刻打开，避免先渲染学习页再被盖住造成闪跳 */
-    try { window.XYReading.open(); } catch (e) { }
-  }
+  /* 切栏时如果每日阅读还开着，先收起，避免盖住新页面 */
+  try {
+    if (window.XYReading && window.XYReading.isOpen && window.XYReading.isOpen() &&
+        window.XYReading.hide) {
+      window.XYReading.hide();
+    }
+  } catch (e) { }
 
   /* 目标页面不存在时回退首页，避免整屏空白 */
   if (!document.getElementById('screen-' + tab)) tab = 'home';

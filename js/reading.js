@@ -813,6 +813,7 @@
     /* 先盖住整屏，再加载数据，避免露出下面的学习页造成闪跳 */
     panel.classList.add('is-open');
     document.documentElement.classList.add('overlay-open');
+    bindReadingNav();
     await loadFeed();
     render();
     var track = el('readingTrack');
@@ -822,18 +823,38 @@
     renderProgress();
   }
 
-  function close() {
+  function hide() {
     var panel = el('readingFeed');
-    if (panel) panel.classList.remove('is-open');
+    if (panel) {
+      panel.classList.remove('is-open');
+      panel.setAttribute('aria-hidden', 'true');
+    }
     document.documentElement.classList.remove('overlay-open');
     hideWordPop();
     stopAudio();
-    /* 关掉阅读后回到进来时的那一栏（通常是「学习」），而不是硬跳首页。
-       noAutoRead 防止 go('learn') 又立刻把阅读弹开。 */
+  }
+
+  function close() {
+    hide();
+    /* 关掉阅读后回到进来时的那一栏（通常是「学习」），而不是硬跳首页 */
     var back = window.__curTab || 'learn';
     try {
-      if (typeof go === 'function') go(back === 'home' ? 'home' : back, { noAutoRead: true });
+      if (typeof go === 'function') go(back === 'home' ? 'home' : back);
     } catch (e) { }
+  }
+
+  /* 阅读页底部的导航：点一下收起阅读并切到对应栏目 */
+  function bindReadingNav() {
+    var nav = el('readingNav');
+    if (!nav || nav.dataset.b) return;
+    nav.dataset.b = '1';
+    nav.addEventListener('click', function (e) {
+      var b = e.target && e.target.closest ? e.target.closest('[data-go]') : null;
+      if (!b) return;
+      var tab = b.getAttribute('data-go');
+      hide();
+      try { if (typeof go === 'function') go(tab); } catch (err) { }
+    });
   }
 
   /* ---------------- 文章汇总 ---------------- */
@@ -1203,6 +1224,7 @@
     isReady: function () { return !!el('readingTrack'); },
     open: open,
     close: close,
+    hide: hide,
     openArchive: openArchive,
     isOpen: function () {
       var p = el('readingFeed');
