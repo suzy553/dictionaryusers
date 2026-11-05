@@ -2379,6 +2379,42 @@ function bindSettings() {
     if (out) out.hidden = false;
     if (window.XYReading && window.XYReading.audioCheck) window.XYReading.audioCheck();
   };
+  const btnVoiceChk = document.getElementById('btnVoiceCheck');
+  if (btnVoiceChk) btnVoiceChk.onclick = function () {
+    var out = document.getElementById('rdVoiceOut');
+    if (!out) return;
+    out.hidden = false;
+    out.textContent = '检测中…';
+    if (!window.XYISE || !window.XYISE.available()) {
+      out.textContent = '未配置语音服务地址：先到设置里填函数 URL';
+      return;
+    }
+    var base = window.XYISE.proxyUrl();
+    if (!/^https?:/i.test(base)) {
+      out.textContent = '当前填的是旧版 wss 地址，无法自检';
+      return;
+    }
+    var ver = (document.querySelector('meta[name="app-version"]') || {}).content || '?';
+    var svcs = [['ise', '评测'], ['tts', '朗读'], ['iat', '听写']];
+    Promise.all(svcs.map(function (s) {
+      var url = base + (base.indexOf('?') >= 0 ? '&' : '?') + 'svc=' + s[0];
+      return fetch(url, { cache: 'no-store' }).then(function (r) {
+        return r.json().then(function (j) {
+          var host = '';
+          try { host = j.url ? new URL(j.url).host : ''; } catch (e) { }
+          return { label: s[1], name: s[0], ok: r.ok && !!j.url, code: r.status, host: host, err: j.error || '' };
+        });
+      }).catch(function (e) {
+        return { label: s[1], name: s[0], ok: false, err: e.message };
+      });
+    })).then(function (rs) {
+      var lines = ['版本 v' + ver];
+      rs.forEach(function (x) {
+        lines.push(x.label + '（' + x.name + '）：' + (x.ok ? '✓ ' + x.host : '✗ ' + (x.err || x.code)));
+      });
+      out.textContent = lines.join('\n');
+    });
+  };
   const _rvCardReading = document.getElementById('rvCardReading');
   if (_rvCardReading) _rvCardReading.onclick = openReadingBook;
   const _rbClose = document.getElementById('rbClose');
