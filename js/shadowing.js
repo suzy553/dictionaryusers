@@ -404,7 +404,9 @@
     } catch (e) {
       stopMeter();
       setRecUI(row, false);
-      showStatus(i, '评测失败：' + (e && e.message ? e.message : e) +
+      var _m = (e && e.message ? e.message : String(e));
+      if (e && typeof e.audioSeconds === 'number') _m += '（已录 ' + e.audioSeconds.toFixed(1) + ' 秒）';
+      showStatus(i, '评测失败：' + _m +
         '<br>可切换顶部「模式：录音」先练录音回放', 'warn');
     }
   }

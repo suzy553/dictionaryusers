@@ -2992,7 +2992,7 @@ async function boot() {
   function registerSW() {
     if (!('serviceWorker' in navigator) || !location.protocol.startsWith('http')) return;
     window.__SW_VER = 'v286';
-    navigator.serviceWorker.register('sw.js').then(function (reg) {
+    navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).then(function (reg) {
       try { reg.update(); } catch (e) { }
 
       function takeover(worker) {
