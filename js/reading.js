@@ -152,7 +152,7 @@
             r = Math.round(r / n * 0.42);
             g = Math.round(g / n * 0.42);
             b = Math.round(b / n * 0.42);
-            var tint = 'rgba(' + r + ',' + g + ',' + b + ',.82)';
+            var tint = 'rgba(' + r + ',' + g + ',' + b + ',.55)';
             tintCache[c] = tint;
             card.style.setProperty('--rd-tint', tint);
           } catch (e) { }
@@ -852,6 +852,7 @@
   }
 
   var practiceBusy = false;
+  var practiceStartedAt = 0;
 
   function startPractice(btn) {
     if (!window.XYISE || !window.XYISE.available()) {
@@ -859,6 +860,8 @@
       return;
     }
     if (practiceBusy) {
+      /* 刚点就点停容易得到空音频，先让用户多读一会儿 */
+      if (Date.now() - practiceStartedAt < 700) return;
       try { window.XYISE._stop(); } catch (e) { }
       return;
     }
@@ -870,6 +873,7 @@
     var timer = null;
 
     practiceBusy = true;
+    practiceStartedAt = Date.now();
     btn.textContent = '■ 停止';
     btn.classList.add('is-rec');
     out.textContent = '';
@@ -926,7 +930,8 @@
     panel.classList.add('is-open');
     document.documentElement.classList.add('overlay-open');
     bindReadingNav();
-    await loadFeed();
+    markNavActive();
+    try { await loadFeed(); } catch (e) { }
     render();
     var track = el('readingTrack');
     if (track) { bindTrack(track); bindAudioEvents(); track.scrollTop = 0; }
@@ -967,6 +972,16 @@
       hide();
       try { if (typeof go === 'function') go(tab, { noAutoRead: true }); } catch (err) { }
     });
+  }
+
+  function markNavActive() {
+    var nav = el('readingNav');
+    if (!nav) return;
+    var cur = window.__curTab || 'learn';
+    var bs = nav.querySelectorAll('[data-go]');
+    for (var i = 0; i < bs.length; i++) {
+      bs[i].classList.toggle('is-active', bs[i].getAttribute('data-go') === cur);
+    }
   }
 
   /* ---------------- 文章汇总 ---------------- */

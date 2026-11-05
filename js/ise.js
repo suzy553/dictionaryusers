@@ -517,6 +517,20 @@
     /* 必须在点击的同步调用里唤醒音频上下文（iOS 限制） */
     kickAudio();
 
+    /* 上一次会话没清干净就先收掉，避免两个会话抢麦克风 */
+    try {
+      if (current) { current.stop(); await new Promise(function (r) { setTimeout(r, 200); }); }
+    } catch (e) { }
+
+    /* 先要到麦克风权限再连讯飞：首次授权可能要好几秒，
+       如果先发 ssb 再等权限，讯飞会因超时把会话关掉（表现为 8195 / iSEInputAppend error） */
+    try {
+      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        var warm = await navigator.mediaDevices.getUserMedia({ audio: true });
+        warm.getTracks().forEach(function (t) { t.stop(); });
+      }
+    } catch (e) { }
+
     var base = proxyUrl();
     var direct = isDirect(base);
     var category = (opts && opts.category) || 'read_sentence';
