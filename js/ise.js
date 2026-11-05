@@ -503,6 +503,7 @@
   /* ---------- 会话管理（供「停止」按钮调用） ---------- */
   var current = null;
   var currentRec = null;
+  var lastEndAt = 0;
 
   function stopCurrent() {
     var s = current;
@@ -521,6 +522,12 @@
     try {
       if (current) { current.stop(); await new Promise(function (r) { setTimeout(r, 200); }); }
     } catch (e) { }
+
+    /* 两次评测之间留一点间隔，等讯飞释放上一路会话 */
+    var gap = Date.now() - lastEndAt;
+    if (gap < 900) {
+      await new Promise(function (r) { setTimeout(r, 900 - gap); });
+    }
 
     /* 先要到麦克风权限再连讯飞：首次授权可能要好几秒，
        如果先发 ssb 再等权限，讯飞会因超时把会话关掉（表现为 8195 / iSEInputAppend error） */
@@ -578,6 +585,7 @@
         clearTimeout(micTimer);
         try { rec.stop(); } catch (e) { }
         currentRec = null;
+        lastEndAt = Date.now();
         try {
           if (ws.readyState === 0 || ws.readyState === 1) ws.close();
         } catch (e) { }
@@ -611,12 +619,13 @@
       /* 「停止」按钮：停止录音并给讯飞发最后一帧 */
       session.stop = function () {
         if (settled) return;
-        session.stopped = true;
-        /* 一句都没录到：本地直接给提示，不要发到讯飞触发 8195 */
-        if (!started) {
-          fail('还没录到声音就停了，读完一句再点停止');
+        /* 音频太短（< 1 秒）先不结束，等够 1 秒再自动收尾，
+           避免 0.2s 这种半截音频把讯飞惹毛（8195） */
+        if (sentBytes < 32000) {
+          session.pendingStop = true;
           return;
         }
+        session.stopped = true;
         sendFinal();
         stopCapture();
         try { rec.stop(); } catch (e) { }
@@ -643,6 +652,12 @@
               business: { cmd: 'auw', aus: aus },
               data: { status: 1, data: b64(pcm) }
             }));
+            if (session.pendingStop && sentBytes >= 32000) {
+              session.stopped = true;
+              sendFinal();
+              stopCapture();
+              try { rec.stop(); } catch (e) { }
+            }
           });
 
           if (!started) {

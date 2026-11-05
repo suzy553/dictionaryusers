@@ -3021,6 +3021,19 @@ async function boot() {
   } else {
     window.addEventListener('load', function () { setTimeout(registerSW, 1500); }, { once: true });
   }
+  /* 设置页显示版本号，方便截图排查“你跑的是哪一版” */
+  try {
+    var verMeta = document.querySelector('meta[name="app-version"]');
+    var setScreen = document.getElementById('screen-settings');
+    if (verMeta && setScreen && !document.getElementById('appVerTag')) {
+      var verP = document.createElement('p');
+      verP.id = 'appVerTag';
+      verP.className = 'hint';
+      verP.textContent = '版本 v' + verMeta.getAttribute('content');
+      setScreen.appendChild(verP);
+    }
+  } catch (e) { }
+
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'visible') {
       renderHome(); maybeNotifyToday();

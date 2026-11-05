@@ -1,4 +1,4 @@
-﻿name: CI
+name: CI
 
 on:
   push:
@@ -46,6 +46,9 @@ jobs:
 
       - name: 检查资源引用
         run: node scripts/check-refs.js
+
+      - name: 检查版本号一致性
+        run: node scripts/check-version.js
 
       - name: 检查关键文件存在
         run: |
