@@ -15,51 +15,6 @@
   var playingId = null;
   var lastTapAt = 0;
 
-  /* 运行时注入白色主题：就算浏览器缓存了旧 HTML（没有 is-light 类），也能强制覆盖 */
-  function installLightTheme() {
-    if (document.getElementById('rdLightTheme')) return;
-    var css = [
-      '#readingFeed{background:#fff!important}',
-      '#readingFeed #readingBg,#readingFeed #readingVeil,#readingFeed .rd-bg,#readingFeed .rd-veil{display:none!important}',
-      '#readingFeed .rd-inner{color:#1c2a24!important}',
-      '#readingFeed .rd-title{color:#14201a!important;text-shadow:none!important}',
-      '#readingFeed .rd-title-zh{color:#4a5c52!important;text-shadow:none!important}',
-      '#readingFeed .rd-body{color:#1c2a24!important;text-shadow:none!important}',
-      '#readingFeed .rd-meta{color:#6b7a72!important}',
-      '#readingFeed .rd-country{color:#1c2a24!important}',
-      '#readingFeed .rd-date,#readingFeed .rd-src,#readingFeed .rd-dot{color:#8b98a6!important}',
-      '#readingFeed .rd-body-zh,#readingFeed .rd-szh{background:#f4f8f5!important;color:#4a5c52!important;border-color:#e3ebe5!important}',
-      '#readingFeed .rd-s.is-on{background:#eef5f0!important}',
-      '#readingFeed .rd-hbtn{background:#f4f8f5!important;border-color:#e3ebe5!important;color:#1c2a24!important}',
-      '#readingFeed .rd-trans-toggle{background:#f4f8f5!important;border-color:#e3ebe5!important;color:#1c2a24!important}',
-      '#readingFeed .rd-tip{color:#8b98a6!important}',
-      '#readingFeed .rd-legal{color:#8b98a6!important;border-top-color:#eef2ef!important}',
-      '#readingFeed .rd-legal b{color:#6b7a72!important}',
-      '#readingFeed .rd-link{color:#2f6b3b!important}',
-      '#readingFeed .rd-next{background:#58cc02!important;color:#fff!important}',
-      '#readingFeed .rd-float-close{background:#f2f4f3!important;color:#4a5c52!important}',
-      '#readingFeed .rd-top{background:none!important}',
-      '#readingFeed #readingProgress i{background:#e3ebe5!important}',
-      '#readingFeed #readingProgress i.on{background:#58cc02!important}',
-      '#readingFeed .rd-words-t{color:#8b98a6!important}',
-      '#readingFeed .rd-word{background:#f4f8f5!important;border-color:#e3ebe5!important;color:#1c2a24!important}',
-      '#readingFeed .rd-word i{color:#6b7a72!important}',
-      '#readingFeed .rd-practice{background:#f7faf8!important;border-color:#e6eee8!important}',
-      '#readingFeed .rd-pr-head b{color:#1c2a24!important}',
-      '#readingFeed .rd-pr-head span{color:#8b98a6!important}',
-      '#readingFeed .rd-pr-row{border-bottom-color:#eef2ef!important}',
-      '#readingFeed .rd-pr-s{color:#1c2a24!important}',
-      '#readingFeed .rd-pr-btn{background:#eef9e5!important;color:#2f6b3b!important;border-color:#b9e39a!important}',
-      '#readingFeed .rd-pr-btn.is-rec{background:#58cc02!important;color:#fff!important}',
-      '#readingFeed .rd-pr-score{color:#6b7a72!important}',
-      '#readingFeed .rd-empty,#readingFeed .rd-hint{color:#8b98a6!important}'
-    ].join('');
-    var st = document.createElement('style');
-    st.id = 'rdLightTheme';
-    st.textContent = css;
-    document.head.appendChild(st);
-  }
-
   function el(id) { return document.getElementById(id); }
   function esc(s) {
     return String(s == null ? '' : s)
@@ -971,8 +926,6 @@
   async function open() {
     var panel = el('readingFeed');
     if (!panel) return;
-    installLightTheme();
-    panel.classList.add('is-light');
     /* 先盖住整屏，再加载数据，避免露出下面的学习页造成闪跳 */
     panel.classList.add('is-open');
     document.documentElement.classList.add('overlay-open');
@@ -1190,7 +1143,6 @@
 
   /* ---------------- 绑定 ---------------- */
   function bindUI() {
-    installLightTheme();
     var on = function (id, fn, ev) {
       var b = el(id);
       if (b && !b.dataset.b) { b.dataset.b = '1'; b.addEventListener(ev || 'click', fn); }
