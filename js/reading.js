@@ -105,7 +105,7 @@
           '<div class="rd-practice">' +
             '<div class="rd-pr-head"><b>逐句跟读</b><span>点录音，读完点停止出分</span></div>' +
             (it.sentences || []).map(function (s, si) {
-              return '<div class="rd-pr-row">' +
+              return '<div class="rd-pr-row" data-text="' + esc(s.en) + '">' +
                 '<p class="rd-pr-s">' + esc(s.en) + '</p>' +
                 '<button class="rd-pr-btn" type="button" data-act="prec" data-si="' + si + '"' +
                   ' data-text="' + esc(s.en) + '">● 录音</button>' +
@@ -882,6 +882,11 @@
       out.className = 'rd-pr-score bad';
       return;
     }
+    if (!readingWords(text).length) {
+      out.textContent = '失败：没取到原句，刷新页面再试';
+      out.className = 'rd-pr-score bad';
+      return;
+    }
     if (practiceBusy) return;
 
     practiceBusy = true;
@@ -919,8 +924,14 @@
   function startPractice(btn) {
     var row = btn.closest('.rd-pr-row');
     if (!row) return;
-    var text = row.getAttribute('data-text') || '';
+    /* data-text 在按钮上，之前从 row 读导致空文本 → 讯飞 8195 */
+    var text = btn.getAttribute('data-text') || row.getAttribute('data-text') || '';
     var out = row.querySelector('.rd-pr-score');
+    if (!text) {
+      out.textContent = '失败：没取到原句，刷新页面再试';
+      out.className = 'rd-pr-score bad';
+      return;
+    }
 
     /* 正在听写识别：再点一次就是停止 */
     if (iatState) { try { iatState.stop(); } catch (e) { } return; }

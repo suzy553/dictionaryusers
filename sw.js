@@ -1,5 +1,5 @@
 /* Service Worker：小越背单词 App 离线缓存 */
-const VER = 'xiaoyue-v339';
+const VER = 'xiaoyue-v340';
 const SHELL = [
   './js/ise.js',
   './js/voice.js',
