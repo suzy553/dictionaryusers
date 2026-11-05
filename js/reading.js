@@ -889,7 +889,11 @@
         if (a && a.issues && a.issues.length) out.textContent += ' · ' + a.issues[0].title;
       } catch (e) { }
     }, function (e) {
-      out.textContent = '失败：' + (e && e.message ? e.message : e);
+      var msg = e && e.message ? e.message : String(e);
+      var sec = (e && typeof e.audioSeconds === 'number')
+        ? '（已录 ' + e.audioSeconds.toFixed(1) + ' 秒）' : '';
+      if (msg.indexOf('8195') >= 0) msg = '讯飞会话异常（8195），再点一次重录看看';
+      out.textContent = '失败：' + msg + sec;
       out.className = 'rd-pr-score bad';
     }).then(function () {
       clearTimeout(timer);

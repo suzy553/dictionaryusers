@@ -555,6 +555,8 @@
       var settled = false;
       var lastResult = null;
       var sentBytes = 0;
+      var ssbSent = false;
+      var micTimer = null;
       var session = { ws: ws, rec: rec, stopped: false, finalSent: false };
       current = session;
 
@@ -573,6 +575,7 @@
 
       function cleanup() {
         stopCapture();
+        clearTimeout(micTimer);
         try { rec.stop(); } catch (e) { }
         currentRec = null;
         try {
@@ -590,8 +593,11 @@
       function fail(msg) {
         if (settled) return;
         settled = true;
+        clearTimeout(micTimer);
         cleanup();
-        reject(new Error(msg));
+        var err = new Error(msg);
+        err.audioSeconds = sentBytes / 32000;
+        reject(err);
       }
 
       function done(result) {
@@ -606,6 +612,11 @@
       session.stop = function () {
         if (settled) return;
         session.stopped = true;
+        /* 一句都没录到：本地直接给提示，不要发到讯飞触发 8195 */
+        if (!started) {
+          fail('还没录到声音就停了，读完一句再点停止');
+          return;
+        }
         sendFinal();
         stopCapture();
         try { rec.stop(); } catch (e) { }
@@ -613,11 +624,17 @@
 
       ws.onopen = async function () {
         try {
-          if (direct) ws.send(JSON.stringify(ssbFrame(appId, sentence, category)));
-          if (session.stopped) { sendFinal(); return; }
+          if (session.stopped || settled) return;
 
+          /* 先把麦克风接上、拿到第一帧音频，再发 ssb：
+             避免讯飞等音频超时后报 8195（iSEInputAppend error） */
           await rec.start(function (pcm) {
             if (settled || session.stopped || ws.readyState !== 1) return;
+            if (direct && !ssbSent) {
+              ssbSent = true;
+              clearTimeout(micTimer);
+              ws.send(JSON.stringify(ssbFrame(appId, sentence, category)));
+            }
             sentBytes += pcm.byteLength;
             /* 讯飞协议：首帧 aus=1 / 中间 aus=2 / 末帧 aus=4，data.status 音频阶段固定 1 */
             var aus = started ? 2 : 1;
@@ -627,6 +644,12 @@
               data: { status: 1, data: b64(pcm) }
             }));
           });
+
+          if (!started) {
+            micTimer = setTimeout(function () {
+              if (!started && !settled) fail('没有收到麦克风声音：检查权限，或看看是否被别的 App 占用');
+            }, 3000);
+          }
 
           if (opts && typeof opts.onStream === 'function' && rec.stream) {
             try { opts.onStream(rec.stream); } catch (e) { }
