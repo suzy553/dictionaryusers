@@ -2567,6 +2567,14 @@ function go(tab, opts) {
     }
   } catch (e) { }
 
+  /* 点「学习」直接进入每日阅读（阅读页自己的导航带 noAutoRead，避免又弹开） */
+  if (tab === 'learn' && !opts.noAutoRead && window.XYReading && window.XYReading.isReady &&
+      window.XYReading.isReady() && !window.__skipAutoRead) {
+    window.__skipAutoRead = true;
+    setTimeout(function () { window.__skipAutoRead = false; }, 800);
+    try { window.XYReading.open(); } catch (e) { }
+  }
+
   /* 目标页面不存在时回退首页，避免整屏空白 */
   if (!document.getElementById('screen-' + tab)) tab = 'home';
   window.__curTab = tab;

@@ -72,7 +72,8 @@
     var bg = it.country ? ('data/countries/' + esc(it.country) + '.jpg') : '';
 
     return '' +
-      '<article class="rd-card" data-i="' + i + '" data-id="' + esc(it.id) + '">' +
+      '<article class="rd-card" data-i="' + i + '" data-id="' + esc(it.id) + '"' +
+        (it.country ? ' data-country="' + esc(it.country) + '"' : '') + '>' +
         (bg ? '<div class="rd-bg" style="background-image:url(\'' + bg + '\')"></div>'
             : '<div class="rd-bg rd-bg-plain"></div>') +
         '<div class="rd-veil"></div>' +
@@ -97,7 +98,21 @@
             '</div>' +
           '</div>' +
           '<div class="rd-body">' + sents + '</div>' +
-          '<div class="rd-tools"><span class="rd-tip">点句子看翻译 · 点单词查释义</span></div>' +
+          '<div class="rd-tools">' +
+            '<span class="rd-tip">点句子看翻译 · 点单词查释义</span>' +
+            '<button class="rd-practice-jump" type="button" data-act="practice">练这一段 ↓</button>' +
+          '</div>' +
+          '<div class="rd-practice">' +
+            '<div class="rd-pr-head"><b>逐句跟读</b><span>点录音，读完点停止出分</span></div>' +
+            (it.sentences || []).map(function (s, si) {
+              return '<div class="rd-pr-row">' +
+                '<p class="rd-pr-s">' + esc(s.en) + '</p>' +
+                '<button class="rd-pr-btn" type="button" data-act="prec" data-si="' + si + '"' +
+                  ' data-text="' + esc(s.en) + '">● 录音</button>' +
+                '<span class="rd-pr-score"></span>' +
+              '</div>';
+            }).join('') +
+          '</div>' +
           '<div class="rd-legal">' +
             '来源：' + esc(it.attribution || it.source || '') +
             (it.license ? ' · ' + esc(it.license) : '') +
@@ -109,8 +124,42 @@
                         : '<button class="rd-next" data-act="next">下一篇 ›</button>') +
           '</div>' +
         '</div>' +
-        (standalone ? '' : '<div class="rd-hint">上滑看下一篇</div>') +
+        (standalone ? '' : '<div class="rd-hint">左右滑动切换文章</div>') +
       '</article>';
+  }
+
+  var tintCache = {};
+
+  /* 取国家图的平均色，压暗后当卡片底色（不是死黑） */
+  function applyTints() {
+    var cards = document.querySelectorAll('.rd-card[data-country]');
+    for (var i = 0; i < cards.length; i++) {
+      (function (card) {
+        var c = card.getAttribute('data-country');
+        if (!c) return;
+        if (tintCache[c]) { card.style.setProperty('--rd-tint', tintCache[c]); return; }
+        var img = new Image();
+        img.onload = function () {
+          try {
+            var cv = document.createElement('canvas');
+            cv.width = 8; cv.height = 8;
+            var ctx = cv.getContext('2d');
+            ctx.drawImage(img, 0, 0, 8, 8);
+            var d = ctx.getImageData(0, 0, 8, 8).data;
+            var r = 0, g = 0, b = 0;
+            for (var p = 0; p < d.length; p += 4) { r += d[p]; g += d[p + 1]; b += d[p + 2]; }
+            var n = d.length / 4;
+            r = Math.round(r / n * 0.42);
+            g = Math.round(g / n * 0.42);
+            b = Math.round(b / n * 0.42);
+            var tint = 'rgba(' + r + ',' + g + ',' + b + ',.82)';
+            tintCache[c] = tint;
+            card.style.setProperty('--rd-tint', tint);
+          } catch (e) { }
+        };
+        img.src = 'data/countries/' + c + '.jpg';
+      })(cards[i]);
+    }
   }
 
   function render() {
@@ -123,6 +172,7 @@
     }
     track.innerHTML = items.map(function (it, i) { return cardHTML(it, i, false); }).join('');
     renderProgress();
+    applyTints();
     setTimeout(markOverflow, 60);
   }
 
@@ -776,11 +826,73 @@
       if (raf) return;
       raf = requestAnimationFrame(function () {
         raf = null;
-        var h = track.clientHeight || 1;
-        var i = Math.round(track.scrollTop / h);
+        var w = track.clientWidth || 1;
+        var i = Math.round(track.scrollLeft / w);
         if (i !== idx) { idx = i; renderProgress(); stopAudio(); }
       });
     }, { passive: true });
+
+    /* 逐句跟读：录音 → 评分（点第二下停止） */
+    track.addEventListener('click', function (e) {
+      var pr = e.target && e.target.closest ? e.target.closest('[data-act="prec"]') : null;
+      if (pr) {
+        e.preventDefault();
+        e.stopPropagation();
+        startPractice(pr);
+        return;
+      }
+      var jp = e.target && e.target.closest ? e.target.closest('[data-act="practice"]') : null;
+      if (jp) {
+        e.preventDefault();
+        e.stopPropagation();
+        var inner = jp.closest('.rd-card') && jp.closest('.rd-card').querySelector('.rd-inner');
+        if (inner) inner.scrollTo({ top: inner.scrollHeight, behavior: 'smooth' });
+      }
+    }, true);
+  }
+
+  var practiceBusy = false;
+
+  function startPractice(btn) {
+    if (!window.XYISE || !window.XYISE.available()) {
+      msg('先到设置里填评测地址，才能跟读打分');
+      return;
+    }
+    if (practiceBusy) {
+      try { window.XYISE._stop(); } catch (e) { }
+      return;
+    }
+
+    var row = btn.closest('.rd-pr-row');
+    if (!row) return;
+    var text = row.getAttribute('data-text') || '';
+    var out = row.querySelector('.rd-pr-score');
+    var timer = null;
+
+    practiceBusy = true;
+    btn.textContent = '■ 停止';
+    btn.classList.add('is-rec');
+    out.textContent = '';
+
+    timer = setTimeout(function () { try { window.XYISE._stop(); } catch (e) { } }, 15000);
+
+    window.XYISE.evaluate(text, null).then(function (r) {
+      var s = Math.round(r.total || 0);
+      out.textContent = s + ' 分';
+      out.className = 'rd-pr-score ' + (s >= 85 ? 'good' : (s >= 60 ? 'mid' : 'bad'));
+      try {
+        var a = window.XYISE.analyze(r);
+        if (a && a.issues && a.issues.length) out.textContent += ' · ' + a.issues[0].title;
+      } catch (e) { }
+    }, function (e) {
+      out.textContent = '失败：' + (e && e.message ? e.message : e);
+      out.className = 'rd-pr-score bad';
+    }).then(function () {
+      clearTimeout(timer);
+      practiceBusy = false;
+      btn.textContent = '● 重录';
+      btn.classList.remove('is-rec');
+    });
   }
 
 
@@ -790,8 +902,8 @@
     if (!track) return;
     var total = ((FEED && FEED.items) || []).length;
     if (idx >= total - 1) { msg('已经是最后一篇了'); return; }
-    var h = track.clientHeight || 1;
-    track.scrollTo({ top: (idx + 1) * h, behavior: 'smooth' });
+    var w = track.clientWidth || 1;
+    track.scrollTo({ left: (idx + 1) * w, behavior: 'smooth' });
   }
 
   /* 内容超高时隐藏底部提示，避免压字 */
@@ -839,7 +951,7 @@
     /* 关掉阅读后回到进来时的那一栏（通常是「学习」），而不是硬跳首页 */
     var back = window.__curTab || 'learn';
     try {
-      if (typeof go === 'function') go(back === 'home' ? 'home' : back);
+      if (typeof go === 'function') go(back === 'home' ? 'home' : back, { noAutoRead: true });
     } catch (e) { }
   }
 
@@ -853,7 +965,7 @@
       if (!b) return;
       var tab = b.getAttribute('data-go');
       hide();
-      try { if (typeof go === 'function') go(tab); } catch (err) { }
+      try { if (typeof go === 'function') go(tab, { noAutoRead: true }); } catch (err) { }
     });
   }
 
