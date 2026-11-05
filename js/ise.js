@@ -583,6 +583,9 @@
       function cleanup() {
         stopCapture();
         clearTimeout(micTimer);
+        clearInterval(sendTimer);
+        sendTimer = null;
+        queue.length = 0;
         try { rec.stop(); } catch (e) { }
         currentRec = null;
         lastEndAt = Date.now();
@@ -616,50 +619,86 @@
         resolve(result);
       }
 
-      /* 「停止」按钮：停止录音并给讯飞发最后一帧 */
-      session.stop = function () {
-        if (settled) return;
-        /* 音频太短（< 1 秒）先不结束，等够 1 秒再自动收尾，
-           避免 0.2s 这种半截音频把讯飞惹毛（8195） */
-        if (sentBytes < 32000) {
-          session.pendingStop = true;
-          return;
-        }
+      /* 发送队列：按真实时间节流，避免手机卡顿后把多帧音频一次性冲给讯飞（8195） */
+      var queue = [];
+      var queueBytes = 0;
+      var sendTimer = null;
+      var stopping = false;
+      var clockStart = 0;
+      var sentMs = 0;
+
+      function finishAudio() {
+        if (session.finalSent) return;
+        stopping = false;
         session.stopped = true;
         sendFinal();
         stopCapture();
+        clearInterval(sendTimer);
+        sendTimer = null;
         try { rec.stop(); } catch (e) { }
+      }
+
+      function drain() {
+        if (settled) return;
+        if (!clockStart) clockStart = Date.now();
+        /* 允许比实时快 250ms，既平滑突发又不至于把引擎灌爆 */
+        var allowed = (Date.now() - clockStart) + 250;
+        while (queue.length && sentMs < allowed) {
+          var pcm = queue.shift();
+          queueBytes -= pcm.byteLength;
+          sentMs += pcm.byteLength / 32;   /* 16k × 16bit = 32 字节/毫秒 */
+          if (ws.readyState === 1) {
+            var aus = started ? 2 : 1;
+            started = true;
+            sentBytes += pcm.byteLength;
+            try {
+              ws.send(JSON.stringify({
+                business: { cmd: 'auw', aus: aus },
+                data: { status: 1, data: b64(pcm) }
+              }));
+            } catch (e) { }
+          }
+        }
+        if (session.pendingStop && sentBytes + queueBytes >= 32000) {
+          session.pendingStop = false;
+          stopping = true;
+        }
+        if (stopping && !queue.length) finishAudio();
+      }
+
+      /* 「停止」按钮：停止录音并给讯飞发最后一帧 */
+      session.stop = function () {
+        if (settled) return;
+        /* 音频太短（< 1 秒）先不结束，等够 1 秒再自动收尾 */
+        if (sentBytes + queueBytes < 32000) {
+          session.pendingStop = true;
+          return;
+        }
+        stopping = true;
+        if (!queue.length) finishAudio();
       };
 
       ws.onopen = async function () {
         try {
           if (session.stopped || settled) return;
 
-          /* 权限已在 evaluate 里预热过，这里先发 ssb，再启动录音：
-             ssb 和第一帧音频之间留出 100ms 左右的间隔，
-             避免讯飞在同一 tick 收到「参数帧 + 音频」时报 8195 */
+          /* 麦克风权限已在 evaluate 里预热过，先发 ssb 再启动录音 */
           if (direct) {
             ws.send(JSON.stringify(ssbFrame(appId, sentence, category)));
             ssbSent = true;
           }
 
           await rec.start(function (pcm) {
-            if (settled || session.stopped || ws.readyState !== 1) return;
-            sentBytes += pcm.byteLength;
-            /* 讯飞协议：首帧 aus=1 / 中间 aus=2 / 末帧 aus=4，data.status 音频阶段固定 1 */
-            var aus = started ? 2 : 1;
-            started = true;
-            ws.send(JSON.stringify({
-              business: { cmd: 'auw', aus: aus },
-              data: { status: 1, data: b64(pcm) }
-            }));
-            if (session.pendingStop && sentBytes >= 32000) {
-              session.stopped = true;
-              sendFinal();
-              stopCapture();
-              try { rec.stop(); } catch (e) { }
+            if (settled || session.stopped) return;
+            queue.push(pcm);
+            queueBytes += pcm.byteLength;
+            /* 主线程卡顿后最多留 3 秒音频，防止越积越多 */
+            while (queueBytes > 96000 && queue.length > 1) {
+              queueBytes -= queue.shift().byteLength;
             }
           });
+
+          sendTimer = setInterval(drain, 20);
 
           if (!started) {
             micTimer = setTimeout(function () {
