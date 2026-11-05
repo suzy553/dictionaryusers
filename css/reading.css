@@ -1223,3 +1223,9 @@
 }
 #readingFeed .rd-title{ text-shadow: 0 2px 16px rgba(0,0,0,.6) !important; }
 #readingFeed .rd-body{ text-shadow: 0 1px 12px rgba(0,0,0,.5) !important; }
+
+/* 关键：旧主题把每张卡片的底图 display:none 了，这里恢复 */
+#readingFeed .rd-bg{ display: block !important; }
+#readingFeed #readingBg,
+#readingFeed #readingVeil{ display: none !important; }
+#readingFeed .rd-card{ background: transparent !important; }
