@@ -3061,7 +3061,8 @@ async function boot() {
   try {
     var verMeta = document.querySelector('meta[name="app-version"]');
     var setScreen = document.getElementById('screen-settings');
-    if (verMeta && setScreen && !document.getElementById('appVerTag')) {
+    if (verMeta && setScreen && !document.getElementById('appVerTag') &&
+        !document.getElementById('appVerStatic')) {
       var verP = document.createElement('p');
       verP.id = 'appVerTag';
       verP.className = 'hint';

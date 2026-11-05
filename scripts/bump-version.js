@@ -24,6 +24,7 @@ write('sw.js', sw.replace(/xiaoyue-v\d+/, 'xiaoyue-v' + v));
 
 let html = read('index.html');
 html = html.replace(/\?v=\d+/g, '?v=' + v);
+html = html.replace(/id="appVerStatic">版本 v\d+/, 'id="appVerStatic">版本 v' + v);
 if (/name="app-version"/.test(html)) {
   html = html.replace(/name="app-version"\s+content="\d+"/, 'name="app-version" content="' + v + '"');
 } else {

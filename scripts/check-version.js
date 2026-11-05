@@ -35,6 +35,10 @@ const meta = html.match(/name="app-version"\s+content="(\d+)"/);
 if (!meta) errors.push('index.html 缺少 <meta name="app-version">');
 else if (meta[1] !== version) errors.push(`meta app-version 是 v${meta[1]}，VERSION 是 v${version}`);
 
+const stat = html.match(/id="appVerStatic">版本 v(\d+)/);
+if (!stat) errors.push('index.html 缺少静态版本号 appVerStatic');
+else if (stat[1] !== version) errors.push(`appVerStatic 是 v${stat[1]}，VERSION 是 v${version}`);
+
 if (errors.length) {
   console.error('✗ 版本号不一致：');
   for (const e of errors) console.error('  - ' + e);
