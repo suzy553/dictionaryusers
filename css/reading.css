@@ -1211,3 +1211,67 @@
     var(--rd-tint, rgba(6,12,9,.5)) 40%,
     rgba(0,0,0,.55) 100%) !important;
 }
+
+/* ================= 文章页：白色主题 ================= */
+#readingFeed.is-light{ background: #ffffff !important; }
+#readingFeed.is-light .rd-bg,
+#readingFeed.is-light .rd-veil{ display: none !important; }
+#readingFeed.is-light .rd-card{ background: #fff !important; }
+#readingFeed.is-light .rd-inner{ color: #1c2a24 !important; }
+#readingFeed.is-light .rd-meta{ color: #6b7a72 !important; }
+#readingFeed.is-light .rd-country{ color: #1c2a24 !important; }
+#readingFeed.is-light .rd-date,
+#readingFeed.is-light .rd-src,
+#readingFeed.is-light .rd-dot{ color: #8b98a6 !important; }
+
+#readingFeed.is-light .rd-title{ color: #14201a !important; text-shadow: none !important; }
+#readingFeed.is-light .rd-title-zh{ color: #4a5c52 !important; text-shadow: none !important; }
+#readingFeed.is-light .rd-body{ color: #1c2a24 !important; text-shadow: none !important; }
+#readingFeed.is-light .rd-body-zh{
+  background: #f4f8f5 !important; border-color: #e3ebe5 !important; color: #4a5c52 !important;
+}
+#readingFeed.is-light .rd-s.is-on{ background: #eef5f0 !important; }
+#readingFeed.is-light .rd-w:active{ background: rgba(88,204,2,.22) !important; }
+
+#readingFeed.is-light .rd-hbtn{
+  background: #f4f8f5 !important; border-color: #e3ebe5 !important; color: #1c2a24 !important;
+}
+#readingFeed.is-light .rd-hbtn:active{ background: #e9f2ec !important; }
+#readingFeed.is-light .rd-hbtn-zh.is-on{
+  background: #eef9e5 !important; color: #2f6b3b !important; border-color: #58cc02 !important;
+}
+#readingFeed.is-light .rd-trans-toggle{
+  background: #f4f8f5 !important; border-color: #e3ebe5 !important; color: #1c2a24 !important;
+}
+#readingFeed.is-light .rd-tip{ color: #8b98a6 !important; }
+#readingFeed.is-light .rd-legal{ color: #8b98a6 !important; border-top-color: #eef2ef !important; }
+#readingFeed.is-light .rd-legal b{ color: #6b7a72 !important; }
+#readingFeed.is-light .rd-link{ color: #2f6b3b !important; }
+#readingFeed.is-light .rd-next{ background: #58cc02 !important; color: #fff !important; }
+
+#readingFeed.is-light .rd-float-close{
+  background: #f2f4f3 !important; color: #4a5c52 !important;
+}
+#readingFeed.is-light .rd-top{ background: none !important; }
+#readingFeed.is-light #readingProgress i{ background: #e3ebe5 !important; }
+#readingFeed.is-light #readingProgress i.on{ background: #58cc02 !important; }
+#readingFeed.is-light .rd-empty{ color: #8b98a6 !important; }
+#readingFeed.is-light .rd-hint{ color: #8b98a6 !important; }
+
+#readingFeed.is-light .rd-practice{
+  background: #f7faf8 !important; border-color: #e6eee8 !important;
+}
+#readingFeed.is-light .rd-pr-head b{ color: #1c2a24 !important; }
+#readingFeed.is-light .rd-pr-head span{ color: #8b98a6 !important; }
+#readingFeed.is-light .rd-pr-row{ border-bottom-color: #eef2ef !important; }
+#readingFeed.is-light .rd-pr-s{ color: #1c2a24 !important; }
+#readingFeed.is-light .rd-pr-btn{
+  background: #eef9e5 !important; color: #2f6b3b !important; border-color: #b9e39a !important;
+}
+#readingFeed.is-light .rd-pr-btn.is-rec{ background: #58cc02 !important; color: #fff !important; }
+#readingFeed.is-light .rd-pr-score{ color: #6b7a72 !important; }
+#readingFeed.is-light .rd-pr-score.good{ color: #2f6b3b !important; }
+#readingFeed.is-light .rd-pr-score.mid{ color: #b7791f !important; }
+#readingFeed.is-light .rd-pr-score.bad{ color: #b3261e !important; }
+#readingFeed.is-light #readingBg,
+#readingFeed.is-light #readingVeil{ display: none !important; }
