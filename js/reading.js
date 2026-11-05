@@ -853,6 +853,7 @@
 
   var practiceBusy = false;
   var practiceStartedAt = 0;
+  var practiceAutoRetry = {};
 
   function startPractice(btn) {
     if (!window.XYISE || !window.XYISE.available()) {
@@ -871,12 +872,19 @@
     var text = row.getAttribute('data-text') || '';
     var out = row.querySelector('.rd-pr-score');
     var timer = null;
+    var tick = null;
 
     practiceBusy = true;
     practiceStartedAt = Date.now();
     btn.textContent = '■ 停止';
     btn.classList.add('is-rec');
-    out.textContent = '';
+    out.textContent = '录音 0.0 秒…';
+    out.className = 'rd-pr-score';
+
+    tick = setInterval(function () {
+      if (!practiceBusy) return;
+      out.textContent = '录音 ' + ((Date.now() - practiceStartedAt) / 1000).toFixed(1) + ' 秒…';
+    }, 200);
 
     timer = setTimeout(function () { try { window.XYISE._stop(); } catch (e) { } }, 15000);
 
@@ -884,6 +892,7 @@
       var s = Math.round(r.total || 0);
       out.textContent = s + ' 分';
       out.className = 'rd-pr-score ' + (s >= 85 ? 'good' : (s >= 60 ? 'mid' : 'bad'));
+      delete practiceAutoRetry[text];
       try {
         var a = window.XYISE.analyze(r);
         if (a && a.issues && a.issues.length) out.textContent += ' · ' + a.issues[0].title;
@@ -892,11 +901,22 @@
       var msg = e && e.message ? e.message : String(e);
       var sec = (e && typeof e.audioSeconds === 'number')
         ? '（已录 ' + e.audioSeconds.toFixed(1) + ' 秒）' : '';
-      if (msg.indexOf('8195') >= 0) msg = '讯飞会话异常（8195），再点一次重录看看';
+
+      /* 8195 先自动重连一次，很多是上一路会话没释放 */
+      if (msg.indexOf('8195') >= 0 && !practiceAutoRetry[text]) {
+        practiceAutoRetry[text] = 1;
+        out.textContent = '会话重连中…';
+        out.className = 'rd-pr-score mid';
+        setTimeout(function () { startPractice(btn); }, 1400);
+        return;
+      }
+
+      if (msg.indexOf('8195') >= 0) msg = '讯飞会话异常（8195），稍等几秒再试';
       out.textContent = '失败：' + msg + sec;
       out.className = 'rd-pr-score bad';
     }).then(function () {
       clearTimeout(timer);
+      clearInterval(tick);
       practiceBusy = false;
       btn.textContent = '● 重录';
       btn.classList.remove('is-rec');
@@ -953,6 +973,8 @@
     document.documentElement.classList.remove('overlay-open');
     hideWordPop();
     stopAudio();
+    /* 离开阅读页时如果还在录音，先把评测会话停掉 */
+    try { if (window.XYISE && window.XYISE._stop) window.XYISE._stop(); } catch (e) { }
   }
 
   function close() {
