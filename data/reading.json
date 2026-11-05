@@ -1,39 +1,83 @@
 {
- "updated": "2026-11-04 22:57",
- "date": "2026-11-04",
+ "updated": "2026-11-05 22:57",
+ "date": "2026-11-05",
  "source": "Project Gutenberg / Simple Wikipedia",
  "items": [
   {
-   "id": "20261104-1",
-   "date": "2026-11-04",
+   "id": "20261105-1",
+   "date": "2026-11-05",
    "source": "Simple Wikipedia",
    "license": "CC BY-SA 4.0",
    "attribution": "Simple English Wikipedia",
    "topic": "百科",
    "country": "",
    "countryName": "",
-   "title": "Warwick Davis",
+   "title": "Rosemont Theatre",
    "titleZh": "",
    "sentences": [
     {
-     "en": "Warwick Ashley Davis is an English actor and television presenter.",
+     "en": "The Rosemont Theatre is a concert hall in Rosemont, Illinois, a suburb of Chicago.",
      "zh": ""
     },
     {
-     "en": "He is known for his roles including the title character of Willow (1989), the main villain in the Leprechaun movie series (1993–2003), many characters in the Star Wars movie series (1983–2019) and Professor Filius Flitwick and Griphook in the Harry Potter film series (2001–2011).",
+     "en": "The venue, which has seats for 4,400 people.",
+     "zh": ""
+    },
+    {
+     "en": "It opened in 1995.",
+     "zh": ""
+    },
+    {
+     "en": "It hosts many different musical artists and shows.",
+     "zh": ""
+    },
+    {
+     "en": "It is located near O'Hare International Airport, Allstate Arena and Donald E.",
+     "zh": ""
+    },
+    {
+     "en": "Stephens Convention Center.",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 54,
-   "audio": "data/reading/audio/20261104-1.mp3",
-   "audioKB": 158,
-   "link": "https://simple.wikipedia.org/wiki/Warwick_Davis",
+   "words": 49,
+   "audio": "data/reading/audio/20261105-1.mp3",
+   "audioKB": 140,
+   "link": "https://simple.wikipedia.org/wiki/Rosemont_Theatre",
    "aiAssisted": true
   },
   {
-   "id": "20261104-2",
-   "date": "2026-11-04",
+   "id": "20261105-2",
+   "date": "2026-11-05",
+   "source": "Project Gutenberg",
+   "license": "公有领域",
+   "attribution": "Louisa May Alcott · Little Women · Project Gutenberg",
+   "topic": "文学",
+   "country": "",
+   "countryName": "",
+   "title": "Little Women（选段）",
+   "titleZh": "",
+   "sentences": [
+    {
+     "en": "Bent on showing that he was not offended, he made himself as agreeable as possible, wound cotton for Meg, recited poetry to please Jo, shook down cones for Beth, and helped Amy with her ferns, proving himself a fit person to belong to the ‘Busy Bee Society’.",
+     "zh": ""
+    },
+    {
+     "en": "In the midst of an animated discussion on the domestic habits of turtles (one of those amiable creatures having strolled up from the river), the faint sound of a bell warned them that Hannah had put the tea ‘to draw’, and they would just have time to get home to supper.",
+     "zh": ""
+    }
+   ],
+   "glossary": [],
+   "words": 98,
+   "audio": "data/reading/audio/20261105-2.mp3",
+   "audioKB": 178,
+   "link": "https://www.gutenberg.org/ebooks/514",
+   "aiAssisted": true
+  },
+  {
+   "id": "20261105-3",
+   "date": "2026-11-05",
    "source": "Project Gutenberg",
    "license": "公有领域",
    "attribution": "Robert Louis Stevenson · Treasure Island · Project Gutenberg",
@@ -44,68 +88,28 @@
    "titleZh": "",
    "sentences": [
     {
-     "en": "As the captain had said, the chill was past.",
+     "en": "In the meantime I had a better chance, as I supposed, before me.",
      "zh": ""
     },
     {
-     "en": "As soon as the sun had climbed above our girdle of trees, it fell with all its force upon the clearing and drank up the vapours at a draught.",
+     "en": "North of Haulbowline Head, the land runs in a long way, leaving at low tide a long stretch of yellow sand.",
      "zh": ""
     },
     {
-     "en": "Soon the sand was baking and the resin melting in the logs of the block house.",
-     "zh": ""
-    },
-    {
-     "en": "Jackets and coats were flung aside, shirts thrown open at the neck and rolled up to the shoulders; and we stood there, each at his post, in a fever of heat and anxiety.",
+     "en": "To the north of that, again, there comes another cape--Cape of the Woods, as it was marked upon the chart--buried in tall green pines, which descended to the margin of the sea.",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 87,
-   "audio": "data/reading/audio/20261104-2.mp3",
-   "audioKB": 156,
+   "words": 66,
+   "audio": "data/reading/audio/20261105-3.mp3",
+   "audioKB": 127,
    "link": "https://www.gutenberg.org/ebooks/120",
    "aiAssisted": true
   },
   {
-   "id": "20261104-3",
-   "date": "2026-11-04",
-   "source": "Simple Wikipedia",
-   "license": "CC BY-SA 4.0",
-   "attribution": "Simple English Wikipedia",
-   "topic": "百科",
-   "country": "",
-   "countryName": "",
-   "title": "Selma Reis",
-   "titleZh": "",
-   "sentences": [
-    {
-     "en": "Selma Reis was a Brazilian actress and singer.",
-     "zh": ""
-    },
-    {
-     "en": "She was born in São Gonçalo, Rio de Janeiro.",
-     "zh": ""
-    },
-    {
-     "en": "She acted in many telenovelas and miniseries for Rede Globo, including Caminho das Índias, Páginas da Vida, Presença de Anita and Chiquinha Gonzaga.",
-     "zh": ""
-    },
-    {
-     "en": "After 1987, she released a debut album, the first of eleven releases.",
-     "zh": ""
-    }
-   ],
-   "glossary": [],
-   "words": 52,
-   "audio": "data/reading/audio/20261104-3.mp3",
-   "audioKB": 141,
-   "link": "https://simple.wikipedia.org/wiki/Selma_Reis",
-   "aiAssisted": true
-  },
-  {
-   "id": "20261104-4",
-   "date": "2026-11-04",
+   "id": "20261105-4",
+   "date": "2026-11-05",
    "source": "Project Gutenberg",
    "license": "公有领域",
    "attribution": "Lewis Carroll · Alice's Adventures in Wonderland · Project Gutenberg",
@@ -116,107 +120,103 @@
    "titleZh": "",
    "sentences": [
     {
-     "en": "Alice waited till the eyes appeared, and then nodded.",
+     "en": "it was too late to wish that!",
      "zh": ""
     },
     {
-     "en": "“It’s no use speaking to it,” she thought, “till its ears have come, or at least one of them.” In another minute the whole head appeared, and then Alice put down her flamingo, and began an account of the game, feeling very glad she had someone to listen to her.",
+     "en": "She went on growing, and growing, and very soon had to kneel down on the floor: in another minute there was not even room for this, and she tried the effect of lying down with one elbow against the door, and the other arm curled round her head.",
      "zh": ""
     },
     {
-     "en": "The Cat seemed to think that there was enough of it now in sight, and no more of it appeared.",
+     "en": "Still she went on growing, and, as a last resource, she put one arm out of the window, and one foot up the chimney, and said to herself “Now I can do no more, whatever happens.",
+     "zh": ""
+    },
+    {
+     "en": "What _will_ become of me?”",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 79,
-   "audio": "data/reading/audio/20261104-4.mp3",
-   "audioKB": 144,
+   "words": 96,
+   "audio": "data/reading/audio/20261105-4.mp3",
+   "audioKB": 182,
    "link": "https://www.gutenberg.org/ebooks/11",
    "aiAssisted": true
   },
   {
-   "id": "20261104-5",
-   "date": "2026-11-04",
-   "source": "Simple Wikipedia",
-   "license": "CC BY-SA 4.0",
-   "attribution": "Simple English Wikipedia",
-   "topic": "百科",
-   "country": "",
-   "countryName": "",
-   "title": "Dan Coats",
-   "titleZh": "",
-   "sentences": [
-    {
-     "en": "Daniel Ray \"Dan\" Coats is an American politician.",
-     "zh": ""
-    },
-    {
-     "en": "Coats is the 5th and current Director of National Intelligence serving since March 15, 2017.",
-     "zh": ""
-    },
-    {
-     "en": "He served as United States Senator from Indiana from 1989 to 1999 and 2011 to 2017.",
-     "zh": ""
-    },
-    {
-     "en": "He is a member of the U.S.",
-     "zh": ""
-    },
-    {
-     "en": "Republican Party.",
-     "zh": ""
-    },
-    {
-     "en": "He was in the United States House of Representatives from 1981 to 1989.",
-     "zh": ""
-    }
-   ],
-   "glossary": [],
-   "words": 61,
-   "audio": "data/reading/audio/20261104-5.mp3",
-   "audioKB": 170,
-   "link": "https://simple.wikipedia.org/wiki/Dan_Coats",
-   "aiAssisted": true
-  },
-  {
-   "id": "20261104-6",
-   "date": "2026-11-04",
+   "id": "20261105-5",
+   "date": "2026-11-05",
    "source": "Project Gutenberg",
    "license": "公有领域",
-   "attribution": "Jane Austen · Pride and Prejudice · Project Gutenberg",
+   "attribution": "H. G. Wells · The Time Machine · Project Gutenberg",
    "topic": "文学",
    "country": "",
    "countryName": "",
-   "title": "Pride and Prejudice（选段）",
+   "title": "The Time Machine（选段）",
    "titleZh": "",
    "sentences": [
     {
-     "en": "“I have been thinking it over again, Elizabeth,” said her uncle, as they drove from the town; “and really, upon serious consideration, I am much more inclined than I was to judge as your eldest sister does of the matter.",
+     "en": "“While I was musing upon these things, my attention was attracted by a pretty little structure, like a well under a cupola.",
      "zh": ""
     },
     {
-     "en": "It appears to me so very unlikely that any young man should form such a design against a girl who is by no means unprotected or friendless, and who was actually staying in his Colonel’s family, that I am strongly inclined to hope the best.",
+     "en": "I thought in a transitory way of the oddness of wells still existing, and then resumed the thread of my speculations.",
      "zh": ""
     },
     {
-     "en": "Could he expect that her friends would not step forward?",
+     "en": "There were no large buildings towards the top of the hill, and as my walking powers were evidently miraculous, I was presently left alone for the first time.",
      "zh": ""
     },
     {
-     "en": "Could he expect to be noticed again by the regiment, after such an affront to Colonel Forster?",
-     "zh": ""
-    },
-    {
-     "en": "His temptation is not adequate to the risk.”",
+     "en": "With a strange sense of freedom and adventure I pushed on up to the crest.",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 120,
-   "audio": "data/reading/audio/20261104-6.mp3",
-   "audioKB": 227,
-   "link": "https://www.gutenberg.org/ebooks/1342",
+   "words": 86,
+   "audio": "data/reading/audio/20261105-5.mp3",
+   "audioKB": 168,
+   "link": "https://www.gutenberg.org/ebooks/35",
+   "aiAssisted": true
+  },
+  {
+   "id": "20261105-6",
+   "date": "2026-11-05",
+   "source": "Project Gutenberg",
+   "license": "公有领域",
+   "attribution": "Bram Stoker · Dracula · Project Gutenberg",
+   "topic": "文学",
+   "country": "",
+   "countryName": "",
+   "title": "Dracula（选段）",
+   "titleZh": "",
+   "sentences": [
+    {
+     "en": "To-day Harker is out following up his clue, and Art and Quincey are looking after horses.",
+     "zh": ""
+    },
+    {
+     "en": "Godalming thinks that it will be well to have horses always in readiness, for when we get the information which we seek there will be no time to lose.",
+     "zh": ""
+    },
+    {
+     "en": "We must sterilise all the imported earth between sunrise and sunset; we shall thus catch the Count at his weakest, and without a refuge to fly to.",
+     "zh": ""
+    },
+    {
+     "en": "Van Helsing is off to the British Museum looking up some authorities on ancient medicine.",
+     "zh": ""
+    },
+    {
+     "en": "The old physicians took account of things which their followers do not accept, and the Professor is searching for witch and demon cures which may be useful to us later.",
+     "zh": ""
+    }
+   ],
+   "glossary": [],
+   "words": 117,
+   "audio": "data/reading/audio/20261105-6.mp3",
+   "audioKB": 226,
+   "link": "https://www.gutenberg.org/ebooks/345",
    "aiAssisted": true
   }
  ]
