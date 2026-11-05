@@ -635,15 +635,16 @@
         try {
           if (session.stopped || settled) return;
 
-          /* 先把麦克风接上、拿到第一帧音频，再发 ssb：
-             避免讯飞等音频超时后报 8195（iSEInputAppend error） */
+          /* 权限已在 evaluate 里预热过，这里先发 ssb，再启动录音：
+             ssb 和第一帧音频之间留出 100ms 左右的间隔，
+             避免讯飞在同一 tick 收到「参数帧 + 音频」时报 8195 */
+          if (direct) {
+            ws.send(JSON.stringify(ssbFrame(appId, sentence, category)));
+            ssbSent = true;
+          }
+
           await rec.start(function (pcm) {
             if (settled || session.stopped || ws.readyState !== 1) return;
-            if (direct && !ssbSent) {
-              ssbSent = true;
-              clearTimeout(micTimer);
-              ws.send(JSON.stringify(ssbFrame(appId, sentence, category)));
-            }
             sentBytes += pcm.byteLength;
             /* 讯飞协议：首帧 aus=1 / 中间 aus=2 / 末帧 aus=4，data.status 音频阶段固定 1 */
             var aus = started ? 2 : 1;
