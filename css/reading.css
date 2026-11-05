@@ -1275,3 +1275,15 @@
 #readingFeed.is-light .rd-pr-score.bad{ color: #b3261e !important; }
 #readingFeed.is-light #readingBg,
 #readingFeed.is-light #readingVeil{ display: none !important; }
+#readingFeed.is-light .rd-szh{
+  background: #f4f8f5 !important; color: #4a5c52 !important;
+  border-left-color: #58cc02 !important; backdrop-filter: none !important;
+}
+#readingFeed.is-light .rd-words-t{ color: #8b98a6 !important; }
+#readingFeed.is-light .rd-word{
+  background: #f4f8f5 !important; border-color: #e3ebe5 !important; color: #1c2a24 !important;
+}
+#readingFeed.is-light .rd-word i{ color: #6b7a72 !important; }
+#readingFeed.is-light .rd-word.is-added{
+  background: #eef9e5 !important; border-color: #58cc02 !important;
+}
