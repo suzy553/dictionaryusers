@@ -69,13 +69,13 @@
          '<span class="rd-country">' + esc(it.countryName) + '</span>')
       : ('<span class="rd-topic">' + esc(it.topic || '阅读') + '</span>');
 
-    var bg = it.country ? ('data/countries/' + esc(it.country) + '.jpg') : '';
+    var bg = it.country ? ('data/countries/' + esc(it.country) + '.jpg') : 'data/bg-day.jpg';
+    var bgKey = it.country || '__default';
 
     return '' +
       '<article class="rd-card" data-i="' + i + '" data-id="' + esc(it.id) + '"' +
-        (it.country ? ' data-country="' + esc(it.country) + '"' : '') + '>' +
-        (bg ? '<div class="rd-bg" style="background-image:url(\'' + bg + '\')"></div>'
-            : '<div class="rd-bg rd-bg-plain"></div>') +
+        ' data-country="' + esc(bgKey) + '">' +
+        '<div class="rd-bg" style="background-image:url(\'' + bg + '\')"></div>' +
         '<div class="rd-veil"></div>' +
         '<div class="rd-inner">' +
           '<div class="rd-meta">' + badge +
@@ -149,15 +149,15 @@
             var r = 0, g = 0, b = 0;
             for (var p = 0; p < d.length; p += 4) { r += d[p]; g += d[p + 1]; b += d[p + 2]; }
             var n = d.length / 4;
-            r = Math.round(r / n * 0.42);
-            g = Math.round(g / n * 0.42);
-            b = Math.round(b / n * 0.42);
-            var tint = 'rgba(' + r + ',' + g + ',' + b + ',.55)';
+            r = Math.round(r / n * 0.55);
+            g = Math.round(g / n * 0.55);
+            b = Math.round(b / n * 0.55);
+            var tint = 'rgba(' + r + ',' + g + ',' + b + ',.45)';
             tintCache[c] = tint;
             card.style.setProperty('--rd-tint', tint);
           } catch (e) { }
         };
-        img.src = 'data/countries/' + c + '.jpg';
+        img.src = c === '__default' ? 'data/bg-day.jpg' : ('data/countries/' + c + '.jpg');
       })(cards[i]);
     }
   }
@@ -961,9 +961,34 @@
   }
 
   /* 阅读页底部的导航：点一下收起阅读并切到对应栏目 */
+  var RD_ICONS = {
+    home: '<path d="M3.5 10.6 12 3.8l8.5 6.8V20a1 1 0 0 1-1 1h-4.8v-6H9.3v6H4.5a1 1 0 0 1-1-1z"/>',
+    learn: '<path d="M9 4.5 3.6 6.4v13.1L9 17.6l6 1.9 5.4-1.9V4.5L15 6.4z"/><path d="M9 4.5v13.1M15 6.4v13.1"/>',
+    books: '<rect x="4.6" y="3.6" width="14.2" height="16.8" rx="2.2"/><path d="M9.2 3.6v16.8"/>',
+    review: '<path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20.2 4.2v4.6h-4.6"/>'
+  };
+
+  /* 旧缓存里的导航只有文字，这里补上图标，保证和首页一致 */
+  function ensureNavIcons() {
+    var nav = el('readingNav');
+    if (!nav) return;
+    var bs = nav.querySelectorAll('[data-go]');
+    for (var i = 0; i < bs.length; i++) {
+      var b = bs[i];
+      if (b.querySelector('.rd-ni')) continue;
+      var k = b.getAttribute('data-go');
+      var label = (b.textContent || '').trim();
+      b.innerHTML = '<span class="rd-ni"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+        'stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">' +
+        (RD_ICONS[k] || '') + '</svg></span><span>' + esc(label) + '</span>';
+    }
+  }
+
   function bindReadingNav() {
     var nav = el('readingNav');
-    if (!nav || nav.dataset.b) return;
+    if (!nav) return;
+    ensureNavIcons();
+    if (nav.dataset.b) return;
     nav.dataset.b = '1';
     nav.addEventListener('click', function (e) {
       var b = e.target && e.target.closest ? e.target.closest('[data-go]') : null;
@@ -1122,7 +1147,7 @@
       var b = el(id);
       if (b && !b.dataset.b) { b.dataset.b = '1'; b.addEventListener(ev || 'click', fn); }
     };
-    on('btnReading', open);
+    on('btnReading', function (e) { if (e) e.preventDefault(); open().catch(function () { msg('打开失败，请稍后重试'); }); });
     on('readingClose', close);
     on('readingArchiveBtn', openArchive);
     on('btnArchive', openArchive);

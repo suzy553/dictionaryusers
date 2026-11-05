@@ -1202,3 +1202,12 @@
 .rd-nav svg{ width: 20px; height: 20px; }
 .rd-nav button.is-active{ color: #58cc02; }
 .rd-nav button.is-active .rd-ni{ background: #eef9e5; }
+
+/* 底图再亮一点，别压成黑 */
+.rd-bg{ filter: blur(4px) saturate(1.15) brightness(.98); }
+.rd-veil{
+  background: linear-gradient(180deg,
+    rgba(0,0,0,.14) 0%,
+    var(--rd-tint, rgba(6,12,9,.5)) 40%,
+    rgba(0,0,0,.55) 100%) !important;
+}
