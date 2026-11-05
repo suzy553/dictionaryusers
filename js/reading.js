@@ -912,7 +912,8 @@
       }
 
       if (msg.indexOf('8195') >= 0) msg = '讯飞会话异常（8195），稍等几秒再试';
-      out.textContent = '失败：' + msg + sec;
+      var meta = (e && e.meta) ? ' · ' + e.meta : '';
+      out.textContent = '失败：' + msg + sec + meta;
       out.className = 'rd-pr-score bad';
     }).then(function () {
       clearTimeout(timer);

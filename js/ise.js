@@ -124,7 +124,9 @@
 
   function b64(bytes) {
     var s = '';
-    var arr = new Uint8Array(bytes.buffer || bytes);
+    var arr = (bytes instanceof Uint8Array)
+      ? bytes
+      : new Uint8Array(bytes.buffer, bytes.byteOffset || 0, bytes.byteLength);
     var CHUNK = 0x8000;
     for (var i = 0; i < arr.length; i += CHUNK) {
       s += String.fromCharCode.apply(null, arr.subarray(i, i + CHUNK));
@@ -608,6 +610,7 @@
         cleanup();
         var err = new Error(msg);
         err.audioSeconds = sentBytes / 32000;
+        err.meta = (recRate || '?') + 'Hz/' + (chunkMax || 0) + 'B/' + frameCount + '帧';
         reject(err);
       }
 
@@ -626,6 +629,9 @@
       var stopping = false;
       var clockStart = 0;
       var sentMs = 0;
+      var chunkMax = 0;
+      var frameCount = 0;
+      var recRate = 0;
 
       function finishAudio() {
         if (session.finalSent) return;
@@ -642,7 +648,7 @@
         if (settled) return;
         if (!clockStart) clockStart = Date.now();
         /* 允许比实时快 250ms，既平滑突发又不至于把引擎灌爆 */
-        var allowed = (Date.now() - clockStart) + 250;
+        var allowed = (Date.now() - clockStart) + 40;
         while (queue.length && sentMs < allowed) {
           var pcm = queue.shift();
           queueBytes -= pcm.byteLength;
@@ -651,6 +657,7 @@
             var aus = started ? 2 : 1;
             started = true;
             sentBytes += pcm.byteLength;
+            frameCount++;
             try {
               ws.send(JSON.stringify({
                 business: { cmd: 'auw', aus: aus },
@@ -690,8 +697,21 @@
 
           await rec.start(function (pcm) {
             if (settled || session.stopped) return;
-            queue.push(pcm);
-            queueBytes += pcm.byteLength;
+            recRate = rec.ctx ? rec.ctx.sampleRate : recRate;
+            chunkMax = Math.max(chunkMax, pcm.byteLength);
+            /* 讯飞建议每帧 1280 字节（40ms），大块先切开，避免一帧过大被拒 */
+            var MAX_FRAME = 1280;
+            if (pcm.byteLength <= MAX_FRAME) {
+              queue.push(pcm);
+              queueBytes += pcm.byteLength;
+            } else {
+              for (var off = 0; off < pcm.byteLength; off += MAX_FRAME) {
+                var end = Math.min(off + MAX_FRAME, pcm.byteLength);
+                var sub = pcm.subarray(off, end);
+                queue.push(sub);
+                queueBytes += sub.byteLength;
+              }
+            }
             /* 主线程卡顿后最多留 3 秒音频，防止越积越多 */
             while (queueBytes > 96000 && queue.length > 1) {
               queueBytes -= queue.shift().byteLength;
