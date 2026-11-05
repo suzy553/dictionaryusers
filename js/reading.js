@@ -854,8 +854,80 @@
   var practiceBusy = false;
   var practiceStartedAt = 0;
   var practiceAutoRetry = {};
+  var iseBroken = false;
+  var iatState = null;
+
+  /* 目标句 vs 识别结果：按词比对，给出识别准确率和漏读词 */
+  function readingWords(s) {
+    return String(s || '').toLowerCase().replace(/[^a-z0-9' ]/g, ' ').split(/\s+/).filter(Boolean);
+  }
+
+  function compareReading(target, heard) {
+    var t = readingWords(target);
+    var h = readingWords(heard);
+    var bag = {};
+    h.forEach(function (w) { bag[w] = (bag[w] || 0) + 1; });
+    var hit = 0;
+    var missed = [];
+    t.forEach(function (w) {
+      if (bag[w]) { bag[w]--; hit++; } else { missed.push(w); }
+    });
+    return { pct: t.length ? Math.round(hit / t.length * 100) : 0, missed: missed, heard: heard };
+  }
+
+  /* 评测接口一直 8195 时，退化为「听写转写 + 文本比对」 */
+  function startPracticeIAT(btn, row, text, out) {
+    if (!window.XYVoice || !window.XYVoice.canUse()) {
+      out.textContent = '失败：语音服务未配置';
+      out.className = 'rd-pr-score bad';
+      return;
+    }
+    if (practiceBusy) return;
+
+    practiceBusy = true;
+    practiceStartedAt = Date.now();
+    btn.textContent = '■ 停止';
+    btn.classList.add('is-rec');
+    out.textContent = '识别中…';
+    out.className = 'rd-pr-score';
+
+    iatState = window.XYVoice.listen({
+      maxMs: 15000,
+      onPartial: function (t) {
+        if (t) out.textContent = '听到：' + t;
+      }
+    });
+
+    iatState.done.then(function (heard) {
+      iatState = null;
+      var r = compareReading(text, heard);
+      out.textContent = '识别 ' + r.pct + '%';
+      out.className = 'rd-pr-score ' + (r.pct >= 85 ? 'good' : (r.pct >= 60 ? 'mid' : 'bad'));
+      if (r.missed.length) out.textContent += ' · 漏读：' + r.missed.slice(0, 4).join(' ');
+      else if (heard) out.textContent += ' · 全对';
+    }, function (e) {
+      iatState = null;
+      out.textContent = '识别失败：' + (e && e.message ? e.message : e);
+      out.className = 'rd-pr-score bad';
+    }).then(function () {
+      practiceBusy = false;
+      btn.textContent = '● 重录';
+      btn.classList.remove('is-rec');
+    });
+  }
 
   function startPractice(btn) {
+    var row = btn.closest('.rd-pr-row');
+    if (!row) return;
+    var text = row.getAttribute('data-text') || '';
+    var out = row.querySelector('.rd-pr-score');
+
+    /* 正在听写识别：再点一次就是停止 */
+    if (iatState) { try { iatState.stop(); } catch (e) { } return; }
+
+    /* 评测接口已知有问题，直接用听写比对 */
+    if (iseBroken) { startPracticeIAT(btn, row, text, out); return; }
+
     if (!window.XYISE || !window.XYISE.available()) {
       msg('先到设置里填评测地址，才能跟读打分');
       return;
@@ -867,12 +939,9 @@
       return;
     }
 
-    var row = btn.closest('.rd-pr-row');
-    if (!row) return;
-    var text = row.getAttribute('data-text') || '';
-    var out = row.querySelector('.rd-pr-score');
     var timer = null;
     var tick = null;
+    var fallbackIAT = false;
 
     practiceBusy = true;
     practiceStartedAt = Date.now();
@@ -911,7 +980,15 @@
         return;
       }
 
-      if (msg.indexOf('8195') >= 0) msg = '讯飞会话异常（8195），稍等几秒再试';
+      /* 重连后还是 8195：说明评测接口在这台设备上不可用，改用听写比对 */
+      if (msg.indexOf('8195') >= 0) {
+        iseBroken = true;
+        fallbackIAT = true;
+        out.textContent = '评测接口异常，改用识别比对…';
+        out.className = 'rd-pr-score mid';
+        return;
+      }
+
       var meta = (e && e.meta) ? ' · ' + e.meta : '';
       out.textContent = '失败：' + msg + sec + meta;
       out.className = 'rd-pr-score bad';
@@ -921,6 +998,7 @@
       practiceBusy = false;
       btn.textContent = '● 重录';
       btn.classList.remove('is-rec');
+      if (fallbackIAT) startPracticeIAT(btn, row, text, out);
     });
   }
 
