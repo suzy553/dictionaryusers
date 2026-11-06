@@ -1,115 +1,11 @@
 {
- "updated": "2026-11-05 22:57",
- "date": "2026-11-05",
- "source": "Project Gutenberg / Simple Wikipedia",
+ "updated": "2026-11-06 22:52",
+ "date": "2026-11-06",
+ "source": "Project Gutenberg",
  "items": [
   {
-   "id": "20261105-1",
-   "date": "2026-11-05",
-   "source": "Simple Wikipedia",
-   "license": "CC BY-SA 4.0",
-   "attribution": "Simple English Wikipedia",
-   "topic": "百科",
-   "country": "",
-   "countryName": "",
-   "title": "Rosemont Theatre",
-   "titleZh": "",
-   "sentences": [
-    {
-     "en": "The Rosemont Theatre is a concert hall in Rosemont, Illinois, a suburb of Chicago.",
-     "zh": ""
-    },
-    {
-     "en": "The venue, which has seats for 4,400 people.",
-     "zh": ""
-    },
-    {
-     "en": "It opened in 1995.",
-     "zh": ""
-    },
-    {
-     "en": "It hosts many different musical artists and shows.",
-     "zh": ""
-    },
-    {
-     "en": "It is located near O'Hare International Airport, Allstate Arena and Donald E.",
-     "zh": ""
-    },
-    {
-     "en": "Stephens Convention Center.",
-     "zh": ""
-    }
-   ],
-   "glossary": [],
-   "words": 49,
-   "audio": "data/reading/audio/20261105-1.mp3",
-   "audioKB": 140,
-   "link": "https://simple.wikipedia.org/wiki/Rosemont_Theatre",
-   "aiAssisted": true
-  },
-  {
-   "id": "20261105-2",
-   "date": "2026-11-05",
-   "source": "Project Gutenberg",
-   "license": "公有领域",
-   "attribution": "Louisa May Alcott · Little Women · Project Gutenberg",
-   "topic": "文学",
-   "country": "",
-   "countryName": "",
-   "title": "Little Women（选段）",
-   "titleZh": "",
-   "sentences": [
-    {
-     "en": "Bent on showing that he was not offended, he made himself as agreeable as possible, wound cotton for Meg, recited poetry to please Jo, shook down cones for Beth, and helped Amy with her ferns, proving himself a fit person to belong to the ‘Busy Bee Society’.",
-     "zh": ""
-    },
-    {
-     "en": "In the midst of an animated discussion on the domestic habits of turtles (one of those amiable creatures having strolled up from the river), the faint sound of a bell warned them that Hannah had put the tea ‘to draw’, and they would just have time to get home to supper.",
-     "zh": ""
-    }
-   ],
-   "glossary": [],
-   "words": 98,
-   "audio": "data/reading/audio/20261105-2.mp3",
-   "audioKB": 178,
-   "link": "https://www.gutenberg.org/ebooks/514",
-   "aiAssisted": true
-  },
-  {
-   "id": "20261105-3",
-   "date": "2026-11-05",
-   "source": "Project Gutenberg",
-   "license": "公有领域",
-   "attribution": "Robert Louis Stevenson · Treasure Island · Project Gutenberg",
-   "topic": "文学",
-   "country": "",
-   "countryName": "",
-   "title": "Treasure Island（选段）",
-   "titleZh": "",
-   "sentences": [
-    {
-     "en": "In the meantime I had a better chance, as I supposed, before me.",
-     "zh": ""
-    },
-    {
-     "en": "North of Haulbowline Head, the land runs in a long way, leaving at low tide a long stretch of yellow sand.",
-     "zh": ""
-    },
-    {
-     "en": "To the north of that, again, there comes another cape--Cape of the Woods, as it was marked upon the chart--buried in tall green pines, which descended to the margin of the sea.",
-     "zh": ""
-    }
-   ],
-   "glossary": [],
-   "words": 66,
-   "audio": "data/reading/audio/20261105-3.mp3",
-   "audioKB": 127,
-   "link": "https://www.gutenberg.org/ebooks/120",
-   "aiAssisted": true
-  },
-  {
-   "id": "20261105-4",
-   "date": "2026-11-05",
+   "id": "20261106-1",
+   "date": "2026-11-06",
    "source": "Project Gutenberg",
    "license": "公有领域",
    "attribution": "Lewis Carroll · Alice's Adventures in Wonderland · Project Gutenberg",
@@ -120,68 +16,20 @@
    "titleZh": "",
    "sentences": [
     {
-     "en": "it was too late to wish that!",
-     "zh": ""
-    },
-    {
-     "en": "She went on growing, and growing, and very soon had to kneel down on the floor: in another minute there was not even room for this, and she tried the effect of lying down with one elbow against the door, and the other arm curled round her head.",
-     "zh": ""
-    },
-    {
-     "en": "Still she went on growing, and, as a last resource, she put one arm out of the window, and one foot up the chimney, and said to herself “Now I can do no more, whatever happens.",
-     "zh": ""
-    },
-    {
-     "en": "What _will_ become of me?”",
+     "en": "The Cat’s head began fading away the moment he was gone, and, by the time he had come back with the Duchess, it had entirely disappeared; so the King and the executioner ran wildly up and down looking for it, while the rest of the party went back to the game.",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 96,
-   "audio": "data/reading/audio/20261105-4.mp3",
-   "audioKB": 182,
+   "words": 51,
+   "audio": "data/reading/audio/20261106-1.mp3",
+   "audioKB": 89,
    "link": "https://www.gutenberg.org/ebooks/11",
    "aiAssisted": true
   },
   {
-   "id": "20261105-5",
-   "date": "2026-11-05",
-   "source": "Project Gutenberg",
-   "license": "公有领域",
-   "attribution": "H. G. Wells · The Time Machine · Project Gutenberg",
-   "topic": "文学",
-   "country": "",
-   "countryName": "",
-   "title": "The Time Machine（选段）",
-   "titleZh": "",
-   "sentences": [
-    {
-     "en": "“While I was musing upon these things, my attention was attracted by a pretty little structure, like a well under a cupola.",
-     "zh": ""
-    },
-    {
-     "en": "I thought in a transitory way of the oddness of wells still existing, and then resumed the thread of my speculations.",
-     "zh": ""
-    },
-    {
-     "en": "There were no large buildings towards the top of the hill, and as my walking powers were evidently miraculous, I was presently left alone for the first time.",
-     "zh": ""
-    },
-    {
-     "en": "With a strange sense of freedom and adventure I pushed on up to the crest.",
-     "zh": ""
-    }
-   ],
-   "glossary": [],
-   "words": 86,
-   "audio": "data/reading/audio/20261105-5.mp3",
-   "audioKB": 168,
-   "link": "https://www.gutenberg.org/ebooks/35",
-   "aiAssisted": true
-  },
-  {
-   "id": "20261105-6",
-   "date": "2026-11-05",
+   "id": "20261106-2",
+   "date": "2026-11-06",
    "source": "Project Gutenberg",
    "license": "公有领域",
    "attribution": "Bram Stoker · Dracula · Project Gutenberg",
@@ -192,31 +40,179 @@
    "titleZh": "",
    "sentences": [
     {
-     "en": "To-day Harker is out following up his clue, and Art and Quincey are looking after horses.",
+     "en": "“Well, I have good reason now for all I want to do.",
      "zh": ""
     },
     {
-     "en": "Godalming thinks that it will be well to have horses always in readiness, for when we get the information which we seek there will be no time to lose.",
+     "en": "You have for many years trust me; you have believe me weeks past, when there be things so strange that you might have well doubt.",
      "zh": ""
     },
     {
-     "en": "We must sterilise all the imported earth between sunrise and sunset; we shall thus catch the Count at his weakest, and without a refuge to fly to.",
+     "en": "Believe me yet a little, friend John.",
      "zh": ""
     },
     {
-     "en": "Van Helsing is off to the British Museum looking up some authorities on ancient medicine.",
+     "en": "If you trust me not, then I must tell what I think; and that is not perhaps well.",
      "zh": ""
     },
     {
-     "en": "The old physicians took account of things which their followers do not accept, and the Professor is searching for witch and demon cures which may be useful to us later.",
+     "en": "And if I work--as work I shall, no matter trust or no trust--without my friend trust in me, I work with heavy heart and feel, oh!",
+     "zh": ""
+    },
+    {
+     "en": "so lonely when I want all help and courage that may be!” He paused a moment and went on solemnly: “Friend John, there are strange and terrible days before us.",
+     "zh": ""
+    },
+    {
+     "en": "Let us not be two, but one, that so we work to a good end.",
+     "zh": ""
+    },
+    {
+     "en": "Will you not have faith in me?”",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 117,
-   "audio": "data/reading/audio/20261105-6.mp3",
-   "audioKB": 226,
+   "words": 140,
+   "audio": "data/reading/audio/20261106-2.mp3",
+   "audioKB": 260,
    "link": "https://www.gutenberg.org/ebooks/345",
+   "aiAssisted": true
+  },
+  {
+   "id": "20261106-3",
+   "date": "2026-11-06",
+   "source": "Project Gutenberg",
+   "license": "公有领域",
+   "attribution": "Louisa May Alcott · Little Women · Project Gutenberg",
+   "topic": "文学",
+   "country": "",
+   "countryName": "",
+   "title": "Little Women（选段）",
+   "titleZh": "",
+   "sentences": [
+    {
+     "en": "“Oh, the little villain!",
+     "zh": ""
+    },
+    {
+     "en": "That’s the way he meant to pay me for keeping my word to Mother.",
+     "zh": ""
+    },
+    {
+     "en": "I’ll give him a hearty scolding and bring him over to beg pardon,” cried Jo, burning to execute immediate justice.",
+     "zh": ""
+    },
+    {
+     "en": "But her mother held her back, saying, with a look she seldom wore...",
+     "zh": ""
+    }
+   ],
+   "glossary": [],
+   "words": 51,
+   "audio": "data/reading/audio/20261106-3.mp3",
+   "audioKB": 106,
+   "link": "https://www.gutenberg.org/ebooks/514",
+   "aiAssisted": true
+  },
+  {
+   "id": "20261106-4",
+   "date": "2026-11-06",
+   "source": "Project Gutenberg",
+   "license": "公有领域",
+   "attribution": "Arthur Conan Doyle · The Adventures of Sherlock Holmes · Project Gutenberg",
+   "topic": "文学",
+   "country": "",
+   "countryName": "",
+   "title": "The Adventures of Sherlock Holmes（选段）",
+   "titleZh": "",
+   "sentences": [
+    {
+     "en": "“Well, it is conjectured to be so.",
+     "zh": ""
+    },
+    {
+     "en": "I shall take nothing for granted until I have the opportunity of looking personally into it.",
+     "zh": ""
+    },
+    {
+     "en": "I will explain the state of things to you, as far as I have been able to understand it, in a very few words.",
+     "zh": ""
+    }
+   ],
+   "glossary": [],
+   "words": 47,
+   "audio": "data/reading/audio/20261106-4.mp3",
+   "audioKB": 90,
+   "link": "https://www.gutenberg.org/ebooks/1661",
+   "aiAssisted": true
+  },
+  {
+   "id": "20261106-5",
+   "date": "2026-11-06",
+   "source": "Project Gutenberg",
+   "license": "公有领域",
+   "attribution": "Robert Louis Stevenson · Treasure Island · Project Gutenberg",
+   "topic": "文学",
+   "country": "",
+   "countryName": "",
+   "title": "Treasure Island（选段）",
+   "titleZh": "",
+   "sentences": [
+    {
+     "en": "We must both have cried out aloud when our eyes met, but while mine was the shrill cry of terror, his was a roar of fury like a charging bully’s.",
+     "zh": ""
+    },
+    {
+     "en": "At the same instant, he threw himself forward and I leapt sideways towards the bows.",
+     "zh": ""
+    },
+    {
+     "en": "As I did so, I let go of the tiller, which sprang sharp to leeward, and I think this saved my life, for it struck Hands across the chest and stopped him, for the moment, dead.",
+     "zh": ""
+    }
+   ],
+   "glossary": [],
+   "words": 81,
+   "audio": "data/reading/audio/20261106-5.mp3",
+   "audioKB": 146,
+   "link": "https://www.gutenberg.org/ebooks/120",
+   "aiAssisted": true
+  },
+  {
+   "id": "20261106-6",
+   "date": "2026-11-06",
+   "source": "Project Gutenberg",
+   "license": "公有领域",
+   "attribution": "Mary Shelley · Frankenstein · Project Gutenberg",
+   "topic": "文学",
+   "country": "",
+   "countryName": "",
+   "title": "Frankenstein（选段）",
+   "titleZh": "",
+   "sentences": [
+    {
+     "en": "“The hour of my irresolution is past, and the period of your power is arrived.",
+     "zh": ""
+    },
+    {
+     "en": "Your threats cannot move me to do an act of wickedness; but they confirm me in a determination of not creating you a companion in vice.",
+     "zh": ""
+    },
+    {
+     "en": "Shall I, in cool blood, set loose upon the earth a dæmon whose delight is in death and wretchedness?",
+     "zh": ""
+    },
+    {
+     "en": "I am firm, and your words will only exasperate my rage.”",
+     "zh": ""
+    }
+   ],
+   "glossary": [],
+   "words": 71,
+   "audio": "data/reading/audio/20261106-6.mp3",
+   "audioKB": 142,
+   "link": "https://www.gutenberg.org/ebooks/84",
    "aiAssisted": true
   }
  ]
