@@ -812,11 +812,25 @@
     try { asrBroken = localStorage.getItem('shadow.asrBroken') === '1'; } catch (e) { }
     panel = el('shadowing');
     if (!panel) return;
+
+    /* 进跟读页先清掉可能残留的弹层（错词重练、词卡等），先让用户看到要读的句子 */
+    try { closeSheet(); } catch (e) { }
+    try {
+      var stale = document.querySelectorAll('.sh-sheet');
+      for (var si = 0; si < stale.length; si++) {
+        if (stale[si].parentNode) stale[si].parentNode.removeChild(stale[si]);
+      }
+    } catch (e) { }
+
     cur = item;
     render();
     syncModeBtn();
     panel.classList.add('is-open');
     document.documentElement.classList.add('overlay-open');
+
+    var list = el('shList');
+    if (list) list.scrollTop = 0;
+    panel.scrollTop = 0;
   }
 
   function close() {

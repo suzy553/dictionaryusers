@@ -100,18 +100,6 @@
           '<div class="rd-body">' + sents + '</div>' +
           '<div class="rd-tools">' +
             '<span class="rd-tip">点句子看翻译 · 点单词查释义</span>' +
-            '<button class="rd-practice-jump" type="button" data-act="practice">练这一段 ↓</button>' +
-          '</div>' +
-          '<div class="rd-practice">' +
-            '<div class="rd-pr-head"><b>逐句跟读</b><span>点录音，读完点停止出分</span></div>' +
-            (it.sentences || []).map(function (s, si) {
-              return '<div class="rd-pr-row" data-text="' + esc(s.en) + '">' +
-                '<p class="rd-pr-s">' + esc(s.en) + '</p>' +
-                '<button class="rd-pr-btn" type="button" data-act="prec" data-si="' + si + '"' +
-                  ' data-text="' + esc(s.en) + '">● 录音</button>' +
-                '<span class="rd-pr-score"></span>' +
-              '</div>';
-            }).join('') +
           '</div>' +
           '<div class="rd-legal">' +
             '来源：' + esc(it.attribution || it.source || '') +
@@ -831,24 +819,6 @@
         if (i !== idx) { idx = i; renderProgress(); stopAudio(); }
       });
     }, { passive: true });
-
-    /* 逐句跟读：录音 → 评分（点第二下停止） */
-    track.addEventListener('click', function (e) {
-      var pr = e.target && e.target.closest ? e.target.closest('[data-act="prec"]') : null;
-      if (pr) {
-        e.preventDefault();
-        e.stopPropagation();
-        startPractice(pr);
-        return;
-      }
-      var jp = e.target && e.target.closest ? e.target.closest('[data-act="practice"]') : null;
-      if (jp) {
-        e.preventDefault();
-        e.stopPropagation();
-        var inner = jp.closest('.rd-card') && jp.closest('.rd-card').querySelector('.rd-inner');
-        if (inner) inner.scrollTo({ top: inner.scrollHeight, behavior: 'smooth' });
-      }
-    }, true);
   }
 
   var practiceBusy = false;
