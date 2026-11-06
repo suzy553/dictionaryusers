@@ -809,6 +809,18 @@
       if (e.detail === 0 || Date.now() - lastTapAt > 500) handleTap(e, 'feed');
     });
 
+    /* 标题旁「读」：直接打开跟读训练面板（捕获阶段，避免被滚动/点句逻辑吃掉） */
+    track.addEventListener('click', function (e) {
+      var b = e.target && e.target.closest ? e.target.closest('[data-act="shadow"]') : null;
+      if (!b) return;
+      e.preventDefault();
+      e.stopPropagation();
+      var card = b.closest('.rd-card');
+      var it = findItem(card);
+      if (it && window.XYShadowing) window.XYShadowing.open(it);
+      else msg('暂时无法打开跟读');
+    }, true);
+
     var raf = null;
     track.addEventListener('scroll', function () {
       if (raf) return;
@@ -1234,7 +1246,6 @@
       if (b && !b.dataset.b) { b.dataset.b = '1'; b.addEventListener(ev || 'click', fn); }
     };
     on('btnReading', function (e) { if (e) e.preventDefault(); open().catch(function () { msg('打开失败，请稍后重试'); }); });
-    on('readingClose', close);
     on('readingArchiveBtn', openArchive);
     on('btnArchive', openArchive);
     on('raClose', closeArchive);
