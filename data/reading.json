@@ -1,35 +1,47 @@
 {
- "updated": "2026-11-06 22:52",
- "date": "2026-11-06",
- "source": "Project Gutenberg",
+ "updated": "2026-11-07 22:47",
+ "date": "2026-11-07",
+ "source": "Project Gutenberg / Simple Wikipedia",
  "items": [
   {
-   "id": "20261106-1",
-   "date": "2026-11-06",
-   "source": "Project Gutenberg",
-   "license": "公有领域",
-   "attribution": "Lewis Carroll · Alice's Adventures in Wonderland · Project Gutenberg",
-   "topic": "文学",
+   "id": "20261107-1",
+   "date": "2026-11-07",
+   "source": "Simple Wikipedia",
+   "license": "CC BY-SA 4.0",
+   "attribution": "Simple English Wikipedia",
+   "topic": "百科",
    "country": "",
    "countryName": "",
-   "title": "Alice's Adventures in Wonderland（选段）",
+   "title": "Mercy Otis Warren",
    "titleZh": "",
    "sentences": [
     {
-     "en": "The Cat’s head began fading away the moment he was gone, and, by the time he had come back with the Duchess, it had entirely disappeared; so the King and the executioner ran wildly up and down looking for it, while the rest of the party went back to the game.",
+     "en": "Mercy Otis Warren was a poet and playwright.",
+     "zh": ""
+    },
+    {
+     "en": "She wrote political plays about the problematic situations that led to the American Revolution.",
+     "zh": ""
+    },
+    {
+     "en": "The Adulator and The Group were published on the eve of the Revolution.",
+     "zh": ""
+    },
+    {
+     "en": "Her later works included Poems, Dramatic and Miscellaneous and History of the American Revolution.",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 51,
-   "audio": "data/reading/audio/20261106-1.mp3",
-   "audioKB": 89,
-   "link": "https://www.gutenberg.org/ebooks/11",
+   "words": 49,
+   "audio": "data/reading/audio/20261107-1.mp3",
+   "audioKB": 119,
+   "link": "https://simple.wikipedia.org/wiki/Mercy_Otis_Warren",
    "aiAssisted": true
   },
   {
-   "id": "20261106-2",
-   "date": "2026-11-06",
+   "id": "20261107-2",
+   "date": "2026-11-07",
    "source": "Project Gutenberg",
    "license": "公有领域",
    "attribution": "Bram Stoker · Dracula · Project Gutenberg",
@@ -40,84 +52,112 @@
    "titleZh": "",
    "sentences": [
     {
-     "en": "“Well, I have good reason now for all I want to do.",
+     "en": "“All day I waited to hear from him, but he did not send me anything, not even a blow-fly, and when the moon got up I was pretty angry with him.",
      "zh": ""
     },
     {
-     "en": "You have for many years trust me; you have believe me weeks past, when there be things so strange that you might have well doubt.",
+     "en": "When he slid in through the window, though it was shut, and did not even knock, I got mad with him.",
      "zh": ""
     },
     {
-     "en": "Believe me yet a little, friend John.",
+     "en": "He sneered at me, and his white face looked out of the mist with his red eyes gleaming, and he went on as though he owned the whole place, and I was no one.",
      "zh": ""
     },
     {
-     "en": "If you trust me not, then I must tell what I think; and that is not perhaps well.",
+     "en": "He didn’t even smell the same as he went by me.",
      "zh": ""
     },
     {
-     "en": "And if I work--as work I shall, no matter trust or no trust--without my friend trust in me, I work with heavy heart and feel, oh!",
+     "en": "I couldn’t hold him.",
      "zh": ""
     },
     {
-     "en": "so lonely when I want all help and courage that may be!” He paused a moment and went on solemnly: “Friend John, there are strange and terrible days before us.",
+     "en": "I thought that, somehow, Mrs.",
      "zh": ""
     },
     {
-     "en": "Let us not be two, but one, that so we work to a good end.",
-     "zh": ""
-    },
-    {
-     "en": "Will you not have faith in me?”",
+     "en": "Harker had come into the room.”",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 140,
-   "audio": "data/reading/audio/20261106-2.mp3",
-   "audioKB": 260,
+   "words": 112,
+   "audio": "data/reading/audio/20261107-2.mp3",
+   "audioKB": 194,
    "link": "https://www.gutenberg.org/ebooks/345",
    "aiAssisted": true
   },
   {
-   "id": "20261106-3",
-   "date": "2026-11-06",
-   "source": "Project Gutenberg",
-   "license": "公有领域",
-   "attribution": "Louisa May Alcott · Little Women · Project Gutenberg",
-   "topic": "文学",
+   "id": "20261107-3",
+   "date": "2026-11-07",
+   "source": "Simple Wikipedia",
+   "license": "CC BY-SA 4.0",
+   "attribution": "Simple English Wikipedia",
+   "topic": "百科",
    "country": "",
    "countryName": "",
-   "title": "Little Women（选段）",
+   "title": "Daniela Hantuchová",
    "titleZh": "",
    "sentences": [
     {
-     "en": "“Oh, the little villain!",
+     "en": "Daniela Hantuchová is a former Slovak professional tennis player.",
      "zh": ""
     },
     {
-     "en": "That’s the way he meant to pay me for keeping my word to Mother.",
+     "en": "In May 2016, she was ranked World No.",
      "zh": ""
     },
     {
-     "en": "I’ll give him a hearty scolding and bring him over to beg pardon,” cried Jo, burning to execute immediate justice.",
+     "en": "170 in women's singles tennis and 179th in doubles.",
      "zh": ""
     },
     {
-     "en": "But her mother held her back, saying, with a look she seldom wore...",
+     "en": "In 2008, she reached the Australian Open semi-finals.",
+     "zh": ""
+    },
+    {
+     "en": "She has been ranked as 5th in the world for both women's singles and doubles.",
+     "zh": ""
+    },
+    {
+     "en": "She played tennis for Slovakia in an international competition called the Fed Cup, and also in the Olympic Games.",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 51,
-   "audio": "data/reading/audio/20261106-3.mp3",
-   "audioKB": 106,
-   "link": "https://www.gutenberg.org/ebooks/514",
+   "words": 68,
+   "audio": "data/reading/audio/20261107-3.mp3",
+   "audioKB": 178,
+   "link": "https://simple.wikipedia.org/wiki/Daniela_Hantuchov%C3%A1",
    "aiAssisted": true
   },
   {
-   "id": "20261106-4",
-   "date": "2026-11-06",
+   "id": "20261107-4",
+   "date": "2026-11-07",
+   "source": "Project Gutenberg",
+   "license": "公有领域",
+   "attribution": "Jane Austen · Pride and Prejudice · Project Gutenberg",
+   "topic": "文学",
+   "country": "",
+   "countryName": "",
+   "title": "Pride and Prejudice（选段）",
+   "titleZh": "",
+   "sentences": [
+    {
+     "en": "To such perseverance in wilful self-deception Elizabeth would make no reply, and immediately and in silence withdrew; determined, that if he persisted in considering her repeated refusals as flattering encouragement, to apply to her father, whose negative might be uttered in such a manner as must be decisive, and whose behaviour at least could not be mistaken for the affectation and coquetry of an elegant female.",
+     "zh": ""
+    }
+   ],
+   "glossary": [],
+   "words": 66,
+   "audio": "data/reading/audio/20261107-4.mp3",
+   "audioKB": 141,
+   "link": "https://www.gutenberg.org/ebooks/1342",
+   "aiAssisted": true
+  },
+  {
+   "id": "20261107-5",
+   "date": "2026-11-07",
    "source": "Project Gutenberg",
    "license": "公有领域",
    "attribution": "Arthur Conan Doyle · The Adventures of Sherlock Holmes · Project Gutenberg",
@@ -128,91 +168,55 @@
    "titleZh": "",
    "sentences": [
     {
-     "en": "“Well, it is conjectured to be so.",
+     "en": "The firemen had been much perturbed at the strange arrangements which they had found within, and still more so by discovering a newly severed human thumb upon a window-sill of the second floor.",
      "zh": ""
     },
     {
-     "en": "I shall take nothing for granted until I have the opportunity of looking personally into it.",
+     "en": "About sunset, however, their efforts were at last successful, and they subdued the flames, but not before the roof had fallen in, and the whole place been reduced to such absolute ruin that, save some twisted cylinders and iron piping, not a trace remained of the machinery which had cost our unfortunate acquaintance so dearly.",
      "zh": ""
     },
     {
-     "en": "I will explain the state of things to you, as far as I have been able to understand it, in a very few words.",
+     "en": "Large masses of nickel and of tin were discovered stored in an out-house, but no coins were to be found, which may have explained the presence of those bulky boxes which have been already referred to.",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 47,
-   "audio": "data/reading/audio/20261106-4.mp3",
-   "audioKB": 90,
+   "words": 124,
+   "audio": "data/reading/audio/20261107-5.mp3",
+   "audioKB": 242,
    "link": "https://www.gutenberg.org/ebooks/1661",
    "aiAssisted": true
   },
   {
-   "id": "20261106-5",
-   "date": "2026-11-06",
+   "id": "20261107-6",
+   "date": "2026-11-07",
    "source": "Project Gutenberg",
    "license": "公有领域",
-   "attribution": "Robert Louis Stevenson · Treasure Island · Project Gutenberg",
+   "attribution": "Lewis Carroll · Alice's Adventures in Wonderland · Project Gutenberg",
    "topic": "文学",
    "country": "",
    "countryName": "",
-   "title": "Treasure Island（选段）",
+   "title": "Alice's Adventures in Wonderland（选段）",
    "titleZh": "",
    "sentences": [
     {
-     "en": "We must both have cried out aloud when our eyes met, but while mine was the shrill cry of terror, his was a roar of fury like a charging bully’s.",
+     "en": "A large rose-tree stood near the entrance of the garden: the roses growing on it were white, but there were three gardeners at it, busily painting them red.",
      "zh": ""
     },
     {
-     "en": "At the same instant, he threw himself forward and I leapt sideways towards the bows.",
+     "en": "Alice thought this a very curious thing, and she went nearer to watch them, and just as she came up to them she heard one of them say, “Look out now, Five!",
      "zh": ""
     },
     {
-     "en": "As I did so, I let go of the tiller, which sprang sharp to leeward, and I think this saved my life, for it struck Hands across the chest and stopped him, for the moment, dead.",
+     "en": "Don’t go splashing paint over me like that!”",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 81,
-   "audio": "data/reading/audio/20261106-5.mp3",
-   "audioKB": 146,
-   "link": "https://www.gutenberg.org/ebooks/120",
-   "aiAssisted": true
-  },
-  {
-   "id": "20261106-6",
-   "date": "2026-11-06",
-   "source": "Project Gutenberg",
-   "license": "公有领域",
-   "attribution": "Mary Shelley · Frankenstein · Project Gutenberg",
-   "topic": "文学",
-   "country": "",
-   "countryName": "",
-   "title": "Frankenstein（选段）",
-   "titleZh": "",
-   "sentences": [
-    {
-     "en": "“The hour of my irresolution is past, and the period of your power is arrived.",
-     "zh": ""
-    },
-    {
-     "en": "Your threats cannot move me to do an act of wickedness; but they confirm me in a determination of not creating you a companion in vice.",
-     "zh": ""
-    },
-    {
-     "en": "Shall I, in cool blood, set loose upon the earth a dæmon whose delight is in death and wretchedness?",
-     "zh": ""
-    },
-    {
-     "en": "I am firm, and your words will only exasperate my rage.”",
-     "zh": ""
-    }
-   ],
-   "glossary": [],
-   "words": 71,
-   "audio": "data/reading/audio/20261106-6.mp3",
-   "audioKB": 142,
-   "link": "https://www.gutenberg.org/ebooks/84",
+   "words": 68,
+   "audio": "data/reading/audio/20261107-6.mp3",
+   "audioKB": 125,
+   "link": "https://www.gutenberg.org/ebooks/11",
    "aiAssisted": true
   }
  ]
