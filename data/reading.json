@@ -1,55 +1,11 @@
 {
- "updated": "2026-11-08 22:48",
- "date": "2026-11-08",
- "source": "Project Gutenberg / Simple Wikipedia",
+ "updated": "2026-11-09 22:56",
+ "date": "2026-11-09",
+ "source": "Project Gutenberg",
  "items": [
   {
-   "id": "20261108-1",
-   "date": "2026-11-08",
-   "source": "Simple Wikipedia",
-   "license": "CC BY-SA 4.0",
-   "attribution": "Simple English Wikipedia",
-   "topic": "百科",
-   "country": "",
-   "countryName": "",
-   "title": "Fifty Fifty (group)",
-   "titleZh": "",
-   "sentences": [
-    {
-     "en": "Fifty Fifty is a South Korean girl group made by Attrakt in 2022.",
-     "zh": ""
-    },
-    {
-     "en": "The group has five members.",
-     "zh": ""
-    },
-    {
-     "en": "They are Keena, Chanelle, Yewon, Hana, and Athena.",
-     "zh": ""
-    },
-    {
-     "en": "It used to be a four-people group.",
-     "zh": ""
-    },
-    {
-     "en": "Saena, Aran, and Sio left in 2023 following the ending of their contracts.",
-     "zh": ""
-    },
-    {
-     "en": "They make music since November 18, 2022, with their extended play (EP) The Fifty.",
-     "zh": ""
-    }
-   ],
-   "glossary": [],
-   "words": 60,
-   "audio": "data/reading/audio/20261108-1.mp3",
-   "audioKB": 163,
-   "link": "https://simple.wikipedia.org/wiki/Fifty_Fifty_(group)",
-   "aiAssisted": true
-  },
-  {
-   "id": "20261108-2",
-   "date": "2026-11-08",
+   "id": "20261109-1",
+   "date": "2026-11-09",
    "source": "Project Gutenberg",
    "license": "公有领域",
    "attribution": "H. G. Wells · The Time Machine · Project Gutenberg",
@@ -60,80 +16,32 @@
    "titleZh": "",
    "sentences": [
     {
-     "en": "“I had to clamber down a shaft of perhaps two hundred yards.",
+     "en": "“As I walked I was watching for every impression that could possibly help to explain the condition of ruinous splendour in which I found the world—for ruinous it was.",
      "zh": ""
     },
     {
-     "en": "The descent was effected by means of metallic bars projecting from the sides of the well, and these being adapted to the needs of a creature much smaller and lighter than myself, I was speedily cramped and fatigued by the descent.",
+     "en": "A little way up the hill, for instance, was a great heap of granite, bound together by masses of aluminium, a vast labyrinth of precipitous walls and crumpled heaps, amidst which were thick heaps of very beautiful pagoda-like plants—nettles possibly—but wonderfully tinted with brown about the leaves, and incapable of stinging.",
      "zh": ""
     },
     {
-     "en": "And not simply fatigued!",
+     "en": "It was evidently the derelict remains of some vast structure, to what end built I could not determine.",
      "zh": ""
     },
     {
-     "en": "One of the bars bent suddenly under my weight, and almost swung me off into the blackness beneath.",
-     "zh": ""
-    },
-    {
-     "en": "For a moment I hung by one hand, and after that experience I did not dare to rest again.",
-     "zh": ""
-    },
-    {
-     "en": "Though my arms and back were presently acutely painful, I went on clambering down the sheer descent with as quick a motion as possible.",
-     "zh": ""
-    },
-    {
-     "en": "Glancing upward, I saw the aperture, a small blue disc, in which a star was visible, while little Weena’s head showed as a round black projection.",
-     "zh": ""
-    },
-    {
-     "en": "The thudding sound of a machine below grew louder and more oppressive.",
-     "zh": ""
-    },
-    {
-     "en": "Everything save that little disc above was profoundly dark, and when I looked up again Weena had disappeared.",
+     "en": "It was here that I was destined, at a later date, to have a very strange experience—the first intimation of a still stranger discovery—but of that I will speak in its proper place.",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 174,
-   "audio": "data/reading/audio/20261108-2.mp3",
-   "audioKB": 347,
+   "words": 131,
+   "audio": "data/reading/audio/20261109-1.mp3",
+   "audioKB": 269,
    "link": "https://www.gutenberg.org/ebooks/35",
    "aiAssisted": true
   },
   {
-   "id": "20261108-3",
-   "date": "2026-11-08",
-   "source": "Simple Wikipedia",
-   "license": "CC BY-SA 4.0",
-   "attribution": "Simple English Wikipedia",
-   "topic": "百科",
-   "country": "",
-   "countryName": "",
-   "title": "Ford Explorer",
-   "titleZh": "",
-   "sentences": [
-    {
-     "en": "The Ford Explorer is a mid-sized SUV that is built by Ford Motor Company.",
-     "zh": ""
-    },
-    {
-     "en": "The Explorer has been built for five generations, the first generation was a 2-door and 4-door SUV and was produced from 1991 to 1994, the second generation was a 2-door, 4-door and 4-door pickup truck and was produced from 1995-2001, 1995-2003 for the Sport and 2001-2005 for the Sport Trac, the third generation was a 5-door SUV only and was produced from 2002-2005, the forth generation was also a 5-door SUV and was produced 2006-2010 and the fifth generation has been produced since 2011 with a facelift for 2016.",
-     "zh": ""
-    }
-   ],
-   "glossary": [],
-   "words": 103,
-   "audio": "data/reading/audio/20261108-3.mp3",
-   "audioKB": 287,
-   "link": "https://simple.wikipedia.org/wiki/Ford_Explorer",
-   "aiAssisted": true
-  },
-  {
-   "id": "20261108-4",
-   "date": "2026-11-08",
+   "id": "20261109-2",
+   "date": "2026-11-09",
    "source": "Project Gutenberg",
    "license": "公有领域",
    "attribution": "Arthur Conan Doyle · The Adventures of Sherlock Holmes · Project Gutenberg",
@@ -144,28 +52,80 @@
    "titleZh": "",
    "sentences": [
     {
-     "en": "The station-master laughed heartily.",
+     "en": "“You will observe,” said Holmes, laying down the volume, “that the sudden breaking up of the society was coincident with the disappearance of Openshaw from America with their papers.",
      "zh": ""
     },
     {
-     "en": "Becher is an Englishman, and there isn’t a man in the parish who has a better-lined waistcoat.",
+     "en": "It may well have been cause and effect.",
      "zh": ""
     },
     {
-     "en": "But he has a gentleman staying with him, a patient, as I understand, who is a foreigner, and he looks as if a little good Berkshire beef would do him no harm.”",
+     "en": "It is no wonder that he and his family have some of the more implacable spirits upon their track.",
+     "zh": ""
+    },
+    {
+     "en": "You can understand that this register and diary may implicate some of the first men in the South, and that there may be many who will not sleep easy at night until it is recovered.”",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 53,
-   "audio": "data/reading/audio/20261108-4.mp3",
-   "audioKB": 104,
+   "words": 91,
+   "audio": "data/reading/audio/20261109-2.mp3",
+   "audioKB": 169,
    "link": "https://www.gutenberg.org/ebooks/1661",
    "aiAssisted": true
   },
   {
-   "id": "20261108-5",
-   "date": "2026-11-08",
+   "id": "20261109-3",
+   "date": "2026-11-09",
+   "source": "Project Gutenberg",
+   "license": "公有领域",
+   "attribution": "Louisa May Alcott · Little Women · Project Gutenberg",
+   "topic": "文学",
+   "country": "",
+   "countryName": "",
+   "title": "Little Women（选段）",
+   "titleZh": "",
+   "sentences": [
+    {
+     "en": "By Jupiter, I will, if I only get the chance!” cried Laurie, sitting up with sudden energy.",
+     "zh": ""
+    },
+    {
+     "en": "“I ought to be satisfied to please Grandfather, and I do try, but it’s working against the grain, you see, and comes hard.",
+     "zh": ""
+    },
+    {
+     "en": "He wants me to be an India merchant, as he was, and I’d rather be shot.",
+     "zh": ""
+    },
+    {
+     "en": "I hate tea and silk and spices, and every sort of rubbish his old ships bring, and I don’t care how soon they go to the bottom when I own them.",
+     "zh": ""
+    },
+    {
+     "en": "Going to college ought to satisfy him, for if I give him four years he ought to let me off from the business.",
+     "zh": ""
+    },
+    {
+     "en": "But he’s set, and I’ve got to do just as he did, unless I break away and please myself, as my father did.",
+     "zh": ""
+    },
+    {
+     "en": "If there was anyone left to stay with the old gentleman, I’d do it tomorrow.”",
+     "zh": ""
+    }
+   ],
+   "glossary": [],
+   "words": 148,
+   "audio": "data/reading/audio/20261109-3.mp3",
+   "audioKB": 267,
+   "link": "https://www.gutenberg.org/ebooks/514",
+   "aiAssisted": true
+  },
+  {
+   "id": "20261109-4",
+   "date": "2026-11-09",
    "source": "Project Gutenberg",
    "license": "公有领域",
    "attribution": "Jane Austen · Pride and Prejudice · Project Gutenberg",
@@ -176,32 +136,76 @@
    "titleZh": "",
    "sentences": [
     {
-     "en": "They had just been preparing to walk as the letters came in; and her uncle and aunt, leaving her to enjoy them in quiet, set off by themselves.",
+     "en": "It was not often that she could turn her eyes on Mr.",
      "zh": ""
     },
     {
-     "en": "The one mis-sent must be first attended to; it had been written five days ago.",
+     "en": "Darcy himself; but whenever she did catch a glimpse she saw an expression of general complaisance, and in all that he said, she heard an accent so far removed from _hauteur_ or disdain of his companions, as convinced her that the improvement of manners which she had yesterday witnessed, however temporary its existence might prove, had at least outlived one day.",
      "zh": ""
     },
     {
-     "en": "The beginning contained an account of all their little parties and engagements, with such news as the country afforded; but the latter half, which was dated a day later, and written in evident agitation, gave more important intelligence.",
+     "en": "When she saw him thus seeking the acquaintance, and courting the good opinion of people with whom any intercourse a few months ago would have been a disgrace; when she saw him thus civil, not only to herself, but to the very relations whom he had openly disdained, and recollected their last lively scene in Hunsford Parsonage, the difference, the change was so great, and struck so forcibly on her mind, that she could hardly restrain her astonishment from being visible.",
      "zh": ""
     },
     {
-     "en": "It was to this effect:--",
+     "en": "Never, even in the company of his dear friends at Netherfield, or his dignified relations at Rosings, had she seen him so desirous to please, so free from self-consequence or unbending reserve, as now, when no importance could result from the success of his endeavours, and when even the acquaintance of those to whom his attentions were addressed, would draw down the ridicule and censure of the ladies both of Netherfield and Rosings.",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 86,
-   "audio": "data/reading/audio/20261108-5.mp3",
-   "audioKB": 174,
+   "words": 227,
+   "audio": "data/reading/audio/20261109-4.mp3",
+   "audioKB": 446,
    "link": "https://www.gutenberg.org/ebooks/1342",
    "aiAssisted": true
   },
   {
-   "id": "20261108-6",
-   "date": "2026-11-08",
+   "id": "20261109-5",
+   "date": "2026-11-09",
+   "source": "Project Gutenberg",
+   "license": "公有领域",
+   "attribution": "Mary Shelley · Frankenstein · Project Gutenberg",
+   "topic": "文学",
+   "country": "",
+   "countryName": "",
+   "title": "Frankenstein（选段）",
+   "titleZh": "",
+   "sentences": [
+    {
+     "en": "I entered the room where the corpse lay and was led up to the coffin.",
+     "zh": ""
+    },
+    {
+     "en": "How can I describe my sensations on beholding it?",
+     "zh": ""
+    },
+    {
+     "en": "I feel yet parched with horror, nor can I reflect on that terrible moment without shuddering and agony.",
+     "zh": ""
+    },
+    {
+     "en": "The examination, the presence of the magistrate and witnesses, passed like a dream from my memory when I saw the lifeless form of Henry Clerval stretched before me.",
+     "zh": ""
+    },
+    {
+     "en": "I gasped for breath, and throwing myself on the body, I exclaimed, “Have my murderous machinations deprived you also, my dearest Henry, of life?",
+     "zh": ""
+    },
+    {
+     "en": "Two I have already destroyed; other victims await their destiny; but you, Clerval, my friend, my benefactor—”",
+     "zh": ""
+    }
+   ],
+   "glossary": [],
+   "words": 111,
+   "audio": "data/reading/audio/20261109-5.mp3",
+   "audioKB": 239,
+   "link": "https://www.gutenberg.org/ebooks/84",
+   "aiAssisted": true
+  },
+  {
+   "id": "20261109-6",
+   "date": "2026-11-09",
    "source": "Project Gutenberg",
    "license": "公有领域",
    "attribution": "Bram Stoker · Dracula · Project Gutenberg",
@@ -212,30 +216,30 @@
    "titleZh": "",
    "sentences": [
     {
-     "en": "“What shall I do?” There was fire in his eyes, and his open nostril quivered with intent.",
+     "en": "“Well, you know what we have to contend against; but we, too, are not without strength.",
      "zh": ""
     },
     {
-     "en": "Van Helsing slapped him on the shoulder.",
+     "en": "We have on our side power of combination--a power denied to the vampire kind; we have sources of science; we are free to act and think; and the hours of the day and the night are ours equally.",
      "zh": ""
     },
     {
-     "en": "“Come!” he said.",
+     "en": "In fact, so far as our powers extend, they are unfettered, and we are free to use them.",
      "zh": ""
     },
     {
-     "en": "“You are a man, and it is a man we want.",
+     "en": "We have self-devotion in a cause, and an end to achieve which is not a selfish one.",
      "zh": ""
     },
     {
-     "en": "You are better than me, better than my friend John.” Arthur looked bewildered, and the Professor went on by explaining in a kindly way:--",
+     "en": "These things are much.",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 62,
-   "audio": "data/reading/audio/20261108-6.mp3",
-   "audioKB": 139,
+   "words": 93,
+   "audio": "data/reading/audio/20261109-6.mp3",
+   "audioKB": 177,
    "link": "https://www.gutenberg.org/ebooks/345",
    "aiAssisted": true
   }
