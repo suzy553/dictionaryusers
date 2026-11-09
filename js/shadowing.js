@@ -184,6 +184,63 @@
     out.innerHTML = '<div class="sh-' + (kind || 'warn') + '">' + text + '</div>';
   }
 
+  /* 评分等待点阵：视觉参考 LeiBox "ai-generating"
+     （github.com/leishifu666/LeiBox, integrations/skills/leibox） */
+  var stopWait = null;
+
+  function startDotLoader(cv) {
+    var ctx = cv && cv.getContext ? cv.getContext('2d') : null;
+    if (!ctx) return function () { };
+    var W = 108, H = 30;
+    var dpr = Math.min(2, window.devicePixelRatio || 1);
+    cv.width = W * dpr;
+    cv.height = H * dpr;
+    cv.style.width = W + 'px';
+    cv.style.height = H + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    var cols = 22, rows = 5;
+    var t0 = performance.now();
+    var raf = 0;
+    var reduce = false;
+    try { reduce = matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { }
+    function draw(now) {
+      var t = (now - t0) / 1000;
+      ctx.clearRect(0, 0, W, H);
+      var cx1 = W * 0.34 + Math.cos(t * 1.6) * 18;
+      var cy1 = H * 0.5 + Math.sin(t * 1.9) * 7;
+      var cx2 = W * 0.66 + Math.cos(t * 1.25 + 2) * 18;
+      var cy2 = H * 0.5 + Math.sin(t * 1.5 + 1) * 7;
+      for (var y = 0; y < rows; y++) {
+        for (var x = 0; x < cols; x++) {
+          var px = 6 + x * (W - 12) / (cols - 1);
+          var py = 6 + y * (H - 12) / (rows - 1);
+          var d = Math.min(Math.hypot(px - cx1, py - cy1), Math.hypot(px - cx2, py - cy2));
+          var act = Math.max(0, 1 - d / 30);
+          ctx.beginPath();
+          ctx.fillStyle = 'rgba(88,204,2,' + (0.16 + act * 0.72).toFixed(3) + ')';
+          ctx.arc(px, py, 1.3 + act * 1.2, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+      if (!reduce) raf = requestAnimationFrame(draw);
+    }
+    draw(performance.now());
+    return function () { if (raf) cancelAnimationFrame(raf); };
+  }
+
+  function showEvaluating(i) {
+    clearEvaluating();
+    var out = outBox(i);
+    if (!out) return;
+    out.innerHTML = '<div class="sh-wait"><canvas class="sh-wait-dots"></canvas><span>正在评分…</span></div>';
+    var cv = out.querySelector('.sh-wait-dots');
+    if (cv) stopWait = startDotLoader(cv);
+  }
+
+  function clearEvaluating() {
+    if (stopWait) { try { stopWait(); } catch (e) { } stopWait = null; }
+  }
+
   async function startRec(i) {
     var row = panel.querySelector('.sh-row[data-i="' + i + '"]');
     if (!row) return;
@@ -325,6 +382,7 @@
 
   /* --- C. 讯飞评测（最准，需要配置 Worker 地址）--- */
   async function startISE(i, row) {
+    clearEvaluating();
     var sent = ((cur.sentences || [])[i] || {}).en || '';
     if (!sent) { showStatus(i, '这句没有原文', 'warn'); return; }
     setRecUI(row, true, '■ 停止');
@@ -385,12 +443,14 @@
           } catch (e) { }
         },
         onStop: function () {
+          showEvaluating(i);
           if (mr && !mrClosed && mr.state !== 'inactive') {
             try { mr.stop(); } catch (e) { }
           }
         }
       });
 
+      clearEvaluating();
       setRecUI(row, false);
       stopMeter();
 
@@ -402,6 +462,7 @@
       renderISEResult(i, row, sent, r, delta);
       updateProgress();
     } catch (e) {
+      clearEvaluating();
       stopMeter();
       setRecUI(row, false);
       var _m = (e && e.message ? e.message : String(e));

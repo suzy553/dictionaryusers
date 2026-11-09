@@ -392,3 +392,11 @@
 .pl-jlist{ margin-top: 6px; }
 .pl-jrow{ display: flex; justify-content: space-between; font-size: 12px; color: #6b7a72; padding: 6px 0; border-bottom: 1px dashed #eef2ef; }
 .pl-live{ margin-top: 8px; font-size: 13px; line-height: 1.6; color: #2f6b3b; min-height: 20px; }
+
+/* 评分等待点阵（视觉参考 LeiBox ai-generating） */
+.sh-wait{
+  display: flex; align-items: center; gap: 8px;
+  margin-top: 8px; font-size: 11.5px; color: #8b98a6;
+}
+.sh-wait canvas{ display: block; }
+html[data-theme="night"] .sh-wait{ color: rgba(255,255,255,.62); }
