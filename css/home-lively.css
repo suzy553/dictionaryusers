@@ -220,3 +220,122 @@ html[data-theme="night"] #screen-home .hero::after{ opacity: .5; }
 @media (prefers-reduced-motion: reduce){
   #screen-home .hero::after{ animation: none !important; }
 }
+
+/* ---------- 9. 像素开关：和齿轮按钮统一成白底圆钮 ---------- */
+#btnPixelTheme{
+  background: var(--surface, #fff) !important;
+  border: 1px solid var(--rule, #e5eee9) !important;
+  border-radius: 999px !important;
+  width: 34px !important;
+  height: 34px !important;
+}
+html[data-theme="night"] #btnPixelTheme{
+  background: var(--surface) !important;
+  border-color: var(--rule) !important;
+}
+
+/* ---------- 10. 首页快捷环形菜单 ---------- */
+.qw{
+  position: fixed;
+  right: 18px;
+  bottom: calc(var(--tab-h, 64px) + var(--safe-b, 0px) + 18px);
+  z-index: 90;
+  width: 54px;
+  height: 54px;
+  display: none;
+}
+html.on-home .qw{ display: block; }
+
+.qw-backdrop{
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background: rgba(10, 22, 16, .12);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .22s ease;
+}
+.qw.is-open .qw-backdrop{ opacity: 1; pointer-events: auto; }
+
+.qw-fab{
+  position: relative;
+  z-index: 4;
+  width: 54px;
+  height: 54px;
+  border: 0;
+  border-radius: 50%;
+  background: linear-gradient(140deg, #63df10, #3fae00);
+  box-shadow: 0 8px 20px rgba(63, 174, 0, .35), 0 2px 0 rgba(0, 0, 0, .08);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: transform .25s ease, box-shadow .25s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.qw-fab:active{ transform: scale(.94); }
+.qw.is-open .qw-fab{ transform: rotate(135deg); }
+
+.qw-plus{ position: relative; width: 20px; height: 20px; display: block; }
+.qw-plus::before,
+.qw-plus::after{
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background: #fff;
+  border-radius: 2px;
+  transform: translate(-50%, -50%);
+}
+.qw-plus::before{ width: 18px; height: 3px; }
+.qw-plus::after{ width: 3px; height: 18px; }
+
+.qw-actions{ position: absolute; right: 0; bottom: 0; z-index: 3; width: 0; height: 0; }
+.qw-item{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: 1px solid var(--rule, #e5eee9);
+  background: var(--surface, #fff);
+  color: var(--ink, #1c2a24);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  box-shadow: 0 6px 16px rgba(16, 32, 22, .14);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(0, 0) scale(.55);
+  transition: transform .3s cubic-bezier(.2, .9, .3, 1.2), opacity .2s ease;
+  transition-delay: calc(var(--i) * 25ms);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.qw-item span{ font-size: 19px; line-height: 1; }
+.qw-item em{
+  font-style: normal;
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--ink-3, #6b7a72);
+  letter-spacing: .2px;
+}
+.qw.is-open .qw-item{
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(var(--tx), var(--ty)) scale(1);
+}
+.qw-item:active{ transform: translate(var(--tx), var(--ty)) scale(.92); }
+
+html[data-theme="night"] .qw-item{
+  background: #1b2a24;
+  border-color: #2a3d34;
+  color: #e8f0eb;
+}
+html[data-theme="night"] .qw-item em{ color: #9fb3a8; }
+
+@media (prefers-reduced-motion: reduce){
+  .qw-fab, .qw-item, .qw-backdrop{ transition: none !important; }
+}

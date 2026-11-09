@@ -1087,7 +1087,7 @@ function drawPixelPattern(cv, pattern, color) {
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   ctx.clearRect(0, 0, size, size);
   ctx.fillStyle = color;
-  var cell = 4, gap = 1, origin = 2;
+  var cell = 3, gap = 2, origin = 3;
   for (var y = 0; y < 5; y++) {
     for (var x = 0; x < 5; x++) {
       if (!pattern[y][x]) continue;
@@ -1116,6 +1116,50 @@ function initPixelTheme() {
     toast(night ? '已切到白天模式' : '已切到夜晚模式');
   };
   syncPixelTheme();
+}
+
+/* 首页快捷环形菜单：交互参考 LeiBox "soft-action-wheel"
+   （github.com/leishifu666/LeiBox, integrations/skills/leibox） */
+function initQuickWheel() {
+  if (document.getElementById('quickWheel')) return;
+  var wrap = document.createElement('div');
+  wrap.id = 'quickWheel';
+  wrap.className = 'qw';
+  wrap.innerHTML = [
+    '<div class="qw-backdrop"></div>',
+    '<div class="qw-actions">',
+    '<button class="qw-item" type="button" data-act="learn" style="--i:0;--tx:-96px;--ty:0px"><span>📖</span><em>新词</em></button>',
+    '<button class="qw-item" type="button" data-act="review" style="--i:1;--tx:-78px;--ty:-56px"><span>🔁</span><em>复习</em></button>',
+    '<button class="qw-item" type="button" data-act="reading" style="--i:2;--tx:-42px;--ty:-88px"><span>📰</span><em>阅读</em></button>',
+    '<button class="qw-item" type="button" data-act="dictation" style="--i:3;--tx:8px;--ty:-102px"><span>🎧</span><em>听写</em></button>',
+    '</div>',
+    '<button class="qw-fab" type="button" aria-label="快捷开始学习"><i class="qw-plus"></i></button>'
+  ].join('');
+  document.body.appendChild(wrap);
+
+  var fab = wrap.querySelector('.qw-fab');
+  function close() { wrap.classList.remove('is-open'); }
+  fab.addEventListener('click', function (e) {
+    e.stopPropagation();
+    wrap.classList.toggle('is-open');
+    try { if (navigator.vibrate) navigator.vibrate(8); } catch (err) { }
+  });
+  wrap.querySelector('.qw-backdrop').addEventListener('click', close);
+  wrap.addEventListener('click', function (e) {
+    var b = e.target && e.target.closest ? e.target.closest('.qw-item') : null;
+    if (!b) return;
+    close();
+    var act = b.getAttribute('data-act');
+    try {
+      if (act === 'learn') startSession('learn');
+      else if (act === 'review') startSession('review');
+      else if (act === 'reading') { if (window.XYReading) window.XYReading.open(); }
+      else if (act === 'dictation') { if (window.XYPronLab) window.XYPronLab.open('dictation'); }
+    } catch (err) { }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') close();
+  });
 }
 function displayStreak() {
   const last = state.stats.lastStudy;
@@ -2830,6 +2874,7 @@ async function boot() {
   if (qTheme === 'day' || qTheme === 'night') state.settings.theme = qTheme;
   applyTheme();
   initPixelTheme();
+  initQuickWheel();
   if (window.matchMedia) {
     try {
       const mq = matchMedia('(prefers-color-scheme: dark)');
