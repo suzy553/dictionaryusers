@@ -900,7 +900,10 @@ function loopFx() {
 /* ---------------- 主界面渲染 ---------------- */
 function bookMeta(id) { return bookIndex.find(b => b.id === id); }
 
+let homeRendered = false;
+
 function renderHome() {
+  const firstHomeRender = !homeRendered;
   const rec = todayRec();
   const br = bookTodayRec();
   const goal = state.settings.dailyNew;
@@ -957,6 +960,20 @@ function renderHome() {
   if (rowR) rowR.classList.toggle('idle', !hasRev);
   const tkN = $('#tickNew'); if (tkN) tkN.classList.toggle('on', newDone);
   const tkR = $('#tickRev'); if (tkR) tkR.classList.toggle('on', revDone);
+
+  /* 任务完成：卡片描边 + 撒花（首次渲染不触发，避免一进首页就放） */
+  const cardN = document.getElementById('taskNew');
+  if (cardN) {
+    const wasDone = cardN.classList.contains('is-done');
+    cardN.classList.toggle('is-done', newDone);
+    if (!firstHomeRender && newDone && !wasDone) confetti(70);
+  }
+  if (rowR) {
+    const wasRev = rowR.classList.contains('is-done');
+    rowR.classList.toggle('is-done', revDone);
+    if (!firstHomeRender && revDone && !wasRev) confetti(70);
+  }
+  homeRendered = true;
 
   // 连续打卡：最近 7 天
   const dots = [];
