@@ -31,7 +31,7 @@ hsl hsla url linear-gradient radial-gradient cubic-bezier inset rgba
 if for while switch catch function return typeof instanceof new delete void
 Array Object String Number Boolean Math Date JSON Promise Map Set RegExp Error
 console document window localStorage sessionStorage navigator location history
-setTimeout setInterval clearTimeout clearInterval requestAnimationFrame
+setTimeout setInterval clearTimeout clearInterval requestAnimationFrame cancelAnimationFrame
 parseInt parseFloat isNaN isFinite encodeURIComponent decodeURIComponent
 getComputedStyle matchMedia fetch alert confirm prompt
 Blob URL FileReader FormData Image Audio AudioContext SpeechSynthesisUtterance
