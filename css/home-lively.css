@@ -339,3 +339,35 @@ html[data-theme="night"] .qw-item em{ color: #9fb3a8; }
 @media (prefers-reduced-motion: reduce){
   .qw-fab, .qw-item, .qw-backdrop{ transition: none !important; }
 }
+
+/* ---------- 11. 移动端触屏优化 ---------- */
+#btnPixelTheme{
+  width: 38px !important;
+  height: 38px !important;
+}
+#screen-home .tc-task,
+.qw-fab,
+.qw-item,
+.sheet-cta{
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+#screen-home .tc-task:active{
+  transform: scale(.97);
+  transition: transform .12s ease;
+}
+
+/* 触屏点按涟漪 */
+.tap-ripple{
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(88, 204, 2, .22);
+  transform: scale(0);
+  pointer-events: none;
+  animation: tapRipple .5s ease-out forwards;
+}
+@keyframes tapRipple{
+  to{ transform: scale(1); opacity: 0; }
+}
+#screen-home .sheet-cta{ position: relative !important; overflow: hidden !important; }
+.qw-item{ overflow: hidden; }

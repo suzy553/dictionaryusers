@@ -1139,11 +1139,29 @@ function initQuickWheel() {
 
   var fab = wrap.querySelector('.qw-fab');
   function close() { wrap.classList.remove('is-open'); }
+  var swiped = false;
+  var touchY = 0;
+  fab.addEventListener('touchstart', function (e) {
+    touchY = e.touches && e.touches[0] ? e.touches[0].clientY : 0;
+    swiped = false;
+  }, { passive: true });
+  fab.addEventListener('touchend', function (e) {
+    var y = e.changedTouches && e.changedTouches[0] ? e.changedTouches[0].clientY : 0;
+    if (wrap.classList.contains('is-open') && y - touchY > 26) {
+      swiped = true;
+      close();
+    }
+  }, { passive: true });
   fab.addEventListener('click', function (e) {
     e.stopPropagation();
+    if (swiped) { swiped = false; return; }
     wrap.classList.toggle('is-open');
     try { if (navigator.vibrate) navigator.vibrate(8); } catch (err) { }
   });
+  /* 滚动页面时收起，避免挡内容 */
+  window.addEventListener('scroll', function () {
+    if (wrap.classList.contains('is-open')) close();
+  }, { passive: true });
   wrap.querySelector('.qw-backdrop').addEventListener('click', close);
   wrap.addEventListener('click', function (e) {
     var b = e.target && e.target.closest ? e.target.closest('.qw-item') : null;
@@ -1160,6 +1178,30 @@ function initQuickWheel() {
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') close();
   });
+}
+
+/* 移动端点按涟漪：任务卡 / 快捷项 / 主按钮 */
+function initTapRipple() {
+  var reduce = false;
+  try { reduce = matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { }
+  if (reduce) return;
+  document.addEventListener('pointerdown', function (e) {
+    var t = e.target && e.target.closest
+      ? e.target.closest('#screen-home .tc-task, .qw-item, #screen-home .sheet-cta')
+      : null;
+    if (!t) return;
+    var r = t.getBoundingClientRect();
+    if (!r.width || !r.height) return;
+    var d = Math.max(r.width, r.height) * 1.1;
+    var span = document.createElement('span');
+    span.className = 'tap-ripple';
+    span.style.width = d + 'px';
+    span.style.height = d + 'px';
+    span.style.left = (e.clientX - r.left - d / 2) + 'px';
+    span.style.top = (e.clientY - r.top - d / 2) + 'px';
+    t.appendChild(span);
+    setTimeout(function () { if (span.parentNode) span.parentNode.removeChild(span); }, 520);
+  }, { passive: true });
 }
 function displayStreak() {
   const last = state.stats.lastStudy;
@@ -2875,6 +2917,7 @@ async function boot() {
   applyTheme();
   initPixelTheme();
   initQuickWheel();
+  initTapRipple();
   if (window.matchMedia) {
     try {
       const mq = matchMedia('(prefers-color-scheme: dark)');
