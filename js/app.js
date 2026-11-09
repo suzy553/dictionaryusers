@@ -1118,68 +1118,6 @@ function initPixelTheme() {
   syncPixelTheme();
 }
 
-/* 首页快捷环形菜单：交互参考 LeiBox "soft-action-wheel"
-   （github.com/leishifu666/LeiBox, integrations/skills/leibox） */
-function initQuickWheel() {
-  if (document.getElementById('quickWheel')) return;
-  var wrap = document.createElement('div');
-  wrap.id = 'quickWheel';
-  wrap.className = 'qw';
-  wrap.innerHTML = [
-    '<div class="qw-backdrop"></div>',
-    '<div class="qw-actions">',
-    '<button class="qw-item" type="button" data-act="learn" style="--i:0;--tx:-96px;--ty:0px"><span>📖</span><em>新词</em></button>',
-    '<button class="qw-item" type="button" data-act="review" style="--i:1;--tx:-78px;--ty:-56px"><span>🔁</span><em>复习</em></button>',
-    '<button class="qw-item" type="button" data-act="reading" style="--i:2;--tx:-42px;--ty:-88px"><span>📰</span><em>阅读</em></button>',
-    '<button class="qw-item" type="button" data-act="dictation" style="--i:3;--tx:8px;--ty:-102px"><span>🎧</span><em>听写</em></button>',
-    '</div>',
-    '<button class="qw-fab" type="button" aria-label="快捷开始学习"><i class="qw-plus"></i></button>'
-  ].join('');
-  document.body.appendChild(wrap);
-
-  var fab = wrap.querySelector('.qw-fab');
-  function close() { wrap.classList.remove('is-open'); }
-  var swiped = false;
-  var touchY = 0;
-  fab.addEventListener('touchstart', function (e) {
-    touchY = e.touches && e.touches[0] ? e.touches[0].clientY : 0;
-    swiped = false;
-  }, { passive: true });
-  fab.addEventListener('touchend', function (e) {
-    var y = e.changedTouches && e.changedTouches[0] ? e.changedTouches[0].clientY : 0;
-    if (wrap.classList.contains('is-open') && y - touchY > 26) {
-      swiped = true;
-      close();
-    }
-  }, { passive: true });
-  fab.addEventListener('click', function (e) {
-    e.stopPropagation();
-    if (swiped) { swiped = false; return; }
-    wrap.classList.toggle('is-open');
-    try { if (navigator.vibrate) navigator.vibrate(8); } catch (err) { }
-  });
-  /* 滚动页面时收起，避免挡内容 */
-  window.addEventListener('scroll', function () {
-    if (wrap.classList.contains('is-open')) close();
-  }, { passive: true });
-  wrap.querySelector('.qw-backdrop').addEventListener('click', close);
-  wrap.addEventListener('click', function (e) {
-    var b = e.target && e.target.closest ? e.target.closest('.qw-item') : null;
-    if (!b) return;
-    close();
-    var act = b.getAttribute('data-act');
-    try {
-      if (act === 'learn') startSession('learn');
-      else if (act === 'review') startSession('review');
-      else if (act === 'reading') { if (window.XYReading) window.XYReading.open(); }
-      else if (act === 'dictation') { if (window.XYPronLab) window.XYPronLab.open('dictation'); }
-    } catch (err) { }
-  });
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') close();
-  });
-}
-
 /* 移动端点按涟漪：任务卡 / 快捷项 / 主按钮 */
 function initTapRipple() {
   var reduce = false;
@@ -1187,7 +1125,7 @@ function initTapRipple() {
   if (reduce) return;
   document.addEventListener('pointerdown', function (e) {
     var t = e.target && e.target.closest
-      ? e.target.closest('#screen-home .tc-task, .qw-item, #screen-home .sheet-cta')
+      ? e.target.closest('#screen-home .tc-task, #screen-home .sheet-cta')
       : null;
     if (!t) return;
     var r = t.getBoundingClientRect();
@@ -2916,7 +2854,6 @@ async function boot() {
   if (qTheme === 'day' || qTheme === 'night') state.settings.theme = qTheme;
   applyTheme();
   initPixelTheme();
-  initQuickWheel();
   initTapRipple();
   if (window.matchMedia) {
     try {
