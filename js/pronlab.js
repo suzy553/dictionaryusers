@@ -596,7 +596,7 @@
     open: function (kind) {
       if (kind === 'sounds') return openSounds();
       if (kind === 'pairs') return openPairs();
-      if (kind === 'mistakes') return openMistakes();
+      if (kind === 'mistakes') return; /* 入口已移除 */
       if (kind === 'progress') return openProgress();
       if (kind === 'dictation') return openDictation();
       if (kind === 'journal') return openJournal();
