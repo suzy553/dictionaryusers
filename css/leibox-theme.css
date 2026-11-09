@@ -1,0 +1,30 @@
+/* Pixel day/night toggle — adapted from LeiBox "pixel-toggle"
+   (github.com/leishifu666/LeiBox, integrations/skills/leibox). */
+#btnPixelTheme{
+  position: relative;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+#btnPixelTheme:active{ transform: scale(.94); }
+#btnPixelTheme canvas{
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  image-rendering: pixelated;
+  transition: opacity .28s steps(4, end), transform .28s ease;
+}
+#btnPixelTheme .px-moon{ opacity: 0; transform: scale(.72) rotate(-12deg); }
+#btnPixelTheme.is-night .px-sun{ opacity: 0; transform: scale(.72) rotate(12deg); }
+#btnPixelTheme.is-night .px-moon{ opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce){
+  #btnPixelTheme canvas{ transition: none; }
+}

@@ -1040,6 +1040,65 @@ function applyTheme() {
   try { applyPhoto(); } catch (e) { }
   const meta = document.querySelector('meta[name="theme-color"]');
   if (meta) meta.setAttribute('content', t === 'night' ? '#0e1a22' : '#58cc02');
+  try { syncPixelTheme(); } catch (e) { }
+}
+
+/* 像素日夜开关：交互与视觉参考 LeiBox "pixel-toggle"
+   （github.com/leishifu666/LeiBox, integrations/skills/leibox） */
+const PX_SUN = [
+  [0, 0, 1, 0, 0],
+  [0, 1, 1, 1, 0],
+  [1, 1, 1, 1, 1],
+  [0, 1, 1, 1, 0],
+  [0, 0, 1, 0, 0]
+];
+const PX_MOON = [
+  [0, 1, 1, 1, 0],
+  [1, 1, 0, 0, 0],
+  [1, 0, 0, 0, 0],
+  [1, 1, 0, 0, 0],
+  [0, 1, 1, 1, 0]
+];
+function drawPixelPattern(cv, pattern, color) {
+  if (!cv) return;
+  var ctx = cv.getContext('2d');
+  if (!ctx) return;
+  var dpr = Math.min(2, window.devicePixelRatio || 1);
+  var size = 24;
+  cv.width = size * dpr;
+  cv.height = size * dpr;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.clearRect(0, 0, size, size);
+  ctx.fillStyle = color;
+  var cell = 4, gap = 1, origin = 2;
+  for (var y = 0; y < 5; y++) {
+    for (var x = 0; x < 5; x++) {
+      if (!pattern[y][x]) continue;
+      ctx.fillRect(origin + x * (cell + gap), origin + y * (cell + gap), cell, cell);
+    }
+  }
+}
+function syncPixelTheme() {
+  var b = document.getElementById('btnPixelTheme');
+  if (!b) return;
+  var night = document.documentElement.getAttribute('data-theme') === 'night';
+  b.classList.toggle('is-night', night);
+  b.setAttribute('aria-label', night ? '切换到白天模式' : '切换到夜晚模式');
+}
+function initPixelTheme() {
+  var b = document.getElementById('btnPixelTheme');
+  if (!b) return;
+  drawPixelPattern(b.querySelector('.px-sun'), PX_SUN, '#f5a623');
+  drawPixelPattern(b.querySelector('.px-moon'), PX_MOON, '#9fd8ff');
+  b.onclick = function () {
+    var night = document.documentElement.getAttribute('data-theme') === 'night';
+    state.settings.theme = night ? 'day' : 'night';
+    saveState();
+    applyTheme();
+    renderSettings();
+    toast(night ? '已切到白天模式' : '已切到夜晚模式');
+  };
+  syncPixelTheme();
 }
 function displayStreak() {
   const last = state.stats.lastStudy;
@@ -2753,6 +2812,7 @@ async function boot() {
   const qTheme = new URLSearchParams(location.search).get('theme');
   if (qTheme === 'day' || qTheme === 'night') state.settings.theme = qTheme;
   applyTheme();
+  initPixelTheme();
   if (window.matchMedia) {
     try {
       const mq = matchMedia('(prefers-color-scheme: dark)');

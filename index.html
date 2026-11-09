@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
-<meta name="app-version" content="343">
+<meta name="app-version" content="344">
 <script>
 /* 在 CSS 生效前定好白天/夜晚，避免闪一下白屏 */
 (function () {
@@ -44,14 +44,15 @@
 <link rel="apple-touch-icon" sizes="152x152" href="icons/icon-152.png">
 <link rel="apple-touch-icon" sizes="167x167" href="icons/icon-167.png">
 <link rel="apple-touch-icon" sizes="120x120" href="icons/icon-120.png">
-<link rel="stylesheet" href="css/app.css?v=343">
-<link rel="stylesheet" href="css/cute.css?v=343">
-<link rel="stylesheet" href="css/path.css?v=343">
-<link rel="stylesheet" href="css/theme.css?v=343">
-  <link rel="stylesheet" href="css/design-system.css?v=343">
-  <link rel="stylesheet" href="css/design-v2.css?v=343">
-  <link rel="stylesheet" href="css/reading.css?v=343">
-  <link rel="stylesheet" href="css/shadowing.css?v=343">
+<link rel="stylesheet" href="css/app.css?v=344">
+<link rel="stylesheet" href="css/cute.css?v=344">
+<link rel="stylesheet" href="css/path.css?v=344">
+<link rel="stylesheet" href="css/theme.css?v=344">
+<link rel="stylesheet" href="css/leibox-theme.css?v=344">
+  <link rel="stylesheet" href="css/design-system.css?v=344">
+  <link rel="stylesheet" href="css/design-v2.css?v=344">
+  <link rel="stylesheet" href="css/reading.css?v=344">
+  <link rel="stylesheet" href="css/shadowing.css?v=344">
 </head>
 <body>
 
@@ -177,6 +178,7 @@
       <button class="tb-book" id="tbBook" type="button">选择词书</button>
       <span class="done-badge" id="doneBadge" hidden>今日达标</span>
     </div>
+    <button class="icon-btn" id="btnPixelTheme" type="button" aria-label="切换日夜模式"><canvas class="px-sun" width="24" height="24"></canvas><canvas class="px-moon" width="24" height="24"></canvas></button>
     <button class="icon-btn" id="btnSettingsQuick" aria-label="设置"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-2.9 1.2v.2a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0-1.2-2.9H2a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.6-1.1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 2.9-1.2V2a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 2.9 1.2l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0 1.2 2.9h.2a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
   </header>
 
@@ -462,7 +464,7 @@
       </div>
 
       <p class="footer-note">小越背单词 · 词库来自开源项目 qwerty-learner，例句来自 ManyThings / Tatoeba</p>
-        <p class="footer-note" id="appVerStatic">版本 v343</p>
+        <p class="footer-note" id="appVerStatic">版本 v344</p>
     </section>
 
   </main>
@@ -640,14 +642,14 @@
 <div id="toast"></div>
 <canvas id="fx"></canvas>
 
-<script src="js/icons.js?v=343"></script>
-  <script src="js/app.js?v=343"></script>
-<script src="js/core.js?v=343"></script>
-  <script src="js/reading.js?v=343"></script>
-  <script src="js/shadowing.js?v=343"></script>
-  <script src="js/ise.js?v=343"></script>
-  <script src="js/voice.js?v=343"></script>
-  <script src="js/pronlab.js?v=343"></script>
+<script src="js/icons.js?v=344"></script>
+  <script src="js/app.js?v=344"></script>
+<script src="js/core.js?v=344"></script>
+  <script src="js/reading.js?v=344"></script>
+  <script src="js/shadowing.js?v=344"></script>
+  <script src="js/ise.js?v=344"></script>
+  <script src="js/voice.js?v=344"></script>
+  <script src="js/pronlab.js?v=344"></script>
 
   <!-- 导入确认弹层 -->
   <div class="imp-mask" id="importSheet">
