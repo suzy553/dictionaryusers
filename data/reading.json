@@ -1,131 +1,75 @@
 {
- "updated": "2026-11-09 22:56",
- "date": "2026-11-09",
- "source": "Project Gutenberg",
+ "updated": "2026-11-10 22:54",
+ "date": "2026-11-10",
+ "source": "Project Gutenberg / Simple Wikipedia",
  "items": [
   {
-   "id": "20261109-1",
-   "date": "2026-11-09",
-   "source": "Project Gutenberg",
-   "license": "公有领域",
-   "attribution": "H. G. Wells · The Time Machine · Project Gutenberg",
-   "topic": "文学",
+   "id": "20261110-1",
+   "date": "2026-11-10",
+   "source": "Simple Wikipedia",
+   "license": "CC BY-SA 4.0",
+   "attribution": "Simple English Wikipedia",
+   "topic": "百科",
    "country": "",
    "countryName": "",
-   "title": "The Time Machine（选段）",
+   "title": "Betty McCollum",
    "titleZh": "",
    "sentences": [
     {
-     "en": "“As I walked I was watching for every impression that could possibly help to explain the condition of ruinous splendour in which I found the world—for ruinous it was.",
+     "en": "Betty Louise McCollum is an American politician who has been the U.S.",
      "zh": ""
     },
     {
-     "en": "A little way up the hill, for instance, was a great heap of granite, bound together by masses of aluminium, a vast labyrinth of precipitous walls and crumpled heaps, amidst which were thick heaps of very beautiful pagoda-like plants—nettles possibly—but wonderfully tinted with brown about the leaves, and incapable of stinging.",
+     "en": "representative for Minnesota's 4th congressional district, since 2001.",
      "zh": ""
     },
     {
-     "en": "It was evidently the derelict remains of some vast structure, to what end built I could not determine.",
+     "en": "She is a member of the Democratic-Farmer-Labor Party (DFL).",
      "zh": ""
     },
     {
-     "en": "It was here that I was destined, at a later date, to have a very strange experience—the first intimation of a still stranger discovery—but of that I will speak in its proper place.",
+     "en": "She is the second woman elected to Congress from Minnesota.",
+     "zh": ""
+    },
+    {
+     "en": "McCollum has been the dean of Minnesota's congressional delegation since 2021, when Representative Collin Peterson lost reelection.",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 131,
-   "audio": "data/reading/audio/20261109-1.mp3",
-   "audioKB": 269,
-   "link": "https://www.gutenberg.org/ebooks/35",
+   "words": 56,
+   "audio": "data/reading/audio/20261110-1.mp3",
+   "audioKB": 154,
+   "link": "https://simple.wikipedia.org/wiki/Betty_McCollum",
    "aiAssisted": true
   },
   {
-   "id": "20261109-2",
-   "date": "2026-11-09",
+   "id": "20261110-2",
+   "date": "2026-11-10",
    "source": "Project Gutenberg",
    "license": "公有领域",
-   "attribution": "Arthur Conan Doyle · The Adventures of Sherlock Holmes · Project Gutenberg",
+   "attribution": "Lewis Carroll · Alice's Adventures in Wonderland · Project Gutenberg",
    "topic": "文学",
    "country": "",
    "countryName": "",
-   "title": "The Adventures of Sherlock Holmes（选段）",
+   "title": "Alice's Adventures in Wonderland（选段）",
    "titleZh": "",
    "sentences": [
     {
-     "en": "“You will observe,” said Holmes, laying down the volume, “that the sudden breaking up of the society was coincident with the disappearance of Openshaw from America with their papers.",
-     "zh": ""
-    },
-    {
-     "en": "It may well have been cause and effect.",
-     "zh": ""
-    },
-    {
-     "en": "It is no wonder that he and his family have some of the more implacable spirits upon their track.",
-     "zh": ""
-    },
-    {
-     "en": "You can understand that this register and diary may implicate some of the first men in the South, and that there may be many who will not sleep easy at night until it is recovered.”",
+     "en": "The Cat’s head began fading away the moment he was gone, and, by the time he had come back with the Duchess, it had entirely disappeared; so the King and the executioner ran wildly up and down looking for it, while the rest of the party went back to the game.",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 91,
-   "audio": "data/reading/audio/20261109-2.mp3",
-   "audioKB": 169,
-   "link": "https://www.gutenberg.org/ebooks/1661",
+   "words": 51,
+   "audio": "data/reading/audio/20261110-2.mp3",
+   "audioKB": 89,
+   "link": "https://www.gutenberg.org/ebooks/11",
    "aiAssisted": true
   },
   {
-   "id": "20261109-3",
-   "date": "2026-11-09",
-   "source": "Project Gutenberg",
-   "license": "公有领域",
-   "attribution": "Louisa May Alcott · Little Women · Project Gutenberg",
-   "topic": "文学",
-   "country": "",
-   "countryName": "",
-   "title": "Little Women（选段）",
-   "titleZh": "",
-   "sentences": [
-    {
-     "en": "By Jupiter, I will, if I only get the chance!” cried Laurie, sitting up with sudden energy.",
-     "zh": ""
-    },
-    {
-     "en": "“I ought to be satisfied to please Grandfather, and I do try, but it’s working against the grain, you see, and comes hard.",
-     "zh": ""
-    },
-    {
-     "en": "He wants me to be an India merchant, as he was, and I’d rather be shot.",
-     "zh": ""
-    },
-    {
-     "en": "I hate tea and silk and spices, and every sort of rubbish his old ships bring, and I don’t care how soon they go to the bottom when I own them.",
-     "zh": ""
-    },
-    {
-     "en": "Going to college ought to satisfy him, for if I give him four years he ought to let me off from the business.",
-     "zh": ""
-    },
-    {
-     "en": "But he’s set, and I’ve got to do just as he did, unless I break away and please myself, as my father did.",
-     "zh": ""
-    },
-    {
-     "en": "If there was anyone left to stay with the old gentleman, I’d do it tomorrow.”",
-     "zh": ""
-    }
-   ],
-   "glossary": [],
-   "words": 148,
-   "audio": "data/reading/audio/20261109-3.mp3",
-   "audioKB": 267,
-   "link": "https://www.gutenberg.org/ebooks/514",
-   "aiAssisted": true
-  },
-  {
-   "id": "20261109-4",
-   "date": "2026-11-09",
+   "id": "20261110-3",
+   "date": "2026-11-10",
    "source": "Project Gutenberg",
    "license": "公有领域",
    "attribution": "Jane Austen · Pride and Prejudice · Project Gutenberg",
@@ -136,76 +80,24 @@
    "titleZh": "",
    "sentences": [
     {
-     "en": "It was not often that she could turn her eyes on Mr.",
+     "en": "And when her sisters abused it as ugly, she added, with perfect unconcern, “Oh, but there were two or three much uglier in the shop; and when I have bought some prettier-coloured satin to trim it with fresh, I think it will be very tolerable.",
      "zh": ""
     },
     {
-     "en": "Darcy himself; but whenever she did catch a glimpse she saw an expression of general complaisance, and in all that he said, she heard an accent so far removed from _hauteur_ or disdain of his companions, as convinced her that the improvement of manners which she had yesterday witnessed, however temporary its existence might prove, had at least outlived one day.",
-     "zh": ""
-    },
-    {
-     "en": "When she saw him thus seeking the acquaintance, and courting the good opinion of people with whom any intercourse a few months ago would have been a disgrace; when she saw him thus civil, not only to herself, but to the very relations whom he had openly disdained, and recollected their last lively scene in Hunsford Parsonage, the difference, the change was so great, and struck so forcibly on her mind, that she could hardly restrain her astonishment from being visible.",
-     "zh": ""
-    },
-    {
-     "en": "Never, even in the company of his dear friends at Netherfield, or his dignified relations at Rosings, had she seen him so desirous to please, so free from self-consequence or unbending reserve, as now, when no importance could result from the success of his endeavours, and when even the acquaintance of those to whom his attentions were addressed, would draw down the ridicule and censure of the ladies both of Netherfield and Rosings.",
+     "en": "Besides, it will not much signify what one wears this summer, after the ----shire have left Meryton, and they are going in a fortnight.”",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 227,
-   "audio": "data/reading/audio/20261109-4.mp3",
-   "audioKB": 446,
+   "words": 69,
+   "audio": "data/reading/audio/20261110-3.mp3",
+   "audioKB": 127,
    "link": "https://www.gutenberg.org/ebooks/1342",
    "aiAssisted": true
   },
   {
-   "id": "20261109-5",
-   "date": "2026-11-09",
-   "source": "Project Gutenberg",
-   "license": "公有领域",
-   "attribution": "Mary Shelley · Frankenstein · Project Gutenberg",
-   "topic": "文学",
-   "country": "",
-   "countryName": "",
-   "title": "Frankenstein（选段）",
-   "titleZh": "",
-   "sentences": [
-    {
-     "en": "I entered the room where the corpse lay and was led up to the coffin.",
-     "zh": ""
-    },
-    {
-     "en": "How can I describe my sensations on beholding it?",
-     "zh": ""
-    },
-    {
-     "en": "I feel yet parched with horror, nor can I reflect on that terrible moment without shuddering and agony.",
-     "zh": ""
-    },
-    {
-     "en": "The examination, the presence of the magistrate and witnesses, passed like a dream from my memory when I saw the lifeless form of Henry Clerval stretched before me.",
-     "zh": ""
-    },
-    {
-     "en": "I gasped for breath, and throwing myself on the body, I exclaimed, “Have my murderous machinations deprived you also, my dearest Henry, of life?",
-     "zh": ""
-    },
-    {
-     "en": "Two I have already destroyed; other victims await their destiny; but you, Clerval, my friend, my benefactor—”",
-     "zh": ""
-    }
-   ],
-   "glossary": [],
-   "words": 111,
-   "audio": "data/reading/audio/20261109-5.mp3",
-   "audioKB": 239,
-   "link": "https://www.gutenberg.org/ebooks/84",
-   "aiAssisted": true
-  },
-  {
-   "id": "20261109-6",
-   "date": "2026-11-09",
+   "id": "20261110-4",
+   "date": "2026-11-10",
    "source": "Project Gutenberg",
    "license": "公有领域",
    "attribution": "Bram Stoker · Dracula · Project Gutenberg",
@@ -216,31 +108,119 @@
    "titleZh": "",
    "sentences": [
     {
-     "en": "“Well, you know what we have to contend against; but we, too, are not without strength.",
+     "en": "“We must consult as to what is to be done,” he said as we descended the stairs.",
      "zh": ""
     },
     {
-     "en": "We have on our side power of combination--a power denied to the vampire kind; we have sources of science; we are free to act and think; and the hours of the day and the night are ours equally.",
+     "en": "In the hall he opened the dining-room door, and we passed in, he closing the door carefully behind him.",
      "zh": ""
     },
     {
-     "en": "In fact, so far as our powers extend, they are unfettered, and we are free to use them.",
+     "en": "The shutters had been opened, but the blinds were already down, with that obedience to the etiquette of death which the British woman of the lower classes always rigidly observes.",
      "zh": ""
     },
     {
-     "en": "We have self-devotion in a cause, and an end to achieve which is not a selfish one.",
+     "en": "The room was, therefore, dimly dark.",
      "zh": ""
     },
     {
-     "en": "These things are much.",
+     "en": "It was, however, light enough for our purposes.",
+     "zh": ""
+    },
+    {
+     "en": "Van Helsing’s sternness was somewhat relieved by a look of perplexity.",
+     "zh": ""
+    },
+    {
+     "en": "He was evidently torturing his mind about something, so I waited for an instant, and he spoke:--",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 93,
-   "audio": "data/reading/audio/20261109-6.mp3",
-   "audioKB": 177,
+   "words": 108,
+   "audio": "data/reading/audio/20261110-4.mp3",
+   "audioKB": 233,
    "link": "https://www.gutenberg.org/ebooks/345",
+   "aiAssisted": true
+  },
+  {
+   "id": "20261110-5",
+   "date": "2026-11-10",
+   "source": "Project Gutenberg",
+   "license": "公有领域",
+   "attribution": "Arthur Conan Doyle · The Adventures of Sherlock Holmes · Project Gutenberg",
+   "topic": "文学",
+   "country": "",
+   "countryName": "",
+   "title": "The Adventures of Sherlock Holmes（选段）",
+   "titleZh": "",
+   "sentences": [
+    {
+     "en": "“Circumstantial evidence is a very tricky thing,” answered Holmes thoughtfully.",
+     "zh": ""
+    },
+    {
+     "en": "“It may seem to point very straight to one thing, but if you shift your own point of view a little, you may find it pointing in an equally uncompromising manner to something entirely different.",
+     "zh": ""
+    },
+    {
+     "en": "It must be confessed, however, that the case looks exceedingly grave against the young man, and it is very possible that he is indeed the culprit.",
+     "zh": ""
+    },
+    {
+     "en": "There are several people in the neighbourhood, however, and among them Miss Turner, the daughter of the neighbouring landowner, who believe in his innocence, and who have retained Lestrade, whom you may recollect in connection with the Study in Scarlet, to work out the case in his interest.",
+     "zh": ""
+    },
+    {
+     "en": "Lestrade, being rather puzzled, has referred the case to me, and hence it is that two middle-aged gentlemen are flying westward at fifty miles an hour instead of quietly digesting their breakfasts at home.”",
+     "zh": ""
+    }
+   ],
+   "glossary": [],
+   "words": 153,
+   "audio": "data/reading/audio/20261110-5.mp3",
+   "audioKB": 307,
+   "link": "https://www.gutenberg.org/ebooks/1661",
+   "aiAssisted": true
+  },
+  {
+   "id": "20261110-6",
+   "date": "2026-11-10",
+   "source": "Project Gutenberg",
+   "license": "公有领域",
+   "attribution": "Mary Shelley · Frankenstein · Project Gutenberg",
+   "topic": "文学",
+   "country": "",
+   "countryName": "",
+   "title": "Frankenstein（选段）",
+   "titleZh": "",
+   "sentences": [
+    {
+     "en": "“I confess, my son, that I have always looked forward to your marriage with our dear Elizabeth as the tie of our domestic comfort and the stay of my declining years.",
+     "zh": ""
+    },
+    {
+     "en": "You were attached to each other from your earliest infancy; you studied together, and appeared, in dispositions and tastes, entirely suited to one another.",
+     "zh": ""
+    },
+    {
+     "en": "But so blind is the experience of man that what I conceived to be the best assistants to my plan may have entirely destroyed it.",
+     "zh": ""
+    },
+    {
+     "en": "You, perhaps, regard her as your sister, without any wish that she might become your wife.",
+     "zh": ""
+    },
+    {
+     "en": "Nay, you may have met with another whom you may love; and considering yourself as bound in honour to Elizabeth, this struggle may occasion the poignant misery which you appear to feel.”",
+     "zh": ""
+    }
+   ],
+   "glossary": [],
+   "words": 128,
+   "audio": "data/reading/audio/20261110-6.mp3",
+   "audioKB": 251,
+   "link": "https://www.gutenberg.org/ebooks/84",
    "aiAssisted": true
   }
  ]
