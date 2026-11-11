@@ -1,103 +1,11 @@
 {
- "updated": "2026-11-10 22:54",
- "date": "2026-11-10",
- "source": "Project Gutenberg / Simple Wikipedia",
+ "updated": "2026-11-11 23:02",
+ "date": "2026-11-11",
+ "source": "Project Gutenberg",
  "items": [
   {
-   "id": "20261110-1",
-   "date": "2026-11-10",
-   "source": "Simple Wikipedia",
-   "license": "CC BY-SA 4.0",
-   "attribution": "Simple English Wikipedia",
-   "topic": "百科",
-   "country": "",
-   "countryName": "",
-   "title": "Betty McCollum",
-   "titleZh": "",
-   "sentences": [
-    {
-     "en": "Betty Louise McCollum is an American politician who has been the U.S.",
-     "zh": ""
-    },
-    {
-     "en": "representative for Minnesota's 4th congressional district, since 2001.",
-     "zh": ""
-    },
-    {
-     "en": "She is a member of the Democratic-Farmer-Labor Party (DFL).",
-     "zh": ""
-    },
-    {
-     "en": "She is the second woman elected to Congress from Minnesota.",
-     "zh": ""
-    },
-    {
-     "en": "McCollum has been the dean of Minnesota's congressional delegation since 2021, when Representative Collin Peterson lost reelection.",
-     "zh": ""
-    }
-   ],
-   "glossary": [],
-   "words": 56,
-   "audio": "data/reading/audio/20261110-1.mp3",
-   "audioKB": 154,
-   "link": "https://simple.wikipedia.org/wiki/Betty_McCollum",
-   "aiAssisted": true
-  },
-  {
-   "id": "20261110-2",
-   "date": "2026-11-10",
-   "source": "Project Gutenberg",
-   "license": "公有领域",
-   "attribution": "Lewis Carroll · Alice's Adventures in Wonderland · Project Gutenberg",
-   "topic": "文学",
-   "country": "",
-   "countryName": "",
-   "title": "Alice's Adventures in Wonderland（选段）",
-   "titleZh": "",
-   "sentences": [
-    {
-     "en": "The Cat’s head began fading away the moment he was gone, and, by the time he had come back with the Duchess, it had entirely disappeared; so the King and the executioner ran wildly up and down looking for it, while the rest of the party went back to the game.",
-     "zh": ""
-    }
-   ],
-   "glossary": [],
-   "words": 51,
-   "audio": "data/reading/audio/20261110-2.mp3",
-   "audioKB": 89,
-   "link": "https://www.gutenberg.org/ebooks/11",
-   "aiAssisted": true
-  },
-  {
-   "id": "20261110-3",
-   "date": "2026-11-10",
-   "source": "Project Gutenberg",
-   "license": "公有领域",
-   "attribution": "Jane Austen · Pride and Prejudice · Project Gutenberg",
-   "topic": "文学",
-   "country": "",
-   "countryName": "",
-   "title": "Pride and Prejudice（选段）",
-   "titleZh": "",
-   "sentences": [
-    {
-     "en": "And when her sisters abused it as ugly, she added, with perfect unconcern, “Oh, but there were two or three much uglier in the shop; and when I have bought some prettier-coloured satin to trim it with fresh, I think it will be very tolerable.",
-     "zh": ""
-    },
-    {
-     "en": "Besides, it will not much signify what one wears this summer, after the ----shire have left Meryton, and they are going in a fortnight.”",
-     "zh": ""
-    }
-   ],
-   "glossary": [],
-   "words": 69,
-   "audio": "data/reading/audio/20261110-3.mp3",
-   "audioKB": 127,
-   "link": "https://www.gutenberg.org/ebooks/1342",
-   "aiAssisted": true
-  },
-  {
-   "id": "20261110-4",
-   "date": "2026-11-10",
+   "id": "20261111-1",
+   "date": "2026-11-11",
    "source": "Project Gutenberg",
    "license": "公有领域",
    "attribution": "Bram Stoker · Dracula · Project Gutenberg",
@@ -108,84 +16,32 @@
    "titleZh": "",
    "sentences": [
     {
-     "en": "“We must consult as to what is to be done,” he said as we descended the stairs.",
+     "en": "I wanted to secure a friend, and not to make an enemy, so I thanked him, gave the address at Dr.",
      "zh": ""
     },
     {
-     "en": "In the hall he opened the dining-room door, and we passed in, he closing the door carefully behind him.",
+     "en": "Seward’s and came away.",
      "zh": ""
     },
     {
-     "en": "The shutters had been opened, but the blinds were already down, with that obedience to the etiquette of death which the British woman of the lower classes always rigidly observes.",
+     "en": "It was now dark, and I was tired and hungry.",
      "zh": ""
     },
     {
-     "en": "The room was, therefore, dimly dark.",
-     "zh": ""
-    },
-    {
-     "en": "It was, however, light enough for our purposes.",
-     "zh": ""
-    },
-    {
-     "en": "Van Helsing’s sternness was somewhat relieved by a look of perplexity.",
-     "zh": ""
-    },
-    {
-     "en": "He was evidently torturing his mind about something, so I waited for an instant, and he spoke:--",
+     "en": "I got a cup of tea at the Aërated Bread Company and came down to Purfleet by the next train.",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 108,
-   "audio": "data/reading/audio/20261110-4.mp3",
-   "audioKB": 233,
+   "words": 55,
+   "audio": "data/reading/audio/20261111-1.mp3",
+   "audioKB": 99,
    "link": "https://www.gutenberg.org/ebooks/345",
    "aiAssisted": true
   },
   {
-   "id": "20261110-5",
-   "date": "2026-11-10",
-   "source": "Project Gutenberg",
-   "license": "公有领域",
-   "attribution": "Arthur Conan Doyle · The Adventures of Sherlock Holmes · Project Gutenberg",
-   "topic": "文学",
-   "country": "",
-   "countryName": "",
-   "title": "The Adventures of Sherlock Holmes（选段）",
-   "titleZh": "",
-   "sentences": [
-    {
-     "en": "“Circumstantial evidence is a very tricky thing,” answered Holmes thoughtfully.",
-     "zh": ""
-    },
-    {
-     "en": "“It may seem to point very straight to one thing, but if you shift your own point of view a little, you may find it pointing in an equally uncompromising manner to something entirely different.",
-     "zh": ""
-    },
-    {
-     "en": "It must be confessed, however, that the case looks exceedingly grave against the young man, and it is very possible that he is indeed the culprit.",
-     "zh": ""
-    },
-    {
-     "en": "There are several people in the neighbourhood, however, and among them Miss Turner, the daughter of the neighbouring landowner, who believe in his innocence, and who have retained Lestrade, whom you may recollect in connection with the Study in Scarlet, to work out the case in his interest.",
-     "zh": ""
-    },
-    {
-     "en": "Lestrade, being rather puzzled, has referred the case to me, and hence it is that two middle-aged gentlemen are flying westward at fifty miles an hour instead of quietly digesting their breakfasts at home.”",
-     "zh": ""
-    }
-   ],
-   "glossary": [],
-   "words": 153,
-   "audio": "data/reading/audio/20261110-5.mp3",
-   "audioKB": 307,
-   "link": "https://www.gutenberg.org/ebooks/1661",
-   "aiAssisted": true
-  },
-  {
-   "id": "20261110-6",
-   "date": "2026-11-10",
+   "id": "20261111-2",
+   "date": "2026-11-11",
    "source": "Project Gutenberg",
    "license": "公有领域",
    "attribution": "Mary Shelley · Frankenstein · Project Gutenberg",
@@ -196,31 +52,223 @@
    "titleZh": "",
    "sentences": [
     {
-     "en": "“I confess, my son, that I have always looked forward to your marriage with our dear Elizabeth as the tie of our domestic comfort and the stay of my declining years.",
+     "en": "It was nearly noon when I arrived at the top of the ascent.",
      "zh": ""
     },
     {
-     "en": "You were attached to each other from your earliest infancy; you studied together, and appeared, in dispositions and tastes, entirely suited to one another.",
+     "en": "For some time I sat upon the rock that overlooks the sea of ice.",
      "zh": ""
     },
     {
-     "en": "But so blind is the experience of man that what I conceived to be the best assistants to my plan may have entirely destroyed it.",
+     "en": "A mist covered both that and the surrounding mountains.",
      "zh": ""
     },
     {
-     "en": "You, perhaps, regard her as your sister, without any wish that she might become your wife.",
+     "en": "Presently a breeze dissipated the cloud, and I descended upon the glacier.",
      "zh": ""
     },
     {
-     "en": "Nay, you may have met with another whom you may love; and considering yourself as bound in honour to Elizabeth, this struggle may occasion the poignant misery which you appear to feel.”",
+     "en": "The surface is very uneven, rising like the waves of a troubled sea, descending low, and interspersed by rifts that sink deep.",
+     "zh": ""
+    },
+    {
+     "en": "The field of ice is almost a league in width, but I spent nearly two hours in crossing it.",
+     "zh": ""
+    },
+    {
+     "en": "The opposite mountain is a bare perpendicular rock.",
+     "zh": ""
+    },
+    {
+     "en": "From the side where I now stood Montanvert was exactly opposite, at the distance of a league; and above it rose Mont Blanc, in awful majesty.",
+     "zh": ""
+    },
+    {
+     "en": "I remained in a recess of the rock, gazing on this wonderful and stupendous scene.",
+     "zh": ""
+    },
+    {
+     "en": "The sea, or rather the vast river of ice, wound among its dependent mountains, whose aerial summits hung over its recesses.",
+     "zh": ""
+    },
+    {
+     "en": "Their icy and glittering peaks shone in the sunlight over the clouds.",
+     "zh": ""
+    },
+    {
+     "en": "My heart, which was before sorrowful, now swelled with something like joy; I exclaimed, “Wandering spirits, if indeed ye wander, and do not rest in your narrow beds, allow me this faint happiness, or take me, as your companion, away from the joys of life.”",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 128,
-   "audio": "data/reading/audio/20261110-6.mp3",
-   "audioKB": 251,
+   "words": 216,
+   "audio": "data/reading/audio/20261111-2.mp3",
+   "audioKB": 454,
    "link": "https://www.gutenberg.org/ebooks/84",
+   "aiAssisted": true
+  },
+  {
+   "id": "20261111-3",
+   "date": "2026-11-11",
+   "source": "Project Gutenberg",
+   "license": "公有领域",
+   "attribution": "Jane Austen · Pride and Prejudice · Project Gutenberg",
+   "topic": "文学",
+   "country": "",
+   "countryName": "",
+   "title": "Pride and Prejudice（选段）",
+   "titleZh": "",
+   "sentences": [
+    {
+     "en": "“I imagine your cousin brought you down with him chiefly for the sake of having somebody at his disposal.",
+     "zh": ""
+    },
+    {
+     "en": "I wonder he does not marry, to secure a lasting convenience of that kind.",
+     "zh": ""
+    },
+    {
+     "en": "But, perhaps, his sister does as well for the present; and, as she is under his sole care, he may do what he likes with her.”",
+     "zh": ""
+    }
+   ],
+   "glossary": [],
+   "words": 59,
+   "audio": "data/reading/audio/20261111-3.mp3",
+   "audioKB": 111,
+   "link": "https://www.gutenberg.org/ebooks/1342",
+   "aiAssisted": true
+  },
+  {
+   "id": "20261111-4",
+   "date": "2026-11-11",
+   "source": "Project Gutenberg",
+   "license": "公有领域",
+   "attribution": "Robert Louis Stevenson · Treasure Island · Project Gutenberg",
+   "topic": "文学",
+   "country": "",
+   "countryName": "",
+   "title": "Treasure Island（选段）",
+   "titleZh": "",
+   "sentences": [
+    {
+     "en": "“Oh, I know’d Dick was square,” returned the voice of the coxswain, Israel Hands.",
+     "zh": ""
+    },
+    {
+     "en": "“He’s no fool, is Dick.” And he turned his quid and spat.",
+     "zh": ""
+    },
+    {
+     "en": "“But look here,” he went on, “here’s what I want to know, Barbecue: how long are we a-going to stand off and on like a blessed bumboat?",
+     "zh": ""
+    },
+    {
+     "en": "I’ve had a’most enough o’ Cap’n Smollett; he’s hazed me long enough, by thunder!",
+     "zh": ""
+    },
+    {
+     "en": "I want to go into that cabin, I do.",
+     "zh": ""
+    },
+    {
+     "en": "I want their pickles and wines, and that.”",
+     "zh": ""
+    }
+   ],
+   "glossary": [],
+   "words": 84,
+   "audio": "data/reading/audio/20261111-4.mp3",
+   "audioKB": 178,
+   "link": "https://www.gutenberg.org/ebooks/120",
+   "aiAssisted": true
+  },
+  {
+   "id": "20261111-5",
+   "date": "2026-11-11",
+   "source": "Project Gutenberg",
+   "license": "公有领域",
+   "attribution": "Lewis Carroll · Alice's Adventures in Wonderland · Project Gutenberg",
+   "topic": "文学",
+   "country": "",
+   "countryName": "",
+   "title": "Alice's Adventures in Wonderland（选段）",
+   "titleZh": "",
+   "sentences": [
+    {
+     "en": "“When _I’m_ a Duchess,” she said to herself, (not in a very hopeful tone though), “I won’t have any pepper in my kitchen _at all_.",
+     "zh": ""
+    },
+    {
+     "en": "Soup does very well without—Maybe it’s always pepper that makes people hot-tempered,” she went on, very much pleased at having found out a new kind of rule, “and vinegar that makes them sour—and camomile that makes them bitter—and—and barley-sugar and such things that make children sweet-tempered.",
+     "zh": ""
+    },
+    {
+     "en": "I only wish people knew _that_: then they wouldn’t be so stingy about it, you know—”",
+     "zh": ""
+    }
+   ],
+   "glossary": [],
+   "words": 87,
+   "audio": "data/reading/audio/20261111-5.mp3",
+   "audioKB": 195,
+   "link": "https://www.gutenberg.org/ebooks/11",
+   "aiAssisted": true
+  },
+  {
+   "id": "20261111-6",
+   "date": "2026-11-11",
+   "source": "Project Gutenberg",
+   "license": "公有领域",
+   "attribution": "Louisa May Alcott · Little Women · Project Gutenberg",
+   "topic": "文学",
+   "country": "",
+   "countryName": "",
+   "title": "Little Women（选段）",
+   "titleZh": "",
+   "sentences": [
+    {
+     "en": "Yesterday was a quiet day spent in teaching, sewing, and writing in my little room, which is very cozy, with a light and fire.",
+     "zh": ""
+    },
+    {
+     "en": "I picked up a few bits of news and was introduced to the Professor.",
+     "zh": ""
+    },
+    {
+     "en": "It seems that Tina is the child of the Frenchwoman who does the fine ironing in the laundry here.",
+     "zh": ""
+    },
+    {
+     "en": "The little thing has lost her heart to Mr.",
+     "zh": ""
+    },
+    {
+     "en": "Bhaer, and follows him about the house like a dog whenever he is at home, which delights him, as he is very fond of children, though a ‘bacheldore’.",
+     "zh": ""
+    },
+    {
+     "en": "Kitty and Minnie Kirke likewise regard him with affection, and tell all sorts of stories about the plays he invents, the presents he brings, and the splendid tales he tells.",
+     "zh": ""
+    },
+    {
+     "en": "The younger men quiz him, it seems, call him Old Fritz, Lager Beer, Ursa Major, and make all manner of jokes on his name.",
+     "zh": ""
+    },
+    {
+     "en": "But he enjoys it like a boy, Mrs.",
+     "zh": ""
+    },
+    {
+     "en": "Kirke says, and takes it so good-naturedly that they all like him in spite of his foreign ways.",
+     "zh": ""
+    }
+   ],
+   "glossary": [],
+   "words": 174,
+   "audio": "data/reading/audio/20261111-6.mp3",
+   "audioKB": 323,
+   "link": "https://www.gutenberg.org/ebooks/514",
    "aiAssisted": true
   }
  ]
