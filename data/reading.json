@@ -1,11 +1,55 @@
 {
- "updated": "2026-11-11 23:02",
- "date": "2026-11-11",
- "source": "Project Gutenberg",
+ "updated": "2026-11-12 22:57",
+ "date": "2026-11-12",
+ "source": "Project Gutenberg / Simple Wikipedia",
  "items": [
   {
-   "id": "20261111-1",
-   "date": "2026-11-11",
+   "id": "20261112-1",
+   "date": "2026-11-12",
+   "source": "Simple Wikipedia",
+   "license": "CC BY-SA 4.0",
+   "attribution": "Simple English Wikipedia",
+   "topic": "百科",
+   "country": "",
+   "countryName": "",
+   "title": "Gangsta Boo",
+   "titleZh": "",
+   "sentences": [
+    {
+     "en": "Lola Chantrelle Mitchell, better known as Gangsta Boo, was an American rapper.",
+     "zh": ""
+    },
+    {
+     "en": "She was born in Memphis, Tennessee.",
+     "zh": ""
+    },
+    {
+     "en": "She was the second female member of the Memphis-based hip hop group Three 6 Mafia.",
+     "zh": ""
+    },
+    {
+     "en": "She left the group and label in 2002.",
+     "zh": ""
+    },
+    {
+     "en": "Her three solo albums were Enquiring Minds (1998), Both Worlds *69 (2001) and Enquiring Minds II: The Soap Opera (2003).",
+     "zh": ""
+    },
+    {
+     "en": "She worked with artists including La Chat, Yelawolf, Eminem, Latto, GloRilla and Run the Jewels.",
+     "zh": ""
+    }
+   ],
+   "glossary": [],
+   "words": 76,
+   "audio": "data/reading/audio/20261112-1.mp3",
+   "audioKB": 213,
+   "link": "https://simple.wikipedia.org/wiki/Gangsta_Boo",
+   "aiAssisted": true
+  },
+  {
+   "id": "20261112-2",
+   "date": "2026-11-12",
    "source": "Project Gutenberg",
    "license": "公有领域",
    "attribution": "Bram Stoker · Dracula · Project Gutenberg",
@@ -16,176 +60,24 @@
    "titleZh": "",
    "sentences": [
     {
-     "en": "I wanted to secure a friend, and not to make an enemy, so I thanked him, gave the address at Dr.",
+     "en": "When I came down again I found the others all gathered round the fire in the study.",
      "zh": ""
     },
     {
-     "en": "Seward’s and came away.",
-     "zh": ""
-    },
-    {
-     "en": "It was now dark, and I was tired and hungry.",
-     "zh": ""
-    },
-    {
-     "en": "I got a cup of tea at the Aërated Bread Company and came down to Purfleet by the next train.",
+     "en": "In the train I had written my diary so far, and simply read it off to them as the best means of letting them get abreast of my own information; when I had finished Van Helsing said:--",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 55,
-   "audio": "data/reading/audio/20261111-1.mp3",
-   "audioKB": 99,
+   "words": 54,
+   "audio": "data/reading/audio/20261112-2.mp3",
+   "audioKB": 90,
    "link": "https://www.gutenberg.org/ebooks/345",
    "aiAssisted": true
   },
   {
-   "id": "20261111-2",
-   "date": "2026-11-11",
-   "source": "Project Gutenberg",
-   "license": "公有领域",
-   "attribution": "Mary Shelley · Frankenstein · Project Gutenberg",
-   "topic": "文学",
-   "country": "",
-   "countryName": "",
-   "title": "Frankenstein（选段）",
-   "titleZh": "",
-   "sentences": [
-    {
-     "en": "It was nearly noon when I arrived at the top of the ascent.",
-     "zh": ""
-    },
-    {
-     "en": "For some time I sat upon the rock that overlooks the sea of ice.",
-     "zh": ""
-    },
-    {
-     "en": "A mist covered both that and the surrounding mountains.",
-     "zh": ""
-    },
-    {
-     "en": "Presently a breeze dissipated the cloud, and I descended upon the glacier.",
-     "zh": ""
-    },
-    {
-     "en": "The surface is very uneven, rising like the waves of a troubled sea, descending low, and interspersed by rifts that sink deep.",
-     "zh": ""
-    },
-    {
-     "en": "The field of ice is almost a league in width, but I spent nearly two hours in crossing it.",
-     "zh": ""
-    },
-    {
-     "en": "The opposite mountain is a bare perpendicular rock.",
-     "zh": ""
-    },
-    {
-     "en": "From the side where I now stood Montanvert was exactly opposite, at the distance of a league; and above it rose Mont Blanc, in awful majesty.",
-     "zh": ""
-    },
-    {
-     "en": "I remained in a recess of the rock, gazing on this wonderful and stupendous scene.",
-     "zh": ""
-    },
-    {
-     "en": "The sea, or rather the vast river of ice, wound among its dependent mountains, whose aerial summits hung over its recesses.",
-     "zh": ""
-    },
-    {
-     "en": "Their icy and glittering peaks shone in the sunlight over the clouds.",
-     "zh": ""
-    },
-    {
-     "en": "My heart, which was before sorrowful, now swelled with something like joy; I exclaimed, “Wandering spirits, if indeed ye wander, and do not rest in your narrow beds, allow me this faint happiness, or take me, as your companion, away from the joys of life.”",
-     "zh": ""
-    }
-   ],
-   "glossary": [],
-   "words": 216,
-   "audio": "data/reading/audio/20261111-2.mp3",
-   "audioKB": 454,
-   "link": "https://www.gutenberg.org/ebooks/84",
-   "aiAssisted": true
-  },
-  {
-   "id": "20261111-3",
-   "date": "2026-11-11",
-   "source": "Project Gutenberg",
-   "license": "公有领域",
-   "attribution": "Jane Austen · Pride and Prejudice · Project Gutenberg",
-   "topic": "文学",
-   "country": "",
-   "countryName": "",
-   "title": "Pride and Prejudice（选段）",
-   "titleZh": "",
-   "sentences": [
-    {
-     "en": "“I imagine your cousin brought you down with him chiefly for the sake of having somebody at his disposal.",
-     "zh": ""
-    },
-    {
-     "en": "I wonder he does not marry, to secure a lasting convenience of that kind.",
-     "zh": ""
-    },
-    {
-     "en": "But, perhaps, his sister does as well for the present; and, as she is under his sole care, he may do what he likes with her.”",
-     "zh": ""
-    }
-   ],
-   "glossary": [],
-   "words": 59,
-   "audio": "data/reading/audio/20261111-3.mp3",
-   "audioKB": 111,
-   "link": "https://www.gutenberg.org/ebooks/1342",
-   "aiAssisted": true
-  },
-  {
-   "id": "20261111-4",
-   "date": "2026-11-11",
-   "source": "Project Gutenberg",
-   "license": "公有领域",
-   "attribution": "Robert Louis Stevenson · Treasure Island · Project Gutenberg",
-   "topic": "文学",
-   "country": "",
-   "countryName": "",
-   "title": "Treasure Island（选段）",
-   "titleZh": "",
-   "sentences": [
-    {
-     "en": "“Oh, I know’d Dick was square,” returned the voice of the coxswain, Israel Hands.",
-     "zh": ""
-    },
-    {
-     "en": "“He’s no fool, is Dick.” And he turned his quid and spat.",
-     "zh": ""
-    },
-    {
-     "en": "“But look here,” he went on, “here’s what I want to know, Barbecue: how long are we a-going to stand off and on like a blessed bumboat?",
-     "zh": ""
-    },
-    {
-     "en": "I’ve had a’most enough o’ Cap’n Smollett; he’s hazed me long enough, by thunder!",
-     "zh": ""
-    },
-    {
-     "en": "I want to go into that cabin, I do.",
-     "zh": ""
-    },
-    {
-     "en": "I want their pickles and wines, and that.”",
-     "zh": ""
-    }
-   ],
-   "glossary": [],
-   "words": 84,
-   "audio": "data/reading/audio/20261111-4.mp3",
-   "audioKB": 178,
-   "link": "https://www.gutenberg.org/ebooks/120",
-   "aiAssisted": true
-  },
-  {
-   "id": "20261111-5",
-   "date": "2026-11-11",
+   "id": "20261112-3",
+   "date": "2026-11-12",
    "source": "Project Gutenberg",
    "license": "公有领域",
    "attribution": "Lewis Carroll · Alice's Adventures in Wonderland · Project Gutenberg",
@@ -196,79 +88,99 @@
    "titleZh": "",
    "sentences": [
     {
-     "en": "“When _I’m_ a Duchess,” she said to herself, (not in a very hopeful tone though), “I won’t have any pepper in my kitchen _at all_.",
-     "zh": ""
-    },
-    {
-     "en": "Soup does very well without—Maybe it’s always pepper that makes people hot-tempered,” she went on, very much pleased at having found out a new kind of rule, “and vinegar that makes them sour—and camomile that makes them bitter—and—and barley-sugar and such things that make children sweet-tempered.",
-     "zh": ""
-    },
-    {
-     "en": "I only wish people knew _that_: then they wouldn’t be so stingy about it, you know—”",
+     "en": "The March Hare took the watch and looked at it gloomily: then he dipped it into his cup of tea, and looked at it again: but he could think of nothing better to say than his first remark, “It was the _best_ butter, you know.”",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 87,
-   "audio": "data/reading/audio/20261111-5.mp3",
-   "audioKB": 195,
+   "words": 45,
+   "audio": "data/reading/audio/20261112-3.mp3",
+   "audioKB": 78,
    "link": "https://www.gutenberg.org/ebooks/11",
    "aiAssisted": true
   },
   {
-   "id": "20261111-6",
-   "date": "2026-11-11",
+   "id": "20261112-4",
+   "date": "2026-11-12",
    "source": "Project Gutenberg",
    "license": "公有领域",
-   "attribution": "Louisa May Alcott · Little Women · Project Gutenberg",
+   "attribution": "Arthur Conan Doyle · The Adventures of Sherlock Holmes · Project Gutenberg",
    "topic": "文学",
    "country": "",
    "countryName": "",
-   "title": "Little Women（选段）",
+   "title": "The Adventures of Sherlock Holmes（选段）",
    "titleZh": "",
    "sentences": [
     {
-     "en": "Yesterday was a quiet day spent in teaching, sewing, and writing in my little room, which is very cozy, with a light and fire.",
+     "en": "“He is a cripple in the sense that he walks with a limp; but in other respects he appears to be a powerful and well-nurtured man.",
      "zh": ""
     },
     {
-     "en": "I picked up a few bits of news and was introduced to the Professor.",
-     "zh": ""
-    },
-    {
-     "en": "It seems that Tina is the child of the Frenchwoman who does the fine ironing in the laundry here.",
-     "zh": ""
-    },
-    {
-     "en": "The little thing has lost her heart to Mr.",
-     "zh": ""
-    },
-    {
-     "en": "Bhaer, and follows him about the house like a dog whenever he is at home, which delights him, as he is very fond of children, though a ‘bacheldore’.",
-     "zh": ""
-    },
-    {
-     "en": "Kitty and Minnie Kirke likewise regard him with affection, and tell all sorts of stories about the plays he invents, the presents he brings, and the splendid tales he tells.",
-     "zh": ""
-    },
-    {
-     "en": "The younger men quiz him, it seems, call him Old Fritz, Lager Beer, Ursa Major, and make all manner of jokes on his name.",
-     "zh": ""
-    },
-    {
-     "en": "But he enjoys it like a boy, Mrs.",
-     "zh": ""
-    },
-    {
-     "en": "Kirke says, and takes it so good-naturedly that they all like him in spite of his foreign ways.",
+     "en": "Surely your medical experience would tell you, Watson, that weakness in one limb is often compensated for by exceptional strength in the others.”",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 174,
-   "audio": "data/reading/audio/20261111-6.mp3",
-   "audioKB": 323,
-   "link": "https://www.gutenberg.org/ebooks/514",
+   "words": 49,
+   "audio": "data/reading/audio/20261112-4.mp3",
+   "audioKB": 96,
+   "link": "https://www.gutenberg.org/ebooks/1661",
+   "aiAssisted": true
+  },
+  {
+   "id": "20261112-5",
+   "date": "2026-11-12",
+   "source": "Project Gutenberg",
+   "license": "公有领域",
+   "attribution": "Mary Shelley · Frankenstein · Project Gutenberg",
+   "topic": "文学",
+   "country": "",
+   "countryName": "",
+   "title": "Frankenstein（选段）",
+   "titleZh": "",
+   "sentences": [
+    {
+     "en": "The first part of this deposition did not in the least interest me, but when the mark of the fingers was mentioned I remembered the murder of my brother and felt myself extremely agitated; my limbs trembled, and a mist came over my eyes, which obliged me to lean on a chair for support.",
+     "zh": ""
+    },
+    {
+     "en": "The magistrate observed me with a keen eye and of course drew an unfavourable augury from my manner.",
+     "zh": ""
+    }
+   ],
+   "glossary": [],
+   "words": 72,
+   "audio": "data/reading/audio/20261112-5.mp3",
+   "audioKB": 131,
+   "link": "https://www.gutenberg.org/ebooks/84",
+   "aiAssisted": true
+  },
+  {
+   "id": "20261112-6",
+   "date": "2026-11-12",
+   "source": "Project Gutenberg",
+   "license": "公有领域",
+   "attribution": "Robert Louis Stevenson · Treasure Island · Project Gutenberg",
+   "topic": "文学",
+   "country": "",
+   "countryName": "",
+   "title": "Treasure Island（选段）",
+   "titleZh": "",
+   "sentences": [
+    {
+     "en": "I went into the cellar; all the barrels were gone, and of the bottles a most surprising number had been drunk out and thrown away.",
+     "zh": ""
+    },
+    {
+     "en": "Certainly, since the mutiny began, not a man of them could ever have been sober.",
+     "zh": ""
+    }
+   ],
+   "glossary": [],
+   "words": 40,
+   "audio": "data/reading/audio/20261112-6.mp3",
+   "audioKB": 77,
+   "link": "https://www.gutenberg.org/ebooks/120",
    "aiAssisted": true
   }
  ]
