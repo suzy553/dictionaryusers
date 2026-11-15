@@ -1,167 +1,51 @@
 {
- "updated": "2026-11-14 22:49",
- "date": "2026-11-14",
- "source": "Project Gutenberg",
+ "updated": "2026-11-15 22:50",
+ "date": "2026-11-15",
+ "source": "Project Gutenberg / Simple Wikipedia",
  "items": [
   {
-   "id": "20261114-1",
-   "date": "2026-11-14",
-   "source": "Project Gutenberg",
-   "license": "公有领域",
-   "attribution": "Lewis Carroll · Alice's Adventures in Wonderland · Project Gutenberg",
-   "topic": "文学",
+   "id": "20261115-1",
+   "date": "2026-11-15",
+   "source": "Simple Wikipedia",
+   "license": "CC BY-SA 4.0",
+   "attribution": "Simple English Wikipedia",
+   "topic": "百科",
    "country": "",
    "countryName": "",
-   "title": "Alice's Adventures in Wonderland（选段）",
+   "title": "Nick Saban",
    "titleZh": "",
    "sentences": [
     {
-     "en": "Alice remained looking thoughtfully at the mushroom for a minute, trying to make out which were the two sides of it; and as it was perfectly round, she found this a very difficult question.",
+     "en": "Nicholas Lou Saban Jr.",
      "zh": ""
     },
     {
-     "en": "However, at last she stretched her arms round it as far as they would go, and broke off a bit of the edge with each hand.",
+     "en": "is a former American football coach.",
+     "zh": ""
+    },
+    {
+     "en": "He was the head football coach at the University of Alabama from 2007 to 2023.",
+     "zh": ""
+    },
+    {
+     "en": "Before that, Saban was head coach of the National Football League's Miami Dolphins, Louisiana State University (LSU), Michigan State University, and the University of Toledo.",
+     "zh": ""
+    },
+    {
+     "en": "Saban is known to be the greatest coach in college football history.",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 60,
-   "audio": "data/reading/audio/20261114-1.mp3",
-   "audioKB": 105,
-   "link": "https://www.gutenberg.org/ebooks/11",
+   "words": 62,
+   "audio": "data/reading/audio/20261115-1.mp3",
+   "audioKB": 158,
+   "link": "https://simple.wikipedia.org/wiki/Nick_Saban",
    "aiAssisted": true
   },
   {
-   "id": "20261114-2",
-   "date": "2026-11-14",
-   "source": "Project Gutenberg",
-   "license": "公有领域",
-   "attribution": "Arthur Conan Doyle · The Adventures of Sherlock Holmes · Project Gutenberg",
-   "topic": "文学",
-   "country": "",
-   "countryName": "",
-   "title": "The Adventures of Sherlock Holmes（选段）",
-   "titleZh": "",
-   "sentences": [
-    {
-     "en": "“If you leave it to a court of law to clear the matter up,” said he, “of course you can hardly avoid publicity.",
-     "zh": ""
-    },
-    {
-     "en": "On the other hand, if you convince the police authorities that there is no possible case against you, I do not know that there is any reason that the details should find their way into the papers.",
-     "zh": ""
-    },
-    {
-     "en": "Inspector Bradstreet would, I am sure, make notes upon anything which you might tell us and submit it to the proper authorities.",
-     "zh": ""
-    },
-    {
-     "en": "The case would then never go into court at all.”",
-     "zh": ""
-    }
-   ],
-   "glossary": [],
-   "words": 92,
-   "audio": "data/reading/audio/20261114-2.mp3",
-   "audioKB": 164,
-   "link": "https://www.gutenberg.org/ebooks/1661",
-   "aiAssisted": true
-  },
-  {
-   "id": "20261114-3",
-   "date": "2026-11-14",
-   "source": "Project Gutenberg",
-   "license": "公有领域",
-   "attribution": "Jane Austen · Pride and Prejudice · Project Gutenberg",
-   "topic": "文学",
-   "country": "",
-   "countryName": "",
-   "title": "Pride and Prejudice（选段）",
-   "titleZh": "",
-   "sentences": [
-    {
-     "en": "“I might as well inquire,” replied she, “why, with so evident a design of offending and insulting me, you chose to tell me that you liked me against your will, against your reason, and even against your character?",
-     "zh": ""
-    },
-    {
-     "en": "Was not this some excuse for incivility, if I _was_ uncivil?",
-     "zh": ""
-    },
-    {
-     "en": "But I have other provocations.",
-     "zh": ""
-    },
-    {
-     "en": "You know I have.",
-     "zh": ""
-    },
-    {
-     "en": "Had not my own feelings decided against you, had they been indifferent, or had they even been favourable, do you think that any consideration would tempt me to accept the man who has been the means of ruining, perhaps for ever, the happiness of a most beloved sister?”",
-     "zh": ""
-    }
-   ],
-   "glossary": [],
-   "words": 106,
-   "audio": "data/reading/audio/20261114-3.mp3",
-   "audioKB": 217,
-   "link": "https://www.gutenberg.org/ebooks/1342",
-   "aiAssisted": true
-  },
-  {
-   "id": "20261114-4",
-   "date": "2026-11-14",
-   "source": "Project Gutenberg",
-   "license": "公有领域",
-   "attribution": "Bram Stoker · Dracula · Project Gutenberg",
-   "topic": "文学",
-   "country": "",
-   "countryName": "",
-   "title": "Dracula（选段）",
-   "titleZh": "",
-   "sentences": [
-    {
-     "en": "“I heard your man call up Dr.",
-     "zh": ""
-    },
-    {
-     "en": "Van Helsing and tell him of an accident.",
-     "zh": ""
-    },
-    {
-     "en": "So I woke Quincey or rather called for him as he was not asleep.",
-     "zh": ""
-    },
-    {
-     "en": "Things are moving too quickly and too strangely for sound sleep for any of us these times.",
-     "zh": ""
-    },
-    {
-     "en": "I’ve been thinking that to-morrow night will not see things as they have been.",
-     "zh": ""
-    },
-    {
-     "en": "We’ll have to look back--and forward a little more than we have done.",
-     "zh": ""
-    },
-    {
-     "en": "May we come in?” I nodded, and held the door open till they had entered; then I closed it again.",
-     "zh": ""
-    },
-    {
-     "en": "When Quincey saw the attitude and state of the patient, and noted the horrible pool on the floor, he said softly:--",
-     "zh": ""
-    }
-   ],
-   "glossary": [],
-   "words": 114,
-   "audio": "data/reading/audio/20261114-4.mp3",
-   "audioKB": 214,
-   "link": "https://www.gutenberg.org/ebooks/345",
-   "aiAssisted": true
-  },
-  {
-   "id": "20261114-5",
-   "date": "2026-11-14",
+   "id": "20261115-2",
+   "date": "2026-11-15",
    "source": "Project Gutenberg",
    "license": "公有领域",
    "attribution": "H. G. Wells · The Time Machine · Project Gutenberg",
@@ -172,103 +56,171 @@
    "titleZh": "",
    "sentences": [
     {
-     "en": "“I looked for the building I knew.",
+     "en": "“They seemed distressed to find me, my arm against the overturned pillar, peering down the well.",
      "zh": ""
     },
     {
-     "en": "Then my eye travelled along to the figure of the White Sphinx upon the pedestal of bronze, growing distinct as the light of the rising moon grew brighter.",
+     "en": "Apparently it was considered bad form to remark these apertures; for when I pointed to this one, and tried to frame a question about it in their tongue, they were still more visibly distressed and turned away.",
      "zh": ""
     },
     {
-     "en": "I could see the silver birch against it.",
+     "en": "But they were interested by my matches, and I struck some to amuse them.",
      "zh": ""
     },
     {
-     "en": "There was the tangle of rhododendron bushes, black in the pale light, and there was the little lawn.",
+     "en": "I tried them again about the well, and again I failed.",
      "zh": ""
     },
     {
-     "en": "I looked at the lawn again.",
+     "en": "So presently I left them, meaning to go back to Weena, and see what I could get from her.",
      "zh": ""
     },
     {
-     "en": "A queer doubt chilled my complacency.",
+     "en": "But my mind was already in revolution; my guesses and impressions were slipping and sliding to a new adjustment.",
      "zh": ""
     },
     {
-     "en": "‘No,’ said I stoutly to myself, ‘that was not the lawn.’",
+     "en": "I had now a clue to the import of these wells, to the ventilating towers, to the mystery of the ghosts; to say nothing of a hint at the meaning of the bronze gates and the fate of the Time Machine!",
+     "zh": ""
+    },
+    {
+     "en": "And very vaguely there came a suggestion towards the solution of the economic problem that had puzzled me.",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 84,
-   "audio": "data/reading/audio/20261114-5.mp3",
-   "audioKB": 172,
+   "words": 175,
+   "audio": "data/reading/audio/20261115-2.mp3",
+   "audioKB": 328,
    "link": "https://www.gutenberg.org/ebooks/35",
    "aiAssisted": true
   },
   {
-   "id": "20261114-6",
-   "date": "2026-11-14",
+   "id": "20261115-3",
+   "date": "2026-11-15",
    "source": "Project Gutenberg",
    "license": "公有领域",
-   "attribution": "Louisa May Alcott · Little Women · Project Gutenberg",
+   "attribution": "Mary Shelley · Frankenstein · Project Gutenberg",
    "topic": "文学",
    "country": "",
    "countryName": "",
-   "title": "Little Women（选段）",
+   "title": "Frankenstein（选段）",
    "titleZh": "",
    "sentences": [
     {
-     "en": "It’s very late, but I can’t let my letter go in the morning without telling you what happened last evening.",
+     "en": "“Such were the events that preyed on the heart of Felix and rendered him, when I first saw him, the most miserable of his family.",
      "zh": ""
     },
     {
-     "en": "Who do you think came in, as we were at tea?",
+     "en": "He could have endured poverty, and while this distress had been the meed of his virtue, he gloried in it; but the ingratitude of the Turk and the loss of his beloved Safie were misfortunes more bitter and irreparable.",
      "zh": ""
     },
     {
-     "en": "Laurie’s English friends, Fred and Frank Vaughn!",
-     "zh": ""
-    },
-    {
-     "en": "I was so surprised, for I shouldn’t have known them but for the cards.",
-     "zh": ""
-    },
-    {
-     "en": "Both are tall fellows with whiskers, Fred handsome in the English style, and Frank much better, for he only limps slightly, and uses no crutches.",
-     "zh": ""
-    },
-    {
-     "en": "They had heard from Laurie where we were to be, and came to ask us to their house, but Uncle won’t go, so we shall return the call, and see them as we can.",
-     "zh": ""
-    },
-    {
-     "en": "They went to the theater with us, and we did have such a good time, for Frank devoted himself to Flo, and Fred and I talked over past, present, and future fun as if we had known each other all our days.",
-     "zh": ""
-    },
-    {
-     "en": "Tell Beth Frank asked for her, and was sorry to hear of her ill health.",
-     "zh": ""
-    },
-    {
-     "en": "Fred laughed when I spoke of Jo, and sent his ‘respectful compliments to the big hat’.",
-     "zh": ""
-    },
-    {
-     "en": "Neither of them had forgotten Camp Laurence, or the fun we had there.",
-     "zh": ""
-    },
-    {
-     "en": "What ages ago it seems, doesn’t it?",
+     "en": "The arrival of the Arabian now infused new life into his soul.",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 204,
-   "audio": "data/reading/audio/20261114-6.mp3",
-   "audioKB": 387,
-   "link": "https://www.gutenberg.org/ebooks/514",
+   "words": 76,
+   "audio": "data/reading/audio/20261115-3.mp3",
+   "audioKB": 139,
+   "link": "https://www.gutenberg.org/ebooks/84",
+   "aiAssisted": true
+  },
+  {
+   "id": "20261115-4",
+   "date": "2026-11-15",
+   "source": "Project Gutenberg",
+   "license": "公有领域",
+   "attribution": "Robert Louis Stevenson · Treasure Island · Project Gutenberg",
+   "topic": "文学",
+   "country": "",
+   "countryName": "",
+   "title": "Treasure Island（选段）",
+   "titleZh": "",
+   "sentences": [
+    {
+     "en": "By this time the schooner and her little consort were gliding pretty swiftly through the water; indeed, we had already fetched up level with the camp-fire.",
+     "zh": ""
+    },
+    {
+     "en": "The ship was talking, as sailors say, loudly, treading the innumerable ripples with an incessant weltering splash; and until I got my eye above the window-sill I could not comprehend why the watchmen had taken no alarm.",
+     "zh": ""
+    },
+    {
+     "en": "One glance, however, was sufficient; and it was only one glance that I durst take from that unsteady skiff.",
+     "zh": ""
+    },
+    {
+     "en": "It showed me Hands and his companion locked together in deadly wrestle, each with a hand upon the other’s throat.",
+     "zh": ""
+    }
+   ],
+   "glossary": [],
+   "words": 102,
+   "audio": "data/reading/audio/20261115-4.mp3",
+   "audioKB": 207,
+   "link": "https://www.gutenberg.org/ebooks/120",
+   "aiAssisted": true
+  },
+  {
+   "id": "20261115-5",
+   "date": "2026-11-15",
+   "source": "Project Gutenberg",
+   "license": "公有领域",
+   "attribution": "Lewis Carroll · Alice's Adventures in Wonderland · Project Gutenberg",
+   "topic": "文学",
+   "country": "",
+   "countryName": "",
+   "title": "Alice's Adventures in Wonderland（选段）",
+   "titleZh": "",
+   "sentences": [
+    {
+     "en": "As they walked off together, Alice heard the King say in a low voice, to the company generally, “You are all pardoned.” “Come, _that’s_ a good thing!” she said to herself, for she had felt quite unhappy at the number of executions the Queen had ordered.",
+     "zh": ""
+    }
+   ],
+   "glossary": [],
+   "words": 46,
+   "audio": "data/reading/audio/20261115-5.mp3",
+   "audioKB": 97,
+   "link": "https://www.gutenberg.org/ebooks/11",
+   "aiAssisted": true
+  },
+  {
+   "id": "20261115-6",
+   "date": "2026-11-15",
+   "source": "Project Gutenberg",
+   "license": "公有领域",
+   "attribution": "Arthur Conan Doyle · The Adventures of Sherlock Holmes · Project Gutenberg",
+   "topic": "文学",
+   "country": "",
+   "countryName": "",
+   "title": "The Adventures of Sherlock Holmes（选段）",
+   "titleZh": "",
+   "sentences": [
+    {
+     "en": "“The law cannot, as you say, touch you,” said Holmes, unlocking and throwing open the door, “yet there never was a man who deserved punishment more.",
+     "zh": ""
+    },
+    {
+     "en": "If the young lady has a brother or a friend, he ought to lay a whip across your shoulders.",
+     "zh": ""
+    },
+    {
+     "en": "By Jove!” he continued, flushing up at the sight of the bitter sneer upon the man’s face, “it is not part of my duties to my client, but here’s a hunting crop handy, and I think I shall just treat myself to—” He took two swift steps to the whip, but before he could grasp it there was a wild clatter of steps upon the stairs, the heavy hall door banged, and from the window we could see Mr.",
+     "zh": ""
+    },
+    {
+     "en": "James Windibank running at the top of his speed down the road.",
+     "zh": ""
+    }
+   ],
+   "glossary": [],
+   "words": 136,
+   "audio": "data/reading/audio/20261115-6.mp3",
+   "audioKB": 235,
+   "link": "https://www.gutenberg.org/ebooks/1661",
    "aiAssisted": true
   }
  ]
