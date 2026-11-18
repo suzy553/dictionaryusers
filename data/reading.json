@@ -1,38 +1,78 @@
 {
- "updated": "2026-11-16 22:57",
- "date": "2026-11-16",
+ "updated": "2026-11-18 23:02",
+ "date": "2026-11-18",
  "source": "Simple Wikipedia",
  "items": [
   {
-   "id": "20261116-1",
-   "date": "2026-11-16",
+   "id": "20261118-1",
+   "date": "2026-11-18",
    "source": "Simple Wikipedia",
    "license": "CC BY-SA 4.0",
    "attribution": "Simple English Wikipedia",
    "topic": "百科",
    "country": "",
    "countryName": "",
-   "title": "Call of Duty: Vanguard",
+   "title": "Marina Ovsyannikova",
    "titleZh": "",
    "sentences": [
     {
-     "en": "Call of Duty: Vanguard is a first-person shooter video game developed by Sledgehammer Games and published by Activision.",
+     "en": "Marina Ovsyannikova is a Russian TV producer who worked at the Channel One Russia TV channel.",
      "zh": ""
     },
     {
-     "en": "It is the eighteenth installment in the overall Call of Duty series.",
+     "en": "She worked for Russia's main evening newscast Vremya since the beginning of the 2000s.",
      "zh": ""
     },
     {
-     "en": "Vanguard's storyline is about the creation of special forces to fight an emerging threat at the end of World War II.",
+     "en": "In 2022, she interrupted a state-controlled Russian TV news broadcast to protest against the Russian invasion of Ukraine, which made international news headlines.",
+     "zh": ""
+    },
+    {
+     "en": "She was arrested, held without access to her lawyer and fined.",
+     "zh": ""
+    },
+    {
+     "en": "On the afternoon after the protest, she was free to go.",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 51,
-   "audio": "data/reading/audio/20261116-1.mp3",
-   "audioKB": 115,
-   "link": "https://simple.wikipedia.org/wiki/Call_of_Duty%3A_Vanguard",
+   "words": 75,
+   "audio": "data/reading/audio/20261118-1.mp3",
+   "audioKB": 182,
+   "link": "https://simple.wikipedia.org/wiki/Marina_Ovsyannikova",
+   "aiAssisted": true
+  },
+  {
+   "id": "20261118-2",
+   "date": "2026-11-18",
+   "source": "Simple Wikipedia",
+   "license": "CC BY-SA 4.0",
+   "attribution": "Simple English Wikipedia",
+   "topic": "百科",
+   "country": "",
+   "countryName": "",
+   "title": "Vacuactivus",
+   "titleZh": "",
+   "sentences": [
+    {
+     "en": "Vacuactivus is an international company for the production and sale of cryotherapy chambers and equipment for fitness rehabilitation, founded in 2000.",
+     "zh": ""
+    },
+    {
+     "en": "Since 2013, it has been operating in the United States under the direction of Slim Wellness Studio LLC.",
+     "zh": ""
+    },
+    {
+     "en": "The headquarters is located in Los Angeles, California with production in the US and Europe.",
+     "zh": ""
+    }
+   ],
+   "glossary": [],
+   "words": 54,
+   "audio": "data/reading/audio/20261118-2.mp3",
+   "audioKB": 140,
+   "link": "https://simple.wikipedia.org/wiki/Vacuactivus",
    "aiAssisted": true
   }
  ]
