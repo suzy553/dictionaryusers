@@ -1,78 +1,46 @@
 {
- "updated": "2026-11-18 23:02",
- "date": "2026-11-18",
+ "updated": "2026-11-19 22:59",
+ "date": "2026-11-19",
  "source": "Simple Wikipedia",
  "items": [
   {
-   "id": "20261118-1",
-   "date": "2026-11-18",
+   "id": "20261119-1",
+   "date": "2026-11-19",
    "source": "Simple Wikipedia",
    "license": "CC BY-SA 4.0",
    "attribution": "Simple English Wikipedia",
    "topic": "百科",
    "country": "",
    "countryName": "",
-   "title": "Marina Ovsyannikova",
+   "title": "Umeå City Church",
    "titleZh": "",
    "sentences": [
     {
-     "en": "Marina Ovsyannikova is a Russian TV producer who worked at the Channel One Russia TV channel.",
+     "en": "Umeå City Church is a church building in the central parts of Umeå in Sweden.",
      "zh": ""
     },
     {
-     "en": "She worked for Russia's main evening newscast Vremya since the beginning of the 2000s.",
+     "en": "It is located between Vänortsparken and the northern bank of the Ume River.",
      "zh": ""
     },
     {
-     "en": "In 2022, she interrupted a state-controlled Russian TV news broadcast to protest against the Russian invasion of Ukraine, which made international news headlines.",
+     "en": "The church belongs to the Umeå City Parish of the Church of Sweden.",
      "zh": ""
     },
     {
-     "en": "She was arrested, held without access to her lawyer and fined.",
+     "en": "It was inaugurated on 2 December 1894.",
      "zh": ""
     },
     {
-     "en": "On the afternoon after the protest, she was free to go.",
+     "en": "That day was First Advent Sunday the same year year.",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 75,
-   "audio": "data/reading/audio/20261118-1.mp3",
-   "audioKB": 182,
-   "link": "https://simple.wikipedia.org/wiki/Marina_Ovsyannikova",
-   "aiAssisted": true
-  },
-  {
-   "id": "20261118-2",
-   "date": "2026-11-18",
-   "source": "Simple Wikipedia",
-   "license": "CC BY-SA 4.0",
-   "attribution": "Simple English Wikipedia",
-   "topic": "百科",
-   "country": "",
-   "countryName": "",
-   "title": "Vacuactivus",
-   "titleZh": "",
-   "sentences": [
-    {
-     "en": "Vacuactivus is an international company for the production and sale of cryotherapy chambers and equipment for fitness rehabilitation, founded in 2000.",
-     "zh": ""
-    },
-    {
-     "en": "Since 2013, it has been operating in the United States under the direction of Slim Wellness Studio LLC.",
-     "zh": ""
-    },
-    {
-     "en": "The headquarters is located in Los Angeles, California with production in the US and Europe.",
-     "zh": ""
-    }
-   ],
-   "glossary": [],
-   "words": 54,
-   "audio": "data/reading/audio/20261118-2.mp3",
-   "audioKB": 140,
-   "link": "https://simple.wikipedia.org/wiki/Vacuactivus",
+   "words": 58,
+   "audio": "data/reading/audio/20261119-1.mp3",
+   "audioKB": 134,
+   "link": "https://simple.wikipedia.org/wiki/Ume%C3%A5_City_Church",
    "aiAssisted": true
   }
  ]
