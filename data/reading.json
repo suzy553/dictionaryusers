@@ -1,46 +1,50 @@
 {
- "updated": "2026-11-19 22:59",
- "date": "2026-11-19",
+ "updated": "2026-11-20 22:58",
+ "date": "2026-11-20",
  "source": "Simple Wikipedia",
  "items": [
   {
-   "id": "20261119-1",
-   "date": "2026-11-19",
+   "id": "20261120-1",
+   "date": "2026-11-20",
    "source": "Simple Wikipedia",
    "license": "CC BY-SA 4.0",
    "attribution": "Simple English Wikipedia",
    "topic": "百科",
    "country": "",
    "countryName": "",
-   "title": "Umeå City Church",
+   "title": "Black Panther (movie)",
    "titleZh": "",
    "sentences": [
     {
-     "en": "Umeå City Church is a church building in the central parts of Umeå in Sweden.",
+     "en": "Black Panther is a 2018 American superhero movie based on the Marvel Comics character of the same name.",
      "zh": ""
     },
     {
-     "en": "It is located between Vänortsparken and the northern bank of the Ume River.",
+     "en": "Produced by Marvel Studios and distributed by Walt Disney Studios Motion Pictures, it is the 18th movie in the Marvel Cinematic Universe (MCU).",
      "zh": ""
     },
     {
-     "en": "The church belongs to the Umeå City Parish of the Church of Sweden.",
+     "en": "The movie was directed by Ryan Coogler, who co-wrote the screenplay with Joe Robert Cole, and it stars Chadwick Boseman as T'Challa / Black Panther alongside Michael B.",
      "zh": ""
     },
     {
-     "en": "It was inaugurated on 2 December 1894.",
+     "en": "Jordan, Lupita Nyong'o, Danai Gurira, Martin Freeman, Daniel Kaluuya, Letitia Wright, Winston Duke, Sterling K.",
      "zh": ""
     },
     {
-     "en": "That day was First Advent Sunday the same year year.",
+     "en": "Brown, Angela Bassett, Forest Whitaker, and Andy Serkis.",
+     "zh": ""
+    },
+    {
+     "en": "In Black Panther, T'Challa is crowned king of Wakanda following his father's death, but he is challenged by Killmonger (Jordan), who plans to abandon the country's isolationist policies and begin a global revolution.",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 58,
-   "audio": "data/reading/audio/20261119-1.mp3",
-   "audioKB": 134,
-   "link": "https://simple.wikipedia.org/wiki/Ume%C3%A5_City_Church",
+   "words": 125,
+   "audio": "data/reading/audio/20261120-1.mp3",
+   "audioKB": 306,
+   "link": "https://simple.wikipedia.org/wiki/Black_Panther_(movie)",
    "aiAssisted": true
   }
  ]
