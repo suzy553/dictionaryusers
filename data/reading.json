@@ -1,50 +1,86 @@
 {
- "updated": "2026-11-20 22:58",
- "date": "2026-11-20",
+ "updated": "2026-11-22 02:14",
+ "date": "2026-11-22",
  "source": "Simple Wikipedia",
  "items": [
   {
-   "id": "20261120-1",
-   "date": "2026-11-20",
+   "id": "20261122-1",
+   "date": "2026-11-22",
    "source": "Simple Wikipedia",
    "license": "CC BY-SA 4.0",
    "attribution": "Simple English Wikipedia",
    "topic": "百科",
    "country": "",
    "countryName": "",
-   "title": "Black Panther (movie)",
+   "title": "2007 Pacific hurricane season",
    "titleZh": "",
    "sentences": [
     {
-     "en": "Black Panther is a 2018 American superhero movie based on the Marvel Comics character of the same name.",
+     "en": "The 2007 Pacific hurricane season was a below average Pacific hurricane season with only one major hurricane.",
      "zh": ""
     },
     {
-     "en": "Produced by Marvel Studios and distributed by Walt Disney Studios Motion Pictures, it is the 18th movie in the Marvel Cinematic Universe (MCU).",
+     "en": "It officially started on May 15, 2007 in the eastern Pacific, designated as the area east of 140°W, and on June 1 2007 in the central Pacific, which is between the International Date Line and 140°W, and lasted until November 30, 2007.",
      "zh": ""
     },
     {
-     "en": "The movie was directed by Ryan Coogler, who co-wrote the screenplay with Joe Robert Cole, and it stars Chadwick Boseman as T'Challa / Black Panther alongside Michael B.",
-     "zh": ""
-    },
-    {
-     "en": "Jordan, Lupita Nyong'o, Danai Gurira, Martin Freeman, Daniel Kaluuya, Letitia Wright, Winston Duke, Sterling K.",
-     "zh": ""
-    },
-    {
-     "en": "Brown, Angela Bassett, Forest Whitaker, and Andy Serkis.",
-     "zh": ""
-    },
-    {
-     "en": "In Black Panther, T'Challa is crowned king of Wakanda following his father's death, but he is challenged by Killmonger (Jordan), who plans to abandon the country's isolationist policies and begin a global revolution.",
+     "en": "These dates conventionally delimit the period of each year when most tropical cyclones form in the Pacific basin.",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 125,
-   "audio": "data/reading/audio/20261120-1.mp3",
-   "audioKB": 306,
-   "link": "https://simple.wikipedia.org/wiki/Black_Panther_(movie)",
+   "words": 77,
+   "audio": "data/reading/audio/20261122-1.mp3",
+   "audioKB": 208,
+   "link": "https://simple.wikipedia.org/wiki/2007_Pacific_hurricane_season",
+   "aiAssisted": true
+  },
+  {
+   "id": "20261122-2",
+   "date": "2026-11-22",
+   "source": "Simple Wikipedia",
+   "license": "CC BY-SA 4.0",
+   "attribution": "Simple English Wikipedia",
+   "topic": "百科",
+   "country": "",
+   "countryName": "",
+   "title": "The Sound of Music",
+   "titleZh": "",
+   "sentences": [
+    {
+     "en": "The Sound of Music is a musical.",
+     "zh": ""
+    },
+    {
+     "en": "It was based on a 1956 German movie, Die Trapp-Familie and The Story of the Trapp Family Singers by Maria von Trapp.",
+     "zh": ""
+    },
+    {
+     "en": "The book was written by Howard Lindsay and Russel Crouse.",
+     "zh": ""
+    },
+    {
+     "en": "The lyrics were written by Oscar Hammerstein II.",
+     "zh": ""
+    },
+    {
+     "en": "The music was written by Richard Rodgers.",
+     "zh": ""
+    },
+    {
+     "en": "It was the last musical written by Rodgers and Hammerstein.",
+     "zh": ""
+    },
+    {
+     "en": "Hammerstein died nine months after the Broadway opening.",
+     "zh": ""
+    }
+   ],
+   "glossary": [],
+   "words": 72,
+   "audio": "data/reading/audio/20261122-2.mp3",
+   "audioKB": 172,
+   "link": "https://simple.wikipedia.org/wiki/The_Sound_of_Music",
    "aiAssisted": true
   }
  ]
