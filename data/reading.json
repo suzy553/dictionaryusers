@@ -1,82 +1,62 @@
 {
- "updated": "2026-11-25 04:54",
- "date": "2026-11-25",
+ "updated": "2026-11-26 04:10",
+ "date": "2026-11-26",
  "source": "Simple Wikipedia",
  "items": [
   {
-   "id": "20261125-1",
-   "date": "2026-11-25",
+   "id": "20261126-1",
+   "date": "2026-11-26",
    "source": "Simple Wikipedia",
    "license": "CC BY-SA 4.0",
    "attribution": "Simple English Wikipedia",
    "topic": "百科",
    "country": "",
    "countryName": "",
-   "title": "Adhesion",
+   "title": "Skinhead",
    "titleZh": "",
    "sentences": [
     {
-     "en": "Adhesion is the process in which dissimilar particles stick together.",
+     "en": "Skinheads, named after their short haircuts, are members of a subculture that originated in Britain in late 1960s, where they were closely tied to the Rude Boys and the Mods.",
      "zh": ""
     },
     {
-     "en": "In the case of similar particles, this effect is called cohesion.",
-     "zh": ""
-    },
-    {
-     "en": "Adhesion results from the physical properties of the interface between two phases.",
-     "zh": ""
-    },
-    {
-     "en": "The forces that result in adhesion are not fully known, there are different explanations.",
-     "zh": ""
-    },
-    {
-     "en": "Five different types of adhesion have been proposed:Mechanical adhesion: Adhesive materials fill the voids or pores, and interlock\nChemical adhesion: Where they join, two materials form a Chemical compound.",
-     "zh": ""
-    },
-    {
-     "en": "Dispersive adhesion: Two materials are held together by Van der Waals forces\nElectrostatic adhesion: Two materials are held together by electrostatic charge\nDiffusive adhesion: Two materials are held together with Atomic diffusion, it is derived from a sanskrit word adhere meaning to hold on",
+     "en": "They shave their heads, because originally most of them were workers in factories and they had to be bald, so their hair could not get caught in the machines.",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 120,
-   "audio": "data/reading/audio/20261125-1.mp3",
-   "audioKB": 315,
-   "link": "https://simple.wikipedia.org/wiki/Adhesion",
+   "words": 59,
+   "audio": "data/reading/audio/20261126-1.mp3",
+   "audioKB": 115,
+   "link": "https://simple.wikipedia.org/wiki/Skinhead",
    "aiAssisted": true
   },
   {
-   "id": "20261125-2",
-   "date": "2026-11-25",
+   "id": "20261126-2",
+   "date": "2026-11-26",
    "source": "Simple Wikipedia",
    "license": "CC BY-SA 4.0",
    "attribution": "Simple English Wikipedia",
    "topic": "百科",
    "country": "",
    "countryName": "",
-   "title": "Louise Redknapp",
+   "title": "World War II",
    "titleZh": "",
    "sentences": [
     {
-     "en": "Louise Elizabeth Redknapp, professionally known as Louise, is an English singer-songwriter and media personality.",
+     "en": "World War II, or the Second World War, was a global conflict which involved fighting between the Allies and the Axis.",
      "zh": ""
     },
     {
-     "en": "She was a member of Eternal, an R&B girl group which rose to fame in 1993 with their quadruple-platinum studio album Always & Forever.",
-     "zh": ""
-    },
-    {
-     "en": "In 1995 Louise left Eternal to start a solo career.",
+     "en": "Most of the world's countries, including all of the great powers, fought as part of two military alliances: the Allied Powers, which included the \"Big Four\"—the United States, the Soviet Union, the United Kingdom and China—and the Axis Powers, which included Nazi Germany, Fascist Italy and the Empire of Japan.",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 48,
-   "audio": "data/reading/audio/20261125-2.mp3",
-   "audioKB": 125,
-   "link": "https://simple.wikipedia.org/wiki/Louise_Redknapp",
+   "words": 71,
+   "audio": "data/reading/audio/20261126-2.mp3",
+   "audioKB": 163,
+   "link": "https://simple.wikipedia.org/wiki/World_War_II",
    "aiAssisted": true
   }
  ]
