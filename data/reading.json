@@ -1,38 +1,126 @@
 {
- "updated": "2026-11-27 04:16",
- "date": "2026-11-27",
+ "updated": "2026-11-28 03:54",
+ "date": "2026-11-28",
  "source": "Simple Wikipedia",
  "items": [
   {
-   "id": "20261127-1",
-   "date": "2026-11-27",
+   "id": "20261128-1",
+   "date": "2026-11-28",
    "source": "Simple Wikipedia",
    "license": "CC BY-SA 4.0",
    "attribution": "Simple English Wikipedia",
    "topic": "百科",
    "country": "",
    "countryName": "",
-   "title": "Georgia Guidestones",
+   "title": "Jose Peralta",
    "titleZh": "",
    "sentences": [
     {
-     "en": "The Georgia Guidestones were a granite monument in Elbert County, Georgia, United States, and first erected in 1980.",
+     "en": "José Rafael Peralta was an American politician.",
      "zh": ""
     },
     {
-     "en": "The monument was 19 feet 3 inches (5.87 m) tall, made from six granite slabs weighing 237,746 pounds (107,840 kg) in all.",
+     "en": "He was born in New York City.",
      "zh": ""
     },
     {
-     "en": "The structure was sometimes known as an \"American Stonehenge\" or \"Georgia's Stonehenge\".",
+     "en": "He was in the New York State Assembly and New York State Senate.",
+     "zh": ""
+    },
+    {
+     "en": "He was a member of the Democratic Party.",
+     "zh": ""
+    },
+    {
+     "en": "He last represented District 13 in the State Senate.",
+     "zh": ""
+    },
+    {
+     "en": "He was elected in a landslide to the New York State Senate on March 16, 2010.",
      "zh": ""
     }
    ],
    "glossary": [],
-   "words": 52,
-   "audio": "data/reading/audio/20261127-1.mp3",
-   "audioKB": 172,
-   "link": "https://simple.wikipedia.org/wiki/Georgia_Guidestones",
+   "words": 60,
+   "audio": "data/reading/audio/20261128-1.mp3",
+   "audioKB": 138,
+   "link": "https://simple.wikipedia.org/wiki/Jose_Peralta",
+   "aiAssisted": true
+  },
+  {
+   "id": "20261128-2",
+   "date": "2026-11-28",
+   "source": "Simple Wikipedia",
+   "license": "CC BY-SA 4.0",
+   "attribution": "Simple English Wikipedia",
+   "topic": "百科",
+   "country": "",
+   "countryName": "",
+   "title": "Rickenbacker",
+   "titleZh": "",
+   "sentences": [
+    {
+     "en": "Rickenbacker International Corporation, also known as Rickenbacker Archived 2008-01-12 at the Wayback Machine), is an American company that makes electric guitars.",
+     "zh": ""
+    },
+    {
+     "en": "The company invented the first electric guitar during the 1930s.",
+     "zh": ""
+    },
+    {
+     "en": "The guitars are made at its headquarters in Santa Ana, California.",
+     "zh": ""
+    },
+    {
+     "en": "Rickenbacker is the largest guitar company to make all of their guitars within the United States.",
+     "zh": ""
+    }
+   ],
+   "glossary": [],
+   "words": 58,
+   "audio": "data/reading/audio/20261128-2.mp3",
+   "audioKB": 158,
+   "link": "https://simple.wikipedia.org/wiki/Rickenbacker",
+   "aiAssisted": true
+  },
+  {
+   "id": "20261128-3",
+   "date": "2026-11-28",
+   "source": "Simple Wikipedia",
+   "license": "CC BY-SA 4.0",
+   "attribution": "Simple English Wikipedia",
+   "topic": "百科",
+   "country": "",
+   "countryName": "",
+   "title": "The Simpsons Movie",
+   "titleZh": "",
+   "sentences": [
+    {
+     "en": "The Simpsons Movie is a 2007 animated comedy movie.",
+     "zh": ""
+    },
+    {
+     "en": "It is based on the television programme The Simpsons.",
+     "zh": ""
+    },
+    {
+     "en": "The movie is mainly about environmental disaster.",
+     "zh": ""
+    },
+    {
+     "en": "The movie features the main television voices of Dan Castellaneta, Julie Kavner, Nancy Cartwright, Yeardley Smith, Hank Azaria, and Harry Shearer.",
+     "zh": ""
+    },
+    {
+     "en": "On February 17, 2017, The Simpsons Movie aired on Teletoon at Night Is Rated PG for violence, sexual themes, and swearing, On February 17, 2017 The Simpsons Movie aired on Teletoon's nighttime programming block, Teletoon at Night.",
+     "zh": ""
+    }
+   ],
+   "glossary": [],
+   "words": 83,
+   "audio": "data/reading/audio/20261128-3.mp3",
+   "audioKB": 232,
+   "link": "https://simple.wikipedia.org/wiki/The_Simpsons_Movie",
    "aiAssisted": true
   }
  ]
